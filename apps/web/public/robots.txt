@@ -1,0 +1,62 @@
+# JTH Horseboxes Robots.txt
+# https://jthltd.co.uk
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /configurator/api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /static/
+Crawl-delay: 1
+
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Crawl-delay: 2
+
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /models/
+Allow: /gallery/
+Allow: *.jpg
+Allow: *.jpeg
+Allow: *.webp
+Allow: *.avif
+Allow: *.png
+
+User-agent: Mediapartners-Google
+Allow: /
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+Sitemap: https://jthltd.co.uk/sitemap.xml
+Sitemap: https://jthltd.co.uk/sitemap-models.xml
+Sitemap: https://jthltd.co.uk/sitemap-gallery.xml
+Host: https://jthltd.co.uk

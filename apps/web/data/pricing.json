@@ -1,0 +1,81 @@
+{
+  "vatRate": 0.2,
+  "depositDefaultPence": 500000,
+  "agents": [
+    { "name": "JTH Ltd", "email": "sales@jthltd.co.uk" },
+    { "name": "J&J Horseboxes", "email": "jjhorseboxes@outlook.com" }
+  ],
+  "models": [
+    { "id": "professional-35", "slug": "professional-35", "name": "Professional 35", "basePricePence": 2200000, "active": true, "category": "3.5t" },
+    { "id": "principle-35", "slug": "principle-35", "name": "Principle 35", "basePricePence": 1850000, "active": true, "category": "3.5t" },
+    { "id": "progeny-35", "slug": "progeny-35", "name": "Progeny 35", "basePricePence": 2550000, "active": true, "category": "3.5t", "notes": "Top of the Range" },
+
+    { "id": "aeos-qv-45", "slug": "aeos-qv-45", "name": "Aeos QV 45", "basePricePence": 2895000, "active": true, "category": "4.5t" },
+    { "id": "aeos-edge-45", "slug": "aeos-edge-45", "name": "Aeos Edge 45", "basePricePence": 3150000, "active": true, "category": "4.5t" },
+    { "id": "aeos-freedom-45", "slug": "aeos-freedom-45", "name": "Aeos Freedom 45", "basePricePence": 3650000, "active": true, "category": "4.5t", "notes": "Weekender" },
+    { "id": "aeos-discovery-45", "slug": "aeos-discovery-45", "name": "Aeos Discovery 45", "basePricePence": 4610000, "active": true, "category": "4.5t", "notes": "Luxury Living" },
+    { "id": "aeos-freedom-st-45", "slug": "aeos-freedom-st-45", "name": "Aeos Freedom ST 45", "basePricePence": 3850000, "active": true, "category": "4.5t", "notes": "Stallion" },
+    { "id": "aeos-edge-st-45", "slug": "aeos-edge-st-45", "name": "Aeos Edge ST 45", "basePricePence": 3350000, "active": true, "category": "4.5t", "notes": "Stallion" },
+    { "id": "aeos-qv-st-45", "slug": "aeos-qv-st-45", "name": "Aeos QV ST 45", "basePricePence": 3095000, "active": true, "category": "4.5t", "notes": "Stallion" },
+
+    { "id": "aeos-discovery-72", "slug": "aeos-discovery-72", "name": "Aeos Discovery 72", "basePricePence": 7460000, "active": true, "category": "7.2t" },
+    { "id": "helios-75", "slug": "helios-75", "name": "Helios 75", "basePricePence": 8250000, "active": true, "category": "7.5t" }
+  ],
+  "packages": [],
+  "options": [
+    { "id": "rear-chassis-extension", "slug": "rear-chassis-extension", "name": "Rear chassis extension", "type": "per_foot", "pricePerUnitPence": 100000, "maxQty": 3, "category": "exterior" },
+    { "id": "external-tie-rings", "slug": "external-tie-rings", "name": "External tie rings", "type": "boolean", "pricePerUnitPence": 0, "category": "exterior" },
+    { "id": "additional-rear-side-lights", "slug": "additional-rear-side-lights", "name": "Additional rear and side loading lights", "type": "boolean", "pricePerUnitPence": 18000, "category": "exterior" },
+    { "id": "reversing-lights", "slug": "reversing-lights", "name": "Reversing lights", "type": "boolean", "pricePerUnitPence": 18000, "category": "exterior" },
+    { "id": "spare-key", "slug": "spare-key", "name": "Spare Key", "type": "quantity", "unit": "key", "maxQty": 2, "pricePerUnitPence": 15000, "category": "exterior" },
+    { "id": "reversing-sensors", "slug": "reversing-sensors", "name": "Reversing Sensors", "type": "boolean", "pricePerUnitPence": 24000, "category": "exterior" },
+    { "id": "reversing-camera", "slug": "reversing-camera", "name": "Reversing camera", "type": "boolean", "pricePerUnitPence": 10000, "category": "exterior" },
+    { "id": "metallic-colour-respray", "slug": "metallic-colour-respray", "name": "Metallic colour respray", "type": "boolean", "pricePerUnitPence": 250000, "category": "exterior" },
+    { "id": "metallic-two-colour-respray", "slug": "metallic-two-colour-respray", "name": "Metallic two colour respray", "type": "boolean", "pricePerUnitPence": 275000, "category": "exterior" },
+    { "id": "external-small-crewcab-doors", "slug": "external-small-crewcab-doors", "name": "External small crewcab doors", "type": "boolean", "pricePerUnitPence": 24000, "category": "exterior" },
+    { "id": "crewcab-windows", "slug": "crewcab-windows", "name": "Crewcab windows (seating level)", "type": "quantity", "unit": "window", "maxQty": 2, "pricePerUnitPence": 9500, "category": "exterior" },
+    { "id": "luton-windows", "slug": "luton-windows", "name": "Luton windows", "type": "quantity", "unit": "window", "maxQty": 2, "pricePerUnitPence": 6000, "category": "exterior" },
+    { "id": "single-passenger-seat", "slug": "single-passenger-seat", "name": "Single passenger seat", "type": "boolean", "pricePerUnitPence": 60000, "category": "exterior" },
+
+    { "id": "standard-external-tack-locker", "slug": "standard-external-tack-locker", "name": "Standard external tack locker", "type": "quantity", "unit": "locker", "maxQty": 2, "pricePerUnitPence": 65500, "category": "storage" },
+    { "id": "large-external-tack-locker", "slug": "large-external-tack-locker", "name": "Large external tack locker", "type": "boolean", "pricePerUnitPence": 75000, "category": "storage" },
+
+    { "id": "front-cab-seat-covers", "slug": "front-cab-seat-covers", "name": "Front Cab seat covers (Included)", "type": "boolean", "pricePerUnitPence": 0, "category": "interior" },
+    { "id": "upholstered-seat-coverings", "slug": "upholstered-seat-coverings", "name": "Professionally Upholstered seat coverings", "type": "boolean", "pricePerUnitPence": 95000, "category": "interior" },
+    { "id": "upholstered-seat-coverings-included", "slug": "upholstered-seat-coverings-included", "name": "Professionally Upholstered seat coverings (included)", "type": "boolean", "pricePerUnitPence": 0, "category": "interior" },
+
+    { "id": "uprating-4-5t", "slug": "uprating-4-5t", "name": "Uprating to 4.5T (L4 chassis only)", "type": "boolean", "pricePerUnitPence": 200000, "category": "chassis" },
+    { "id": "l4-surcharge", "slug": "l4-surcharge", "name": "L4 surcharge", "type": "boolean", "pricePerUnitPence": 100000, "category": "chassis" },
+
+    { "id": "sliding-partition", "slug": "sliding-partition", "name": "Sliding Partition", "type": "boolean", "pricePerUnitPence": 180000, "category": "horse-area" },
+    { "id": "door-in-z-wall", "slug": "door-in-z-wall", "name": "Door in Z wall", "type": "boolean", "pricePerUnitPence": 24000, "category": "horse-area" },
+    { "id": "z-wall-top-sliding-doors", "slug": "z-wall-top-sliding-doors", "name": "Z wall top sliding doors", "type": "boolean", "pricePerUnitPence": 65000, "category": "horse-area" },
+    { "id": "temperature-monitoring", "slug": "temperature-monitoring", "name": "Temperature monitoring system", "type": "boolean", "pricePerUnitPence": 28400, "category": "horse-area" },
+    { "id": "door-luton-compartment", "slug": "door-luton-compartment", "name": "Door on Luton Compartment", "type": "boolean", "pricePerUnitPence": 32000, "category": "horse-area" },
+    { "id": "extra-small-window", "slug": "extra-small-window", "name": "Extra (small) window", "type": "quantity", "unit": "window", "maxQty": 2, "pricePerUnitPence": 18000, "category": "horse-area" },
+    { "id": "extra-large-window", "slug": "extra-large-window", "name": "Extra (Large) window", "type": "quantity", "unit": "window", "maxQty": 2, "pricePerUnitPence": 24000, "category": "horse-area" },
+    { "id": "horse-head-partition-padding", "slug": "horse-head-partition-padding", "name": "Horse head and partition padding", "type": "boolean", "pricePerUnitPence": 60000, "category": "horse-area" },
+    { "id": "adjustable-tie-ring-track", "slug": "adjustable-tie-ring-track", "name": "4 adjustable tie ring track", "type": "boolean", "pricePerUnitPence": 20000, "category": "horse-area" },
+    { "id": "reinforced-window-bars", "slug": "reinforced-window-bars", "name": "Reinforced heavy duty steel window bars", "type": "boolean", "pricePerUnitPence": 30000, "category": "horse-area" },
+    { "id": "climate-control-fan", "slug": "climate-control-fan", "name": "Climate control horse fan", "type": "boolean", "pricePerUnitPence": 35000, "category": "horse-area" },
+    { "id": "loading-light", "slug": "loading-light", "name": "Loading light", "type": "quantity", "unit": "light", "maxQty": 2, "pricePerUnitPence": 10800, "category": "horse-area" },
+
+    { "id": "large-window", "slug": "large-window", "name": "Large window", "type": "quantity", "unit": "window", "maxQty": 2, "pricePerUnitPence": 12000, "category": "grooms-area" },
+    { "id": "window-blinds", "slug": "window-blinds", "name": "Window blinds + pads (fly screen and blackout)", "type": "quantity", "unit": "set", "maxQty": 2, "pricePerUnitPence": 18900, "category": "grooms-area" },
+    { "id": "wood-effect-internals", "slug": "wood-effect-internals", "name": "Wood Effect internals", "type": "boolean", "pricePerUnitPence": 80000, "category": "grooms-area" },
+    { "id": "wall-cabinets", "slug": "wall-cabinets", "name": "Wall cabinets including lighting", "type": "boolean", "pricePerUnitPence": 165000, "category": "grooms-area" },
+    { "id": "base-cabinets", "slug": "base-cabinets", "name": "Base cabinets (refer to spec sheet for layout)", "type": "boolean", "pricePerUnitPence": 135000, "category": "grooms-area" },
+    { "id": "full-length-seating", "slug": "full-length-seating", "name": "Full length seating on one side (Upholstered)", "type": "boolean", "pricePerUnitPence": 87000, "category": "grooms-area" },
+    { "id": "storage-bench-seats", "slug": "storage-bench-seats", "name": "Storage bench seats", "type": "boolean", "pricePerUnitPence": 25000, "category": "grooms-area" },
+    { "id": "additional-shelf", "slug": "additional-shelf", "name": "Additional Shelf", "type": "quantity", "unit": "shelf", "maxQty": 3, "pricePerUnitPence": 15000, "category": "grooms-area" },
+    { "id": "water-tank", "slug": "water-tank", "name": "Water tank and installation", "type": "boolean", "pricePerUnitPence": 68000, "category": "grooms-area" },
+    { "id": "horse-shower-pump", "slug": "horse-shower-pump", "name": "Horse shower and pump", "type": "boolean", "pricePerUnitPence": 70000, "category": "grooms-area" },
+    { "id": "fridge-freezer", "slug": "fridge-freezer", "name": "Fridge/Freezer", "type": "boolean", "pricePerUnitPence": 34800, "category": "grooms-area", "dependencies": ["leisure-battery-electrics"] },
+    { "id": "sink-hob-unit", "slug": "sink-hob-unit", "name": "Sink/hob unit with gas locker", "type": "boolean", "pricePerUnitPence": 150000, "category": "grooms-area" },
+
+    { "id": "hookup-240v", "slug": "hookup-240v", "name": "240v hook up including trickle charger and 2x sockets", "type": "boolean", "pricePerUnitPence": 30000, "category": "electrical" },
+    { "id": "inverter-240v", "slug": "inverter-240v", "name": "240v Inverter Supplied and installed", "type": "boolean", "pricePerUnitPence": 100000, "category": "electrical" },
+    { "id": "solar-panels", "slug": "solar-panels", "name": "Solar Panels and chargers", "type": "boolean", "pricePerUnitPence": 46500, "category": "electrical" },
+    { "id": "leisure-battery-electrics", "slug": "leisure-battery-electrics", "name": "Leisure battery and electrics including installation", "type": "boolean", "pricePerUnitPence": 118000, "category": "electrical" }
+  ]
+}
