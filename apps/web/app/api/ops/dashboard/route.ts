@@ -11,51 +11,67 @@ export async function GET(request: NextRequest) {
     const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1)
     const startOfLastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1)
 
-    // Fetch leads data
+    // Fetch leads data with proper columns
     const { data: leads, error: leadsError } = await supabase
       .from('leads')
-      .select('id, stage, quote_amount, created_at')
+      .select('id, status, configurator_data, created_at, first_name, last_name, company, model_interest')
 
-    if (leadsError) throw leadsError
+    // Log but don't throw error for leads
+    if (leadsError) {
+      console.error('Leads fetch error:', leadsError)
+    }
 
-    // Fetch production jobs
-    const { data: jobs, error: jobsError } = await supabase
+    // Initialize empty arrays if tables don't exist
+    let jobs: any[] = []
+    let activities: any[] = []
+    let orders: any[] = []
+    
+    // Try to fetch production_jobs but don't fail if table doesn't exist
+    const { data: jobsData, error: jobsError } = await supabase
       .from('production_jobs')
       .select('id, status, target_date, priority, current_stage, completed_stages')
+    
+    if (!jobsError && jobsData) {
+      jobs = jobsData
+    }
 
-    if (jobsError) throw jobsError
-
-    // Fetch recent activities
-    const { data: activities, error: activitiesError } = await supabase
+    // Try to fetch recent activities
+    const { data: activitiesData, error: activitiesError } = await supabase
       .from('lead_activities')
       .select(`
         id,
         activity_type,
         description,
         created_at,
-        lead_id,
-        leads!inner(first_name, last_name, company, model_interest)
+        lead_id
       `)
       .order('created_at', { ascending: false })
       .limit(10)
 
-    if (activitiesError) throw activitiesError
+    if (!activitiesError && activitiesData) {
+      activities = activitiesData
+    }
 
-    // Fetch orders
-    const { data: orders, error: ordersError } = await supabase
+    // Try to fetch orders
+    const { data: ordersData, error: ordersError } = await supabase
       .from('orders')
       .select('id, total_price, created_at, status, production_job_id')
 
-    if (ordersError) throw ordersError
+    if (!ordersError && ordersData) {
+      orders = ordersData
+    }
 
     // Calculate pipeline metrics
     const activeLeads = leads?.filter(l => 
-      !['closed_won', 'closed_lost'].includes(l.stage || '')
+      !['closed_won', 'closed_lost', 'completed'].includes(l.status || '')
     ) || []
     
-    const pipelineValue = activeLeads.reduce((sum, lead) => 
-      sum + (lead.quote_amount || 0), 0
-    )
+    // Extract quote amount from configurator_data if available
+    const pipelineValue = activeLeads.reduce((sum, lead) => {
+      const configData = lead.configurator_data as any
+      const quoteAmount = configData?.totalPrice || configData?.price || 0
+      return sum + quoteAmount
+    }, 0)
 
     const thisMonthLeads = leads?.filter(l => 
       new Date(l.created_at) >= startOfMonth
@@ -100,48 +116,64 @@ export async function GET(request: NextRequest) {
 
     const activeDeals = activeLeads.length
 
-    // Format recent activities
-    const formattedActivities = activities?.map(activity => {
-      const lead = activity.leads as any
-      let title = ''
-      let description = activity.description || ''
-      let icon = 'Users'
-      let color = 'text-blue-600'
+    // Format recent activities (or use leads as activities if no activities table)
+    let formattedActivities: any[] = []
+    
+    if (activities && activities.length > 0) {
+      formattedActivities = activities.map(activity => {
+        // Find corresponding lead
+        const lead = leads?.find(l => l.id === activity.lead_id)
+        let title = ''
+        let description = activity.description || ''
+        let icon = 'Users'
+        let color = 'text-blue-600'
 
-      switch (activity.activity_type) {
-        case 'lead_created':
-          title = 'New lead from website'
-          description = `${lead?.first_name || ''} ${lead?.last_name || ''} - ${lead?.model_interest || 'Model TBD'} inquiry`
-          icon = 'Users'
-          color = 'text-blue-600'
-          break
-        case 'stage_change':
-          title = 'Lead stage updated'
-          description = `${lead?.company || `${lead?.first_name || ''} ${lead?.last_name || ''}`} - ${activity.description}`
-          icon = 'Activity'
-          color = 'text-purple-600'
-          break
-        case 'quote_sent':
-          title = 'Quote sent'
-          description = `${lead?.company || `${lead?.first_name || ''} ${lead?.last_name || ''}`}`
-          icon = 'Package'
-          color = 'text-green-600'
-          break
-        default:
-          title = activity.activity_type
-          description = activity.description || ''
-      }
+        switch (activity.activity_type) {
+          case 'lead_created':
+            title = 'New lead from website'
+            description = `${lead?.first_name || ''} ${lead?.last_name || ''} - ${lead?.model_interest || 'Model TBD'} inquiry`
+            icon = 'Users'
+            color = 'text-blue-600'
+            break
+          case 'stage_change':
+            title = 'Lead stage updated'
+            description = `${lead?.company || `${lead?.first_name || ''} ${lead?.last_name || ''}`} - ${activity.description}`
+            icon = 'Activity'
+            color = 'text-purple-600'
+            break
+          case 'quote_sent':
+            title = 'Quote sent'
+            description = `${lead?.company || `${lead?.first_name || ''} ${lead?.last_name || ''}`}`
+            icon = 'Package'
+            color = 'text-green-600'
+            break
+          default:
+            title = activity.activity_type
+            description = activity.description || ''
+        }
 
-      return {
-        id: activity.id,
-        type: activity.activity_type,
-        title,
-        description,
-        time: activity.created_at,
-        icon,
-        color
-      }
-    }) || []
+        return {
+          id: activity.id,
+          type: activity.activity_type,
+          title,
+          description,
+          time: activity.created_at,
+          icon,
+          color
+        }
+      })
+    } else if (leads && leads.length > 0) {
+      // Use recent leads as activities if no activities table
+      formattedActivities = leads.slice(0, 10).map(lead => ({
+        id: lead.id,
+        type: 'lead_created',
+        title: 'New lead from website',
+        description: `${lead.first_name || ''} ${lead.last_name || ''} - ${lead.model_interest || 'Model TBD'} inquiry`,
+        time: lead.created_at,
+        icon: 'Users',
+        color: 'text-blue-600'
+      }))
+    }
 
     // Get upcoming deliveries
     const upcomingDeliveries = jobs?.filter(j => {
