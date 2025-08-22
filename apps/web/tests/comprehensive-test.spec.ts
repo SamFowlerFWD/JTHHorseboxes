@@ -117,13 +117,14 @@ test.describe('JTH Website Comprehensive Test Suite', () => {
           console.log(`✅ ${route.name} (${route.path}): Status ${status}`);
         }
       } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : String(error);
         report.pageRoutes.push({
           path: route.path,
           name: route.name,
           status: '❌ Failed',
-          error: error.message
+          error: errorMessage
         });
-        console.log(`❌ ${route.name} (${route.path}): ${error.message}`);
+        console.log(`❌ ${route.name} (${route.path}): ${errorMessage}`);
       }
     }
   });
@@ -165,13 +166,14 @@ test.describe('JTH Website Comprehensive Test Suite', () => {
           console.log(`✅ ${endpoint.name} (${endpoint.method} ${endpoint.path}): Status ${status}`);
         }
       } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : String(error);
         report.apiEndpoints.push({
           path: endpoint.path,
           name: endpoint.name,
           status: '❌ Failed',
-          error: error.message
+          error: errorMessage
         });
-        console.log(`❌ ${endpoint.name} (${endpoint.method} ${endpoint.path}): ${error.message}`);
+        console.log(`❌ ${endpoint.name} (${endpoint.method} ${endpoint.path}): ${errorMessage}`);
       }
     }
   });
@@ -407,11 +409,12 @@ test.describe('JTH Website Comprehensive Test Suite', () => {
         console.log('✅ sitemap.xml found');
       }
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
       report.seoIssues.push({
         issue: 'Error accessing sitemap.xml',
-        details: error.message
+        details: errorMessage
       });
-      console.log(`❌ Error accessing sitemap.xml: ${error.message}`);
+      console.log(`❌ Error accessing sitemap.xml: ${errorMessage}`);
     }
     
     // Check robots.txt
@@ -427,11 +430,12 @@ test.describe('JTH Website Comprehensive Test Suite', () => {
         console.log('✅ robots.txt found');
       }
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
       report.seoIssues.push({
         issue: 'Error accessing robots.txt',
-        details: error.message
+        details: errorMessage
       });
-      console.log(`❌ Error accessing robots.txt: ${error.message}`);
+      console.log(`❌ Error accessing robots.txt: ${errorMessage}`);
     }
   });
 
@@ -469,9 +473,10 @@ test.describe('JTH Website Comprehensive Test Suite', () => {
           await page.waitForTimeout(1000);
           console.log('✅ Model selection clickable');
         } catch (error) {
+          const errorMessage = error instanceof Error ? error.message : String(error);
           report.configuratorIssues.push({
             issue: 'Model selection not clickable',
-            details: error.message
+            details: errorMessage
           });
           console.log('❌ Model selection not clickable');
         }
@@ -522,11 +527,12 @@ test.describe('JTH Website Comprehensive Test Suite', () => {
       }
       
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
       report.configuratorIssues.push({
         issue: 'Error testing configurator',
-        details: error.message
+        details: errorMessage
       });
-      console.log(`❌ Error testing configurator: ${error.message}`);
+      console.log(`❌ Error testing configurator: ${errorMessage}`);
     }
   });
 

@@ -143,7 +143,7 @@ export default function ProductionTrackingPage() {
   const calculateOverallProgress = (job: ProductionJob) => {
     const totalStages = PRODUCTION_STAGES.length
     const completedCount = job.completedStages.length
-    const currentStageProgress = job.currentStage 
+    const currentStageProgress = job.currentStage && job.stageProgress[job.currentStage]
       ? job.stageProgress[job.currentStage].completion / 100 
       : 0
     return ((completedCount + currentStageProgress) / totalStages) * 100
@@ -362,7 +362,7 @@ export default function ProductionTrackingPage() {
                 {/* Stage Progress */}
                 <div className="flex items-center gap-2 mb-4">
                   {PRODUCTION_STAGES.map((stage, index) => {
-                    const stageData = job.stageProgress[stage.id]
+                    const stageData = job.stageProgress[stage.id] || { status: "pending", completion: 0, hours: 0 }
                     const Icon = stage.icon
                     const isCompleted = stageData.status === "completed"
                     const isCurrent = job.currentStage === stage.id
@@ -467,7 +467,7 @@ export default function ProductionTrackingPage() {
                 <TabsContent value="stages" className="space-y-4">
                   <div className="grid gap-3">
                     {PRODUCTION_STAGES.map((stage) => {
-                      const stageData = selectedJob.stageProgress[stage.id]
+                      const stageData = selectedJob.stageProgress[stage.id] || { status: "pending", completion: 0, hours: 0 }
                       const Icon = stage.icon
                       
                       return (
@@ -476,17 +476,17 @@ export default function ProductionTrackingPage() {
                             <div className="flex items-center justify-between">
                               <div className="flex items-center gap-3">
                                 <div className={`p-2 rounded-lg ${
-                                  stageData.status === "completed" ? "bg-green-100" :
-                                  stageData.status === "in_progress" ? "bg-blue-100" :
-                                  stageData.status === "blocked" ? "bg-orange-100" :
+                                  stageData?.status === "completed" ? "bg-green-100" :
+                                  stageData?.status === "in_progress" ? "bg-blue-100" :
+                                  stageData?.status === "blocked" ? "bg-orange-100" :
                                   "bg-gray-100"
                                 }`}>
-                                  <Icon className={`h-5 w-5 ${getStageStatusColor(stageData.status)}`} />
+                                  <Icon className={`h-5 w-5 ${getStageStatusColor(stageData?.status || "pending")}`} />
                                 </div>
                                 <div>
                                   <p className="font-medium">{stage.name}</p>
                                   <p className="text-sm text-muted-foreground">
-                                    {stageData.hours > 0 
+                                    {stageData?.hours > 0 
                                       ? `${stageData.hours}h / ${stage.estimatedHours}h estimated`
                                       : `${stage.estimatedHours}h estimated`
                                     }
@@ -495,16 +495,16 @@ export default function ProductionTrackingPage() {
                               </div>
                               <div className="flex items-center gap-2">
                                 <Badge variant={
-                                  stageData.status === "completed" ? "default" :
-                                  stageData.status === "in_progress" ? "secondary" :
-                                  stageData.status === "blocked" ? "destructive" :
+                                  stageData?.status === "completed" ? "default" :
+                                  stageData?.status === "in_progress" ? "secondary" :
+                                  stageData?.status === "blocked" ? "destructive" :
                                   "outline"
                                 }>
-                                  {stageData.status}
+                                  {stageData?.status || "pending"}
                                 </Badge>
-                                {stageData.status === "in_progress" && (
+                                {stageData?.status === "in_progress" && (
                                   <span className="text-sm font-medium">
-                                    {stageData.completion}%
+                                    {stageData?.completion || 0}%
                                   </span>
                                 )}
                                 <Button 
@@ -520,8 +520,8 @@ export default function ProductionTrackingPage() {
                                 </Button>
                               </div>
                             </div>
-                            {stageData.status === "in_progress" && (
-                              <Progress value={stageData.completion} className="mt-2 h-1" />
+                            {stageData?.status === "in_progress" && (
+                              <Progress value={stageData?.completion || 0} className="mt-2 h-1" />
                             )}
                           </CardContent>
                         </Card>
