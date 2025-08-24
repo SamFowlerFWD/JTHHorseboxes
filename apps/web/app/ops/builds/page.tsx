@@ -225,16 +225,16 @@ export default function ProductionTrackingPage() {
   }
 
   return (
-    <div className="container mx-auto p-6 space-y-6">
+    <div className="container mx-auto p-4 sm:p-6 space-y-4 sm:space-y-6 max-w-7xl">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold">Production Tracking</h1>
-          <p className="text-muted-foreground">Monitor build progress across all jobs</p>
+          <h1 className="text-2xl sm:text-3xl font-bold">Production Tracking</h1>
+          <p className="text-sm sm:text-base text-muted-foreground">Monitor build progress across all jobs</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-col sm:flex-row gap-2">
           <Select value={filterStatus} onValueChange={setFilterStatus}>
-            <SelectTrigger className="w-40">
+            <SelectTrigger className="w-full sm:w-40">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -245,9 +245,9 @@ export default function ProductionTrackingPage() {
               <SelectItem value="ready">Ready</SelectItem>
             </SelectContent>
           </Select>
-          <Button>
+          <Button className="w-full sm:w-auto">
             <BarChart3 className="mr-2 h-4 w-4" />
-            Reports
+            <span>Reports</span>
           </Button>
         </div>
       </div>
@@ -279,29 +279,29 @@ export default function ProductionTrackingPage() {
 
       {/* Metrics Cards */}
       {!loading && !error && (
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         <Card>
-          <CardHeader className="pb-2">
-            <CardDescription>Total Jobs</CardDescription>
-            <CardTitle className="text-2xl">{metrics.totalJobs}</CardTitle>
+          <CardHeader className="p-3 sm:p-6 pb-2 sm:pb-2">
+            <CardDescription className="text-xs sm:text-sm">Total Jobs</CardDescription>
+            <CardTitle className="text-lg sm:text-2xl">{metrics.totalJobs}</CardTitle>
           </CardHeader>
         </Card>
         <Card>
-          <CardHeader className="pb-2">
-            <CardDescription>In Progress</CardDescription>
-            <CardTitle className="text-2xl">{metrics.inProgress}</CardTitle>
+          <CardHeader className="p-3 sm:p-6 pb-2 sm:pb-2">
+            <CardDescription className="text-xs sm:text-sm">In Progress</CardDescription>
+            <CardTitle className="text-lg sm:text-2xl">{metrics.inProgress}</CardTitle>
           </CardHeader>
         </Card>
         <Card>
-          <CardHeader className="pb-2">
-            <CardDescription>On Schedule</CardDescription>
-            <CardTitle className="text-2xl">{metrics.onSchedule}</CardTitle>
+          <CardHeader className="p-3 sm:p-6 pb-2 sm:pb-2">
+            <CardDescription className="text-xs sm:text-sm">On Schedule</CardDescription>
+            <CardTitle className="text-lg sm:text-2xl">{metrics.onSchedule}</CardTitle>
           </CardHeader>
         </Card>
         <Card>
-          <CardHeader className="pb-2">
-            <CardDescription>Avg Completion</CardDescription>
-            <CardTitle className="text-2xl">{metrics.avgCompletion.toFixed(0)}%</CardTitle>
+          <CardHeader className="p-3 sm:p-6 pb-2 sm:pb-2">
+            <CardDescription className="text-xs sm:text-sm">Avg Completion</CardDescription>
+            <CardTitle className="text-lg sm:text-2xl">{metrics.avgCompletion.toFixed(0)}%</CardTitle>
           </CardHeader>
         </Card>
       </div>
@@ -323,11 +323,11 @@ export default function ProductionTrackingPage() {
                 setIsDetailOpen(true)
               }}
             >
-              <CardContent className="p-6">
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <h3 className="text-lg font-semibold">{job.jobNumber}</h3>
+              <CardContent className="p-4 sm:p-6">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 gap-2">
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-center gap-2 mb-1">
+                      <h3 className="text-base sm:text-lg font-semibold">{job.jobNumber}</h3>
                       <Badge className={getStatusColor(job.status)}>
                         {job.status.replace("_", " ")}
                       </Badge>
@@ -338,13 +338,13 @@ export default function ProductionTrackingPage() {
                         </Badge>
                       )}
                     </div>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-xs sm:text-sm text-muted-foreground truncate">
                       {job.customer} - {job.model}
                     </p>
                   </div>
-                  <div className="text-right">
-                    <p className="text-sm font-medium">Order: {job.orderNumber}</p>
-                    <p className="text-sm text-muted-foreground">
+                  <div className="text-left sm:text-right">
+                    <p className="text-xs sm:text-sm font-medium">Order: {job.orderNumber}</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">
                       {job.registration !== "Pending" ? job.registration : "Registration pending"}
                     </p>
                   </div>
@@ -359,8 +359,32 @@ export default function ProductionTrackingPage() {
                   <Progress value={progress} className="h-2" />
                 </div>
 
-                {/* Stage Progress */}
-                <div className="flex items-center gap-2 mb-4">
+                {/* Stage Progress - Mobile View */}
+                <div className="flex sm:hidden items-center gap-1 mb-4 overflow-x-auto pb-2">
+                  {PRODUCTION_STAGES.map((stage) => {
+                    const stageData = job.stageProgress[stage.id] || { status: "pending", completion: 0, hours: 0 }
+                    const isCompleted = stageData.status === "completed"
+                    const isCurrent = job.currentStage === stage.id
+                    const isPending = stageData.status === "pending"
+                    
+                    return (
+                      <div
+                        key={stage.id}
+                        className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
+                          isCompleted ? "bg-green-100 text-green-600" :
+                          isCurrent ? "bg-blue-100 text-blue-600 ring-2 ring-blue-600" :
+                          isPending ? "bg-gray-100 text-gray-400" :
+                          "bg-orange-100 text-orange-600"
+                        }`}
+                      >
+                        <span className="text-xs font-medium">{stage.id.substring(0, 1).toUpperCase()}</span>
+                      </div>
+                    )
+                  })}
+                </div>
+                
+                {/* Stage Progress - Desktop View */}
+                <div className="hidden sm:flex items-center gap-2 mb-4">
                   {PRODUCTION_STAGES.map((stage, index) => {
                     const stageData = job.stageProgress[stage.id] || { status: "pending", completion: 0, hours: 0 }
                     const Icon = stage.icon
@@ -391,19 +415,19 @@ export default function ProductionTrackingPage() {
                 </div>
 
                 {/* Footer Info */}
-                <div className="flex items-center justify-between text-sm">
-                  <div className="flex items-center gap-4">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs sm:text-sm">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-4">
                     <div className="flex items-center gap-1">
-                      <Calendar className="h-4 w-4 text-muted-foreground" />
-                      <span>Start: {format(job.startDate, "dd MMM")}</span>
+                      <Calendar className="h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground" />
+                      <span className="text-xs sm:text-sm">Start: {format(job.startDate, "dd MMM")}</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <Truck className="h-4 w-4 text-muted-foreground" />
-                      <span>Target: {format(job.targetDate, "dd MMM")}</span>
+                      <Truck className="h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground" />
+                      <span className="text-xs sm:text-sm">Target: {format(job.targetDate, "dd MMM")}</span>
                     </div>
                     <div className={`flex items-center gap-1 font-medium ${daysInfo.color}`}>
-                      <Clock className="h-4 w-4" />
-                      <span>{daysInfo.value} {daysInfo.label}</span>
+                      <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
+                      <span className="text-xs sm:text-sm">{daysInfo.value} {daysInfo.label}</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
@@ -446,7 +470,7 @@ export default function ProductionTrackingPage() {
 
       {/* Job Detail Dialog */}
       <Dialog open={isDetailOpen} onOpenChange={setIsDetailOpen}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="w-[95vw] max-w-4xl h-[90vh] sm:h-auto sm:max-h-[80vh] overflow-y-auto">
           {selectedJob && (
             <>
               <DialogHeader>
@@ -532,12 +556,12 @@ export default function ProductionTrackingPage() {
 
                 <TabsContent value="photos" className="space-y-4">
                   <div className="flex justify-end">
-                    <Button>
+                    <Button size="sm" className="sm:size-default">
                       <Camera className="mr-2 h-4 w-4" />
-                      Upload Photos
+                      <span className="hidden sm:inline">Upload Photos</span>
                     </Button>
                   </div>
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {selectedJob.photos.map((photo, i) => (
                       <div key={i} className="space-y-2">
                         <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
@@ -586,7 +610,7 @@ export default function ProductionTrackingPage() {
                 </TabsContent>
 
                 <TabsContent value="details" className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <Label>Chassis Number</Label>
                       <p className="font-medium">{selectedJob.chassisNumber || "Pending"}</p>

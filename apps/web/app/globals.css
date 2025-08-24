@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import responsive design utilities */
+@import '../styles/responsive.css';
+
 /* J Taylor Horseboxes premium design system */
 :root {
   /* Premium color palette inspired by Bloomfields with JTH blue */

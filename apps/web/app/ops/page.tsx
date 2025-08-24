@@ -130,23 +130,23 @@ export default function OpsDashboardPage() {
   }
 
   return (
-    <div className="container mx-auto p-6 space-y-6">
+    <div className="container mx-auto p-4 sm:p-6 space-y-4 sm:space-y-6 max-w-7xl">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold">Operations Dashboard</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-2xl sm:text-3xl font-bold">Operations Dashboard</h1>
+          <p className="text-sm sm:text-base text-muted-foreground">
             {format(new Date(), "EEEE, dd MMMM yyyy")}
           </p>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline">
+          <Button variant="outline" size="sm" className="sm:size-default">
             <Calendar className="mr-2 h-4 w-4" />
-            Schedule
+            <span className="hidden sm:inline">Schedule</span>
           </Button>
-          <Button>
+          <Button size="sm" className="sm:size-default">
             <BarChart3 className="mr-2 h-4 w-4" />
-            Reports
+            <span className="hidden sm:inline">Reports</span>
           </Button>
         </div>
       </div>
@@ -178,11 +178,11 @@ export default function OpsDashboardPage() {
 
       {/* Key Metrics */}
       {!loading && !error && (
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription>Pipeline Value</CardDescription>
-            <CardTitle className="text-2xl">{formatCurrency(stats.salesPipeline.value)}</CardTitle>
+            <CardDescription className="text-xs sm:text-sm">Pipeline Value</CardDescription>
+            <CardTitle className="text-xl sm:text-2xl">{formatCurrency(stats.salesPipeline.value)}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-2 text-sm">
@@ -207,8 +207,8 @@ export default function OpsDashboardPage() {
 
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription>Production Status</CardDescription>
-            <CardTitle className="text-2xl">{stats.production.inProgress} Active</CardTitle>
+            <CardDescription className="text-xs sm:text-sm">Production Status</CardDescription>
+            <CardTitle className="text-xl sm:text-2xl">{stats.production.inProgress} Active</CardTitle>
           </CardHeader>
           <CardContent>
             <Progress value={stats.production.onTime} className="h-2 mb-2" />
@@ -226,8 +226,8 @@ export default function OpsDashboardPage() {
 
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription>Inventory Alerts</CardDescription>
-            <CardTitle className="text-2xl">{stats.inventory.lowStock} Low Stock</CardTitle>
+            <CardDescription className="text-xs sm:text-sm">Inventory Alerts</CardDescription>
+            <CardTitle className="text-xl sm:text-2xl">{stats.inventory.lowStock} Low Stock</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-2 text-sm">
@@ -242,8 +242,8 @@ export default function OpsDashboardPage() {
 
         <Card>
           <CardHeader className="pb-2">
-            <CardDescription>Customers</CardDescription>
-            <CardTitle className="text-2xl">{stats.customers.total} Total</CardTitle>
+            <CardDescription className="text-xs sm:text-sm">Customers</CardDescription>
+            <CardTitle className="text-xl sm:text-2xl">{stats.customers.total} Total</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-2 text-sm">
@@ -260,9 +260,9 @@ export default function OpsDashboardPage() {
       )}
 
       {!loading && !error && (
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         {/* Recent Activity */}
-        <Card className="col-span-2">
+        <Card className="lg:col-span-2">
           <CardHeader>
             <CardTitle>Recent Activity</CardTitle>
             <CardDescription>Latest updates across all systems</CardDescription>
@@ -281,15 +281,15 @@ export default function OpsDashboardPage() {
                 const Icon = iconMap[activity.icon] || Users
                 
                 return (
-                  <div key={activity.id} className="flex items-start gap-3">
-                    <div className={`p-2 rounded-lg bg-muted ${activity.color}`}>
-                      <Icon className="h-4 w-4" />
+                  <div key={activity.id} className="flex items-start gap-2 sm:gap-3">
+                    <div className={`p-1.5 sm:p-2 rounded-lg bg-muted ${activity.color}`}>
+                      <Icon className="h-3 w-3 sm:h-4 sm:w-4" />
                     </div>
-                    <div className="flex-1">
-                      <p className="text-sm font-medium">{activity.title}</p>
-                      <p className="text-sm text-muted-foreground">{activity.description}</p>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs sm:text-sm font-medium truncate">{activity.title}</p>
+                      <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2">{activity.description}</p>
                     </div>
-                    <span className="text-xs text-muted-foreground">
+                    <span className="text-xs text-muted-foreground whitespace-nowrap">
                       {formatTimeAgo(new Date(activity.time))}
                     </span>
                   </div>
@@ -304,7 +304,7 @@ export default function OpsDashboardPage() {
         </Card>
 
         {/* Upcoming Deliveries */}
-        <Card>
+        <Card className="lg:col-span-1">
           <CardHeader>
             <CardTitle>Upcoming Deliveries</CardTitle>
             <CardDescription>Next scheduled completions</CardDescription>
@@ -313,10 +313,10 @@ export default function OpsDashboardPage() {
             <div className="space-y-3">
               {upcomingDeliveries.length > 0 ? upcomingDeliveries.map((delivery) => (
                 <div key={delivery.id} className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium">{delivery.jobNumber}</p>
-                      <p className="text-xs text-muted-foreground">{delivery.customer}</p>
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs sm:text-sm font-medium truncate">{delivery.jobNumber}</p>
+                      <p className="text-xs text-muted-foreground truncate">{delivery.customer}</p>
                     </div>
                     <Badge variant={
                       delivery.status === "on_track" ? "default" :
@@ -349,12 +349,12 @@ export default function OpsDashboardPage() {
           <CardTitle>Quick Actions</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex gap-2">
-            <Button variant="outline" size="sm">Add Lead</Button>
-            <Button variant="outline" size="sm">Create Quote</Button>
-            <Button variant="outline" size="sm">Update Production</Button>
-            <Button variant="outline" size="sm">Check Inventory</Button>
-            <Button variant="outline" size="sm">View Reports</Button>
+          <div className="flex flex-wrap gap-2">
+            <Button variant="outline" size="sm" className="flex-1 sm:flex-initial">Add Lead</Button>
+            <Button variant="outline" size="sm" className="flex-1 sm:flex-initial">Create Quote</Button>
+            <Button variant="outline" size="sm" className="flex-1 sm:flex-initial hidden sm:inline-flex">Update Production</Button>
+            <Button variant="outline" size="sm" className="flex-1 sm:flex-initial hidden sm:inline-flex">Check Inventory</Button>
+            <Button variant="outline" size="sm" className="flex-1 sm:flex-initial hidden sm:inline-flex">View Reports</Button>
           </div>
         </CardContent>
       </Card>

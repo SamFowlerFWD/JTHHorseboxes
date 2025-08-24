@@ -168,7 +168,7 @@ export default function Header() {
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <div className="lg:hidden bg-white border-t border-slate-200">
-            <div className="px-4 py-6 space-y-4">
+            <nav className="px-4 py-6 space-y-4">
               <Link href="/" className="block text-slate-700 hover:text-blue-600 transition-colors font-medium">
                 Home
               </Link>
@@ -228,7 +228,7 @@ export default function Header() {
                   sales@jthltd.co.uk
                 </a>
               </div>
-            </div>
+            </nav>
           </div>
         )}
       </header>
