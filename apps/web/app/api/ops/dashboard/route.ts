@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
     // Fetch leads data with proper columns
     const { data: leads, error: leadsError } = await supabase
       .from('leads')
-      .select('id, status, configurator_data, created_at, first_name, last_name, company, model_interest')
+      .select('id, status, configurator_snapshot, created_at, first_name, last_name, company, model_interest')
 
     // Log but don't throw error for leads
     if (leadsError) {
@@ -66,9 +66,9 @@ export async function GET(request: NextRequest) {
       !['closed_won', 'closed_lost', 'completed'].includes(l.status || '')
     ) || []
     
-    // Extract quote amount from configurator_data if available
+    // Extract quote amount from configurator_snapshot if available
     const pipelineValue = activeLeads.reduce((sum, lead) => {
-      const configData = lead.configurator_data as any
+      const configData = lead.configurator_snapshot as any
       const quoteAmount = configData?.totalPrice || configData?.price || 0
       return sum + quoteAmount
     }, 0)

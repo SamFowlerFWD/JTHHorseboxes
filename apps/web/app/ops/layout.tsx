@@ -1,9 +1,8 @@
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Button } from "@/components/ui/button"
+import BottomNav from "@/components/ops/BottomNav"
 import {
   LayoutDashboard,
   Users,
@@ -14,9 +13,7 @@ import {
   Settings,
   Database,
   MessageSquare,
-  BarChart3,
-  Menu,
-  X
+  BarChart3
 } from "lucide-react"
 
 const navItems = [
@@ -72,53 +69,16 @@ export default function OpsLayout({
 }: {
   children: React.ReactNode
 }) {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
   const pathname = usePathname()
-
-  const closeSidebar = () => setSidebarOpen(false)
 
   return (
     <div className="flex h-screen bg-background relative">
-      {/* Mobile Header */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-white border-b z-40 flex items-center justify-between px-4">
-        <h2 className="text-lg font-bold">JTH Operations</h2>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setSidebarOpen(true)}
-          className="lg:hidden"
-        >
-          <Menu className="h-6 w-6" />
-        </Button>
-      </div>
-
-      {/* Sidebar Overlay for Mobile */}
-      {sidebarOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
-          onClick={closeSidebar}
-        />
-      )}
-
-      {/* Sidebar */}
-      <aside className={`
-        fixed lg:static inset-y-0 left-0 z-50
-        w-64 border-r bg-white lg:bg-muted/30
-        transform transition-transform duration-300 ease-in-out
-        ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
-      `}>
+      {/* Sidebar - Desktop Only */}
+      <aside className="hidden lg:block w-64 border-r bg-muted/30">
         <div className="flex h-full flex-col">
           {/* Logo */}
-          <div className="flex h-16 items-center justify-between border-b px-6">
+          <div className="flex h-16 items-center border-b px-6">
             <h2 className="text-lg font-bold">JTH Operations</h2>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={closeSidebar}
-              className="lg:hidden"
-            >
-              <X className="h-5 w-5" />
-            </Button>
           </div>
 
           {/* Navigation */}
@@ -129,7 +89,6 @@ export default function OpsLayout({
                 <Link
                   key={item.href}
                   href={item.href}
-                  onClick={closeSidebar}
                   className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground ${
                     pathname === item.href ? 'bg-accent text-accent-foreground' : ''
                   }`}
@@ -157,11 +116,14 @@ export default function OpsLayout({
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto lg:ml-0 pt-16 lg:pt-0">
+      <main className="flex-1 overflow-y-auto pb-16 lg:pb-0">
         <div className="h-full">
           {children}
         </div>
       </main>
+
+      {/* Bottom Navigation - Mobile Only */}
+      <BottomNav />
     </div>
   )
 }
