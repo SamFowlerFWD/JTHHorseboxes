@@ -144,12 +144,12 @@ export default function Header() {
                                             {item.name}
                                           </span>
                                           <div className="flex items-center gap-2">
-                                            {item.badge && (
+                                            {'badge' in item && item.badge && (
                                               <span className="px-2 py-0.5 text-xs font-medium bg-amber-100 text-amber-700 rounded-full">
                                                 {item.badge}
                                               </span>
                                             )}
-                                            {item.note && (
+                                            {'note' in item && item.note && (
                                               <span className="text-xs text-slate-500 italic">
                                                 {item.note}
                                               </span>
@@ -242,12 +242,12 @@ export default function Header() {
                             >
                               <span>{item.name}</span>
                               <div className="flex items-center gap-2">
-                                {item.badge && (
+                                {'badge' in item && item.badge && (
                                   <span className="px-1.5 py-0.5 text-xs font-medium bg-amber-100 text-amber-700 rounded-full">
                                     {item.badge}
                                   </span>
                                 )}
-                                {item.note && (
+                                {'note' in item && item.note && (
                                   <span className="text-xs text-slate-500 italic">
                                     {item.note}
                                   </span>
