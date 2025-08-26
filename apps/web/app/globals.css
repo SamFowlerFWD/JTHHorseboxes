@@ -5,22 +5,35 @@
 /* Import responsive design utilities */
 @import '../styles/responsive.css';
 
-/* J Taylor Horseboxes premium design system */
+/* JTH Premium Design System 2025 - British Racing Green & Champagne Gold */
 :root {
-  /* Premium color palette inspired by Bloomfields with JTH blue */
-  --jth-blue-50: #eff6ff;
-  --jth-blue-100: #dbeafe;
-  --jth-blue-200: #bfdbfe;
-  --jth-blue-300: #93c5fd;
-  --jth-blue-400: #60a5fa;
-  --jth-blue-500: #3b82f6;
+  /* Primary - British Racing Green */
+  --jth-blue-50: hsl(220, 60%, 97%);
+  --jth-blue-100: hsl(220, 60%, 94%);
+  --jth-blue-200: hsl(220, 60%, 85%);
+  --jth-blue-300: hsl(220, 60%, 70%);
+  --jth-blue-400: hsl(220, 60%, 50%);
+  --jth-blue-500: hsl(220, 60%, 40%);
+  --jth-blue-600: #173164; /* Premium Deep Blue */
+  --jth-blue-700: hsl(220, 60%, 20%);
+  --jth-blue-800: hsl(220, 60%, 15%);
+  --jth-blue-900: hsl(220, 60%, 10%);
+  
+  /* Accent - Champagne Gold */
+  --jth-gold-50: hsl(45, 60%, 97%);
+  --jth-gold-100: hsl(45, 60%, 92%);
+  --jth-gold-200: hsl(45, 60%, 82%);
+  --jth-gold-300: hsl(45, 60%, 70%);
+  --jth-gold-400: hsl(45, 60%, 58%);
+  --jth-gold-500: #d4af37; /* Champagne Gold */
+  --jth-gold-600: hsl(45, 60%, 42%);
+  --jth-gold-700: hsl(45, 60%, 35%);
+  
+  /* Legacy Blue (for transition) */
   --jth-blue-600: #2563eb;
   --jth-blue-700: #1d4ed8;
-  --jth-blue-800: #1e40af;
-  --jth-blue-900: #1e3a8a;
   
   --jth-dark: #0f172a;
-  --jth-gold: #d4af37;
   --jth-silver: #c0c0c0;
   
   --foreground-rgb: 15, 23, 42;
@@ -104,6 +117,8 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1;
 }
 
 /* Premium typography */
@@ -149,15 +164,16 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Premium focus styles */
+/* Premium focus styles - Accessibility First */
 *:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 0 3px rgba(23, 49, 100, 0.1);
 }
 
 *:focus-visible {
   outline: 2px solid var(--jth-blue-600);
   outline-offset: 2px;
+  border-radius: 0.25rem;
 }
 
 /* Premium button styles */
@@ -444,6 +460,163 @@ html {
   animation-delay: 600ms;
 }
 
+.animation-delay-800 {
+  animation-delay: 800ms;
+}
+
+/* Glass Morphism Effects */
+.glass-light {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+.glass-dark {
+  background: rgba(17, 25, 40, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-blue {
+  background: linear-gradient(135deg, rgba(23, 49, 100, 0.7) 0%, rgba(212, 175, 55, 0.3) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(23, 49, 100, 0.15);
+}
+
+/* Neumorphism Effects */
+.neu-flat {
+  background: linear-gradient(145deg, #f0f0f0, #cacaca);
+  box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+}
+
+.neu-concave {
+  background: linear-gradient(145deg, #cacaca, #f0f0f0);
+  box-shadow: inset 5px 5px 10px #bebebe, inset -5px -5px 10px #ffffff;
+}
+
+.neu-convex {
+  background: linear-gradient(145deg, #f0f0f0, #cacaca);
+  box-shadow: 10px 10px 20px #bebebe, -10px -10px 20px #ffffff;
+}
+
+/* Dissolve Gallery Transitions */
+.dissolve-enter {
+  opacity: 0;
+}
+
+.dissolve-enter-active {
+  opacity: 1;
+  transition: opacity 800ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.dissolve-exit {
+  opacity: 1;
+}
+
+.dissolve-exit-active {
+  opacity: 0;
+  transition: opacity 800ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Crossfade Gallery */
+@keyframes crossfade {
+  0% {
+    opacity: 0;
+    filter: blur(4px);
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.crossfade-animation {
+  animation: crossfade 800ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Fluid Typography */
+.text-fluid-xs {
+  font-size: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+}
+
+.text-fluid-sm {
+  font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+}
+
+.text-fluid-base {
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+}
+
+.text-fluid-lg {
+  font-size: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+}
+
+.text-fluid-xl {
+  font-size: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+}
+
+.text-fluid-2xl {
+  font-size: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+}
+
+.text-fluid-3xl {
+  font-size: clamp(2rem, 1.7rem + 1.5vw, 2.5rem);
+}
+
+.text-fluid-4xl {
+  font-size: clamp(2.5rem, 2rem + 2.5vw, 3.5rem);
+}
+
+.text-fluid-5xl {
+  font-size: clamp(3rem, 2.5rem + 3vw, 4.5rem);
+}
+
+.text-fluid-6xl {
+  font-size: clamp(3.5rem, 3rem + 3.5vw, 5.5rem);
+}
+
+.text-fluid-7xl {
+  font-size: clamp(4rem, 3.5rem + 4vw, 6.5rem);
+}
+
+/* Premium Gradients */
+.gradient-premium {
+  background: linear-gradient(135deg, var(--jth-blue-600) 0%, var(--jth-gold-500) 100%);
+}
+
+.gradient-subtle {
+  background: linear-gradient(135deg, rgba(23, 49, 100, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%);
+}
+
+.gradient-mesh {
+  background-color: var(--jth-blue-600);
+  background-image: 
+    radial-gradient(at 47% 33%, hsl(220, 60%, 45%) 0, transparent 59%), 
+    radial-gradient(at 82% 65%, hsl(45, 60%, 50%) 0, transparent 55%);
+}
+
+/* Modern Shadows */
+.shadow-luxury {
+  box-shadow: 0 20px 40px -10px rgba(23, 49, 100, 0.3);
+}
+
+.shadow-gold {
+  box-shadow: 0 20px 40px -10px rgba(212, 175, 55, 0.3);
+}
+
+.shadow-glow {
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+}
+
 /* Premium image effects */
 .image-premium {
   @apply relative overflow-hidden;
@@ -593,7 +766,139 @@ html {
 }
 
 .bg-gradient-premium {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--jth-blue-600) 0%, var(--jth-gold-500) 100%);
+}
+
+/* Bento Grid Layout */
+.bento-grid {
+  display: grid;
+  gap: 1rem;
+  grid-auto-rows: minmax(200px, auto);
+}
+
+@media (min-width: 768px) {
+  .bento-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .bento-item-large {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  
+  .bento-item-wide {
+    grid-column: span 2;
+  }
+  
+  .bento-item-tall {
+    grid-row: span 2;
+  }
+}
+
+/* Scroll-triggered Animations */
+.scroll-fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.scroll-fade-in.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Parallax Effects */
+.parallax-slow {
+  will-change: transform;
+  transform: translateY(calc(var(--scroll-y) * 0.3));
+}
+
+.parallax-fast {
+  will-change: transform;
+  transform: translateY(calc(var(--scroll-y) * 0.7));
+}
+
+/* Interactive Card Hover */
+.card-interactive {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1),
+              box-shadow 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.card-interactive::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--jth-blue-600), var(--jth-gold-500));
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: -1;
+  border-radius: inherit;
+}
+
+.card-interactive:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 30px 60px -15px rgba(23, 49, 100, 0.3);
+}
+
+.card-interactive:hover::before {
+  opacity: 0.1;
+}
+
+/* Shimmer Loading Effect */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e0e0e0 50%,
+    #f0f0f0 75%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Micro-interaction Buttons */
+.btn-micro {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-micro:active {
+  transform: scale(0.98);
+}
+
+.btn-micro::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-micro:hover::after {
+  width: 300px;
+  height: 300px;
 }
 
 .bg-gradient-dark {

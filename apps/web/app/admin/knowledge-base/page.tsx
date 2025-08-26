@@ -296,7 +296,7 @@ function KnowledgeBasePageContent() {
           onClick={() => handleTogglePublished(entry.id, entry.is_published)}
           className={`inline-flex items-center px-2.5 py-1.5 rounded text-xs font-medium ${
             entry.is_published
-              ? 'bg-green-100 text-green-800 hover:bg-green-200'
+              ? 'bg-blue-100 text-blue-900 hover:bg-blue-200'
               : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
           }`}
         >

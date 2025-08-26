@@ -58,8 +58,8 @@ export default async function AdminDashboard() {
       value: stats.blogPosts,
       icon: FileText,
       href: '/admin/blog',
-      color: 'text-green-600 dark:text-green-400',
-      bgColor: 'bg-green-100 dark:bg-green-900/30',
+      color: 'text-blue-700 dark:text-blue-400',
+      bgColor: 'bg-blue-100 dark:bg-blue-950/30',
     },
     {
       title: 'Pricing Options',
@@ -132,7 +132,7 @@ export default async function AdminDashboard() {
                       </div>
                       <span className={`text-xs px-2 py-1 rounded-full ${
                         lead.status === 'new'
-                          ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400'
+                          ? 'bg-blue-100 dark:bg-blue-950/30 text-blue-900 dark:text-blue-400'
                           : 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300'
                       }`}>
                         {lead.status}
@@ -215,7 +215,7 @@ export default async function AdminDashboard() {
                 href="/admin/blog/new"
                 className="flex items-center gap-2 p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
               >
-                <FileText className="h-4 w-4 text-green-600 dark:text-green-400" />
+                <FileText className="h-4 w-4 text-blue-700 dark:text-blue-400" />
                 <span className="text-sm text-gray-900 dark:text-gray-100">Create Blog Post</span>
               </Link>
               <Link

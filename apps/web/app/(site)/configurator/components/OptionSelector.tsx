@@ -79,7 +79,7 @@ export default function OptionSelector() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-700"></div>
       </div>
     )
   }
@@ -95,7 +95,7 @@ export default function OptionSelector() {
             placeholder="Search options..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
           />
         </div>
       </div>
@@ -117,7 +117,7 @@ export default function OptionSelector() {
                   disabled={optionCount === 0}
                   className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
                     isActive
-                      ? 'bg-blue-600 text-white'
+                      ? 'bg-blue-700 text-white'
                       : optionCount === 0
                       ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
                       : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
@@ -127,7 +127,7 @@ export default function OptionSelector() {
                   <span>{category.name}</span>
                   {optionCount > 0 && (
                     <span className={`ml-1 px-2 py-0.5 rounded-full text-xs ${
-                      isActive ? 'bg-blue-700' : 'bg-slate-200'
+                      isActive ? 'bg-blue-800' : 'bg-slate-200'
                     }`}>
                       {optionCount}
                     </span>
@@ -220,7 +220,7 @@ function OptionCard({ option, isSelected, onToggle }: any) {
   return (
     <div className={`border rounded-lg p-4 transition-all ${
       isSelected 
-        ? 'border-blue-600 bg-blue-50' 
+        ? 'border-blue-700 bg-blue-50' 
         : 'border-slate-200 hover:border-slate-300'
     }`}>
       <div className="flex items-start justify-between">
@@ -230,7 +230,7 @@ function OptionCard({ option, isSelected, onToggle }: any) {
               onClick={onToggle}
               className={`mt-0.5 w-6 h-6 rounded border-2 flex items-center justify-center transition-all ${
                 isSelected
-                  ? 'bg-blue-600 border-blue-600'
+                  ? 'bg-blue-700 border-blue-700'
                   : 'bg-white border-slate-300 hover:border-slate-400'
               }`}
             >
@@ -246,7 +246,7 @@ function OptionCard({ option, isSelected, onToggle }: any) {
                 <p className="text-sm text-slate-600 mt-1">{option.description}</p>
               )}
               {option.is_default && (
-                <span className="inline-block mt-2 px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">
+                <span className="inline-block mt-2 px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
                   Included as standard
                 </span>
               )}

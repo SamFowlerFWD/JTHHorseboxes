@@ -156,7 +156,7 @@ export default function ProductionTrackingPage() {
       case "in_progress": return "bg-blue-500"
       case "blocked": return "bg-orange-500"
       case "quality_check": return "bg-purple-500"
-      case "ready": return "bg-green-500"
+      case "ready": return "bg-blue-500"
       case "delivered": return "bg-emerald-600"
       default: return "bg-gray-400"
     }
@@ -168,7 +168,7 @@ export default function ProductionTrackingPage() {
       case "pending": return "text-gray-400"
       case "in_progress": return "text-blue-500"
       case "blocked": return "text-orange-500"
-      case "completed": return "text-green-500"
+      case "completed": return "text-blue-500"
       default: return "text-gray-400"
     }
   }
@@ -371,7 +371,7 @@ export default function ProductionTrackingPage() {
                       <div
                         key={stage.id}
                         className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
-                          isCompleted ? "bg-green-100 text-green-600" :
+                          isCompleted ? "bg-blue-100 text-blue-700" :
                           isCurrent ? "bg-blue-100 text-blue-600 ring-2 ring-blue-600" :
                           isPending ? "bg-gray-100 text-gray-400" :
                           "bg-orange-100 text-orange-600"
@@ -396,7 +396,7 @@ export default function ProductionTrackingPage() {
                       <div key={stage.id} className="flex items-center">
                         <div
                           className={`flex items-center justify-center w-8 h-8 rounded-full transition-colors ${
-                            isCompleted ? "bg-green-100 text-green-600" :
+                            isCompleted ? "bg-blue-100 text-blue-700" :
                             isCurrent ? "bg-blue-100 text-blue-600 ring-2 ring-blue-600" :
                             isPending ? "bg-gray-100 text-gray-400" :
                             "bg-orange-100 text-orange-600"
@@ -406,7 +406,7 @@ export default function ProductionTrackingPage() {
                         </div>
                         {index < PRODUCTION_STAGES.length - 1 && (
                           <ChevronRight className={`h-4 w-4 mx-1 ${
-                            isCompleted ? "text-green-600" : "text-gray-300"
+                            isCompleted ? "text-blue-700" : "text-gray-300"
                           }`} />
                         )}
                       </div>
@@ -500,7 +500,7 @@ export default function ProductionTrackingPage() {
                             <div className="flex items-center justify-between">
                               <div className="flex items-center gap-3">
                                 <div className={`p-2 rounded-lg ${
-                                  stageData?.status === "completed" ? "bg-green-100" :
+                                  stageData?.status === "completed" ? "bg-blue-100" :
                                   stageData?.status === "in_progress" ? "bg-blue-100" :
                                   stageData?.status === "blocked" ? "bg-orange-100" :
                                   "bg-gray-100"

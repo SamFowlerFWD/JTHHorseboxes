@@ -11,15 +11,21 @@
     { "id": "progeny-35", "slug": "progeny-35", "name": "Progeny 35", "basePricePence": 2550000, "active": true, "category": "3.5t", "notes": "Top of the Range" },
 
     { "id": "aeos-qv-45", "slug": "aeos-qv-45", "name": "Aeos QV 45", "basePricePence": 2895000, "active": true, "category": "4.5t" },
-    { "id": "aeos-edge-45", "slug": "aeos-edge-45", "name": "Aeos Edge 45", "basePricePence": 3150000, "active": true, "category": "4.5t" },
-    { "id": "aeos-freedom-45", "slug": "aeos-freedom-45", "name": "Aeos Freedom 45", "basePricePence": 3650000, "active": true, "category": "4.5t", "notes": "Weekender" },
-    { "id": "aeos-discovery-45", "slug": "aeos-discovery-45", "name": "Aeos Discovery 45", "basePricePence": 4610000, "active": true, "category": "4.5t", "notes": "Luxury Living" },
+    { "id": "aeos-edge-45", "slug": "aeos-edge-45", "name": "Aeos Edge 45", "basePricePence": null, "active": true, "category": "4.5t", "notes": "Pre-built Package" },
+    { "id": "aeos-freedom-45", "slug": "aeos-freedom-45", "name": "Aeos Freedom 45", "basePricePence": null, "active": true, "category": "4.5t", "notes": "Weekender Package" },
+    { "id": "aeos-discovery-45", "slug": "aeos-discovery-45", "name": "Aeos Discovery 45", "basePricePence": null, "active": true, "category": "4.5t", "notes": "Luxury Package" },
     { "id": "aeos-freedom-st-45", "slug": "aeos-freedom-st-45", "name": "Aeos Freedom ST 45", "basePricePence": 3850000, "active": true, "category": "4.5t", "notes": "Stallion" },
     { "id": "aeos-edge-st-45", "slug": "aeos-edge-st-45", "name": "Aeos Edge ST 45", "basePricePence": 3350000, "active": true, "category": "4.5t", "notes": "Stallion" },
     { "id": "aeos-qv-st-45", "slug": "aeos-qv-st-45", "name": "Aeos QV ST 45", "basePricePence": 3095000, "active": true, "category": "4.5t", "notes": "Stallion" },
 
+    { "id": "jth-principle-45", "slug": "jth-principle-45", "name": "JTH Principle 45", "basePricePence": 2895000, "active": true, "category": "4.5t", "notes": "Essential Quality" },
+    { "id": "jth-professional-45", "slug": "jth-professional-45", "name": "JTH Professional 45", "basePricePence": 3150000, "active": true, "category": "4.5t", "notes": "Premium Features" },
+    { "id": "jth-progeny-45", "slug": "jth-progeny-45", "name": "JTH Progeny 45", "basePricePence": 3650000, "active": true, "category": "4.5t", "notes": "Crew Cab" },
+
     { "id": "aeos-discovery-72", "slug": "aeos-discovery-72", "name": "Aeos Discovery 72", "basePricePence": 7460000, "active": true, "category": "7.2t" },
-    { "id": "helios-75", "slug": "helios-75", "name": "Helios 75", "basePricePence": 8250000, "active": true, "category": "7.5t" }
+    { "id": "zenos-72", "slug": "zenos-72", "name": "Zenos 72", "basePricePence": null, "active": true, "category": "7.2t", "notes": "Contact for pricing" },
+    { "id": "zenos-xl-72", "slug": "zenos-xl-72", "name": "Zenos XL 72", "basePricePence": null, "active": true, "category": "7.2t", "notes": "Extended Luxury" },
+    { "id": "helios-75", "slug": "helios-75", "name": "Helios 75", "basePricePence": null, "active": true, "category": "7.5t", "notes": "Contact for pricing" }
   ],
   "packages": [],
   "options": [

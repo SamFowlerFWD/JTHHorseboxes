@@ -131,14 +131,14 @@ export default function AboutPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div className="fade-in-up">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-100 text-blue-700 text-sm font-semibold mb-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-100 text-blue-800 text-sm font-semibold mb-6">
                   Est. 1993
                 </div>
                 <h2 className="text-4xl md:text-5xl font-light text-slate-900 mb-8">
                   British Manufacturing
                   <span className="text-gradient-blue block mt-2">At Its Finest</span>
                 </h2>
-                <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-400 mb-8"></div>
+                <div className="w-24 h-1 bg-gradient-to-r from-blue-700 to-amber-500 mb-8"></div>
                 <p className="text-lg text-slate-600 mb-6 leading-relaxed">
                   J Taylor Horseboxes represents over three decades of British manufacturing excellence. 
                   From our Norfolk facility, we've built a reputation for quality, reliability, and innovation 
@@ -155,21 +155,21 @@ export default function AboutPage() {
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <div className="flex items-center">
-                    <CheckCircle className="w-6 h-6 text-blue-600 mr-3" />
+                    <CheckCircle className="w-6 h-6 text-blue-700 mr-3" />
                     <span className="text-slate-700">Family-run business</span>
                   </div>
                   <div className="flex items-center">
-                    <CheckCircle className="w-6 h-6 text-blue-600 mr-3" />
+                    <CheckCircle className="w-6 h-6 text-blue-700 mr-3" />
                     <span className="text-slate-700">British workforce</span>
                   </div>
                   <div className="flex items-center">
-                    <CheckCircle className="w-6 h-6 text-blue-600 mr-3" />
+                    <CheckCircle className="w-6 h-6 text-blue-700 mr-3" />
                     <span className="text-slate-700">Premium materials</span>
                   </div>
                 </div>
               </div>
               <div className="relative group">
-                <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-blue-400 opacity-20 blur-2xl group-hover:opacity-30 transition-opacity duration-500"></div>
+                <div className="absolute -inset-4 bg-gradient-to-r from-blue-700 to-amber-500 opacity-20 blur-2xl group-hover:opacity-30 transition-opacity duration-500"></div>
                 <div className="relative image-premium">
                   <Image 
                     src="/about/team.jpg"
@@ -198,7 +198,7 @@ export default function AboutPage() {
 
             <div className="grid md:grid-cols-2 gap-12 mb-16">
               <div className="bg-slate-50 p-8">
-                <Factory className="w-12 h-12 text-blue-600 mb-6" />
+                <Factory className="w-12 h-12 text-blue-700 mb-6" />
                 <h3 className="text-2xl font-semibold text-slate-900 mb-4">The KPH Legacy</h3>
                 <p className="text-slate-600 leading-relaxed mb-4">
                   Our story is deeply intertwined with KPH, one of the pioneering names in British horsebox manufacturing. 
@@ -212,7 +212,7 @@ export default function AboutPage() {
               </div>
 
               <div className="bg-slate-50 p-8">
-                <Target className="w-12 h-12 text-blue-600 mb-6" />
+                <Target className="w-12 h-12 text-blue-700 mb-6" />
                 <h3 className="text-2xl font-semibold text-slate-900 mb-4">Our Mission</h3>
                 <p className="text-slate-600 leading-relaxed mb-4">
                   To design and build the finest horseboxes available, ensuring every customer receives 
@@ -228,17 +228,17 @@ export default function AboutPage() {
 
             {/* Timeline */}
             <div className="relative">
-              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-blue-600 to-blue-400"></div>
+              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-blue-700 to-amber-500"></div>
               {milestones.map((milestone, index) => (
                 <div key={index} className={`relative flex items-center mb-12 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
                   <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:text-right md:pr-8' : 'md:text-left md:pl-8'}`}>
                     <div className={`bg-white p-6 shadow-lg border border-slate-200 ${index % 2 === 0 ? 'md:ml-auto' : 'md:mr-auto'} max-w-md`}>
-                      <span className="text-blue-600 font-bold text-xl">{milestone.year}</span>
+                      <span className="text-blue-700 font-bold text-xl">{milestone.year}</span>
                       <h3 className="text-xl font-semibold text-slate-900 mt-2 mb-2">{milestone.event}</h3>
                       <p className="text-slate-600">{milestone.description}</p>
                     </div>
                   </div>
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow"></div>
+                  <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-700 rounded-full border-4 border-white shadow"></div>
                   <div className="hidden md:block md:w-5/12"></div>
                 </div>
               ))}
@@ -261,7 +261,7 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {values.map((value, index) => (
                 <div key={index} className="card-dark p-8 text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
                     <value.icon className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-xl font-semibold text-white mb-4">{value.title}</h3>
@@ -287,7 +287,7 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-3 gap-8">
               <div className="text-center">
                 <div className="bg-gradient-to-br from-blue-50 to-white p-8 mb-6">
-                  <div className="text-4xl font-bold text-blue-600 mb-4">01</div>
+                  <div className="text-4xl font-bold text-blue-700 mb-4">01</div>
                   <Wrench className="w-12 h-12 text-slate-700 mx-auto" />
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-4">Design & Planning</h3>
@@ -299,7 +299,7 @@ export default function AboutPage() {
 
               <div className="text-center">
                 <div className="bg-gradient-to-br from-blue-50 to-white p-8 mb-6">
-                  <div className="text-4xl font-bold text-blue-600 mb-4">02</div>
+                  <div className="text-4xl font-bold text-blue-700 mb-4">02</div>
                   <Factory className="w-12 h-12 text-slate-700 mx-auto" />
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-4">Build & Craft</h3>
@@ -311,7 +311,7 @@ export default function AboutPage() {
 
               <div className="text-center">
                 <div className="bg-gradient-to-br from-blue-50 to-white p-8 mb-6">
-                  <div className="text-4xl font-bold text-blue-600 mb-4">03</div>
+                  <div className="text-4xl font-bold text-blue-700 mb-4">03</div>
                   <CheckCircle className="w-12 h-12 text-slate-700 mx-auto" />
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-4">Test & Deliver</h3>
@@ -335,35 +335,35 @@ export default function AboutPage() {
                 </h2>
                 <div className="space-y-6">
                   <div className="flex items-start">
-                    <CheckCircle className="w-6 h-6 text-blue-600 mt-1 mr-4 flex-shrink-0" />
+                    <CheckCircle className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
                     <div>
                       <h3 className="text-lg font-semibold text-slate-900 mb-2">Unmatched Experience</h3>
                       <p className="text-slate-600">Over 30 years of expertise, including our KPH heritage, ensures you're working with true industry leaders.</p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="w-6 h-6 text-blue-600 mt-1 mr-4 flex-shrink-0" />
+                    <CheckCircle className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
                     <div>
                       <h3 className="text-lg font-semibold text-slate-900 mb-2">British Quality</h3>
                       <p className="text-slate-600">Every horsebox is built in Norfolk by skilled British craftsmen using premium materials.</p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="w-6 h-6 text-blue-600 mt-1 mr-4 flex-shrink-0" />
+                    <CheckCircle className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
                     <div>
                       <h3 className="text-lg font-semibold text-slate-900 mb-2">Complete Customization</h3>
                       <p className="text-slate-600">Your horsebox, your way. We offer unlimited customization options to meet your exact requirements.</p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="w-6 h-6 text-blue-600 mt-1 mr-4 flex-shrink-0" />
+                    <CheckCircle className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
                     <div>
                       <h3 className="text-lg font-semibold text-slate-900 mb-2">Exceptional Support</h3>
                       <p className="text-slate-600">From initial consultation to aftercare, our team is always here to support you.</p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="w-6 h-6 text-blue-600 mt-1 mr-4 flex-shrink-0" />
+                    <CheckCircle className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
                     <div>
                       <h3 className="text-lg font-semibold text-slate-900 mb-2">Proven Track Record</h3>
                       <p className="text-slate-600">Over 500 happy customers across the UK and Ireland trust JTH for their horsebox needs.</p>
@@ -372,7 +372,7 @@ export default function AboutPage() {
                 </div>
               </div>
               <div className="relative group">
-                <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-blue-400 opacity-20 blur-2xl group-hover:opacity-30 transition-opacity duration-500"></div>
+                <div className="absolute -inset-4 bg-gradient-to-r from-blue-700 to-amber-500 opacity-20 blur-2xl group-hover:opacity-30 transition-opacity duration-500"></div>
                 <div className="relative image-premium">
                   <Image 
                     src="/about/quality.jpg"
@@ -401,21 +401,21 @@ export default function AboutPage() {
 
             <div className="grid md:grid-cols-3 gap-8 mb-12">
               <div className="text-center">
-                <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                <div className="w-32 h-32 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full mx-auto mb-6 flex items-center justify-center">
                   <Users className="w-16 h-16 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-2">Design Team</h3>
                 <p className="text-slate-600">Expert designers who bring your vision to life with innovative solutions</p>
               </div>
               <div className="text-center">
-                <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                <div className="w-32 h-32 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full mx-auto mb-6 flex items-center justify-center">
                   <Wrench className="w-16 h-16 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-2">Production Team</h3>
                 <p className="text-slate-600">Skilled craftsmen with decades of combined experience</p>
               </div>
               <div className="text-center">
-                <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                <div className="w-32 h-32 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full mx-auto mb-6 flex items-center justify-center">
                   <Heart className="w-16 h-16 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-2">Customer Care</h3>
@@ -434,7 +434,7 @@ export default function AboutPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 md:py-32 bg-gradient-to-r from-blue-600 to-blue-700">
+        <section className="py-20 md:py-32 bg-gradient-to-r from-blue-700 to-blue-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl md:text-5xl font-light text-white mb-8">
               Experience British Excellence
@@ -443,7 +443,7 @@ export default function AboutPage() {
               Visit our Norfolk showroom to see our craftsmanship firsthand
             </p>
             <div className="flex flex-wrap items-center justify-center gap-6">
-              <Link href="/models" className="btn-premium bg-white text-blue-600 hover:bg-slate-50">
+              <Link href="/models" className="btn-premium bg-white text-blue-700 hover:bg-slate-50">
                 View Our Models
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Link>

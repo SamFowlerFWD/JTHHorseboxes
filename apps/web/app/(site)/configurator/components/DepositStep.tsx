@@ -37,7 +37,7 @@ export default function DepositStep() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-slate-600 mb-1">Current Deposit Amount</p>
-              <p className="text-3xl font-bold text-blue-600">{formatPrice(deposit)}</p>
+              <p className="text-3xl font-bold text-blue-700">{formatPrice(deposit)}</p>
               {selectedModel && (
                 <p className="text-sm text-slate-500 mt-1">
                   {calculatePercentage()}% of base price
@@ -60,7 +60,7 @@ export default function DepositStep() {
                 onClick={() => setDeposit(amount)}
                 className={`px-4 py-3 rounded-lg font-medium transition-all ${
                   deposit === amount
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-blue-700 text-white'
                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
@@ -82,7 +82,7 @@ export default function DepositStep() {
               value={deposit || ''}
               onChange={(e) => setDeposit(parseFloat(e.target.value) || 0)}
               placeholder="Enter deposit amount"
-              className="w-full px-4 py-3 pl-12 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+              className="w-full px-4 py-3 pl-12 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-colors"
               min="1000"
               step="500"
             />
@@ -122,8 +122,8 @@ export default function DepositStep() {
 
         {/* Info Box */}
         <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg flex items-start gap-3">
-          <Info className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-          <div className="text-sm text-blue-800">
+          <Info className="w-5 h-5 text-blue-700 mt-0.5 flex-shrink-0" />
+          <div className="text-sm text-blue-900">
             <p className="font-semibold mb-1">Deposit Protection</p>
             <p>
               Your deposit is fully refundable if we cannot accommodate your build requirements. 

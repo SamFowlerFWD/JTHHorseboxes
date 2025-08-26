@@ -188,8 +188,8 @@ export default function OpsDashboardPage() {
             <div className="flex items-center gap-2 text-sm">
               {stats.salesPipeline.change >= 0 ? (
                 <>
-                  <TrendingUp className="h-4 w-4 text-green-600" />
-                  <span className="text-green-600">+{stats.salesPipeline.change.toFixed(1)}%</span>
+                  <TrendingUp className="h-4 w-4 text-blue-700" />
+                  <span className="text-blue-700">+{stats.salesPipeline.change.toFixed(1)}%</span>
                 </>
               ) : (
                 <>

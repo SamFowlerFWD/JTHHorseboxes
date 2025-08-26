@@ -21,12 +21,12 @@ function SuccessContent() {
   }, [searchParams, router])
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-green-50 to-white">
+    <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Success Icon */}
         <div className="flex justify-center mb-8">
-          <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center">
-            <CheckCircle className="w-16 h-16 text-green-600" />
+          <div className="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center">
+            <CheckCircle className="w-16 h-16 text-blue-700" />
           </div>
         </div>
 
@@ -52,7 +52,7 @@ function SuccessContent() {
           <div className="space-y-6">
             <div className="flex items-start gap-4">
               <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                <span className="text-blue-600 font-semibold">1</span>
+                <span className="text-blue-700 font-semibold">1</span>
               </div>
               <div>
                 <h3 className="font-semibold text-slate-900 mb-1">Quote Preparation</h3>
@@ -64,7 +64,7 @@ function SuccessContent() {
 
             <div className="flex items-start gap-4">
               <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                <span className="text-blue-600 font-semibold">2</span>
+                <span className="text-blue-700 font-semibold">2</span>
               </div>
               <div>
                 <h3 className="font-semibold text-slate-900 mb-1">Email Confirmation</h3>
@@ -76,7 +76,7 @@ function SuccessContent() {
 
             <div className="flex items-start gap-4">
               <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                <span className="text-blue-600 font-semibold">3</span>
+                <span className="text-blue-700 font-semibold">3</span>
               </div>
               <div>
                 <h3 className="font-semibold text-slate-900 mb-1">Personal Consultation</h3>
@@ -88,7 +88,7 @@ function SuccessContent() {
 
             <div className="flex items-start gap-4">
               <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                <span className="text-blue-600 font-semibold">4</span>
+                <span className="text-blue-700 font-semibold">4</span>
               </div>
               <div>
                 <h3 className="font-semibold text-slate-900 mb-1">Build Slot Reservation</h3>
@@ -106,14 +106,14 @@ function SuccessContent() {
           <div className="grid sm:grid-cols-2 gap-4">
             <a
               href="tel:+441234567890"
-              className="flex items-center gap-3 text-blue-600 hover:text-blue-700 transition-colors"
+              className="flex items-center gap-3 text-blue-700 hover:text-blue-800 transition-colors"
             >
               <Phone className="w-5 h-5" />
               <span>Call: 01234 567890</span>
             </a>
             <a
               href="mailto:sales@jtaylorhorseboxes.com"
-              className="flex items-center gap-3 text-blue-600 hover:text-blue-700 transition-colors"
+              className="flex items-center gap-3 text-blue-700 hover:text-blue-800 transition-colors"
             >
               <Mail className="w-5 h-5" />
               <span>Email: sales@jtaylorhorseboxes.com</span>
@@ -131,7 +131,7 @@ function SuccessContent() {
           </Link>
           <Link
             href="/models"
-            className="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors text-center flex items-center justify-center gap-2"
+            className="px-6 py-3 bg-blue-700 text-white rounded-lg font-medium hover:bg-blue-800 transition-colors text-center flex items-center justify-center gap-2"
           >
             Browse Our Models
             <ArrowRight className="w-5 h-5" />
@@ -145,9 +145,9 @@ function SuccessContent() {
 export default function ConfiguratorSuccessPage() {
   return (
     <Suspense fallback={
-      <main className="min-h-screen bg-gradient-to-b from-green-50 to-white flex items-center justify-center">
+      <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-blue-700 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-slate-600">Loading...</p>
         </div>
       </main>

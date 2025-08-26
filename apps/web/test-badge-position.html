@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Badge Position Test</title>
+    <script>
+        async function testBadgePosition() {
+            const response = await fetch('http://localhost:3000/');
+            const html = await response.text();
+            document.write('<h2>Badge Centering Test</h2>');
+            
+            // Extract positioning info from the HTML
+            if (html.includes('left: \'50%\'') && html.includes('x: \'-50%\'')) {
+                document.write('<p style="color: green;">✅ Badge uses correct centering CSS (left: 50%, x: -50%)</p>');
+            } else {
+                document.write('<p style="color: red;">❌ Badge may not be using correct centering</p>');
+            }
+            
+            if (html.includes('absolute top-16 z-20')) {
+                document.write('<p style="color: green;">✅ Badge is positioned absolutely with correct z-index</p>');
+            }
+            
+            document.write('<p>Test complete. Open http://localhost:3000 to visually verify the badge is centered.</p>');
+        }
+        
+        testBadgePosition();
+    </script>
+</head>
+<body>
+</body>
+</html>

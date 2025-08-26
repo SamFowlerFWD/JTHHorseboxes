@@ -90,10 +90,14 @@ export default function ConfiguratorPage() {
         setError('Please select a model')
         return
       }
-      const store = useConfiguratorStore.getState()
-      if (!store.chassisCost || store.chassisCost <= 0) {
-        setError('Please enter a valid chassis cost')
-        return
+      
+      // Only validate chassis cost for configurable models
+      if (selectedModel.availability === 'configurable') {
+        const store = useConfiguratorStore.getState()
+        if (!store.chassisCost || store.chassisCost <= 0) {
+          setError('Please enter a valid chassis cost')
+          return
+        }
       }
     }
     
@@ -175,13 +179,22 @@ export default function ConfiguratorPage() {
       case 1:
         return 'Enter your contact details and select an agent if applicable'
       case 2:
-        return 'Select your model and specify chassis details'
+        return 'Choose your range, tonnage, and specific model'
       case 3:
-        return 'Set your deposit amount (default £5,000)'
+        return selectedModel?.availability === 'configurable' 
+          ? 'Set your deposit amount (default £5,000)' 
+          : 'Deposit information (for reference only)'
       case 4:
-        return 'Choose additional options and customizations'
+        if (!selectedModel) return 'Choose additional options and customizations'
+        if (selectedModel.availability === 'pre-built') return 'Limited customization options available'
+        if (selectedModel.availability === 'contact-only') return 'Options determined during consultation'
+        return selectedModel.pioneer_package_eligible 
+          ? 'Add Pioneer Package and additional options'
+          : 'Choose additional options and customizations'
       case 5:
-        return 'Review your configuration and payment schedule'
+        return selectedModel?.availability === 'configurable'
+          ? 'Review your configuration and payment schedule'
+          : 'Review your selection and submit inquiry'
       default:
         return ''
     }
@@ -193,9 +206,19 @@ export default function ConfiguratorPage() {
         const store = useConfiguratorStore.getState()
         return store.customerName && store.customerEmail && store.customerPhone
       case 2:
-        return selectedModel && useConfiguratorStore.getState().chassisCost > 0
+        if (!selectedModel) return false
+        // For configurable models, require chassis cost
+        if (selectedModel.availability === 'configurable') {
+          return useConfiguratorStore.getState().chassisCost > 0
+        }
+        // For non-configurable models, just need model selection
+        return true
       case 3:
-        return useConfiguratorStore.getState().deposit > 0
+        // For configurable models, require deposit
+        if (selectedModel?.availability === 'configurable') {
+          return useConfiguratorStore.getState().deposit > 0
+        }
+        return true
       case 4:
         return true // Options are optional
       case 5:
@@ -221,7 +244,7 @@ export default function ConfiguratorPage() {
           </div>
           <div className="w-full bg-slate-200 rounded-full h-2">
             <div 
-              className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+              className="bg-blue-700 h-2 rounded-full transition-all duration-300"
               style={{ width: `${(currentStep / 5) * 100}%` }}
             />
           </div>
@@ -287,7 +310,7 @@ export default function ConfiguratorPage() {
                 className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
                   !canProceed()
                     ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
-                    : 'bg-blue-600 text-white hover:bg-blue-700'
+                    : 'bg-blue-700 text-white hover:bg-blue-800'
                 }`}
               >
                 Next
@@ -300,7 +323,7 @@ export default function ConfiguratorPage() {
                 className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
                   isSubmitting
                     ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
-                    : 'bg-green-600 text-white hover:bg-green-700'
+                    : 'bg-blue-700 text-white hover:bg-blue-800'
                 }`}
               >
                 {isSubmitting ? 'Submitting...' : 'Submit Configuration'}

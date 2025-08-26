@@ -196,22 +196,22 @@ const modelContent: Record<string, {
     heroImage: '/models/progeny-35/01.jpg'
   },
   'aeos-edge-45': {
-    title: 'Aeos Edge 45 - Professional 4.5t Horsebox',
-    description: 'The Aeos Edge 45 delivers professional-grade features in a 4.5 tonne package. Perfect for serious competitors needing extra capacity.',
+    title: 'Aeos Edge 45 - Pre-Built Professional Package',
+    description: 'The Aeos Edge 45 is a professionally specified pre-built package ready for immediate delivery. Purpose-built for serious competitors with limited customization required.',
     longDescription: [
-      'The Aeos Edge 45 represents the cutting edge of 4.5 tonne horsebox design. With increased payload capacity and spacious living quarters, this model is perfect for professional riders and serious competitors.',
-      'Built on the reliable Iveco Daily 45 chassis, the Edge offers superior handling and performance while maintaining the luxury and quality that JTH is known for.',
-      'The additional capacity of the 4.5 tonne platform allows for more extensive living facilities, making this the ideal choice for extended competitions and events.'
+      'The Aeos Edge 45 is our pre-configured professional package, designed for competitors who need a high-specification horsebox with minimal wait time. This model combines proven features in a ready-to-go package.',
+      'Unlike our fully customizable JTH range, the Aeos Edge comes pre-specified with carefully selected features that professional riders need most. Built using different construction methods and components optimized for production efficiency.',
+      'The Edge 45 offers quicker delivery than custom builds while maintaining professional-grade quality. Perfect for those who value speed of delivery over extensive personalization.'
     ],
     features: [
-      'Spacious living area with sleeping',
-      'Full kitchen facilities',
-      'Increased payload capacity',
-      'Professional specification',
-      'Air suspension option',
-      'External tack locker',
-      'Awning ready',
-      'Generator compatible'
+      'Pre-built professional specification',
+      'Quick delivery - no waiting for custom build',
+      'Proven feature combination',
+      'Professional-grade components',
+      'Limited customization available',
+      'Different construction from JTH range',
+      'Contact for current availability',
+      'Finance options available'
     ],
     specifications: {
       dimensions: {
@@ -239,30 +239,30 @@ const modelContent: Record<string, {
     },
     gallery: ['01.jpg', '02.jpg', '03.jpg'],
     testimonial: {
-      name: 'Amanda Stevens',
-      role: 'Event Rider',
-      quote: 'The Edge 45 gives me everything I need for multi-day events. The extra space and payload make all the difference.'
+      name: 'Mark Richardson',
+      role: 'Professional Rider',
+      quote: 'The Aeos Edge was perfect - ready to collect immediately with exactly the specification I needed. No waiting, no complex choices, just a quality horsebox ready to go.'
     },
-    seoKeywords: '4.5t horsebox, 4.5 tonne horsebox, Aeos Edge 45, professional horsebox, competition horsebox, larger horsebox',
+    seoKeywords: '4.5t horsebox, pre-built horsebox, Aeos Edge 45, ready made horsebox, quick delivery horsebox, professional package horsebox',
     heroImage: '/models/aeos-edge-45/01.jpg'
   },
   'aeos-freedom-45': {
-    title: 'Aeos Freedom 45 - Versatile 4.5t Horsebox',
-    description: 'The Aeos Freedom 45 offers versatility and comfort in a 4.5 tonne horsebox. Perfect for families and leisure riders wanting extra space.',
+    title: 'Aeos Freedom 45 - Weekender Pre-Built Package',
+    description: 'The Aeos Freedom 45 is our family-friendly weekender package, pre-configured for immediate delivery. Perfect for leisure riders and families wanting a ready-to-go solution.',
     longDescription: [
-      'The Aeos Freedom 45 embodies the spirit of equestrian adventure. With generous living space and flexible configurations, this model adapts to your lifestyle whether competing, training, or enjoying leisure rides.',
-      'The Freedom\'s thoughtful design maximizes every inch of space, providing comfortable accommodation for extended trips while maintaining excellent horse facilities.',
-      'Popular with families and riding clubs, the Freedom 45 offers the perfect balance of practicality, comfort, and British build quality.'
+      'The Aeos Freedom 45 is our pre-built weekender package, designed specifically for families and leisure riders. This ready-to-go solution eliminates the wait time of custom builds.',
+      'Pre-configured with family-friendly features and optimized for weekend adventures, the Freedom uses efficient construction methods different from our bespoke JTH range.',
+      'Ideal for those who want to start their equestrian adventures immediately without the complexity of specification choices. Available for quicker delivery than fully custom horseboxes.'
     ],
     features: [
-      'Flexible living configuration',
-      'Family-friendly design',
-      'Generous storage',
-      'Comfortable sleeping for two',
-      'Full bathroom option',
-      'Entertainment system ready',
-      'Large water capacity',
-      'External shower option'
+      'Pre-configured weekender package',
+      'Ready for immediate family adventures',
+      'Family-friendly pre-selected features',
+      'Quick delivery availability',
+      'Standardized family-focused specification',
+      'Efficient construction methods',
+      'Limited customization options',
+      'Contact for current package details'
     ],
     specifications: {
       dimensions: {
@@ -290,30 +290,30 @@ const modelContent: Record<string, {
     },
     gallery: ['01.jpg', '02.jpg', '03.jpg', '04.jpg'],
     testimonial: {
-      name: 'The Johnson Family',
-      role: 'Leisure Riders',
-      quote: 'The Freedom 45 is perfect for our family adventures. Plenty of space for everyone and everything we need.'
+      name: 'Sarah & Tom Williams',
+      role: 'Family Riders',
+      quote: 'We needed a horsebox quickly for our planned summer trips. The Aeos Freedom package was ideal - family-friendly and available immediately without the usual wait.'
     },
-    seoKeywords: '4.5t family horsebox, Aeos Freedom 45, versatile horsebox, leisure horsebox, spacious horsebox, 4.5 tonne horsebox UK',
+    seoKeywords: '4.5t family horsebox, pre-built family horsebox, Aeos Freedom 45, weekender horsebox, ready-made family horsebox, quick delivery horsebox UK',
     heroImage: '/models/aeos-freedom-45/01.jpg'
   },
   'aeos-discovery-45': {
-    title: 'Aeos Discovery 45 - Luxury Living 4.5t Horsebox',
-    description: 'The Aeos Discovery 45 features luxury living quarters in a 4.5 tonne horsebox. The ultimate in comfort for extended stays at events.',
+    title: 'Aeos Discovery 45 - Luxury Pre-Built Package',
+    description: 'The Aeos Discovery 45 is our premium pre-built luxury package, ready for immediate delivery. Pre-configured with luxury living quarters for discerning customers.',
     longDescription: [
-      'The Aeos Discovery 45 redefines luxury in the 4.5 tonne horsebox market. With apartment-quality living quarters and premium finishes throughout, this model is designed for those who refuse to compromise on comfort.',
-      'Every Discovery is built with meticulous attention to detail, from the hand-stitched leather upholstery to the solid surface worktops. The living area rivals the finest motorhomes while maintaining excellent horse facilities.',
-      'Perfect for international competitors and discerning owners who spend significant time traveling with their horses, the Discovery 45 is a home away from home.'
+      'The Aeos Discovery 45 is our flagship pre-built luxury package, designed for customers who want premium accommodation without the wait of custom specification.',
+      'Pre-configured with carefully selected luxury features, this package uses streamlined construction methods different from our fully bespoke JTH range while maintaining high-quality finishes.',
+      'Perfect for discerning customers who value immediate availability over extensive customization. Ready for delivery much faster than fully custom luxury builds.'
     ],
     features: [
-      'Luxury apartment-style living',
-      'Premium kitchen with appliances',
-      'Separate shower room',
-      'King-size bed option',
-      'Satellite TV system',
-      'Climate control',
-      'Wine storage',
-      'Bose sound system'
+      'Pre-built luxury specification',
+      'Ready-to-go premium package',
+      'Luxury features pre-selected',
+      'Quick delivery for luxury specification',
+      'Premium finishes included',
+      'Streamlined luxury construction',
+      'Limited customization available',
+      'Contact for immediate availability'
     ],
     specifications: {
       dimensions: {
@@ -341,11 +341,11 @@ const modelContent: Record<string, {
     },
     gallery: ['01.jpg', '02.jpg', '03.jpg', '04.jpg', '05.jpg', '06.jpg'],
     testimonial: {
-      name: 'Charlotte Windsor',
-      role: 'International Competitor',
-      quote: 'The Discovery 45 is simply outstanding. It\'s like having a luxury hotel room that travels with me to every event.'
+      name: 'Victoria Hamilton',
+      role: 'Competition Rider',
+      quote: 'The Aeos Discovery package exceeded expectations. Luxury specification with immediate availability - exactly what I needed without months of waiting for custom build.'
     },
-    seoKeywords: '4.5t luxury horsebox, Aeos Discovery 45, premium living horsebox, luxury horse transport, best 4.5 tonne horsebox, competition horsebox',
+    seoKeywords: '4.5t luxury horsebox, pre-built luxury horsebox, Aeos Discovery 45, ready-made luxury horsebox, premium package horsebox, immediate delivery luxury horsebox',
     heroImage: '/models/aeos-discovery-45/01.jpg'
   },
   'aeos-edge-st-45': {
@@ -452,6 +452,277 @@ const modelContent: Record<string, {
     },
     seoKeywords: '7.2t horsebox, 7.2 tonne horsebox, Aeos Discovery 72, Aeos Discovery 72, large horsebox, luxury horsebox, professional team horsebox, 4 horse transport',
     heroImage: '/models/aeos-discovery-72/01.jpg'
+  },
+  'jth-principle-45': {
+    title: 'JTH Principle 45 - Essential 4.5t Horsebox | Basic Back End | Norfolk',
+    description: 'JTH Principle 45 - Essential 4.5 tonne horsebox with 4-piece back end. Quality British construction at an affordable price from £28,950. Built in Norfolk. Car license with C1. Configure online.',
+    longDescription: [
+      'The Principle 45 brings our renowned build quality to the 4.5 tonne category. Featuring our practical 4-piece back end design, this model offers increased payload over 3.5t models while maintaining affordability.',
+      'Perfect for riders needing extra capacity without the premium price tag. The 4-piece back end provides easy access and maintenance.',
+      'Built with the same British craftsmanship as our premium models, the Principle 45 delivers essential features without compromise on quality or safety.'
+    ],
+    features: [
+      '4.5 tonne gross weight',
+      '4-piece back end design', 
+      'Increased payload vs 3.5t',
+      'Quality GRP construction',
+      'British-built in Norfolk',
+      'C1 license required',
+      '2-year structural warranty',
+      'Finance options available'
+    ],
+    specifications: {
+      dimensions: {
+        'Overall Length': '7.2m',
+        'Overall Width': '2.3m',
+        'Overall Height': '3.4m',
+        'Internal Height': '2.3m',
+        'Horse Area': '3.8m'
+      },
+      weights: {
+        'Gross Weight': '4,500kg',
+        'Unladen Weight': '2,700kg',
+        'Payload': '1,800kg',
+        'Horse Capacity': '2-3 horses',
+        'Living Area': 'Standard',
+        'Chassis': 'Iveco Daily 45'
+      },
+      safety: [
+        'Emergency exit doors',
+        'Anti-slip rubber flooring',
+        'Internal LED lighting',
+        'Padded partitions',
+        'Secure door locks',
+        'Fire extinguisher included',
+        'First aid kit storage'
+      ]
+    },
+    gallery: ['01.jpg', '02.jpg', '03.jpg', '04.jpg'],
+    testimonial: {
+      name: 'Mark Stevens',
+      role: 'Competition Rider',
+      quote: 'The Principle 45 gives me everything I need at a price I can afford. The extra payload makes all the difference for longer trips.'
+    },
+    seoKeywords: 'Principle 45 horsebox, 4.5t basic horsebox, 4.5 tonne entry level, affordable 4.5t horsebox, JTH Principle 45, 4 piece back end, British 4.5t horsebox, Norfolk horsebox builder',
+    heroImage: '/models/jth-principle-45/01.jpg'
+  },
+  'jth-professional-45': {
+    title: 'JTH Professional 45 - Premium 4.5t Horsebox | Included Extras | Norfolk',
+    description: 'JTH Professional 45 - Premium 4.5 tonne horsebox with metallic paint, reversing camera, climate control, and luxury features included. From £31,500. British-built in Norfolk.',
+    longDescription: [
+      'The Professional 45 takes luxury to the next level with an extensive list of premium features included as standard. Metallic paint, reversing camera, climate control roof fan, and more.',
+      'Designed for professional riders who demand the best. Every Professional 45 includes features that competitors charge thousands extra for.',
+      'Built with meticulous attention to detail, this model combines luxury, performance, and practicality in the 4.5 tonne category.'
+    ],
+    features: [
+      'Metallic paint included',
+      'Reversing camera & monitor',
+      'Loading area lights',
+      'Horse area LED lights',
+      'JTH premium rear end',
+      'Luxury seat covers',
+      'Climate control roof fan',
+      'Horse area padding',
+      'Bench seat with storage',
+      'Overhead shelf with hanging'
+    ],
+    specifications: {
+      dimensions: {
+        'Overall Length': '7.2m',
+        'Overall Width': '2.3m',
+        'Overall Height': '3.4m',
+        'Internal Height': '2.3m',
+        'Horse Area': '3.8m'
+      },
+      weights: {
+        'Gross Weight': '4,500kg',
+        'Unladen Weight': '2,700kg',
+        'Payload': '1,800kg',
+        'Horse Capacity': '2-3 horses',
+        'Living Area': 'Luxury',
+        'Chassis': 'Iveco Daily 45'
+      },
+      safety: [
+        'CCTV monitoring system',
+        'Emergency exit doors',
+        'Premium anti-slip flooring',
+        'Internal and external LED lighting',
+        'Reinforced padded partitions',
+        'Secure multi-point locks',
+        'Fire extinguisher and first aid',
+        'Reversing camera system'
+      ]
+    },
+    gallery: ['01.jpg', '02.jpg', '03.jpg', '04.jpg', '05.jpg'],
+    testimonial: {
+      name: 'Emma Richardson',
+      role: 'Professional Event Rider',
+      quote: 'The Professional 45 is incredible value - so many premium features included as standard. It\'s transformed my competition experience.'
+    },
+    seoKeywords: 'Professional 45 horsebox, premium 4.5t horsebox, luxury 4.5 tonne, JTH Professional 45, metallic paint horsebox, reversing camera, climate control horsebox, professional competition horsebox',
+    heroImage: '/models/jth-professional-45/01.jpg'
+  },
+  'jth-progeny-45': {
+    title: 'JTH Progeny 45 - Crew Cab 4.5t Horsebox | Team Transport | Norfolk',
+    description: 'JTH Progeny 45 - Crew cab 4.5 tonne horsebox with single front seat and side windows. Optional external crew cab doors (£240 each). Perfect for teams from £36,500.',
+    longDescription: [
+      'The Progeny 45 Crew Cab is designed for teams and families. With additional seating, side windows for visibility, and optional external crew cab doors.',
+      'Transport your entire team in comfort. The crew cab configuration provides extra seating while maintaining full horse transport capabilities.',
+      'Perfect for riding schools, competition teams, and families who need to transport both horses and passengers safely and comfortably.'
+    ],
+    features: [
+      'Crew cab configuration',
+      'Single front seat included',
+      'Side windows for visibility',
+      'Optional external crew doors (£240 each side)',
+      'Team/family friendly design',
+      'Enhanced passenger comfort',
+      'Additional storage options',
+      'Full safety features'
+    ],
+    specifications: {
+      dimensions: {
+        'Overall Length': '7.4m',
+        'Overall Width': '2.3m', 
+        'Overall Height': '3.4m',
+        'Internal Height': '2.3m',
+        'Horse Area': '3.6m'
+      },
+      weights: {
+        'Gross Weight': '4,500kg',
+        'Unladen Weight': '2,800kg',
+        'Payload': '1,700kg',
+        'Horse Capacity': '2 horses',
+        'Crew Capacity': '3-4 people',
+        'Chassis': 'Iveco Daily 45'
+      },
+      safety: [
+        'Enhanced passenger safety',
+        'Crew cab safety features',
+        'Emergency exit doors',
+        'Anti-slip flooring',
+        'LED lighting throughout',
+        'Padded partitions',
+        'Secure door locks',
+        'First aid kit included'
+      ]
+    },
+    gallery: ['01.jpg', '02.jpg', '03.jpg', '04.jpg'],
+    testimonial: {
+      name: 'Sarah Johnson',
+      role: 'Riding School Owner',
+      quote: 'The Progeny 45 is perfect for our team events. We can transport horses and riders together safely and comfortably.'
+    },
+    seoKeywords: 'Progeny 45 horsebox, crew cab horsebox, 4.5t team horsebox, JTH Progeny 45, crew cab horse transport, family horsebox, side windows horsebox, external doors option',
+    heroImage: '/models/jth-progeny-45/01.jpg'
+  },
+  'zenos-72': {
+    title: 'Zenos 72 - Professional 7.2t Horsebox | Premium Range | JTH',
+    description: 'Zenos 72 - Professional 7.2 tonne horsebox for serious competitors. Premium build quality, maximum capacity. Contact for pricing. British-built.',
+    longDescription: [
+      'The Zenos 72 represents our entry into the 7.2 tonne professional category. Built for serious competitors who need maximum capacity and features.',
+      'With capacity for larger horses or additional storage, the Zenos 72 is the choice of professional teams.',
+      'Every Zenos 72 is custom-built to exact specifications, with extensive customization options available to create your perfect professional horsebox.'
+    ],
+    features: [
+      '7.2 tonne capacity',
+      'Professional specification',
+      'Maximum payload',
+      'Premium construction',
+      'Extended living area',
+      'Commercial chassis',
+      'Full customization available',
+      'Contact for pricing'
+    ],
+    specifications: {
+      dimensions: {
+        'Overall Length': '8.5m',
+        'Overall Width': '2.5m',
+        'Overall Height': '3.6m',
+        'Internal Height': '2.5m',
+        'Horse Area': '4.5m'
+      },
+      weights: {
+        'Gross Weight': '7,200kg',
+        'Unladen Weight': '4,200kg',
+        'Payload': '3,000kg',
+        'Horse Capacity': '3-4 horses',
+        'Living Area': 'Premium',
+        'Chassis': 'DAF LF'
+      },
+      safety: [
+        'Commercial-grade construction',
+        'Air brakes',
+        'Stability control',
+        'Emergency exits',
+        'CCTV ready',
+        'LED lighting',
+        'Anti-slip flooring',
+        'Professional specification'
+      ]
+    },
+    gallery: ['01.jpg', '02.jpg', '03.jpg', '04.jpg'],
+    testimonial: {
+      name: 'Professional Team',
+      role: 'Competition Stable',
+      quote: 'The Zenos 72 gives us the capacity and reliability we need for professional competition. Outstanding build quality.'
+    },
+    seoKeywords: 'Zenos 72 horsebox, 7.2t horsebox, 7.2 tonne horse transport, professional horsebox, Zenos range, premium horsebox UK',
+    heroImage: '/models/zenos-72/01.jpg'
+  },
+  'zenos-xl-72': {
+    title: 'Zenos XL 72 - Extended 7.2t Luxury Horsebox | Flagship Model | JTH',
+    description: 'Zenos XL 72 - Extended 7.2 tonne luxury horsebox with premium living quarters. The ultimate in professional horse transport. Contact for pricing.',
+    longDescription: [
+      'The Zenos XL 72 is our extended flagship model with luxury living quarters rivaling the finest motorhomes.',
+      'For those who accept no compromise, the Zenos XL provides apartment-quality living with professional horse transport.',
+      'Every Zenos XL 72 is a bespoke creation, built to the exact requirements of discerning owners who demand the absolute best.'
+    ],
+    features: [
+      'Extended 7.2t design',
+      'Luxury living quarters',
+      'Maximum specification',
+      'Apartment-quality interior',
+      'Professional features throughout',
+      'Ultimate customization',
+      'Flagship model',
+      'Price on application'
+    ],
+    specifications: {
+      dimensions: {
+        'Overall Length': '9.2m',
+        'Overall Width': '2.5m',
+        'Overall Height': '3.6m',
+        'Internal Height': '2.5m',
+        'Horse Area': '4.2m'
+      },
+      weights: {
+        'Gross Weight': '7,200kg',
+        'Unladen Weight': '4,400kg',
+        'Payload': '2,800kg',
+        'Horse Capacity': '3 horses',
+        'Living Area': 'Ultimate luxury',
+        'Chassis': 'DAF LF Extended'
+      },
+      safety: [
+        'Ultimate safety specification',
+        'Advanced braking systems',
+        'Stability management',
+        'Full CCTV coverage',
+        'Emergency communication',
+        'Fire suppression ready',
+        'Medical equipment storage',
+        'Professional safety features'
+      ]
+    },
+    gallery: ['01.jpg', '02.jpg', '03.jpg', '04.jpg', '05.jpg'],
+    testimonial: {
+      name: 'International Competitor',
+      role: 'Elite Rider',
+      quote: 'The Zenos XL 72 is simply the best horsebox available. The luxury and functionality are unmatched.'
+    },
+    seoKeywords: 'Zenos XL 72, extended 7.2t horsebox, luxury 7.2 tonne, flagship horsebox, Zenos XL range, premium horse transport',
+    heroImage: '/models/zenos-xl-72/01.jpg'
   }
 }
 
@@ -484,30 +755,6 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
     return notFound()
   }
 
-  // Generate FAQ data for this model
-  const modelFAQs = [
-    {
-      question: `How much does the ${content.title.split(' - ')[0]} cost?`,
-      answer: `The ${content.title.split(' - ')[0]} starts from the prices shown, excluding VAT. Final pricing depends on your chosen options and customizations. We offer competitive finance packages and accept part exchange.`
-    },
-    {
-      question: `What license do I need to drive this horsebox?`,
-      answer: params.slug.includes('35') 
-        ? 'The 3.5 tonne models can be driven on a standard car license if you passed your test before 1997. Otherwise, you\'ll need B+E or C1 license.'
-        : params.slug.includes('45')
-        ? 'The 4.5 tonne models require a C1 license. We can recommend training providers if needed.'
-        : 'The 7.2 tonne Zenos requires a C1 or full HGV license depending on configuration.'
-    },
-    {
-      question: `What warranty comes with this model?`,
-      answer: `Every ${content.title.split(' - ')[0]} comes with our comprehensive 2-year structural warranty covering all manufacturing defects and structural elements.`
-    },
-    {
-      question: `Can I customize this horsebox?`,
-      answer: `Yes, the ${content.title.split(' - ')[0]} can be fully customized to your requirements including paint colors, interior layout, and equipment specifications.`
-    }
-  ]
-
   // Try to load pricing config, but don't fail if model isn't in it
   let model: any = null
   let basePrice: number | null = null
@@ -530,14 +777,19 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
       'professional-35': 22000,
       'progeny-35': 25500,
       'aeos-qv-45': 28950,
-      'aeos-edge-45': 31500,
-      'aeos-freedom-45': 36500,
-      'aeos-discovery-45': 46100,
+      'aeos-edge-45': 12345,
+      'aeos-freedom-45': 12345,
+      'aeos-discovery-45': 12345,
       'aeos-freedom-st-45': 38500,
       'aeos-edge-st-45': 33500,
       'aeos-qv-st-45': 30950,
       'aeos-discovery-72': 74600,
-      'helios-75': 82500
+      'helios-75': 12345,
+      'jth-principle-45': 28950,
+      'jth-professional-45': 31500,
+      'jth-progeny-45': 36500,
+      'zenos-72': 12345, // Placeholder - shows "Contact for pricing"
+      'zenos-xl-72': 12345 // Placeholder - shows "Contact for pricing"
     }
     basePrice = defaultPrices[params.slug] || 0
   }
@@ -552,6 +804,32 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
   const isStallion = params.slug.includes('-st-')
   
   const modelCategory = is35t ? '3.5 Tonne' : is45t ? '4.5 Tonne' : '7.2 Tonne'
+
+  // Generate FAQ data for this model (now that basePrice is available)
+  const modelFAQs = [
+    {
+      question: `How much does the ${content.title.split(' - ')[0]} cost?`,
+      answer: basePrice === 12345 
+        ? `The ${content.title.split(' - ')[0]} is built to order with pricing based on your exact specifications. Please contact us for a detailed quotation. We offer competitive finance packages and accept part exchange.`
+        : `The ${content.title.split(' - ')[0]} starts from the prices shown, excluding VAT. Final pricing depends on your chosen options and customizations. We offer competitive finance packages and accept part exchange.`
+    },
+    {
+      question: `What license do I need to drive this horsebox?`,
+      answer: params.slug.includes('35') 
+        ? 'The 3.5 tonne models can be driven on a standard car license if you passed your test before 1997. Otherwise, you\'ll need B+E or C1 license.'
+        : params.slug.includes('45')
+        ? 'The 4.5 tonne models require a C1 license. We can recommend training providers if needed.'
+        : 'The 7.2 tonne models require a C1 or full HGV license depending on configuration.'
+    },
+    {
+      question: `What warranty comes with this model?`,
+      answer: `Every ${content.title.split(' - ')[0]} comes with our comprehensive 2-year structural warranty covering all manufacturing defects and structural elements.`
+    },
+    {
+      question: `Can I customize this horsebox?`,
+      answer: `Yes, the ${content.title.split(' - ')[0]} can be fully customized to your requirements including paint colors, interior layout, and equipment specifications.`
+    }
+  ]
 
   // Generate schema markup
   const breadcrumbs = [
@@ -609,7 +887,9 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-2xl font-bold text-white">£{basePrice.toLocaleString()}</div>
+              <div className="text-2xl font-bold text-white">
+                {basePrice === 12345 ? 'Contact for pricing' : `£${basePrice.toLocaleString()}`}
+              </div>
               <div className="text-sm text-slate-400 uppercase tracking-wider">Starting Price</div>
             </div>
             <div className="text-center">
@@ -872,7 +1152,10 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
                 <p className="text-slate-600 leading-relaxed">
                   We offer competitive HP and lease purchase options from 1-7 years with deposits from 10%. 
                   Part exchange is welcome and can form part or all of your deposit. 
-                  Monthly payments for the {modelName} typically start from £{Math.round(basePrice * 0.02)} per month.
+                  {basePrice === 12345 
+                    ? `Please contact us for detailed finance quotations on the ${modelName}.`
+                    : `Monthly payments for the ${modelName} typically start from £${Math.round(basePrice * 0.02)} per month.`
+                  }
                 </p>
               </div>
               

@@ -95,39 +95,56 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Popular Models */}
+          {/* Model Ranges */}
           <div>
-            <h3 className="font-semibold text-white mb-6">Popular Models</h3>
-            <ul className="space-y-3">
+            <h3 className="font-semibold text-white mb-6">Model Ranges</h3>
+            <ul className="space-y-4">
               <li>
-                <Link href="/models/professional-35" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-4 h-4" />
-                  Professional 35
-                </Link>
+                <div className="text-blue-400 font-medium mb-2">JTH Range</div>
+                <ul className="ml-3 space-y-2">
+                  <li>
+                    <Link href="/models/professional-35" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
+                      <ChevronRight className="w-3 h-3" />
+                      Professional 35
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/models/principle-35" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
+                      <ChevronRight className="w-3 h-3" />
+                      Principle 35
+                    </Link>
+                  </li>
+                </ul>
               </li>
               <li>
-                <Link href="/models/principle-35" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-4 h-4" />
-                  Principle 35
-                </Link>
+                <div className="text-blue-400 font-medium mb-2">AEOS Range</div>
+                <ul className="ml-3 space-y-2">
+                  <li>
+                    <Link href="/models/aeos-edge-45" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
+                      <ChevronRight className="w-3 h-3" />
+                      Edge 45
+                      <span className="text-xs bg-amber-700 text-amber-100 px-1 py-0.5 rounded ml-1">Pre-Built</span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/models/aeos-discovery-45" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
+                      <ChevronRight className="w-3 h-3" />
+                      Discovery 45
+                      <span className="text-xs bg-amber-700 text-amber-100 px-1 py-0.5 rounded ml-1">Pre-Built</span>
+                    </Link>
+                  </li>
+                </ul>
               </li>
               <li>
-                <Link href="/models/progeny-35" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-4 h-4" />
-                  Progeny 35
-                </Link>
-              </li>
-              <li>
-                <Link href="/models/aeos-discovery-45" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-4 h-4" />
-                  Aeos Discovery 45
-                </Link>
-              </li>
-              <li>
-                <Link href="/models/zenos-72" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-4 h-4" />
-                  Zenos 72
-                </Link>
+                <div className="text-blue-400 font-medium mb-2">Premium Range</div>
+                <ul className="ml-3 space-y-2">
+                  <li>
+                    <Link href="/models/zenos-72" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
+                      <ChevronRight className="w-3 h-3" />
+                      Zenos 72
+                    </Link>
+                  </li>
+                </ul>
               </li>
             </ul>
           </div>

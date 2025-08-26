@@ -138,16 +138,32 @@ export const useConfiguratorStore = create<ConfiguratorState>()(
       },
 
       // Set the selected model
-      setModel: (model: Model) => {
+      setModel: (model: Model | null) => {
+        if (!model) {
+          set({ 
+            selectedModel: null,
+            basePrice: 0,
+            selectedOptions: [],
+            pioneerPackage: false,
+            pioneerHorseArea: null,
+            error: null
+          })
+          return
+        }
+        
         set({ 
           selectedModel: model,
-          basePrice: model.base_price,
+          basePrice: model.base_price || 0,
           selectedOptions: [],
           pioneerPackage: false,
           pioneerHorseArea: null,
           error: null
         })
-        get().calculateTotals()
+        
+        // Only calculate totals for configurable models with pricing
+        if (model.availability === 'configurable' && model.base_price !== null) {
+          get().calculateTotals()
+        }
       },
 
       // Set chassis cost
@@ -174,18 +190,19 @@ export const useConfiguratorStore = create<ConfiguratorState>()(
         
         if (!selectedModel) return
         
+        // Only allow Pioneer Package for eligible 4.5T models
+        if (!selectedModel.pioneer_package_eligible) {
+          console.warn('Pioneer Package not available for this model')
+          return
+        }
+        
         set({ 
           pioneerPackage: enabled,
           pioneerHorseArea: enabled ? (horseArea || null) : null
         })
         
         if (enabled) {
-          // For Progeny model, auto-select 3ft extension
-          if (selectedModel.name === 'Progeny 35') {
-            set({ pioneerHorseArea: '3ft' })
-          }
-          
-          // Auto-select included options
+          // Auto-select included options for Pioneer Package
           const pioneerOptions = PIONEER_PACKAGE.includedOptions
           const currentOptions = state.selectedOptions
           
@@ -211,7 +228,10 @@ export const useConfiguratorStore = create<ConfiguratorState>()(
           set({ selectedOptions: filteredOptions })
         }
         
-        get().calculateTotals()
+        // Only recalculate totals for configurable models
+        if (selectedModel.availability === 'configurable' && selectedModel.base_price !== null) {
+          get().calculateTotals()
+        }
       },
 
       // Add an option to the configuration
@@ -317,13 +337,25 @@ export const useConfiguratorStore = create<ConfiguratorState>()(
           return
         }
 
+        // Only calculate for configurable models with pricing
+        if (selectedModel.availability !== 'configurable' || selectedModel.base_price === null) {
+          set({ 
+            optionsTotal: 0,
+            buildSubtotal: 0,
+            totalExVat: 0,
+            vatAmount: 0,
+            totalIncVat: 0
+          })
+          return
+        }
+
         // Calculate options total (including quantities)
         let optionsTotal = selectedOptions.reduce((sum, option) => 
           sum + (option.price * option.quantity), 0
         )
         
-        // Add Pioneer Package if selected
-        if (pioneerPackage) {
+        // Add Pioneer Package if selected and model is eligible
+        if (pioneerPackage && selectedModel.pioneer_package_eligible) {
           optionsTotal += PIONEER_PACKAGE.price
         }
         
@@ -352,14 +384,30 @@ export const useConfiguratorStore = create<ConfiguratorState>()(
       // Calculate payment schedule based on Google Apps Script logic
       calculatePaymentSchedule: () => {
         const state = get()
-        const { chassisCost, basePrice, optionsTotal, pioneerPackage, deposit } = state
+        const { selectedModel, chassisCost, basePrice, optionsTotal, pioneerPackage, deposit } = state
+        
+        // Only calculate payment schedule for configurable models with pricing
+        if (!selectedModel || selectedModel.availability !== 'configurable' || selectedModel.base_price === null) {
+          set({
+            paymentSchedule: {
+              deposit: 0,
+              firstPayment: 0,
+              secondPayment: 0,
+              finalPayment: 0,
+              chassisWithVat: 0,
+              buildWithVat: 0,
+              buildBalanceMinusDeposit: 0
+            }
+          })
+          return
+        }
         
         // Calculate chassis with VAT
         const chassisWithVat = chassisCost * (1 + VAT_RATE)
         
         // Calculate build total with VAT
         let buildTotal = basePrice + optionsTotal
-        if (pioneerPackage) {
+        if (pioneerPackage && selectedModel.pioneer_package_eligible) {
           buildTotal += PIONEER_PACKAGE.price
         }
         const buildWithVat = buildTotal * (1 + VAT_RATE)
@@ -450,21 +498,21 @@ export const useConfiguratorStore = create<ConfiguratorState>()(
           model: selectedModel.slug,
           model_name: selectedModel.name,
           base_price: state.basePrice,
-          chassisCost: state.chassisCost,
-          deposit: state.deposit,
+          chassisCost: selectedModel.availability === 'configurable' ? state.chassisCost : 0,
+          deposit: selectedModel.availability === 'configurable' ? state.deposit : 0,
           color: state.color,
           
-          // Options
-          pioneerPackage: state.pioneerPackage,
-          pioneerHorseArea: state.pioneerHorseArea || undefined,
-          selected_options: state.selectedOptions,
+          // Options - only for configurable models
+          pioneerPackage: selectedModel.pioneer_package_eligible ? state.pioneerPackage : false,
+          pioneerHorseArea: (selectedModel.pioneer_package_eligible && state.pioneerPackage) ? state.pioneerHorseArea || undefined : undefined,
+          selected_options: selectedModel.availability === 'configurable' ? state.selectedOptions : [],
           
-          // Pricing
-          options_total: state.optionsTotal,
-          build_subtotal: state.buildSubtotal,
-          total_ex_vat: state.totalExVat,
-          vat_amount: state.vatAmount,
-          total_inc_vat: state.totalIncVat,
+          // Pricing - only calculate for configurable models
+          options_total: selectedModel.availability === 'configurable' ? state.optionsTotal : 0,
+          build_subtotal: selectedModel.availability === 'configurable' ? state.buildSubtotal : 0,
+          total_ex_vat: selectedModel.availability === 'configurable' ? state.totalExVat : 0,
+          vat_amount: selectedModel.availability === 'configurable' ? state.vatAmount : 0,
+          total_inc_vat: selectedModel.availability === 'configurable' ? state.totalIncVat : 0,
           
           // Payment Schedule
           payment_schedule: state.paymentSchedule,

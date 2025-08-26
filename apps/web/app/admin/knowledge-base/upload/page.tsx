@@ -321,7 +321,7 @@ export default function KnowledgeBaseUploadPage() {
                           <div className="flex items-center gap-2">
                             <span className="font-medium">{file.name}</span>
                             {file.status === 'success' && (
-                              <CheckCircle className="h-4 w-4 text-green-500" />
+                              <CheckCircle className="h-4 w-4 text-blue-500" />
                             )}
                             {file.status === 'error' && (
                               <AlertCircle className="h-4 w-4 text-red-500" />

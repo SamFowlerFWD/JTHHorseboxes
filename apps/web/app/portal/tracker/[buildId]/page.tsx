@@ -248,8 +248,8 @@ export default function CustomerTrackerPage() {
   const getDaysRemaining = () => {
     if (!buildData) return null
     const days = differenceInDays(buildData.estimatedCompletion, new Date())
-    if (days < 0) return { value: 0, label: "Complete", color: "text-green-600" }
-    if (days === 0) return { value: 0, label: "Today!", color: "text-green-600" }
+    if (days < 0) return { value: 0, label: "Complete", color: "text-blue-700" }
+    if (days === 0) return { value: 0, label: "Today!", color: "text-blue-700" }
     if (days === 1) return { value: 1, label: "Tomorrow", color: "text-orange-600" }
     if (days <= 7) return { value: days, label: `${days} days`, color: "text-orange-600" }
     if (days <= 30) return { value: Math.floor(days / 7), label: `${Math.floor(days / 7)} weeks`, color: "text-blue-600" }
@@ -359,7 +359,7 @@ export default function CustomerTrackerPage() {
                   <div key={stage.id} className="flex items-start gap-4">
                     <div className="flex flex-col items-center">
                       <div className={`flex items-center justify-center w-10 h-10 rounded-full transition-colors ${
-                        isCompleted ? "bg-green-100 text-green-600" :
+                        isCompleted ? "bg-blue-100 text-blue-700" :
                         isCurrent ? "bg-blue-100 text-blue-600 ring-2 ring-blue-600 ring-offset-2" :
                         "bg-gray-100 text-gray-400"
                       }`}>
@@ -371,7 +371,7 @@ export default function CustomerTrackerPage() {
                       </div>
                       {index < CUSTOMER_STAGES.length - 1 && (
                         <div className={`w-0.5 h-12 ${
-                          isCompleted ? "bg-green-600" : "bg-gray-300"
+                          isCompleted ? "bg-blue-700" : "bg-gray-300"
                         }`} />
                       )}
                     </div>

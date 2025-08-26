@@ -108,14 +108,14 @@ export default function ReviewStep({ onSubmit, isSubmitting }: ReviewStepProps) 
             <div className="p-3 bg-blue-50 rounded-lg">
               <div className="flex justify-between items-center">
                 <div>
-                  <span className="font-medium text-blue-900">Pioneer Package</span>
+                  <span className="font-medium text-blue-950">Pioneer Package</span>
                   {pioneerHorseArea && (
-                    <span className="ml-2 text-sm text-blue-700">
+                    <span className="ml-2 text-sm text-blue-800">
                       ({pioneerHorseArea === '3ft' ? '3ft Full Extension' : '1ft Half Wall'})
                     </span>
                   )}
                 </div>
-                <span className="font-medium text-blue-900">{formatPrice(10800)}</span>
+                <span className="font-medium text-blue-950">{formatPrice(10800)}</span>
               </div>
             </div>
           )}
@@ -172,7 +172,7 @@ export default function ReviewStep({ onSubmit, isSubmitting }: ReviewStepProps) 
           </div>
           <div className="flex justify-between items-center pt-3 border-t border-slate-200">
             <span className="text-lg font-semibold text-slate-900">Total (inc VAT):</span>
-            <span className="text-2xl font-bold text-blue-600">{formatPrice(totalIncVat)}</span>
+            <span className="text-2xl font-bold text-blue-700">{formatPrice(totalIncVat)}</span>
           </div>
         </div>
       </div>
@@ -180,7 +180,7 @@ export default function ReviewStep({ onSubmit, isSubmitting }: ReviewStepProps) 
       {/* Payment Schedule */}
       <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl shadow-sm border border-blue-200 p-6">
         <h2 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
-          <Calendar className="w-5 h-5 text-blue-600" />
+          <Calendar className="w-5 h-5 text-blue-700" />
           Payment Schedule
         </h2>
         
@@ -219,12 +219,12 @@ export default function ReviewStep({ onSubmit, isSubmitting }: ReviewStepProps) 
       </div>
 
       {/* Confirmation */}
-      <div className="bg-green-50 border border-green-200 rounded-xl p-6">
+      <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
         <div className="flex items-start gap-3">
-          <Check className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
+          <Check className="w-6 h-6 text-blue-700 mt-0.5 flex-shrink-0" />
           <div className="flex-1">
-            <h3 className="font-semibold text-green-900 mb-2">Ready to Submit</h3>
-            <p className="text-sm text-green-800 mb-4">
+            <h3 className="font-semibold text-blue-950 mb-2">Ready to Submit</h3>
+            <p className="text-sm text-blue-900 mb-4">
               Please review all details above. Once submitted, you will receive a formal quote 
               via email within 24 hours. Our team will contact you to discuss your requirements 
               and answer any questions.
@@ -235,7 +235,7 @@ export default function ReviewStep({ onSubmit, isSubmitting }: ReviewStepProps) 
               className={`w-full md:w-auto px-8 py-3 rounded-lg font-medium transition-all ${
                 isSubmitting
                   ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
-                  : 'bg-green-600 text-white hover:bg-green-700'
+                  : 'bg-blue-700 text-white hover:bg-blue-800'
               }`}
             >
               {isSubmitting ? 'Submitting...' : 'Submit Configuration'}

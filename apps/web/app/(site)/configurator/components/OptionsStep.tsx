@@ -36,14 +36,14 @@ export default function OptionsStep() {
   }
 
   const handlePioneerToggle = () => {
+    // Only allow Pioneer Package for eligible models (4.5T models)
+    if (!selectedModel?.pioneer_package_eligible) {
+      return
+    }
+    
     if (!pioneerPackage) {
-      // Show dialog for Professional/Principal models
-      if (selectedModel?.name === 'Professional 35' || selectedModel?.name === 'Principal 35') {
-        setShowPioneerDialog(true)
-      } else if (selectedModel?.name === 'Progeny 35') {
-        // Auto-select 3ft for Progeny
-        setPioneerPackage(true, '3ft')
-      }
+      // Show dialog for all Pioneer-eligible models to choose horse area
+      setShowPioneerDialog(true)
     } else {
       setPioneerPackage(false)
     }
@@ -90,7 +90,7 @@ export default function OptionsStep() {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-700 mx-auto mb-4"></div>
           <p className="text-slate-600">Loading options...</p>
         </div>
       </div>
@@ -99,11 +99,106 @@ export default function OptionsStep() {
 
   return (
     <div className="max-w-5xl mx-auto">
-      {/* Options */}
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-        <h2 className="text-xl font-semibold text-slate-900 mb-6">Options & Customization</h2>
-        
-        <div className="space-y-4">
+      {/* Non-configurable Model Warning */}
+      {selectedModel && selectedModel.availability !== 'configurable' && (
+        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-8 mb-6">
+          <h2 className="text-xl font-semibold text-slate-900 mb-4">Customization Information</h2>
+          <div className={`p-4 rounded-lg border ${
+            selectedModel.availability === 'pre-built' 
+              ? 'bg-blue-50 border-blue-200' 
+              : 'bg-purple-50 border-purple-200'
+          }`}>
+            <p className={`text-sm mb-4 ${
+              selectedModel.availability === 'pre-built' 
+                ? 'text-blue-700' 
+                : 'text-purple-700'
+            }`}>
+              {selectedModel.availability === 'pre-built' 
+                ? 'This is a pre-built package model with limited customization options. Our sales team will discuss available modifications with you.'
+                : 'This premium model is fully bespoke. All specifications and options will be customized during your consultation with our specialists.'
+              }
+            </p>
+            <p className={`text-sm font-medium ${
+              selectedModel.availability === 'pre-built' 
+                ? 'text-blue-800' 
+                : 'text-purple-800'
+            }`}>
+              The options configurator is not available for this model. Please contact us to discuss your requirements.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Pioneer Package - Only for eligible models */}
+      {selectedModel && selectedModel.pioneer_package_eligible && selectedModel.availability === 'configurable' && (
+        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6">
+          <div className="flex items-start justify-between">
+            <div className="flex-1">
+              <h2 className="text-xl font-semibold text-slate-900 mb-2">Pioneer Package Upgrade</h2>
+              <p className="text-slate-600 mb-4">
+                Complete upgrade package for {selectedModel.name} - transforms your horsebox with professional features
+              </p>
+              
+              <div className="grid md:grid-cols-3 gap-4 text-sm text-slate-700 mb-4">
+                <div>
+                  <div className="font-medium text-slate-900 mb-1">Included Features:</div>
+                  <div>• L4 Surcharge & 4.5T Uprating</div>
+                  <div>• Tack Locker & Cabinets</div>
+                  <div>• Seating & Kitchen (Sink/Hob)</div>
+                </div>
+                <div>
+                  <div className="font-medium text-slate-900 mb-1">Utilities & Comfort:</div>
+                  <div>• Water System & Fridge</div>
+                  <div>• Windows (2x) & Blinds (2x)</div>
+                  <div>• Leisure Battery & 240v Hookup</div>
+                </div>
+                <div>
+                  <div className="font-medium text-slate-900 mb-1">Finishing:</div>
+                  <div>• Premium Wood Internals</div>
+                  <div>• Choice of Horse Area Extension</div>
+                  <div>• Professional Installation</div>
+                </div>
+              </div>
+
+              {pioneerPackage && pioneerHorseArea && (
+                <div className="p-3 bg-green-50 border border-green-200 rounded-lg text-sm text-green-700 mb-4">
+                  <strong>Selected:</strong> Pioneer Package with {pioneerHorseArea} horse area extension
+                </div>
+              )}
+            </div>
+            
+            <div className="ml-6 text-right">
+              <div className="text-2xl font-bold text-blue-700 mb-2">
+                {formatPrice(PIONEER_PACKAGE.price)}
+              </div>
+              <div className="text-sm text-slate-500 mb-4">Total Package Price</div>
+              
+              <button
+                onClick={handlePioneerToggle}
+                className={`px-6 py-3 rounded-lg font-medium transition-all ${
+                  pioneerPackage
+                    ? 'bg-red-500 text-white hover:bg-red-600'
+                    : 'bg-blue-700 text-white hover:bg-blue-800'
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <Package className="w-5 h-5" />
+                  {pioneerPackage ? 'Remove Package' : 'Add Package'}
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Options - Only for configurable models */}
+      {selectedModel && selectedModel.availability === 'configurable' && (
+        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+          <h2 className="text-xl font-semibold text-slate-900 mb-6">
+            {selectedModel.pioneer_package_eligible ? 'Additional Options & Customization' : 'Options & Customization'}
+          </h2>
+          
+          <div className="space-y-4">
           {OPTION_CATEGORIES.map((category) => {
             const categoryOptions = getOptionsByCategory(category.id)
             const isExpanded = expandedCategories.includes(category.id)
@@ -143,7 +238,7 @@ export default function OptionsStep() {
                             isIncludedInPioneer
                               ? 'bg-blue-50 border-blue-200'
                               : isSelected
-                              ? 'bg-green-50 border-green-200'
+                              ? 'bg-blue-50 border-blue-200'
                               : 'bg-white border-slate-200'
                           }`}
                         >
@@ -152,7 +247,7 @@ export default function OptionsStep() {
                               <div className="flex items-center gap-2 mb-1">
                                 <h4 className="font-medium text-slate-900">{option.name}</h4>
                                 {isIncludedInPioneer && (
-                                  <span className="px-2 py-0.5 bg-blue-100 text-blue-700 text-xs rounded">
+                                  <span className="px-2 py-0.5 bg-blue-100 text-blue-800 text-xs rounded">
                                     Included in Pioneer
                                   </span>
                                 )}
@@ -209,10 +304,10 @@ export default function OptionsStep() {
                                   disabled={isIncludedInPioneer}
                                   className={`px-4 py-2 rounded-lg font-medium transition-all ${
                                     isIncludedInPioneer
-                                      ? 'bg-blue-100 text-blue-700 cursor-not-allowed'
+                                      ? 'bg-blue-100 text-blue-800 cursor-not-allowed'
                                       : isSelected
                                       ? 'bg-red-500 text-white hover:bg-red-600'
-                                      : 'bg-blue-600 text-white hover:bg-blue-700'
+                                      : 'bg-blue-700 text-white hover:bg-blue-800'
                                   }`}
                                 >
                                   {isIncludedInPioneer ? 'Included' : isSelected ? 'Remove' : 'Add'}
@@ -230,12 +325,18 @@ export default function OptionsStep() {
           })}
         </div>
 
-        {/* Options Total */}
-        <div className="mt-6 p-4 bg-slate-50 rounded-lg flex items-center justify-between">
-          <span className="text-lg font-medium text-slate-700">Options Total:</span>
-          <span className="text-2xl font-bold text-blue-600">{formatPrice(optionsTotal)}</span>
+          {/* Options Total */}
+          <div className="mt-6 p-4 bg-slate-50 rounded-lg flex items-center justify-between">
+            <span className="text-lg font-medium text-slate-700">
+              {selectedModel?.pioneer_package_eligible && pioneerPackage 
+                ? 'Additional Options Total:' 
+                : 'Options Total:'
+              }
+            </span>
+            <span className="text-2xl font-bold text-blue-700">{formatPrice(optionsTotal)}</span>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Pioneer Package Dialog */}
       {showPioneerDialog && (

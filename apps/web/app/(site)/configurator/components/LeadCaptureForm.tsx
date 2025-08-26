@@ -101,7 +101,7 @@ export default function LeadCaptureForm({ onSubmit, isSubmitting }: LeadCaptureF
   return (
     <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-6 text-white">
+      <div className="bg-gradient-to-r from-blue-700 to-blue-800 p-6 text-white">
         <h3 className="text-xl font-semibold mb-2">Request Your Quote</h3>
         <p className="text-blue-100">
           Enter your details below and we'll send you a formal quote for your configured horsebox
@@ -125,7 +125,7 @@ export default function LeadCaptureForm({ onSubmit, isSubmitting }: LeadCaptureF
                 className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
                   errors.first_name && touched.has('first_name')
                     ? 'border-red-500 focus:ring-red-500'
-                    : 'border-slate-300 focus:ring-blue-500'
+                    : 'border-slate-300 focus:ring-blue-600'
                 }`}
                 placeholder="John"
               />
@@ -152,7 +152,7 @@ export default function LeadCaptureForm({ onSubmit, isSubmitting }: LeadCaptureF
                 className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
                   errors.last_name && touched.has('last_name')
                     ? 'border-red-500 focus:ring-red-500'
-                    : 'border-slate-300 focus:ring-blue-500'
+                    : 'border-slate-300 focus:ring-blue-600'
                 }`}
                 placeholder="Smith"
               />
@@ -182,7 +182,7 @@ export default function LeadCaptureForm({ onSubmit, isSubmitting }: LeadCaptureF
                 className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
                   errors.email && touched.has('email')
                     ? 'border-red-500 focus:ring-red-500'
-                    : 'border-slate-300 focus:ring-blue-500'
+                    : 'border-slate-300 focus:ring-blue-600'
                 }`}
                 placeholder="john.smith@example.com"
               />
@@ -209,7 +209,7 @@ export default function LeadCaptureForm({ onSubmit, isSubmitting }: LeadCaptureF
                 className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
                   errors.phone && touched.has('phone')
                     ? 'border-red-500 focus:ring-red-500'
-                    : 'border-slate-300 focus:ring-blue-500'
+                    : 'border-slate-300 focus:ring-blue-600'
                 }`}
                 placeholder="07123 456789"
               />
@@ -234,7 +234,7 @@ export default function LeadCaptureForm({ onSubmit, isSubmitting }: LeadCaptureF
               type="text"
               value={formData.company || ''}
               onChange={(e) => handleFieldChange('company', e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
               placeholder="Your company name"
             />
           </div>
@@ -251,7 +251,7 @@ export default function LeadCaptureForm({ onSubmit, isSubmitting }: LeadCaptureF
               value={formData.message || ''}
               onChange={(e) => handleFieldChange('message', e.target.value)}
               rows={4}
-              className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+              className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 resize-none"
               placeholder="Any specific requirements or questions?"
             />
           </div>
@@ -264,7 +264,7 @@ export default function LeadCaptureForm({ onSubmit, isSubmitting }: LeadCaptureF
               type="checkbox"
               checked={formData.consent_marketing}
               onChange={(e) => handleFieldChange('consent_marketing', e.target.checked)}
-              className="mt-1 w-5 h-5 text-blue-600 border-slate-300 rounded focus:ring-blue-500"
+              className="mt-1 w-5 h-5 text-blue-700 border-slate-300 rounded focus:ring-blue-600"
             />
             <div>
               <span className="text-sm font-medium text-slate-700">
@@ -285,7 +285,7 @@ export default function LeadCaptureForm({ onSubmit, isSubmitting }: LeadCaptureF
           className={`w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
             isSubmitting
               ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
-              : 'bg-blue-600 text-white hover:bg-blue-700'
+              : 'bg-blue-700 text-white hover:bg-blue-800'
           }`}
         >
           {isSubmitting ? (
@@ -304,11 +304,11 @@ export default function LeadCaptureForm({ onSubmit, isSubmitting }: LeadCaptureF
         {/* Privacy Notice */}
         <p className="text-xs text-slate-500 text-center">
           By submitting this form, you agree to our{' '}
-          <a href="/privacy" className="text-blue-600 hover:underline">
+          <a href="/privacy" className="text-blue-700 hover:underline">
             Privacy Policy
           </a>{' '}
           and{' '}
-          <a href="/terms" className="text-blue-600 hover:underline">
+          <a href="/terms" className="text-blue-700 hover:underline">
             Terms of Service
           </a>
         </p>

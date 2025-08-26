@@ -36,10 +36,10 @@ export default function PioneerPackageDialog({ onClose, onConfirm }: PioneerPack
             {/* 1ft Half Wall Option */}
             <button
               onClick={() => onConfirm('1ft')}
-              className="p-6 rounded-lg border-2 border-slate-200 hover:border-blue-500 hover:bg-blue-50 transition-all text-left group"
+              className="p-6 rounded-lg border-2 border-slate-200 hover:border-blue-600 hover:bg-blue-50 transition-all text-left group"
             >
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors">
-                <ArrowUp className="w-6 h-6 text-blue-600" />
+                <ArrowUp className="w-6 h-6 text-blue-700" />
               </div>
               <h3 className="font-semibold text-slate-900 mb-2">1ft Half Wall Extension</h3>
               <p className="text-sm text-slate-600 mb-4">
@@ -55,10 +55,10 @@ export default function PioneerPackageDialog({ onClose, onConfirm }: PioneerPack
             {/* 3ft Full Extension Option */}
             <button
               onClick={() => onConfirm('3ft')}
-              className="p-6 rounded-lg border-2 border-slate-200 hover:border-blue-500 hover:bg-blue-50 transition-all text-left group"
+              className="p-6 rounded-lg border-2 border-slate-200 hover:border-blue-600 hover:bg-blue-50 transition-all text-left group"
             >
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors">
-                <Maximize2 className="w-6 h-6 text-blue-600" />
+                <Maximize2 className="w-6 h-6 text-blue-700" />
               </div>
               <h3 className="font-semibold text-slate-900 mb-2">3ft Full Extension</h3>
               <p className="text-sm text-slate-600 mb-4">

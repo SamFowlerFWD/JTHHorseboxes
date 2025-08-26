@@ -335,7 +335,7 @@ function PricingPageContent() {
                             onClick={() => handleToggleAvailability(option.id, option.is_available)}
                             className={`inline-flex items-center px-2.5 py-1.5 rounded text-xs font-medium ${
                               option.is_available
-                                ? 'bg-green-100 text-green-800 hover:bg-green-200'
+                                ? 'bg-blue-100 text-blue-900 hover:bg-blue-200'
                                 : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                             }`}
                           >
@@ -348,7 +348,7 @@ function PricingPageContent() {
                               <>
                                 <button
                                   onClick={handleSaveInlineEdit}
-                                  className="text-green-600 hover:text-green-700"
+                                  className="text-blue-700 hover:text-blue-800"
                                 >
                                   <Save className="h-4 w-4" />
                                 </button>

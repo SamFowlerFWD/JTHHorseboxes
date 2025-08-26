@@ -45,7 +45,7 @@ export default function PriceSummary({ showActions = true, detailed = false }: P
   return (
     <div className="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-6 text-white">
+      <div className="bg-gradient-to-r from-blue-700 to-blue-800 p-6 text-white">
         <div className="flex items-center justify-between mb-2">
           <h3 className="text-lg font-semibold">Your Configuration</h3>
           <Truck className="w-6 h-6 opacity-80" />
@@ -123,7 +123,7 @@ export default function PriceSummary({ showActions = true, detailed = false }: P
         <div className="border-t border-slate-200 pt-4">
           <div className="flex justify-between items-center">
             <span className="text-lg font-semibold text-slate-900">Total Price</span>
-            <span className="text-2xl font-bold text-blue-600">{formatPrice(totalIncVat)}</span>
+            <span className="text-2xl font-bold text-blue-700">{formatPrice(totalIncVat)}</span>
           </div>
         </div>
 
@@ -171,7 +171,7 @@ export default function PriceSummary({ showActions = true, detailed = false }: P
                 <select
                   value={termMonths}
                   onChange={(e) => setTermMonths(Number(e.target.value))}
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
                 >
                   <option value="12">12 months</option>
                   <option value="24">24 months</option>
@@ -197,7 +197,7 @@ export default function PriceSummary({ showActions = true, detailed = false }: P
         {/* Actions */}
         {showActions && (
           <div className="border-t border-slate-200 pt-4 space-y-3">
-            <button className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
+            <button className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colors font-medium">
               <Save className="w-5 h-5" />
               Save Configuration
             </button>
@@ -219,7 +219,7 @@ export default function PriceSummary({ showActions = true, detailed = false }: P
       {detailed && (
         <div className="bg-slate-50 px-6 py-4 border-t border-slate-200">
           <div className="flex items-center gap-2 text-sm text-slate-600">
-            <Check className="w-4 h-4 text-green-600" />
+            <Check className="w-4 h-4 text-blue-700" />
             <span>Estimated delivery: 10-12 weeks from order</span>
           </div>
         </div>

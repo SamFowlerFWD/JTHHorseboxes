@@ -145,7 +145,7 @@ export async function GET(request: NextRequest) {
             title = 'Quote sent'
             description = `${lead?.company || `${lead?.first_name || ''} ${lead?.last_name || ''}`}`
             icon = 'Package'
-            color = 'text-green-600'
+            color = 'text-blue-700'
             break
           default:
             title = activity.activity_type

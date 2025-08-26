@@ -153,12 +153,12 @@ export default function ContactPageClient() {
                 href={reason.link}
                 className="bg-white p-6 border border-slate-200 hover:border-blue-400 hover:shadow-lg transition-all group"
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <reason.icon className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-lg font-semibold text-slate-900 mb-2">{reason.title}</h3>
                 <p className="text-sm text-slate-600 mb-4">{reason.description}</p>
-                <span className="text-blue-600 font-semibold flex items-center">
+                <span className="text-blue-700 font-semibold flex items-center">
                   {reason.action}
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </span>
@@ -178,11 +178,11 @@ export default function ContactPageClient() {
                 Visit Our
                 <span className="text-gradient-blue block mt-2">Norfolk Showroom</span>
               </h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-400 mb-8"></div>
+              <div className="w-24 h-1 bg-gradient-to-r from-blue-700 to-amber-500 mb-8"></div>
               
               <div className="space-y-6 mb-8">
                 <div className="flex items-start">
-                  <MapPin className="w-6 h-6 text-blue-600 mt-1 mr-4 flex-shrink-0" />
+                  <MapPin className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
                   <div>
                     <h3 className="text-lg font-semibold text-slate-900 mb-2">Showroom Address</h3>
                     <p className="text-slate-600">
@@ -196,7 +196,7 @@ export default function ContactPageClient() {
                       href="https://maps.google.com/?q=J+Taylor+Horseboxes+Beeston+Norfolk"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-700 font-semibold mt-2 inline-flex items-center"
+                      className="text-blue-700 hover:text-blue-800 font-semibold mt-2 inline-flex items-center"
                     >
                       Get Directions
                       <Navigation className="ml-2 w-4 h-4" />
@@ -205,10 +205,10 @@ export default function ContactPageClient() {
                 </div>
 
                 <div className="flex items-start">
-                  <Phone className="w-6 h-6 text-blue-600 mt-1 mr-4 flex-shrink-0" />
+                  <Phone className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
                   <div>
                     <h3 className="text-lg font-semibold text-slate-900 mb-2">Phone</h3>
-                    <a href="tel:01603552109" className="text-slate-600 hover:text-blue-600">
+                    <a href="tel:01603552109" className="text-slate-600 hover:text-blue-700">
                       01603 552109
                     </a>
                     <p className="text-sm text-slate-500 mt-1">
@@ -218,10 +218,10 @@ export default function ContactPageClient() {
                 </div>
 
                 <div className="flex items-start">
-                  <Mail className="w-6 h-6 text-blue-600 mt-1 mr-4 flex-shrink-0" />
+                  <Mail className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
                   <div>
                     <h3 className="text-lg font-semibold text-slate-900 mb-2">Email</h3>
-                    <a href="mailto:sales@jthltd.co.uk" className="text-slate-600 hover:text-blue-600">
+                    <a href="mailto:sales@jthltd.co.uk" className="text-slate-600 hover:text-blue-700">
                       sales@jthltd.co.uk
                     </a>
                     <p className="text-sm text-slate-500 mt-1">
@@ -231,7 +231,7 @@ export default function ContactPageClient() {
                 </div>
 
                 <div className="flex items-start">
-                  <Clock className="w-6 h-6 text-blue-600 mt-1 mr-4 flex-shrink-0" />
+                  <Clock className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
                   <div>
                     <h3 className="text-lg font-semibold text-slate-900 mb-2">Opening Hours</h3>
                     <div className="text-slate-600 space-y-1">
@@ -251,7 +251,7 @@ export default function ContactPageClient() {
                     href="https://facebook.com/JTHHorseboxes" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="w-10 h-10 bg-slate-100 hover:bg-blue-600 rounded-full flex items-center justify-center group transition-colors"
+                    className="w-10 h-10 bg-slate-100 hover:bg-blue-700 rounded-full flex items-center justify-center group transition-colors"
                   >
                     <Facebook className="w-5 h-5 text-slate-600 group-hover:text-white" />
                   </a>
@@ -272,10 +272,10 @@ export default function ContactPageClient() {
               <h3 className="text-2xl font-semibold text-slate-900 mb-6">Send Us a Message</h3>
               
               {submitStatus === 'success' ? (
-                <div className="bg-green-50 border border-green-200 p-6 text-center">
-                  <CheckCircle className="w-12 h-12 text-green-600 mx-auto mb-4" />
-                  <h4 className="text-lg font-semibold text-green-900 mb-2">Thank You!</h4>
-                  <p className="text-green-700">
+                <div className="bg-blue-50 border border-blue-200 p-6 text-center">
+                  <CheckCircle className="w-12 h-12 text-blue-700 mx-auto mb-4" />
+                  <h4 className="text-lg font-semibold text-blue-950 mb-2">Thank You!</h4>
+                  <p className="text-blue-800">
                     We've received your message and will respond within 24 hours.
                   </p>
                 </div>
@@ -292,7 +292,7 @@ export default function ContactPageClient() {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors"
+                      className="w-full px-4 py-3 border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-200 transition-colors"
                       placeholder="John Smith"
                     />
                   </div>
@@ -309,7 +309,7 @@ export default function ContactPageClient() {
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors"
+                        className="w-full px-4 py-3 border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-200 transition-colors"
                         placeholder="john@example.com"
                       />
                     </div>
@@ -325,7 +325,7 @@ export default function ContactPageClient() {
                         required
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors"
+                        className="w-full px-4 py-3 border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-200 transition-colors"
                         placeholder="07123 456789"
                       />
                     </div>
@@ -340,7 +340,7 @@ export default function ContactPageClient() {
                       name="model"
                       value={formData.model}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors"
+                      className="w-full px-4 py-3 border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-200 transition-colors"
                     >
                       {models.map(model => (
                         <option key={model.value} value={model.value}>
@@ -361,7 +361,7 @@ export default function ContactPageClient() {
                       rows={5}
                       value={formData.message}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors resize-none"
+                      className="w-full px-4 py-3 border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-green-200 transition-colors resize-none"
                       placeholder="Tell us about your requirements or ask any questions..."
                     />
                   </div>
@@ -373,7 +373,7 @@ export default function ContactPageClient() {
                       name="marketingConsent"
                       checked={formData.marketingConsent}
                       onChange={handleChange}
-                      className="mt-1 mr-3 w-4 h-4 text-blue-600 border-slate-300 focus:ring-blue-500"
+                      className="mt-1 mr-3 w-4 h-4 text-blue-700 border-slate-300 focus:ring-blue-600"
                     />
                     <label htmlFor="marketingConsent" className="text-sm text-slate-600">
                       I would like to receive news and offers from JTH. You can unsubscribe at any time.
@@ -445,7 +445,7 @@ export default function ContactPageClient() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Car className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-slate-900 mb-4">Showroom Visits</h3>
@@ -456,7 +456,7 @@ export default function ContactPageClient() {
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
                 <MessageSquare className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-slate-900 mb-4">Expert Advice</h3>
@@ -467,7 +467,7 @@ export default function ContactPageClient() {
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
                 <CheckCircle className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-slate-900 mb-4">Test Drives</h3>
@@ -481,7 +481,7 @@ export default function ContactPageClient() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 md:py-32 bg-gradient-to-r from-blue-600 to-blue-700">
+      <section className="py-20 md:py-32 bg-gradient-to-r from-blue-700 to-blue-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-light text-white mb-8">
             Ready to Start Your Journey?
@@ -490,7 +490,7 @@ export default function ContactPageClient() {
             Whether you're ready to order or just exploring options, we're here to help
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6">
-            <Link href="/configurator" className="btn-premium bg-white text-blue-600 hover:bg-slate-50">
+            <Link href="/configurator" className="btn-premium bg-white text-blue-700 hover:bg-slate-50">
               Build Your Horsebox
               <ArrowRight className="ml-2 w-5 h-5" />
             </Link>

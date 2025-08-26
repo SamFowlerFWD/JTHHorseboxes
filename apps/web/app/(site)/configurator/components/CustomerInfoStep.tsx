@@ -40,7 +40,7 @@ export default function CustomerInfoStep() {
                 value={customerName}
                 onChange={(e) => setCustomerInfo({ name: e.target.value })}
                 placeholder="Enter your full name"
-                className="w-full px-4 py-3 pl-12 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                className="w-full px-4 py-3 pl-12 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-colors"
                 required
               />
               <User className="absolute left-4 top-3.5 w-5 h-5 text-slate-400" />
@@ -59,7 +59,7 @@ export default function CustomerInfoStep() {
                 value={customerEmail}
                 onChange={(e) => setCustomerInfo({ email: e.target.value })}
                 placeholder="your.email@example.com"
-                className="w-full px-4 py-3 pl-12 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                className="w-full px-4 py-3 pl-12 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-colors"
                 required
               />
               <Mail className="absolute left-4 top-3.5 w-5 h-5 text-slate-400" />
@@ -78,7 +78,7 @@ export default function CustomerInfoStep() {
                 value={customerPhone}
                 onChange={(e) => setCustomerInfo({ phone: e.target.value })}
                 placeholder="+44 7XXX XXXXXX"
-                className="w-full px-4 py-3 pl-12 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                className="w-full px-4 py-3 pl-12 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-colors"
                 required
               />
               <Phone className="absolute left-4 top-3.5 w-5 h-5 text-slate-400" />
@@ -95,7 +95,7 @@ export default function CustomerInfoStep() {
                 id="agent"
                 value={agentName}
                 onChange={(e) => setCustomerInfo({ agent: e.target.value })}
-                className="w-full px-4 py-3 pl-12 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors appearance-none bg-white"
+                className="w-full px-4 py-3 pl-12 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-colors appearance-none bg-white"
               >
                 {AGENTS.map((agent) => (
                   <option key={agent} value={agent === 'No Agent' ? '' : agent}>
@@ -118,7 +118,7 @@ export default function CustomerInfoStep() {
 
         {/* Info Box */}
         <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-          <p className="text-sm text-blue-800">
+          <p className="text-sm text-blue-900">
             <strong>Note:</strong> Your information will be used to generate a formal quote and will be kept confidential. 
             We will contact you within 24 hours to discuss your requirements.
           </p>

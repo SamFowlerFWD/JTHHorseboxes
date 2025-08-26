@@ -23,14 +23,16 @@ export const metadata: Metadata = {
 
 export default async function ModelsPage() {
   const cfg = await loadPricingConfig()
-  const active = cfg.models.filter(m => m.active && m.basePricePence != null)
+  const active = cfg.models.filter(m => m.active)
   
   const breadcrumbs = [
     { name: 'Home', url: 'https://jthltd.co.uk' },
     { name: 'Models', url: 'https://jthltd.co.uk/models' }
   ]
 
-  const productSchemas = active.map(model => generateProductSchema({
+  // Only generate product schemas for models with pricing
+  const modelsWithPricing = active.filter(m => m.basePricePence != null)
+  const productSchemas = modelsWithPricing.map(model => generateProductSchema({
     name: model.name,
     description: `JTH ${model.name} - Premium ${model.slug.includes('35') ? '3.5 tonne' : model.slug.includes('45') ? '4.5 tonne' : '7.2 tonne'} horsebox built in Norfolk, UK`,
     image: `https://jthltd.co.uk/models/${model.slug}/01.jpg`,
@@ -78,13 +80,13 @@ export default async function ModelsPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="absolute top-4 right-4 z-10">
-                  <span className="inline-flex items-center bg-blue-600 px-3 py-1 text-sm font-semibold text-white">
+                  <span className="inline-flex items-center bg-blue-700 px-3 py-1 text-sm font-semibold text-white">
                     {model.slug.includes('35') ? '3.5T' : '4.5T'}
                   </span>
                 </div>
                 {model.slug === 'principle-35' && (
                   <div className="absolute top-4 left-4 z-10">
-                    <span className="inline-flex items-center bg-white/90 backdrop-blur-sm px-3 py-1 text-sm font-semibold text-blue-600">
+                    <span className="inline-flex items-center bg-white/90 backdrop-blur-sm px-3 py-1 text-sm font-semibold text-blue-700">
                       MOST POPULAR
                     </span>
                   </div>
@@ -95,13 +97,13 @@ export default async function ModelsPage() {
                 <div className="flex justify-between items-start mb-4">
                   <div>
                     <h2 className="text-2xl font-semibold text-slate-900">{model.name}</h2>
-                    <p className="text-sm text-blue-600 font-medium">Starting from</p>
+                    <p className="text-sm text-blue-700 font-medium">Starting from</p>
                   </div>
                   <div className="text-right">
                     <span className="text-2xl font-bold text-slate-900">
-                      £{(model.basePricePence!/100).toLocaleString()}
+                      {model.basePricePence ? `£${(model.basePricePence/100).toLocaleString()}` : 'Contact for pricing'}
                     </span>
-                    <p className="text-xs text-slate-500">exc. VAT</p>
+                    <p className="text-xs text-slate-500">{model.basePricePence ? 'exc. VAT' : ''}</p>
                   </div>
                 </div>
                 
@@ -111,8 +113,13 @@ export default async function ModelsPage() {
                   {model.slug === 'professional-35' && 'The ultimate in luxury and performance for the professional rider.'}
                   {model.slug === 'principle-35' && 'Perfect balance of quality and value for the discerning owner.'}
                   {model.slug === 'progeny-35' && 'Top of the range with Pioneer Package included.'}
+                  {model.slug === 'jth-principle-45' && 'Essential 4.5t horsebox with proven JTH quality at an affordable price.'}
+                  {model.slug === 'jth-professional-45' && 'Premium 4.5t horsebox with luxury features included as standard.'}
+                  {model.slug === 'jth-progeny-45' && 'Crew cab 4.5t horsebox designed for teams and families.'}
                   {model.slug.includes('aeos') && model.slug.includes('45') && 'Part of our renowned Aeos 4.5t range with superior build quality.'}
                   {model.slug === 'aeos-discovery-72' && 'The ultimate 7.2t horsebox with apartment-quality living.'}
+                  {model.slug === 'zenos-72' && 'Professional 7.2t horsebox built to your exact specifications.'}
+                  {model.slug === 'zenos-xl-72' && 'Extended luxury 7.2t horsebox - the ultimate in mobile accommodation.'}
                   {model.slug === 'helios-75' && 'Our flagship 7.5t model for professional teams and international competitors.'}
                 </p>
 
@@ -120,15 +127,15 @@ export default async function ModelsPage() {
                   {model.slug === 'professional-35' && (
                     <>
                       <div className="flex items-center text-sm text-slate-600">
-                        <Check className="w-4 h-4 text-blue-600 mr-2 flex-shrink-0" />
+                        <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0" />
                         Premium finish and materials
                       </div>
                       <div className="flex items-center text-sm text-slate-600">
-                        <Check className="w-4 h-4 text-blue-600 mr-2 flex-shrink-0" />
+                        <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0" />
                         Advanced features included
                       </div>
                       <div className="flex items-center text-sm text-slate-600">
-                        <Check className="w-4 h-4 text-blue-600 mr-2 flex-shrink-0" />
+                        <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0" />
                         Professional specification
                       </div>
                     </>
@@ -136,15 +143,15 @@ export default async function ModelsPage() {
                   {model.slug === 'principle-35' && (
                     <>
                       <div className="flex items-center text-sm text-slate-600">
-                        <Check className="w-4 h-4 text-blue-600 mr-2 flex-shrink-0" />
+                        <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0" />
                         Quality construction
                       </div>
                       <div className="flex items-center text-sm text-slate-600">
-                        <Check className="w-4 h-4 text-blue-600 mr-2 flex-shrink-0" />
+                        <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0" />
                         Essential features included
                       </div>
                       <div className="flex items-center text-sm text-slate-600">
-                        <Check className="w-4 h-4 text-blue-600 mr-2 flex-shrink-0" />
+                        <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0" />
                         Great value proposition
                       </div>
                     </>
@@ -152,15 +159,15 @@ export default async function ModelsPage() {
                   {model.slug === 'progeny-35' && (
                     <>
                       <div className="flex items-center text-sm text-slate-600">
-                        <Check className="w-4 h-4 text-blue-600 mr-2 flex-shrink-0" />
+                        <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0" />
                         Stallion partition included
                       </div>
                       <div className="flex items-center text-sm text-slate-600">
-                        <Check className="w-4 h-4 text-blue-600 mr-2 flex-shrink-0" />
+                        <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0" />
                         Enhanced safety features
                       </div>
                       <div className="flex items-center text-sm text-slate-600">
-                        <Check className="w-4 h-4 text-blue-600 mr-2 flex-shrink-0" />
+                        <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0" />
                         Premium materials throughout
                       </div>
                     </>
@@ -170,14 +177,14 @@ export default async function ModelsPage() {
                 <div className="flex gap-3">
                   <Link 
                     href={`/models/${model.slug}`} 
-                    className="group/btn flex-1 inline-flex items-center justify-center bg-blue-600 px-4 py-3 text-white font-semibold hover:bg-blue-700 transition-all duration-300"
+                    className="group/btn flex-1 inline-flex items-center justify-center bg-blue-700 px-4 py-3 text-white font-semibold hover:bg-blue-800 transition-all duration-300"
                   >
                     View Details
                     <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
                   </Link>
                   <Link 
                     href={`/configurator/${model.slug}`} 
-                    className="flex-1 inline-flex items-center justify-center border-2 border-blue-600 px-4 py-3 text-blue-600 font-semibold hover:bg-blue-50 transition-colors"
+                    className="flex-1 inline-flex items-center justify-center border-2 border-blue-700 px-4 py-3 text-blue-700 font-semibold hover:bg-blue-50 transition-colors"
                   >
                     Configure
                   </Link>
@@ -193,22 +200,22 @@ export default async function ModelsPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <Shield className="w-8 h-8 text-blue-600 mx-auto mb-3" />
+              <Shield className="w-8 h-8 text-blue-700 mx-auto mb-3" />
               <div className="text-2xl font-bold text-slate-900">2 Year</div>
               <div className="text-sm text-slate-600">Warranty</div>
             </div>
             <div className="text-center">
-              <Award className="w-8 h-8 text-blue-600 mx-auto mb-3" />
+              <Award className="w-8 h-8 text-blue-700 mx-auto mb-3" />
               <div className="text-2xl font-bold text-slate-900">30+</div>
               <div className="text-sm text-slate-600">Years Experience</div>
             </div>
             <div className="text-center">
-              <Star className="w-8 h-8 text-blue-600 mx-auto mb-3" />
+              <Star className="w-8 h-8 text-blue-700 mx-auto mb-3" />
               <div className="text-2xl font-bold text-slate-900">500+</div>
               <div className="text-sm text-slate-600">Happy Owners</div>
             </div>
             <div className="text-center">
-              <Check className="w-8 h-8 text-blue-600 mx-auto mb-3" />
+              <Check className="w-8 h-8 text-blue-700 mx-auto mb-3" />
               <div className="text-2xl font-bold text-slate-900">Premium</div>
               <div className="text-sm text-slate-600">Quality Standard</div>
             </div>
@@ -220,7 +227,7 @@ export default async function ModelsPage() {
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-light text-slate-900 mb-6">
-            Complete Guide to Choosing Your <span className="text-blue-600">3.5t, 4.5t or 7.2t Horsebox</span>
+            Complete Guide to Choosing Your <span className="text-blue-700">3.5t, 4.5t or 7.2t Horsebox</span>
           </h2>
           <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
             With over 30 years of experience building horseboxes, we understand that choosing the right model is crucial. 
@@ -234,7 +241,7 @@ export default async function ModelsPage() {
           
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             <div className="bg-white p-6 border-2 border-blue-100">
-              <h4 className="text-xl font-semibold text-blue-600 mb-4">3.5 Tonne Horseboxes</h4>
+              <h4 className="text-xl font-semibold text-blue-700 mb-4">3.5 Tonne Horseboxes</h4>
               <p className="text-slate-600 mb-4">
                 Our most popular category, 3.5t horseboxes are perfect for owners who want to use their standard driving license 
                 (if passed before 1997). These models comfortably transport two horses up to 16.2hh while offering essential 
@@ -242,67 +249,67 @@ export default async function ModelsPage() {
               </p>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start">
-                  <Check className="w-4 h-4 text-blue-600 mr-2 flex-shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0 mt-0.5" />
                   <span><strong>JTH Principle 35:</strong> £18,500 - Best value, quality construction</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="w-4 h-4 text-blue-600 mr-2 flex-shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0 mt-0.5" />
                   <span><strong>JTH Professional 35:</strong> £22,950 - Premium features, professional specification</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="w-4 h-4 text-blue-600 mr-2 flex-shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0 mt-0.5" />
                   <span><strong>Aeos QV ST 35:</strong> £24,500 - Stallion partition, enhanced versatility</span>
                 </li>
               </ul>
             </div>
             
             <div className="bg-white p-6 border-2 border-blue-100">
-              <h4 className="text-xl font-semibold text-blue-600 mb-4">4.5 Tonne Horseboxes</h4>
+              <h4 className="text-xl font-semibold text-blue-700 mb-4">4.5 Tonne Horseboxes</h4>
               <p className="text-slate-600 mb-4">
                 Stepping up to 4.5t provides significantly more payload, allowing for enhanced living quarters, additional 
                 equipment storage, and the ability to carry larger horses or three ponies. Requires C1 license.
               </p>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start">
-                  <Check className="w-4 h-4 text-blue-600 mr-2 flex-shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0 mt-0.5" />
                   <span><strong>Aeos QV 45:</strong> £28,950 - Quality 4.5t model with essential features</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="w-4 h-4 text-blue-600 mr-2 flex-shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0 mt-0.5" />
                   <span><strong>Aeos Edge 45:</strong> £31,500 - Professional competition specification</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="w-4 h-4 text-blue-600 mr-2 flex-shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0 mt-0.5" />
                   <span><strong>Aeos Freedom 45:</strong> £36,500 - Weekender model with family-friendly design</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="w-4 h-4 text-blue-600 mr-2 flex-shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0 mt-0.5" />
                   <span><strong>Aeos Discovery 45:</strong> £46,100 - Luxury apartment-style living</span>
                 </li>
               </ul>
             </div>
             
             <div className="bg-white p-6 border-2 border-blue-100">
-              <h4 className="text-xl font-semibold text-blue-600 mb-4">7.2 & 7.5 Tonne Horseboxes</h4>
+              <h4 className="text-xl font-semibold text-blue-700 mb-4">7.2 & 7.5 Tonne Horseboxes</h4>
               <p className="text-slate-600 mb-4">
                 Our flagship Aeos Discovery 72 and Helios 75 models represent the pinnacle of horsebox luxury. With capacity for 2-4 horses and 
                 apartment-quality living quarters, they're the choice of international competitors and professional teams.
               </p>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start">
-                  <Check className="w-4 h-4 text-blue-600 mr-2 flex-shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0 mt-0.5" />
                   <span><strong>Aeos Discovery 72:</strong> £74,600 - Ultimate 7.2t luxury</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="w-4 h-4 text-blue-600 mr-2 flex-shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0 mt-0.5" />
                   <span><strong>Helios 75:</strong> £82,500 - Flagship 7.5t model</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="w-4 h-4 text-blue-600 mr-2 flex-shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0 mt-0.5" />
                   <span>Apartment-quality living quarters</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="w-4 h-4 text-blue-600 mr-2 flex-shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0 mt-0.5" />
                   <span>Fully customizable to your specification</span>
                 </li>
               </ul>
@@ -325,7 +332,7 @@ export default async function ModelsPage() {
               </thead>
               <tbody className="divide-y divide-slate-200">
                 <tr>
-                  <td className="p-4 font-medium text-blue-600">JTH Principle 35</td>
+                  <td className="p-4 font-medium text-blue-700">JTH Principle 35</td>
                   <td className="p-4 text-center">3.5t</td>
                   <td className="p-4 text-center">2</td>
                   <td className="p-4 text-center">Basic</td>
@@ -333,7 +340,7 @@ export default async function ModelsPage() {
                   <td className="p-4 text-center">First-time buyers, budget conscious</td>
                 </tr>
                 <tr className="bg-slate-50">
-                  <td className="p-4 font-medium text-blue-600">JTH Professional 35</td>
+                  <td className="p-4 font-medium text-blue-700">JTH Professional 35</td>
                   <td className="p-4 text-center">3.5t</td>
                   <td className="p-4 text-center">2</td>
                   <td className="p-4 text-center">Comfort</td>
@@ -341,7 +348,7 @@ export default async function ModelsPage() {
                   <td className="p-4 text-center">Regular competitors, professionals</td>
                 </tr>
                 <tr>
-                  <td className="p-4 font-medium text-blue-600">Aeos QV ST 35</td>
+                  <td className="p-4 font-medium text-blue-700">Aeos QV ST 35</td>
                   <td className="p-4 text-center">3.5t</td>
                   <td className="p-4 text-center">2</td>
                   <td className="p-4 text-center">Luxury</td>
@@ -349,7 +356,7 @@ export default async function ModelsPage() {
                   <td className="p-4 text-center">Stallion transport, versatile use</td>
                 </tr>
                 <tr className="bg-slate-50">
-                  <td className="p-4 font-medium text-blue-600">Aeos QV 45</td>
+                  <td className="p-4 font-medium text-blue-700">Aeos QV 45</td>
                   <td className="p-4 text-center">4.5t</td>
                   <td className="p-4 text-center">2-3</td>
                   <td className="p-4 text-center">Standard</td>
@@ -357,7 +364,7 @@ export default async function ModelsPage() {
                   <td className="p-4 text-center">Regular competitors</td>
                 </tr>
                 <tr>
-                  <td className="p-4 font-medium text-blue-600">Aeos Edge 45</td>
+                  <td className="p-4 font-medium text-blue-700">Aeos Edge 45</td>
                   <td className="p-4 text-center">4.5t</td>
                   <td className="p-4 text-center">2-3</td>
                   <td className="p-4 text-center">Extended</td>
@@ -365,7 +372,7 @@ export default async function ModelsPage() {
                   <td className="p-4 text-center">Serious competitors, multi-day events</td>
                 </tr>
                 <tr className="bg-slate-50">
-                  <td className="p-4 font-medium text-blue-600">Aeos Freedom 45</td>
+                  <td className="p-4 font-medium text-blue-700">Aeos Freedom 45</td>
                   <td className="p-4 text-center">4.5t</td>
                   <td className="p-4 text-center">2-3</td>
                   <td className="p-4 text-center">Weekender</td>
@@ -373,7 +380,7 @@ export default async function ModelsPage() {
                   <td className="p-4 text-center">Families, weekend trips</td>
                 </tr>
                 <tr>
-                  <td className="p-4 font-medium text-blue-600">Aeos Discovery 45</td>
+                  <td className="p-4 font-medium text-blue-700">Aeos Discovery 45</td>
                   <td className="p-4 text-center">4.5t</td>
                   <td className="p-4 text-center">2</td>
                   <td className="p-4 text-center">Luxury</td>
@@ -381,7 +388,7 @@ export default async function ModelsPage() {
                   <td className="p-4 text-center">Luxury living, extended stays</td>
                 </tr>
                 <tr>
-                  <td className="p-4 font-medium text-blue-600">Aeos Discovery 72</td>
+                  <td className="p-4 font-medium text-blue-700">Aeos Discovery 72</td>
                   <td className="p-4 text-center">7.2t</td>
                   <td className="p-4 text-center">2-4</td>
                   <td className="p-4 text-center">Ultimate</td>
@@ -389,7 +396,7 @@ export default async function ModelsPage() {
                   <td className="p-4 text-center">International competitors, teams</td>
                 </tr>
                 <tr className="bg-slate-50">
-                  <td className="p-4 font-medium text-blue-600">Helios 75</td>
+                  <td className="p-4 font-medium text-blue-700">Helios 75</td>
                   <td className="p-4 text-center">7.5t</td>
                   <td className="p-4 text-center">3-4</td>
                   <td className="p-4 text-center">Flagship</td>
@@ -456,7 +463,7 @@ export default async function ModelsPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-light text-slate-900 mb-6">
-              Why Choose <span className="text-blue-600">JTH Horseboxes?</span>
+              Why Choose <span className="text-blue-700">JTH Horseboxes?</span>
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Every JTH horsebox is built with precision, innovation, and the highest quality materials.
@@ -465,7 +472,7 @@ export default async function ModelsPage() {
           
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -477,7 +484,7 @@ export default async function ModelsPage() {
             </div>
             
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
@@ -489,7 +496,7 @@ export default async function ModelsPage() {
             </div>
             
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -505,7 +512,7 @@ export default async function ModelsPage() {
       </section>
 
       {/* CTA Section with Contact Info */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-700 py-16 md:py-24">
+      <section className="bg-gradient-to-r from-blue-700 to-blue-800 py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-light text-white mb-6">
@@ -515,11 +522,11 @@ export default async function ModelsPage() {
               Configure your ideal 3.5t, 4.5t or 7.2t horsebox online or visit our Norfolk showroom to see our models in person.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link href="/configurator" className="inline-flex items-center px-8 py-4 bg-white text-blue-600 font-semibold hover:bg-slate-50 transition-all">
+              <Link href="/configurator" className="inline-flex items-center px-8 py-4 bg-white text-blue-700 font-semibold hover:bg-slate-50 transition-all">
                 Configure Online
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
-              <a href="tel:01603552109" className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold hover:bg-white hover:text-blue-600 transition-all">
+              <a href="tel:01603552109" className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold hover:bg-white hover:text-blue-700 transition-all">
                 <Phone className="mr-2 w-5 h-5" />
                 Call 01603 552109
               </a>

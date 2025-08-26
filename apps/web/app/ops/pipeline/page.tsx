@@ -24,7 +24,7 @@ const PIPELINE_STAGES = [
   { id: "specification", name: "Specification", color: "bg-purple-500", probability: 40 },
   { id: "quotation", name: "Quotation", color: "bg-yellow-500", probability: 60 },
   { id: "negotiation", name: "Negotiation", color: "bg-orange-500", probability: 80 },
-  { id: "closed_won", name: "Closed Won", color: "bg-green-500", probability: 100 },
+  { id: "closed_won", name: "Closed Won", color: "bg-blue-500", probability: 100 },
   { id: "closed_lost", name: "Closed Lost", color: "bg-red-500", probability: 0 },
 ]
 
@@ -178,7 +178,7 @@ export default function SalesPipelinePage() {
   }
 
   const getScoreColor = (score: number) => {
-    if (score >= 80) return "text-green-600"
+    if (score >= 80) return "text-blue-700"
     if (score >= 60) return "text-yellow-600"
     if (score >= 40) return "text-orange-600"
     return "text-red-600"
@@ -407,7 +407,7 @@ export default function SalesPipelinePage() {
                 <TabsContent value="activity">
                   <div className="space-y-4">
                     <div className="flex items-center gap-2 text-sm">
-                      <div className="w-2 h-2 bg-green-500 rounded-full" />
+                      <div className="w-2 h-2 bg-blue-500 rounded-full" />
                       <span>Lead created</span>
                       <span className="text-muted-foreground">
                         {format(selectedLead.createdAt, "dd MMM yyyy HH:mm")}

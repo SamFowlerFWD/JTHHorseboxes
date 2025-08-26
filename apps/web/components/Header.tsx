@@ -10,26 +10,50 @@ const navigation = {
     title: 'Models',
     sections: [
       {
-        title: '3.5 Tonne',
+        title: 'JTH Range (3.5T & 4.5T)',
+        isCategory: true,
+        items: []
+      },
+      {
+        title: '3.5T Models',
         items: [
-          { name: 'Professional 35', href: '/models/professional-35' },
           { name: 'Principle 35', href: '/models/principle-35' },
+          { name: 'Professional 35', href: '/models/professional-35' },
           { name: 'Progeny 35', href: '/models/progeny-35' },
         ]
       },
       {
-        title: '4.5 Tonne',
+        title: '4.5T Models',
         items: [
-          { name: 'Aeos Discovery 45', href: '/models/aeos-discovery-45' },
-          { name: 'Aeos Freedom 45', href: '/models/aeos-freedom-45' },
-          { name: 'Aeos Edge 45', href: '/models/aeos-edge-45' },
+          { name: 'Principle 45', href: '/models/jth-principle-45' },
+          { name: 'Professional 45', href: '/models/jth-professional-45' },
+          { name: 'Progeny 45', href: '/models/jth-progeny-45' },
         ]
       },
       {
-        title: '7.2+ Tonne',
+        title: 'AEOS Range (4.5T Pre-Built)',
+        isCategory: true,
+        items: []
+      },
+      {
+        title: '4.5T Pre-Built Models',
         items: [
-          { name: 'Zenos 72', href: '/models/zenos-72' },
-          { name: 'Helios 75', href: '/models/helios-75' },
+          { name: 'Edge 45', href: '/models/aeos-edge-45', badge: 'Pre-Built' },
+          { name: 'Freedom 45', href: '/models/aeos-freedom-45', badge: 'Pre-Built' },
+          { name: 'Discovery 45', href: '/models/aeos-discovery-45', badge: 'Pre-Built' },
+        ]
+      },
+      {
+        title: 'Premium Range (7.2T & 7.5T)',
+        isCategory: true,
+        items: []
+      },
+      {
+        title: '7.2T & 7.5T Models',
+        items: [
+          { name: 'Zenos 72', href: '/models/zenos-72', note: 'Contact for Pricing' },
+          { name: 'Zenos XL', href: '/models/zenos-xl', note: 'Contact for Pricing' },
+          { name: 'Helios 75', href: '/models/helios-75', note: 'Contact for Pricing' },
         ]
       }
     ]
@@ -94,36 +118,60 @@ export default function Header() {
                 </button>
                 
                 {dropdownOpen === 'models' && (
-                  <div className="absolute top-full left-0 mt-0 pt-2 w-[600px]">
+                  <div className="absolute top-full left-0 mt-0 pt-2 w-[700px]">
                     <div className="bg-white shadow-xl border border-slate-200">
-                      <div className="p-6 grid grid-cols-3 gap-6">
-                      {navigation.models.sections.map((section) => (
-                        <div key={section.title}>
-                          <h3 className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-3">
-                            {section.title}
-                          </h3>
-                          <ul className="space-y-2">
-                            {section.items.map((item) => (
-                              <li key={item.name}>
-                                <Link
-                                  href={item.href}
-                                  className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
-                                >
-                                  {item.name}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
+                      <div className="p-6">
+                        <div className="space-y-6">
+                          {navigation.models.sections.map((section, index) => (
+                            <div key={section.title}>
+                              {section.isCategory ? (
+                                <h2 className="text-sm font-bold text-slate-900 border-b border-slate-200 pb-2 mb-3">
+                                  {section.title}
+                                </h2>
+                              ) : (
+                                <>
+                                  <h3 className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-3">
+                                    {section.title}
+                                  </h3>
+                                  <ul className="grid grid-cols-2 gap-3 mb-4">
+                                    {section.items.map((item) => (
+                                      <li key={item.name}>
+                                        <Link
+                                          href={item.href}
+                                          className="flex items-center justify-between p-2 hover:bg-slate-50 rounded transition-colors group"
+                                        >
+                                          <span className="text-sm text-slate-600 group-hover:text-blue-600">
+                                            {item.name}
+                                          </span>
+                                          <div className="flex items-center gap-2">
+                                            {item.badge && (
+                                              <span className="px-2 py-0.5 text-xs font-medium bg-amber-100 text-amber-700 rounded-full">
+                                                {item.badge}
+                                              </span>
+                                            )}
+                                            {item.note && (
+                                              <span className="text-xs text-slate-500 italic">
+                                                {item.note}
+                                              </span>
+                                            )}
+                                          </div>
+                                        </Link>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </>
+                              )}
+                            </div>
+                          ))}
                         </div>
-                      ))}
                       </div>
                       <div className="bg-slate-50 px-6 py-4 border-t border-slate-200">
-                      <Link
-                        href="/models"
-                        className="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
-                      >
-                        View All Models →
-                      </Link>
+                        <Link
+                          href="/models"
+                          className="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
+                        >
+                          View All Models →
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -174,27 +222,45 @@ export default function Header() {
               </Link>
               <div>
                 <div className="font-medium text-slate-700 mb-2">Models</div>
-                <div className="ml-4 space-y-2">
-                  <div className="text-xs font-semibold text-blue-600 uppercase tracking-wider mt-2">3.5 Tonne</div>
-                  <Link href="/models/professional-35" className="block text-sm text-slate-600 hover:text-blue-600">
-                    Professional 35
-                  </Link>
-                  <Link href="/models/principle-35" className="block text-sm text-slate-600 hover:text-blue-600">
-                    Principle 35
-                  </Link>
-                  <Link href="/models/progeny-35" className="block text-sm text-slate-600 hover:text-blue-600">
-                    Progeny 35
-                  </Link>
+                <div className="ml-4 space-y-3">
+                  {navigation.models.sections.map((section) => (
+                    <div key={section.title}>
+                      {section.isCategory ? (
+                        <div className="text-sm font-bold text-slate-900 border-b border-slate-200 pb-1 mb-2">
+                          {section.title}
+                        </div>
+                      ) : (
+                        <>
+                          <div className="text-xs font-semibold text-blue-600 uppercase tracking-wider mt-3 mb-2">
+                            {section.title}
+                          </div>
+                          {section.items.map((item) => (
+                            <Link 
+                              key={item.name}
+                              href={item.href} 
+                              className="flex items-center justify-between text-sm text-slate-600 hover:text-blue-600 py-1"
+                            >
+                              <span>{item.name}</span>
+                              <div className="flex items-center gap-2">
+                                {item.badge && (
+                                  <span className="px-1.5 py-0.5 text-xs font-medium bg-amber-100 text-amber-700 rounded-full">
+                                    {item.badge}
+                                  </span>
+                                )}
+                                {item.note && (
+                                  <span className="text-xs text-slate-500 italic">
+                                    {item.note}
+                                  </span>
+                                )}
+                              </div>
+                            </Link>
+                          ))}
+                        </>
+                      )}
+                    </div>
+                  ))}
                   
-                  <div className="text-xs font-semibold text-blue-600 uppercase tracking-wider mt-4">4.5 Tonne</div>
-                  <Link href="/models/aeos-discovery-45" className="block text-sm text-slate-600 hover:text-blue-600">
-                    Aeos Discovery 45
-                  </Link>
-                  <Link href="/models/aeos-freedom-45" className="block text-sm text-slate-600 hover:text-blue-600">
-                    Aeos Freedom 45
-                  </Link>
-                  
-                  <Link href="/models" className="block text-sm font-medium text-blue-600 hover:text-blue-700 mt-3">
+                  <Link href="/models" className="block text-sm font-medium text-blue-600 hover:text-blue-700 mt-4 pt-2 border-t border-slate-200">
                     View All Models →
                   </Link>
                 </div>

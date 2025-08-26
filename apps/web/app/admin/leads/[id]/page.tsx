@@ -35,7 +35,7 @@ export default async function LeadDetailPage({ params }: { params: { id: string 
   
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'new': return 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
+      case 'new': return 'bg-blue-100 text-blue-900 dark:bg-blue-950/30 dark:text-blue-400'
       case 'contacted': return 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400'
       case 'qualified': return 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400'
       case 'proposal': return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400'
@@ -177,7 +177,7 @@ export default async function LeadDetailPage({ params }: { params: { id: string 
                 {lead.configuration && (
                   <div>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Has Configuration</p>
-                    <Badge className="bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                    <Badge className="bg-blue-100 text-blue-900 dark:bg-blue-950/30 dark:text-blue-400">
                       <CheckCircle className="h-3 w-3 mr-1" />
                       Configured
                     </Badge>
@@ -382,7 +382,7 @@ export default async function LeadDetailPage({ params }: { params: { id: string 
           <CardContent>
             <p className="text-sm text-gray-700 dark:text-gray-300">
               Marketing emails: {' '}
-              <span className={`font-medium ${lead.consent_marketing ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+              <span className={`font-medium ${lead.consent_marketing ? 'text-blue-700 dark:text-blue-400' : 'text-red-600 dark:text-red-400'}`}>
                 {lead.consent_marketing ? 'Consented' : 'Not consented'}
               </span>
             </p>

@@ -97,14 +97,14 @@ export default function ReportsPage() {
 
   const getChangeIcon = (value: number) => {
     return value >= 0 ? (
-      <ArrowUpRight className="h-4 w-4 text-green-600" />
+      <ArrowUpRight className="h-4 w-4 text-blue-700" />
     ) : (
       <ArrowDownRight className="h-4 w-4 text-red-600" />
     )
   }
 
   const getChangeColor = (value: number) => {
-    return value >= 0 ? "text-green-600" : "text-red-600"
+    return value >= 0 ? "text-blue-700" : "text-red-600"
   }
 
   return (

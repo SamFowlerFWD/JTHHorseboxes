@@ -15,7 +15,7 @@ export const PIPELINE_STAGES = [
   { id: 'specification', name: 'Specification', color: 'bg-purple-500', probability: 40 },
   { id: 'quotation', name: 'Quotation', color: 'bg-yellow-500', probability: 60 },
   { id: 'negotiation', name: 'Negotiation', color: 'bg-orange-500', probability: 80 },
-  { id: 'closed_won', name: 'Closed Won', color: 'bg-green-500', probability: 100 },
+  { id: 'closed_won', name: 'Closed Won', color: 'bg-blue-500', probability: 100 },
   { id: 'closed_lost', name: 'Closed Lost', color: 'bg-red-500', probability: 0 },
 ]
 

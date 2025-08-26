@@ -34,12 +34,12 @@ export default function StatCard({ title, value, icon, description, trend }: Sta
               {trend && (
                 <div
                   className={`ml-2 flex items-baseline text-sm font-semibold ${
-                    trend.isPositive ? 'text-green-600' : 'text-red-600'
+                    trend.isPositive ? 'text-blue-700' : 'text-red-600'
                   }`}
                 >
                   {trend.isPositive ? (
                     <svg
-                      className="self-center flex-shrink-0 h-5 w-5 text-green-500"
+                      className="self-center flex-shrink-0 h-5 w-5 text-blue-500"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       aria-hidden="true"
