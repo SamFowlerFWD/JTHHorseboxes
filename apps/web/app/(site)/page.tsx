@@ -24,11 +24,11 @@ export default function HomePage() {
     }
   }, [])
 
-  // Sample gallery images with British Racing Green theme
+  // Sample gallery images - external shots showing full horseboxes
   const galleryImages = [
     {
       src: '/models/professional-35/01.jpg',
-      alt: 'Professional 35 - Exterior View',
+      alt: 'JTH Professional 3.5T - Exterior Side View',
       title: 'Professional 35',
       description: 'Premium British horsebox with luxury finish',
       hotspots: [
@@ -37,20 +37,32 @@ export default function HomePage() {
       ]
     },
     {
-      src: '/models/principle-35/01.jpg',
-      alt: 'Principle 35 - Side View',
+      src: '/models/principle-35/02.jpg',
+      alt: 'JTH Principle 3.5T - External Full Length View',
       title: 'Principle 35',
       description: 'Perfect balance of quality and value'
     },
     {
       src: '/models/progeny-35/01.jpg',
-      alt: 'Progeny 35 - Front View',
+      alt: 'JTH Progeny 3.5T - Exterior Angle View',
       title: 'Progeny 35',
       description: 'Top of the range with Pioneer Package'
+    },
+    {
+      src: '/models/professional-35/03.jpg',
+      alt: 'JTH Professional 3.5T - Three Quarter View',
+      title: 'Professional 35',
+      description: 'Showcasing premium British craftsmanship'
+    },
+    {
+      src: '/models/principle-35/03.jpg',
+      alt: 'JTH Principle 3.5T - Side Profile',
+      title: 'Principle 35',
+      description: 'Essential features with exceptional value'
     }
   ]
 
-  // Sample products
+  // Sample products - using external shots
   const products = [
     {
       id: 'professional-35',
@@ -59,7 +71,7 @@ export default function HomePage() {
       description: 'The ultimate in luxury and performance for the professional rider.',
       price: '£22,000',
       priceNote: 'exc. VAT',
-      images: ['/models/professional-35/01.jpg', '/models/professional-35/02.jpg'],
+      images: ['/models/professional-35/02.jpg', '/models/professional-35/03.jpg', '/models/professional-35/01.jpg'],
       badge: {
         text: 'Most Popular',
         variant: 'default' as const
@@ -83,7 +95,7 @@ export default function HomePage() {
       description: 'Perfect balance of quality and value for the discerning owner.',
       price: '£18,500',
       priceNote: 'exc. VAT',
-      images: ['/models/principle-35/01.jpg'],
+      images: ['/models/principle-35/02.jpg', '/models/principle-35/03.jpg', '/models/principle-35/01.jpg'],
       badge: {
         text: 'Best Value',
         variant: 'secondary' as const
@@ -107,7 +119,7 @@ export default function HomePage() {
       description: 'Top of the range with Pioneer Package included.',
       price: '£25,500',
       priceNote: 'exc. VAT',
-      images: ['/models/progeny-35/01.jpg'],
+      images: ['/models/progeny-35/02.jpg', '/models/progeny-35/03.jpg', '/models/progeny-35/01.jpg'],
       badge: {
         text: 'Premium',
         variant: 'default' as const
@@ -142,8 +154,9 @@ export default function HomePage() {
           href: "/configurator"
         }}
         media={[
-          { type: 'image', src: '/hero.jpg' },
-          { type: 'image', src: '/models/professional-35/01.jpg' }
+          { type: 'image', src: '/models/professional-35/02.jpg' },
+          { type: 'image', src: '/models/principle-35/01.jpg' },
+          { type: 'image', src: '/models/progeny-35/02.jpg' }
         ]}
         overlay="gradient"
         height="full"
