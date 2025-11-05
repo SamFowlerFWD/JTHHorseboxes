@@ -178,7 +178,7 @@ export default function ShowcasePage() {
               transition={{ delay: 0.2 }}
               className="neu-flat p-8 rounded-2xl"
             >
-              <h3 className="text-xl font-semibold text-slate-900 mb-2">Customizable</h3>
+              <h3 className="text-xl font-semibold text-slate-900 mb-2">Customisable</h3>
               <p className="text-sm text-slate-600">Bespoke to your needs</p>
             </motion.div>
             
