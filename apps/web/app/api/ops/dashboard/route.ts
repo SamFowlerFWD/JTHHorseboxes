@@ -1,20 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createServiceSupabaseClient } from '@/lib/supabase/server'
+import { createServiceClient } from '@/lib/supabase/server'
+import { getDashboardMetrics } from '@/lib/supabase/optimized-queries'
+import { LEAD_COLUMNS } from '@/lib/supabase/optimized-queries'
 
 export async function GET(request: NextRequest) {
   try {
-    const supabase = await createServiceSupabaseClient()
-    
+    const supabase = await createServiceClient()
+
     // Get date ranges
     const now = new Date()
     const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000)
     const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1)
     const startOfLastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1)
 
-    // Fetch leads data with proper columns
+    // Use optimized dashboard metrics query (with caching)
+    const cachedMetrics = await getDashboardMetrics()
+
+    // Fetch leads data with specific columns only (not SELECT *)
     const { data: leads, error: leadsError } = await supabase
       .from('leads')
-      .select('id, status, configurator_snapshot, created_at, first_name, last_name, company, model_interest')
+      .select(LEAD_COLUMNS)
 
     // Log but don't throw error for leads
     if (leadsError) {
@@ -118,11 +123,14 @@ export async function GET(request: NextRequest) {
 
     // Format recent activities (or use leads as activities if no activities table)
     let formattedActivities: any[] = []
-    
+
     if (activities && activities.length > 0) {
+      // Create Map for O(1) lookups instead of O(n) find() in loop
+      const leadsMap = new Map(leads?.map(l => [l.id, l]) || [])
+
       formattedActivities = activities.map(activity => {
-        // Find corresponding lead
-        const lead = leads?.find(l => l.id === activity.lead_id)
+        // Use Map lookup instead of find (O(1) instead of O(n))
+        const lead = leadsMap.get(activity.lead_id)
         let title = ''
         let description = activity.description || ''
         let icon = 'Users'

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createServiceSupabaseClient } from '@/lib/supabase/server'
+import { createServiceClient } from '@/lib/supabase/server'
+import { getInventoryList, invalidateInventoryCache, INVENTORY_COLUMNS } from '@/lib/supabase/optimized-queries'
 
 // Mock inventory data for development
 const MOCK_INVENTORY = [
@@ -177,45 +178,101 @@ const MOCK_INVENTORY = [
 
 export async function GET(request: NextRequest) {
   try {
-    const supabase = await createServiceSupabaseClient()
-    
-    // Try to fetch from database
-    const { data: inventoryData, error: inventoryError } = await supabase
-      .from('inventory')
-      .select('*')
-      .order('name')
-    
-    // If table doesn't exist or error, return mock data
-    if (inventoryError) {
-      console.log('Inventory table not found, using mock data:', inventoryError.message)
-      return NextResponse.json({ 
-        success: true, 
-        data: MOCK_INVENTORY,
-        mock: true 
+    // Parse query parameters for pagination and filtering
+    const { searchParams } = new URL(request.url)
+    const page = parseInt(searchParams.get('page') || '1')
+    const limit = parseInt(searchParams.get('limit') || '50')
+    const category = searchParams.get('category') || undefined
+    const status = searchParams.get('status') || undefined
+    const usePagination = searchParams.get('paginate') !== 'false'
+
+    if (!usePagination) {
+      // Legacy unpaginated request (for dropdowns, etc.)
+      const inventoryData = await getInventoryList()
+
+      if (!inventoryData || inventoryData.length === 0) {
+        return NextResponse.json({
+          success: true,
+          data: MOCK_INVENTORY,
+          mock: true
+        })
+      }
+
+      const mappedData = inventoryData.map(item => ({
+        id: item.id,
+        partNumber: item.sku,
+        name: item.name,
+        category: item.category,
+        description: item.name,
+        currentStock: Number(item.quantity || 0),
+        minStock: 5,
+        maxStock: 100,
+        reorderPoint: 10,
+        unit: 'units',
+        location: item.location,
+        supplier: 'Unknown',
+        lastRestocked: item.updated_at ? new Date(item.updated_at) : new Date(),
+        unitCost: Number(item.unit_price || 0),
+        status: item.status || 'unknown'
+      }))
+
+      return NextResponse.json({
+        success: true,
+        data: mappedData
       })
     }
-    
+
+    // Use optimized paginated inventory query with caching
+    const { getInventoryPaginated } = await import('@/lib/supabase/optimized-queries')
+    const result = await getInventoryPaginated(page, limit, { category, status })
+
     // If no data, return mock data
-    if (!inventoryData || inventoryData.length === 0) {
-      return NextResponse.json({ 
-        success: true, 
-        data: MOCK_INVENTORY,
-        mock: true 
+    if (!result.items || result.items.length === 0) {
+      return NextResponse.json({
+        success: true,
+        data: MOCK_INVENTORY.slice(0, limit),
+        pagination: {
+          page,
+          limit,
+          total: MOCK_INVENTORY.length,
+          totalPages: Math.ceil(MOCK_INVENTORY.length / limit)
+        },
+        mock: true
       })
     }
-    
-    return NextResponse.json({ 
-      success: true, 
-      data: inventoryData 
+
+    // Map database fields to frontend expected format
+    const mappedData = result.items.map(item => ({
+      id: item.id,
+      partNumber: item.sku,
+      name: item.name,
+      category: item.category,
+      description: item.name,
+      currentStock: Number(item.quantity || 0),
+      minStock: 5,
+      maxStock: 100,
+      reorderPoint: 10,
+      unit: 'units',
+      location: item.location,
+      supplier: 'Unknown',
+      lastRestocked: item.updated_at ? new Date(item.updated_at) : new Date(),
+      unitCost: Number(item.unit_price || 0),
+      status: item.status || 'unknown'
+    }))
+
+    return NextResponse.json({
+      success: true,
+      data: mappedData,
+      pagination: result.pagination
     })
   } catch (error: any) {
     console.error('Inventory API error:', error)
     // Return mock data on error
-    return NextResponse.json({ 
-      success: true, 
+    return NextResponse.json({
+      success: true,
       data: MOCK_INVENTORY,
       mock: true,
-      error: error.message 
+      error: error.message
     })
   }
 }
@@ -224,46 +281,127 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
     const { action, data } = body
-    
-    const supabase = await createServiceSupabaseClient()
-    
+
+    const supabase = await createServiceClient()
+
     switch (action) {
       case 'create':
+        // Map frontend fields to database fields
+        const createData = {
+          sku: data.partNumber,
+          name: data.name,
+          category: data.category,
+          quantity: data.currentStock || 0,
+          unit_price: data.unitCost || 0,
+          location: data.location,
+          status: 'active'
+        }
+
         const { data: newItem, error: createError } = await supabase
           .from('inventory')
-          .insert(data)
+          .insert(createData)
           .select()
           .single()
-        
+
         if (createError) throw createError
-        
-        return NextResponse.json({ 
-          success: true, 
-          data: newItem 
+
+        // Map back to frontend format
+        const mappedNewItem = {
+          id: newItem.id,
+          partNumber: newItem.sku,
+          name: newItem.name,
+          category: newItem.category,
+          description: newItem.name,
+          currentStock: Number(newItem.quantity),
+          minStock: 5,
+          maxStock: 100,
+          reorderPoint: 10,
+          unit: 'units',
+          location: newItem.location,
+          supplier: 'Unknown',
+          lastRestocked: new Date(newItem.created_at),
+          unitCost: Number(newItem.unit_price),
+          status: newItem.status
+        }
+
+        // Invalidate inventory cache after mutation
+        invalidateInventoryCache()
+
+        return NextResponse.json({
+          success: true,
+          data: mappedNewItem
         })
-      
+
       case 'update':
-        const { id, ...updateData } = data
+        const { id, ...frontendData } = data
+
+        // Map frontend fields to database fields
+        const updateData: any = {}
+        if (frontendData.partNumber !== undefined) updateData.sku = frontendData.partNumber
+        if (frontendData.name !== undefined) updateData.name = frontendData.name
+        if (frontendData.category !== undefined) updateData.category = frontendData.category
+        if (frontendData.currentStock !== undefined) updateData.quantity = frontendData.currentStock
+        if (frontendData.location !== undefined) updateData.location = frontendData.location
+        if (frontendData.unitCost !== undefined) updateData.unit_price = frontendData.unitCost
+
         const { data: updatedItem, error: updateError } = await supabase
           .from('inventory')
           .update(updateData)
           .eq('id', id)
           .select()
           .single()
-        
+
         if (updateError) throw updateError
-        
-        return NextResponse.json({ 
-          success: true, 
-          data: updatedItem 
+
+        // Map back to frontend format
+        const mappedUpdatedItem = {
+          id: updatedItem.id,
+          partNumber: updatedItem.sku,
+          name: updatedItem.name,
+          category: updatedItem.category,
+          description: updatedItem.name,
+          currentStock: Number(updatedItem.quantity),
+          minStock: 5,
+          maxStock: 100,
+          reorderPoint: 10,
+          unit: 'units',
+          location: updatedItem.location,
+          supplier: 'Unknown',
+          lastRestocked: new Date(updatedItem.updated_at),
+          unitCost: Number(updatedItem.unit_price),
+          status: updatedItem.status
+        }
+
+        // Invalidate inventory cache after mutation
+        invalidateInventoryCache()
+
+        return NextResponse.json({
+          success: true,
+          data: mappedUpdatedItem
         })
-      
+
       case 'adjustStock':
         const { itemId, adjustment, reason } = data
-        // This would update stock levels and create an audit log
-        return NextResponse.json({ 
-          success: true, 
-          message: 'Stock adjusted successfully' 
+
+        // Get current user ID (in production, get from session)
+        const { data: { user } } = await supabase.auth.getUser()
+
+        // Call the database function to adjust stock
+        const { error: adjustError } = await supabase.rpc('adjust_inventory_stock', {
+          p_inventory_id: itemId,
+          p_adjustment: adjustment,
+          p_reason: reason || 'Manual adjustment',
+          p_user_id: user?.id || null
+        })
+
+        if (adjustError) throw adjustError
+
+        // Invalidate inventory cache after mutation
+        invalidateInventoryCache()
+
+        return NextResponse.json({
+          success: true,
+          message: 'Stock adjusted successfully'
         })
       
       default:

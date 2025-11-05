@@ -1,121 +1,70 @@
--- Quick Setup for JTH Admin Backend
--- Run this in Supabase SQL Editor: https://supabase.com/dashboard/project/nsbybnsmhvviofzfgphb/sql/new
+-- QUICK SETUP: Essential tables only
+-- Run this if you need to get started quickly
 
--- Step 1: Enable required extensions
+-- Enable extensions
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-CREATE EXTENSION IF NOT EXISTS "vector";
 
--- Step 2: Create profiles table for admin users
-CREATE TABLE IF NOT EXISTS profiles (
-    id UUID REFERENCES auth.users(id) PRIMARY KEY,
-    role TEXT DEFAULT 'user',
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
+-- Ensure profiles table has required columns
+ALTER TABLE profiles 
+ADD COLUMN IF NOT EXISTS department VARCHAR(100),
+ADD COLUMN IF NOT EXISTS is_active BOOLEAN DEFAULT true,
+ADD COLUMN IF NOT EXISTS full_name VARCHAR(255),
+ADD COLUMN IF NOT EXISTS email VARCHAR(255);
+
+-- Create customers table (simplified)
+CREATE TABLE IF NOT EXISTS customers (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) UNIQUE,
+  phone VARCHAR(50),
+  company VARCHAR(255),
+  status VARCHAR(50) DEFAULT 'active',
+  total_orders INTEGER DEFAULT 0,
+  total_value DECIMAL(10,2) DEFAULT 0,
+  last_order_date TIMESTAMPTZ,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Step 3: Create leads table
-CREATE TABLE IF NOT EXISTS leads (
-    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW(),
-    first_name VARCHAR(100) NOT NULL,
-    last_name VARCHAR(100) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    phone VARCHAR(50),
-    company VARCHAR(255),
-    source VARCHAR(100),
-    status VARCHAR(50) DEFAULT 'new',
-    notes TEXT,
-    configuration JSONB,
-    quote_amount DECIMAL(10, 2),
-    utm_source VARCHAR(100),
-    utm_medium VARCHAR(100),
-    utm_campaign VARCHAR(100),
-    consent_marketing BOOLEAN DEFAULT false,
-    consent_timestamp TIMESTAMPTZ
+-- Create inventory table (simplified)
+CREATE TABLE IF NOT EXISTS inventory (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  part_number VARCHAR(100),
+  name VARCHAR(255),
+  category VARCHAR(50),
+  description TEXT,
+  current_stock DECIMAL(10,2) DEFAULT 0,
+  min_stock DECIMAL(10,2) DEFAULT 0,
+  max_stock DECIMAL(10,2) DEFAULT 100,
+  reorder_point DECIMAL(10,2) DEFAULT 10,
+  unit VARCHAR(20) DEFAULT 'units',
+  location VARCHAR(100),
+  unit_cost DECIMAL(10,2) DEFAULT 0,
+  status VARCHAR(50) DEFAULT 'in_stock',
+  last_restocked TIMESTAMPTZ,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Step 4: Create lead activities table
-CREATE TABLE IF NOT EXISTS lead_activities (
-    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    lead_id UUID REFERENCES leads(id) ON DELETE CASCADE,
-    activity_type VARCHAR(50) NOT NULL,
-    description TEXT,
-    metadata JSONB,
-    performed_by UUID REFERENCES auth.users(id)
-);
+-- Enable RLS
+ALTER TABLE customers ENABLE ROW LEVEL SECURITY;
+ALTER TABLE inventory ENABLE ROW LEVEL SECURITY;
 
--- Step 5: Enable Row Level Security
-ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
-ALTER TABLE leads ENABLE ROW LEVEL SECURITY;
-ALTER TABLE lead_activities ENABLE ROW LEVEL SECURITY;
+-- Create basic policies
+CREATE POLICY "Allow authenticated read" ON customers FOR SELECT TO authenticated USING (true);
+CREATE POLICY "Allow authenticated read" ON inventory FOR SELECT TO authenticated USING (true);
 
--- Step 6: Create RLS policies for profiles
-CREATE POLICY "Users can view own profile" ON profiles
-    FOR SELECT USING (auth.uid() = id);
+-- Insert sample data
+INSERT INTO customers (name, email, phone, company, status) VALUES
+('Lehel International Ltd', 'info@lehelinternational.com', '01524 851500', 'Lehel International', 'active'),
+('Bloomfields Horseboxes', 'sales@bloomfields.co', '01487 831100', 'Bloomfields', 'active'),
+('Private Customer', 'john.smith@email.com', '07700 900000', NULL, 'active')
+ON CONFLICT DO NOTHING;
 
-CREATE POLICY "Users can update own profile" ON profiles
-    FOR UPDATE USING (auth.uid() = id);
+INSERT INTO inventory (part_number, name, category, current_stock, min_stock, max_stock) VALUES
+('CHK-001', 'Chassis Main Beam', 'chassis', 12, 5, 50),
+('ELC-045', 'LED Tail Light Assembly', 'electrical', 3, 10, 40),
+('PLB-012', 'Water Tank 100L', 'plumbing', 8, 5, 20)
+ON CONFLICT DO NOTHING;
 
--- Step 7: Create RLS policies for leads
-CREATE POLICY "Public can create leads" ON leads
-    FOR INSERT WITH CHECK (true);
-
-CREATE POLICY "Authenticated users can view leads" ON leads
-    FOR SELECT USING (auth.uid() IS NOT NULL);
-
-CREATE POLICY "Authenticated users can update leads" ON leads
-    FOR UPDATE USING (auth.uid() IS NOT NULL);
-
-CREATE POLICY "Authenticated users can delete leads" ON leads
-    FOR DELETE USING (auth.uid() IS NOT NULL);
-
--- Step 8: Create RLS policies for lead activities
-CREATE POLICY "Authenticated users can manage activities" ON lead_activities
-    FOR ALL USING (auth.uid() IS NOT NULL);
-
--- Step 9: Function to automatically create profile on user signup
-CREATE OR REPLACE FUNCTION handle_new_user()
-RETURNS TRIGGER AS $$
-BEGIN
-    INSERT INTO public.profiles (id, role)
-    VALUES (new.id, COALESCE(new.raw_user_meta_data->>'role', 'user'))
-    ON CONFLICT (id) DO NOTHING;
-    RETURN new;
-END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
-
--- Step 10: Trigger for new user signup
-DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
-CREATE TRIGGER on_auth_user_created
-    AFTER INSERT ON auth.users
-    FOR EACH ROW EXECUTE FUNCTION handle_new_user();
-
--- Step 11: Create indexes for better performance
-CREATE INDEX IF NOT EXISTS idx_leads_email ON leads(email);
-CREATE INDEX IF NOT EXISTS idx_leads_status ON leads(status);
-CREATE INDEX IF NOT EXISTS idx_leads_created_at ON leads(created_at DESC);
-
--- Step 12: Function to update updated_at timestamp
-CREATE OR REPLACE FUNCTION update_updated_at_column()
-RETURNS TRIGGER AS $$
-BEGIN
-    NEW.updated_at = NOW();
-    RETURN NEW;
-END;
-$$ language 'plpgsql';
-
--- Step 13: Create triggers for updated_at
-DROP TRIGGER IF EXISTS update_leads_updated_at ON leads;
-CREATE TRIGGER update_leads_updated_at BEFORE UPDATE ON leads
-    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
-
-DROP TRIGGER IF EXISTS update_profiles_updated_at ON profiles;
-CREATE TRIGGER update_profiles_updated_at BEFORE UPDATE ON profiles
-    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
-
--- DONE! Your basic setup is complete.
--- To create an admin user:
--- 1. Sign up a user through Supabase Auth
--- 2. Then run: UPDATE profiles SET role = 'admin' WHERE id = (SELECT id FROM auth.users WHERE email = 'your-email@example.com');
+SELECT 'Quick setup complete!' as status;

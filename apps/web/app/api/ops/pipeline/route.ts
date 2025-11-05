@@ -1,49 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { opsServer } from '@/lib/supabase/ops'
+import { getPipelineDataOptimized, invalidateLeadsCache } from '@/lib/supabase/optimized-queries'
 
 export async function GET(request: NextRequest) {
   try {
-    const leads = await opsServer.getAllLeads()
-    
-    // Group leads by stage
-    const leadsByStage = leads.reduce((acc: any, lead) => {
-      const stage = lead.stage || 'inquiry'
-      if (!acc[stage]) {
-        acc[stage] = []
-      }
-      acc[stage].push({
-        id: lead.id,
-        organization: lead.company || `${lead.first_name} ${lead.last_name}`,
-        contact: `${lead.first_name} ${lead.last_name}`,
-        email: lead.email,
-        phone: lead.phone,
-        value: lead.quote_amount || 0,
-        model: lead.model_interest || 'Not specified',
-        assignedTo: lead.assigned_to || 'Unassigned',
-        createdAt: lead.created_at,
-        nextAction: lead.next_action,
-        nextActionDate: lead.next_action_date,
-        score: lead.lead_score || 50,
-        tags: lead.tags || [],
-        stage: stage,
-        notes: lead.notes,
-        activities: lead.lead_activities || []
-      })
-      return acc
-    }, {})
+    // Use optimized pipeline query (with caching and no N+1 problem)
+    const leadsByStage = await getPipelineDataOptimized()
 
-    // Ensure all stages have arrays
-    const stages = ['inquiry', 'qualification', 'specification', 'quotation', 'negotiation', 'closed_won', 'closed_lost']
-    stages.forEach(stage => {
-      if (!leadsByStage[stage]) {
-        leadsByStage[stage] = []
-      }
-    })
-
-    return NextResponse.json({ 
-      success: true, 
+    return NextResponse.json({
+      success: true,
       data: leadsByStage,
-      total: leads.length 
+      total: Object.values(leadsByStage).flat().length
     })
   } catch (error: any) {
     console.error('Pipeline API error:', error)
@@ -57,19 +23,19 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const supabase = await import('@/lib/supabase/server').then(m => m.createServiceSupabaseClient())
+    const supabase = await import('@/lib/supabase/server').then(m => m.createServiceClient())
     const client = await supabase
-    
+
     switch (body.action) {
       case 'updateStage': {
         const { leadId, newStage, previousStage } = body
-        
+
         // Update lead stage
         const { data, error } = await client
           .from('leads')
-          .update({ 
-            stage: newStage, 
-            updated_at: new Date().toISOString() 
+          .update({
+            stage: newStage,
+            updated_at: new Date().toISOString()
           })
           .eq('id', leadId)
           .select()
@@ -82,9 +48,9 @@ export async function POST(request: NextRequest) {
           deal_id: leadId,
           activity_type: 'stage_change',
           description: `Deal moved from ${previousStage || 'unknown'} to ${newStage}`,
-          metadata: { 
+          metadata: {
             previous_stage: previousStage,
-            new_stage: newStage 
+            new_stage: newStage
           }
         })
 
@@ -102,6 +68,9 @@ export async function POST(request: NextRequest) {
             await executeAutomation(client, leadId, automation)
           }
         }
+
+        // Invalidate leads cache after mutation
+        invalidateLeadsCache()
 
         return NextResponse.json({ success: true, data })
       }
@@ -134,12 +103,15 @@ export async function POST(request: NextRequest) {
           metadata: { source: body.source || 'manual' }
         })
 
+        // Invalidate leads cache after mutation
+        invalidateLeadsCache()
+
         return NextResponse.json({ success: true, data })
       }
 
       case 'updateDeal': {
         const { dealId, updates } = body
-        
+
         const { data, error } = await client
           .from('leads')
           .update({
@@ -159,6 +131,9 @@ export async function POST(request: NextRequest) {
           description: 'Deal information updated',
           metadata: { updates }
         })
+
+        // Invalidate leads cache after mutation
+        invalidateLeadsCache()
 
         return NextResponse.json({ success: true, data })
       }
@@ -236,10 +211,10 @@ export async function POST(request: NextRequest) {
 async function executeAutomation(client: any, dealId: string, automation: any) {
   const actions = automation.actions || {}
   
-  // Get deal details first - needed for multiple actions
+  // Get deal details first - needed for multiple actions (with specific columns)
   const { data: deal } = await client
     .from('leads')
-    .select('*')
+    .select('id, model_interest, configurator_snapshot')
     .eq('id', dealId)
     .single()
   
@@ -248,7 +223,7 @@ async function executeAutomation(client: any, dealId: string, automation: any) {
     const year = new Date().getFullYear()
     const { count } = await client
       .from('builds')
-      .select('*', { count: 'exact', head: true })
+      .select('id', { count: 'exact', head: true })
       .like('build_number', `JTH-${year}-%`)
     
     const buildNumber = `JTH-${year}-${String((count || 0) + 1).padStart(4, '0')}`

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServiceSupabaseClient } from '@/lib/supabase/server'
+import { invalidateQuotesCache, QUOTE_COLUMNS } from '@/lib/supabase/optimized-queries'
 
 // Mock quotes data for development
 const MOCK_QUOTES = [
@@ -223,45 +224,61 @@ const MOCK_QUOTES = [
 
 export async function GET(request: NextRequest) {
   try {
-    const supabase = await createServiceSupabaseClient()
-    
-    // Try to fetch from database
-    const { data: quotesData, error: quotesError } = await supabase
-      .from('quotes')
-      .select('*')
-      .order('createdAt', { ascending: false })
-    
-    // If table doesn't exist or error, return mock data
-    if (quotesError) {
-      console.log('Quotes table not found, using mock data:', quotesError.message)
-      return NextResponse.json({ 
-        success: true, 
-        data: MOCK_QUOTES,
-        mock: true 
+    // Parse query parameters for pagination and filtering
+    const { searchParams } = new URL(request.url)
+    const page = parseInt(searchParams.get('page') || '1')
+    const limit = parseInt(searchParams.get('limit') || '20')
+    const status = searchParams.get('status') || undefined
+    const leadId = searchParams.get('lead_id') || undefined
+
+    // Use optimized paginated quotes query with caching
+    const { getQuotesPaginated } = await import('@/lib/supabase/optimized-queries')
+
+    try {
+      const result = await getQuotesPaginated(page, limit, { status, lead_id: leadId })
+
+      // If no data, return mock data
+      if (!result.quotes || result.quotes.length === 0) {
+        return NextResponse.json({
+          success: true,
+          data: MOCK_QUOTES.slice(0, limit),
+          pagination: {
+            page,
+            limit,
+            total: MOCK_QUOTES.length,
+            totalPages: Math.ceil(MOCK_QUOTES.length / limit)
+          },
+          mock: true
+        })
+      }
+
+      return NextResponse.json({
+        success: true,
+        data: result.quotes,
+        pagination: result.pagination
+      })
+    } catch (queryError: any) {
+      console.log('Quotes table not found, using mock data:', queryError.message)
+      return NextResponse.json({
+        success: true,
+        data: MOCK_QUOTES.slice(0, limit),
+        pagination: {
+          page,
+          limit,
+          total: MOCK_QUOTES.length,
+          totalPages: Math.ceil(MOCK_QUOTES.length / limit)
+        },
+        mock: true
       })
     }
-    
-    // If no data, return mock data
-    if (!quotesData || quotesData.length === 0) {
-      return NextResponse.json({ 
-        success: true, 
-        data: MOCK_QUOTES,
-        mock: true 
-      })
-    }
-    
-    return NextResponse.json({ 
-      success: true, 
-      data: quotesData 
-    })
   } catch (error: any) {
     console.error('Quotes API error:', error)
     // Return mock data on error
-    return NextResponse.json({ 
-      success: true, 
+    return NextResponse.json({
+      success: true,
       data: MOCK_QUOTES,
       mock: true,
-      error: error.message 
+      error: error.message
     })
   }
 }
@@ -278,14 +295,17 @@ export async function POST(request: NextRequest) {
         const { data: newQuote, error: createError } = await supabase
           .from('quotes')
           .insert(data)
-          .select()
+          .select(QUOTE_COLUMNS)
           .single()
-        
+
         if (createError) throw createError
-        
-        return NextResponse.json({ 
-          success: true, 
-          data: newQuote 
+
+        // Invalidate quotes cache after mutation
+        invalidateQuotesCache()
+
+        return NextResponse.json({
+          success: true,
+          data: newQuote
         })
       
       case 'update':
@@ -294,14 +314,17 @@ export async function POST(request: NextRequest) {
           .from('quotes')
           .update(updateData)
           .eq('id', id)
-          .select()
+          .select(QUOTE_COLUMNS)
           .single()
-        
+
         if (updateError) throw updateError
-        
-        return NextResponse.json({ 
-          success: true, 
-          data: updatedQuote 
+
+        // Invalidate quotes cache after mutation
+        invalidateQuotesCache()
+
+        return NextResponse.json({
+          success: true,
+          data: updatedQuote
         })
       
       case 'send':

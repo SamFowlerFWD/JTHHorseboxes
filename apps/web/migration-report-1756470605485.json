@@ -1,0 +1,19 @@
+{
+  "timestamp": "2025-08-29T12:30:04.700Z",
+  "supabaseUrl": "https://nsbybnsmhvviofzfgphb.supabase.co",
+  "status": "MIGRATION_REQUIRED",
+  "tables": {
+    "customers": false,
+    "inventory": true,
+    "profiles": true,
+    "auth_audit_log": false
+  },
+  "instructions": [
+    "1. Open Supabase SQL Editor",
+    "2. Copy the migration SQL from one of these files:",
+    "   - apps/web/supabase/quick-setup.sql (Quick setup)",
+    "   - apps/web/APPLY_NOW_COMPLETE_MIGRATION.sql (Full migration)",
+    "3. Paste and execute in SQL Editor",
+    "4. Run this script again to verify"
+  ]
+}

@@ -105,18 +105,18 @@ function SuccessContent() {
           <h3 className="font-semibold text-slate-900 mb-4">Need Immediate Assistance?</h3>
           <div className="grid sm:grid-cols-2 gap-4">
             <a
-              href="tel:+441234567890"
+              href="tel:+441603552109"
               className="flex items-center gap-3 text-blue-700 hover:text-blue-800 transition-colors"
             >
               <Phone className="w-5 h-5" />
-              <span>Call: 01234 567890</span>
+              <span>Call: 01603 552109</span>
             </a>
             <a
-              href="mailto:sales@jtaylorhorseboxes.com"
+              href="mailto:sales@jthltd.co.uk"
               className="flex items-center gap-3 text-blue-700 hover:text-blue-800 transition-colors"
             >
               <Mail className="w-5 h-5" />
-              <span>Email: sales@jtaylorhorseboxes.com</span>
+              <span>Email: sales@jthltd.co.uk</span>
             </a>
           </div>
         </div>

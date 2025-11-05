@@ -119,14 +119,41 @@ export async function POST(request: NextRequest) {
         metadata: { source: leadData.source, utm_source: leadData.utm_source }
       }])
 
-    // TODO: Send notification email to admin
-    // TODO: Send confirmation email to lead
+    // Send notification email to admin
+    const { sendLeadNotification, sendLeadConfirmation } = await import('@/lib/email')
 
-    return NextResponse.json({ 
-      success: true, 
+    const adminEmailResult = await sendLeadNotification({
+      leadId: lead.id,
+      name: `${leadData.first_name} ${leadData.last_name}`,
+      email: leadData.email,
+      phone: leadData.phone,
+      source: leadData.source,
+      notes: leadData.notes,
+    })
+
+    if (adminEmailResult.success) {
+      console.log('Admin notification sent for lead:', lead.id)
+    } else {
+      console.error('Failed to send admin notification:', adminEmailResult.error)
+    }
+
+    // Send confirmation email to customer
+    const customerEmailResult = await sendLeadConfirmation({
+      to: leadData.email,
+      name: leadData.first_name,
+    })
+
+    if (customerEmailResult.success) {
+      console.log('Lead confirmation sent to:', leadData.email)
+    } else {
+      console.error('Failed to send lead confirmation:', customerEmailResult.error)
+    }
+
+    return NextResponse.json({
+      success: true,
       message: 'Thank you for your interest! We will contact you soon.',
       lead_id: lead.id,
-      id: lead.id 
+      id: lead.id
     }, { status: 201 })
   } catch (error) {
     console.error('Error in POST /api/leads:', error)

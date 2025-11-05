@@ -21,13 +21,24 @@ import {
 
 const models = [
   { value: '', label: 'Select a model (optional)' },
-  { value: 'principal-35', label: 'Principal 35' },
-  { value: 'professional-35', label: 'Professional 35' },
-  { value: 'progeny-35', label: 'Progeny 35' },
-  { value: 'aeos-edge-45', label: 'Aeos Edge 45' },
-  { value: 'aeos-freedom-45', label: 'Aeos Freedom 45' },
-  { value: 'aeos-discovery-45', label: 'Aeos Discovery 45' },
-  { value: 'aeos-discovery-72', label: 'Aeos Discovery 72' },
+  // JTH Range - 3.5 Tonne
+  { value: 'principle-35', label: 'Principle 35 (3.5T)' },
+  { value: 'professional-35', label: 'Professional 35 (3.5T)' },
+  { value: 'progeny-35', label: 'Progeny 35 (3.5T)' },
+  // JTH Range - 4.5 Tonne
+  { value: 'jth-principle-45', label: 'Principle 45 (4.5T)' },
+  { value: 'jth-professional-45', label: 'Professional 45 (4.5T)' },
+  { value: 'jth-progeny-45', label: 'Progeny 45 (4.5T)' },
+  // Aeos Pre-Built Range - 4.5 Tonne
+  { value: 'aeos-edge-45', label: 'Aeos Edge 45 (4.5T)' },
+  { value: 'aeos-freedom-45', label: 'Aeos Freedom 45 (4.5T)' },
+  { value: 'aeos-discovery-45', label: 'Aeos Discovery 45 (4.5T)' },
+  { value: 'aeos-edge-st-45', label: 'Aeos Edge ST 45 (4.5T)' },
+  // Premium Range - 7.2T & 7.5T
+  { value: 'aeos-discovery-72', label: 'Aeos Discovery 72 (7.2T)' },
+  { value: 'zenos-72', label: 'Zenos 72 (7.2T)' },
+  { value: 'zenos-xl-72', label: 'Zenos XL 72 (7.2T)' },
+  { value: 'helios-75', label: 'Helios 75 (7.5T)' },
 ]
 
 const reasons = [

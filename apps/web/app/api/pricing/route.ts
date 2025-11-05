@@ -24,43 +24,19 @@ export async function GET(request: NextRequest) {
   try {
     const supabase = await createClient()
     const searchParams = request.nextUrl.searchParams
-    
+
     // Check if user is admin
     const { data: { user } } = await supabase.auth.getUser()
     const isAdmin = !!user
-    
-    const model = searchParams.get('model')
-    const category = searchParams.get('category')
+
+    const model = searchParams.get('model') || undefined
+    const category = searchParams.get('category') || undefined
     const available = searchParams.get('available')
+    const availableOnly = !isAdmin || available !== 'false'
 
-    let query = supabase
-      .from('pricing_options')
-      .select('*')
-      .order('display_order', { ascending: true })
-      .order('category', { ascending: true })
-      .order('name', { ascending: true })
-
-    // If not admin, only show available options
-    if (!isAdmin) {
-      query = query.eq('is_available', true)
-    } else if (available === 'false') {
-      query = query.eq('is_available', false)
-    }
-
-    if (model) {
-      query = query.eq('model', model)
-    }
-
-    if (category) {
-      query = query.eq('category', category)
-    }
-
-    const { data: options, error } = await query
-
-    if (error) {
-      console.error('Error fetching pricing options:', error)
-      return NextResponse.json({ error: 'Failed to fetch pricing options' }, { status: 500 })
-    }
+    // Use optimized cached pricing query (24 hour TTL)
+    const { getPricingOptions } = await import('@/lib/supabase/optimized-queries')
+    const options = await getPricingOptions(model, category, availableOnly)
 
     // Group by model and category for easier consumption
     const grouped = options.reduce((acc, option) => {
@@ -78,7 +54,7 @@ export async function GET(request: NextRequest) {
       options,
       grouped,
       models: ['3.5t', '4.5t', '7.2t'],
-      categories: [...new Set(options.map(o => o.category))]
+      categories: [...new Set(options.map((o: any) => o.category))]
     })
   } catch (error) {
     console.error('Error in GET /api/pricing:', error)
@@ -137,6 +113,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Failed to create pricing option' }, { status: 500 })
     }
 
+    // Invalidate pricing cache after mutation
+    const { invalidatePricingCache } = await import('@/lib/supabase/optimized-queries')
+    invalidatePricingCache()
+
     return NextResponse.json(option, { status: 201 })
   } catch (error) {
     console.error('Error in POST /api/pricing:', error)
@@ -184,6 +164,12 @@ export async function PATCH(request: NextRequest) {
       } else {
         results.push(data)
       }
+    }
+
+    // Invalidate pricing cache after bulk update
+    if (results.length > 0) {
+      const { invalidatePricingCache } = await import('@/lib/supabase/optimized-queries')
+      invalidatePricingCache()
     }
 
     return NextResponse.json({

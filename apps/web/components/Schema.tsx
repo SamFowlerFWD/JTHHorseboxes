@@ -330,6 +330,42 @@ export function generateEventSchema(event: {
   }
 }
 
+export function generateArticleSchema(article: {
+  headline: string
+  description: string
+  datePublished: string
+  dateModified: string
+  image: string
+  author: string
+  publisher: string
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": article.headline,
+    "description": article.description,
+    "image": article.image,
+    "datePublished": article.datePublished,
+    "dateModified": article.dateModified,
+    "author": {
+      "@type": "Organization",
+      "name": article.author
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": article.publisher,
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://jthltd.co.uk/logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://jthltd.co.uk"
+    }
+  }
+}
+
 export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",

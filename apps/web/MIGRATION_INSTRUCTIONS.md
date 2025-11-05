@@ -1,7 +1,8 @@
-# JTH Operations Platform - Database Migration Instructions
+# Database Migration Instructions - J Taylor Horseboxes
 
-## Overview
-The comprehensive operations migration has been split into 5 parts that should be applied in order. This ensures a clean migration without conflicts.
+## Current Status & Overview
+
+This document provides comprehensive instructions for setting up the database for the J Taylor Horseboxes operations platform. The system is designed to work both with a fully configured database and in fallback mode with mock data.
 
 ## Migration Files
 

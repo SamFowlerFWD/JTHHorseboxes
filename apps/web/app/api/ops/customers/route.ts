@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createServiceSupabaseClient } from '@/lib/supabase/server'
+import { createServiceClient } from '@/lib/supabase/server'
+import { mapDatabaseCustomerToFrontend, mapFrontendCustomerToDatabase } from '@/lib/types/customer'
+import { getCustomersPaginated, invalidateCustomersCache, CUSTOMER_COLUMNS } from '@/lib/supabase/optimized-queries'
 
-// Mock customer data for development
+// Mock customer data for development (fallback only)
 const MOCK_CUSTOMERS = [
   {
     id: '1',
@@ -191,13 +193,32 @@ const MOCK_CUSTOMERS = [
 
 export async function GET(request: NextRequest) {
   try {
-    const supabase = await createServiceSupabaseClient()
-    
-    // Try to fetch from database
-    const { data: customersData, error: customersError } = await supabase
+    const supabase = await createServiceClient()
+
+    // Parse query parameters for filtering
+    const { searchParams } = new URL(request.url)
+    const search = searchParams.get('search')
+    const status = searchParams.get('status')
+    const type = searchParams.get('type')
+
+    // Build query with specific columns (not SELECT *)
+    let query = supabase
       .from('customers')
-      .select('*')
-      .order('lastName')
+      .select(CUSTOMER_COLUMNS)
+      .order('last_name')
+      .order('first_name')
+    
+    // Apply filters
+    if (status && status !== 'all') {
+      query = query.eq('status', status)
+    }
+    
+    if (type && type !== 'all') {
+      query = query.eq('customer_type', type)
+    }
+    
+    // Execute query
+    const { data: customersData, error: customersError } = await query
     
     // If table doesn't exist or error, return mock data
     if (customersError) {
@@ -209,18 +230,47 @@ export async function GET(request: NextRequest) {
       })
     }
     
-    // If no data, return mock data
+    // If no data, check if table is empty or just no matches
     if (!customersData || customersData.length === 0) {
-      return NextResponse.json({ 
-        success: true, 
-        data: MOCK_CUSTOMERS,
-        mock: true 
-      })
+      // Check if table has any data at all (use id column only, not *)
+      const { count } = await supabase
+        .from('customers')
+        .select('id', { count: 'exact', head: true })
+      
+      if (count === 0) {
+        // Table is empty, return mock data
+        return NextResponse.json({ 
+          success: true, 
+          data: MOCK_CUSTOMERS,
+          mock: true 
+        })
+      } else {
+        // Table has data but no matches for filters
+        return NextResponse.json({ 
+          success: true, 
+          data: [] 
+        })
+      }
+    }
+    
+    // Map database fields to frontend format
+    const mappedCustomers = customersData.map(mapDatabaseCustomerToFrontend)
+    
+    // Apply text search if provided (post-filter for now)
+    let filteredCustomers = mappedCustomers
+    if (search) {
+      const searchLower = search.toLowerCase()
+      filteredCustomers = mappedCustomers.filter(customer => 
+        customer.firstName.toLowerCase().includes(searchLower) ||
+        customer.lastName.toLowerCase().includes(searchLower) ||
+        customer.email.toLowerCase().includes(searchLower) ||
+        (customer.company && customer.company.toLowerCase().includes(searchLower))
+      )
     }
     
     return NextResponse.json({ 
       success: true, 
-      data: customersData 
+      data: filteredCustomers 
     })
   } catch (error: any) {
     console.error('Customers API error:', error)
@@ -238,45 +288,148 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
     const { action, data } = body
-    
-    const supabase = await createServiceSupabaseClient()
-    
+
+    const supabase = await createServiceClient()
+
     switch (action) {
       case 'create':
+        // Map frontend format to database format
+        const createData = mapFrontendCustomerToDatabase(data)
+
         const { data: newCustomer, error: createError } = await supabase
           .from('customers')
-          .insert(data)
+          .insert(createData)
           .select()
           .single()
-        
+
         if (createError) throw createError
-        
-        return NextResponse.json({ 
-          success: true, 
-          data: newCustomer 
+
+        // Map back to frontend format
+        const mappedNewCustomer = mapDatabaseCustomerToFrontend(newCustomer)
+
+        // Invalidate customers cache after mutation
+        invalidateCustomersCache()
+
+        return NextResponse.json({
+          success: true,
+          data: mappedNewCustomer
         })
-      
+
       case 'update':
-        const { id, ...updateData } = data
+        const { id, ...updateFields } = data
+
+        // Map frontend format to database format
+        const updateData = mapFrontendCustomerToDatabase(updateFields)
+
         const { data: updatedCustomer, error: updateError } = await supabase
           .from('customers')
           .update(updateData)
           .eq('id', id)
           .select()
           .single()
-        
+
         if (updateError) throw updateError
-        
-        return NextResponse.json({ 
-          success: true, 
-          data: updatedCustomer 
+
+        // Map back to frontend format
+        const mappedUpdatedCustomer = mapDatabaseCustomerToFrontend(updatedCustomer)
+
+        // Invalidate customers cache after mutation
+        invalidateCustomersCache()
+
+        return NextResponse.json({
+          success: true,
+          data: mappedUpdatedCustomer
+        })
+
+      case 'delete':
+        const { error: deleteError } = await supabase
+          .from('customers')
+          .delete()
+          .eq('id', data.id)
+
+        if (deleteError) throw deleteError
+
+        // Invalidate customers cache after mutation
+        invalidateCustomersCache()
+
+        return NextResponse.json({
+          success: true,
+          message: 'Customer deleted successfully'
         })
       
-      case 'addNote':
-        // This would add a note to customer history
+      case 'addCommunication':
+        const { customerId, ...commData } = data
+
+        // Add a communication record
+        const { data: newComm, error: commError } = await supabase
+          .from('customer_communications')
+          .insert({
+            customer_id: customerId,
+            communication_type: commData.type || 'note',
+            direction: commData.direction || 'internal',
+            subject: commData.subject,
+            content: commData.content,
+            outcome: commData.outcome,
+            performed_by: commData.performedBy,
+            scheduled_follow_up: commData.scheduledFollowUp
+          })
+          .select()
+          .single()
+
+        if (commError) throw commError
+
+        // Update last contact date on customer
+        await supabase
+          .from('customers')
+          .update({ last_contact_date: new Date().toISOString() })
+          .eq('id', customerId)
+
+        // Invalidate customers cache after mutation
+        invalidateCustomersCache()
+
+        return NextResponse.json({
+          success: true,
+          data: newComm,
+          message: 'Communication added successfully'
+        })
+
+      case 'convertLead':
+        // Convert a lead to a customer using the database function
+        const { data: convertedCustomer, error: convertError } = await supabase
+          .rpc('convert_lead_to_customer', { p_lead_id: data.leadId })
+
+        if (convertError) throw convertError
+
+        // Fetch the full customer data
+        const { data: customerData, error: fetchError } = await supabase
+          .from('customers')
+          .select(CUSTOMER_COLUMNS)
+          .eq('id', convertedCustomer)
+          .single()
+
+        if (fetchError) throw fetchError
+
+        const mappedCustomer = mapDatabaseCustomerToFrontend(customerData)
+
+        // Invalidate customers cache after mutation
+        invalidateCustomersCache()
+
+        return NextResponse.json({
+          success: true,
+          data: mappedCustomer,
+          message: 'Lead converted to customer successfully'
+        })
+      
+      case 'search':
+        // Use the database search function
+        const { data: searchResults, error: searchError } = await supabase
+          .rpc('search_customers', { search_term: data.searchTerm })
+        
+        if (searchError) throw searchError
+        
         return NextResponse.json({ 
           success: true, 
-          message: 'Note added successfully' 
+          data: searchResults 
         })
       
       default:

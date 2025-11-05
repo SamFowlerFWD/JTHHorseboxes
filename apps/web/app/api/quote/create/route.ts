@@ -106,13 +106,49 @@ export async function POST(req: NextRequest) {
     
     console.log('QUOTE_CREATED:', quoteData)
 
-    // TODO: Send confirmation email if customer email provided
-    if (body.customerInfo?.email) {
-      console.log(`Would send quote ${quoteId} to ${body.customerInfo.email}`)
+    // Send confirmation email with PDF if customer email provided
+    if (body.customerInfo?.email && body.customerInfo?.name) {
+      const { sendQuoteConfirmation } = await import('@/lib/email')
+      const { generateQuotePDF } = await import('@/lib/pdf/generate')
+
+      // Generate PDF
+      let pdfBuffer: Buffer | undefined
+      try {
+        pdfBuffer = await generateQuotePDF({
+          quoteId,
+          customerInfo: body.customerInfo,
+          modelName: model.name,
+          calculation: result,
+          selectedOptions: body.selectedOptions,
+          pricingConfig: cfg,
+          createdAt: new Date().toISOString(),
+        })
+        console.log(`PDF generated for quote ${quoteId}`)
+      } catch (pdfError: any) {
+        console.error(`Failed to generate PDF: ${pdfError.message}`)
+        // Continue even if PDF generation fails
+      }
+
+      const emailResult = await sendQuoteConfirmation({
+        to: body.customerInfo.email,
+        quoteId,
+        customerName: body.customerInfo.name,
+        modelName: model.name,
+        totalPrice: `£${(result.totalIncVatPence / 100).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
+        quoteUrl: `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/configurator?quote=${quoteId}`,
+        pdfBuffer,
+      })
+
+      if (emailResult.success) {
+        console.log(`Quote confirmation email sent to ${body.customerInfo.email}`)
+      } else {
+        console.error(`Failed to send quote email: ${emailResult.error}`)
+        // Don't fail the request if email fails - quote is still created
+      }
     }
 
-    return NextResponse.json({ 
-      ok: true, 
+    return NextResponse.json({
+      ok: true,
       quoteId,
       result,
       message: 'Quote created successfully'
