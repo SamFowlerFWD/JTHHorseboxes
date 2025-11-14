@@ -73,7 +73,7 @@ export function PricingSidebar({
             Optional Extras
           </h4>
           <div className="space-y-1">
-            {OPTION_CATEGORIES.filter(cat => cat.id !== 'base').map((category) => (
+            {OPTION_CATEGORIES.filter(cat => (cat.id as string) !== 'base').map((category) => (
               <button
                 key={category.id}
                 onClick={() => onViewChange(category.id, 'category')}
