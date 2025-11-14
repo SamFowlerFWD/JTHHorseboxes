@@ -30,10 +30,12 @@ import {
   getConfigurationSummary,
 } from '@/lib/configurator/engines'
 import type {
+  ComprehensiveCalculationResult,
+} from '@/lib/configurator/engines'
+import type {
   SelectedOption,
   ModelSpecification,
   ConfigurationCalculation,
-  ComprehensiveCalculationResult,
 } from '@/lib/configurator/types'
 
 export const dynamic = 'force-dynamic'
