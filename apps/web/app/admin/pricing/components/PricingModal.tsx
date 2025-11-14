@@ -311,9 +311,10 @@ export function PricingModal({ isOpen, onClose, option, onSave }: PricingModalPr
                 {/* Model Ranges */}
                 <div className="space-y-4 pt-2">
                   {MODEL_RANGES.map((range) => {
-                    const rangeModels = MODEL_CODES.filter((m) => range.models.includes(m.code))
-                    const isFullySelected = isRangeFullySelected(range.models)
-                    const isPartiallySelected = isRangePartiallySelected(range.models)
+                    const models = range.models as readonly string[]
+                    const rangeModels = MODEL_CODES.filter((m) => models.includes(m.code))
+                    const isFullySelected = isRangeFullySelected(models)
+                    const isPartiallySelected = isRangePartiallySelected(models)
 
                     return (
                       <div key={range.id} className="rounded-lg border border-slate-200 p-3 dark:border-slate-700">
