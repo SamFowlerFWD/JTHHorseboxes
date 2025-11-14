@@ -148,7 +148,7 @@ export async function POST(request: NextRequest) {
           const { error: updateError } = await supabase
             .from('pricing_options')
             .update({
-              model: importData.model,
+              applicable_models: importData.applicable_models.split(',').map(m => m.trim()),
               category: importData.category,
               subcategory: importData.subcategory || null,
               name: importData.name,
@@ -173,7 +173,7 @@ export async function POST(request: NextRequest) {
         } else {
           // Create new option
           const { error: insertError } = await supabase.from('pricing_options').insert({
-            model: importData.model,
+            applicable_models: importData.applicable_models.split(',').map(m => m.trim()),
             category: importData.category,
             subcategory: importData.subcategory || null,
             name: importData.name,
