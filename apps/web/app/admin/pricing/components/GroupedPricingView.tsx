@@ -221,9 +221,10 @@ export function GroupedPricingView({
 
   // Get base models for each range
   const getBaseModelsForRange = (range: typeof MODEL_RANGES[number]) => {
+    const rangeModels = range.models as readonly string[]
     return options.filter(opt =>
       opt.category === 'base' &&
-      opt.applicable_models?.some(m => range.models.includes(m))
+      opt.applicable_models?.some(m => rangeModels.includes(m))
     )
   }
 
