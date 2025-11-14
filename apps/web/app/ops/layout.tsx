@@ -88,24 +88,43 @@ export default async function OpsLayout({
 }) {
   const supabase = await createServerSupabaseClient()
 
-  // Get current user
-  const { data: { user }, error: authError } = await supabase.auth.getUser()
+  // In development mode, use mock user/profile
+  let user: any = null
+  let profile: any = null
 
-  // If no user, render simple layout without sidebar (for login/public pages)
-  if (!user) {
-    return <div className="min-h-screen bg-background">{children}</div>
-  }
+  if (process.env.NODE_ENV === 'development') {
+    // Mock user and profile for development
+    user = { id: 'dev-user-id', email: 'dev@jth.com' }
+    profile = {
+      role: 'admin',
+      full_name: 'Dev Admin',
+      email: 'dev@jth.com',
+      department: 'Development',
+      is_active: true
+    }
+  } else {
+    // Get current user
+    const { data: { user: authUser }, error: authError } = await supabase.auth.getUser()
+    user = authUser
 
-  // Get user profile with role
-  const { data: profile, error: profileError } = await supabase
-    .from('profiles')
-    .select('role, full_name, email, department, is_active')
-    .eq('id', user.id)
-    .single()
+    // If no user, render simple layout without sidebar (for login/public pages)
+    if (!user) {
+      return <div className="min-h-screen bg-background">{children}</div>
+    }
 
-  // If no profile or inactive, render simple layout (redirect will be handled by middleware or page)
-  if (!profile || !profile.is_active) {
-    return <div className="min-h-screen bg-background">{children}</div>
+    // Get user profile with role
+    const { data: profileData, error: profileError } = await supabase
+      .from('profiles')
+      .select('role, full_name, email, department, is_active')
+      .eq('id', user.id)
+      .single()
+
+    profile = profileData
+
+    // If no profile or inactive, render simple layout (redirect will be handled by middleware or page)
+    if (!profile || !profile.is_active) {
+      return <div className="min-h-screen bg-background">{children}</div>
+    }
   }
   
   // Filter navigation items based on user role

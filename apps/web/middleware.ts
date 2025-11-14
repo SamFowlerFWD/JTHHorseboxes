@@ -149,15 +149,21 @@ export async function middleware(request: NextRequest) {
   
   // Check authentication for protected routes
   if (isProtectedRoute) {
+    // TEMPORARY: Bypass auth in development mode for /admin, /ops, and /api/ops routes
+    if (process.env.NODE_ENV === 'development' && (pathname.startsWith('/admin') || pathname.startsWith('/ops') || pathname.startsWith('/api/ops'))) {
+      console.log('🔓 Development mode: Bypassing authentication for', pathname)
+      return supabaseResponse
+    }
+
     if (!user) {
       // Store the original URL to redirect back after login
       const url = request.nextUrl.clone()
       url.pathname = '/ops/login'
       url.searchParams.set('redirect', pathname)
-      
+
       // Log unauthorized access attempt
       console.warn(`Unauthorized access attempt to ${pathname} from ${ip}`)
-      
+
       return NextResponse.redirect(url)
     }
 
@@ -182,7 +188,7 @@ export async function middleware(request: NextRequest) {
     if (!profile) {
       const { data: freshProfile, error: profileError } = await supabase
         .from('profiles')
-        .select('role, is_active, locked_until, last_login')
+        .select('role, is_active, locked_until, last_login_at')
         .eq('id', user.id)
         .single()
 
@@ -222,8 +228,8 @@ export async function middleware(request: NextRequest) {
     }
 
     // Check session timeout
-    if (profile.last_login) {
-      const lastLogin = new Date(profile.last_login).getTime()
+    if (profile.last_login_at) {
+      const lastLogin = new Date(profile.last_login_at).getTime()
       const now = Date.now()
       if (now - lastLogin > SESSION_TIMEOUT) {
         // Session expired, force re-authentication
@@ -276,24 +282,30 @@ export async function middleware(request: NextRequest) {
 
     // Update last activity timestamp less frequently (every 5 minutes instead of every request)
     const LAST_LOGIN_UPDATE_INTERVAL = 5 * 60 * 1000 // 5 minutes
-    const shouldUpdateLastLogin = !profile.last_login ||
-      (Date.now() - new Date(profile.last_login).getTime() > LAST_LOGIN_UPDATE_INTERVAL)
+    const shouldUpdateLastLogin = !profile.last_login_at ||
+      (Date.now() - new Date(profile.last_login_at).getTime() > LAST_LOGIN_UPDATE_INTERVAL)
 
     if (shouldUpdateLastLogin) {
       // Update async, don't block the request
       void supabase
         .from('profiles')
-        .update({ last_login: new Date().toISOString() })
+        .update({ last_login_at: new Date().toISOString() })
         .eq('id', user.id)
         .then(() => {
           // Invalidate profile cache on successful update
           supabaseResponse.cookies.delete(profileCacheKey)
-        }, (err: Error) => console.error('Failed to update last_login:', err))
+        }, (err: Error) => console.error('Failed to update last_login_at:', err))
     }
   }
 
   // Protected admin routes
   if (pathname.startsWith('/admin')) {
+    // TEMPORARY: Bypass auth in development mode
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🔓 Development mode: Bypassing admin authentication for', pathname)
+      return supabaseResponse
+    }
+
     if (!user) {
       const url = request.nextUrl.clone()
       url.pathname = '/login'
