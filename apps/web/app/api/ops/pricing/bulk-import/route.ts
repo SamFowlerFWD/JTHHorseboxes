@@ -69,7 +69,7 @@ function validateRow(row: Record<string, string>, rowNum: number): BulkPricingIm
 
   const importData: BulkPricingImport = {
     option_id: row.option_id || undefined,
-    model: row.model,
+    applicable_models: row.applicable_models || row.model, // Support both new and legacy column names
     category: row.category,
     subcategory: row.subcategory || undefined,
     name: row.name,
