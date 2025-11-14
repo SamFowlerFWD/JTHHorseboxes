@@ -15,6 +15,9 @@ export interface PricingOption {
   is_default: boolean
   is_available: boolean
   dependencies: any | null
+  incompatible_with: any | null
+  display_order: number | null
+  image_url: string | null
   // NEW: Weight and Living Area tracking
   weight_kg: number
   living_area_units: number
