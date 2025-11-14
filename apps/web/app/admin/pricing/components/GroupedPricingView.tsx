@@ -232,7 +232,7 @@ export function GroupedPricingView({
   const getOptionalExtrasByCategory = () => {
     const categorizedExtras: Record<string, PricingOption[]> = {}
 
-    OPTION_CATEGORIES.filter(cat => cat.id !== 'base').forEach(category => {
+    OPTION_CATEGORIES.filter(cat => (cat.id as string) !== 'base').forEach(category => {
       categorizedExtras[category.id] = options.filter(opt => opt.category === category.id)
     })
 
