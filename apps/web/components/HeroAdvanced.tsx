@@ -221,40 +221,6 @@ export default function HeroAdvanced({
         </div>
       )}
 
-      {/* Badge - Positioned outside constrained container for perfect viewport centering */}
-      <motion.div 
-        variants={itemVariants}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        className="absolute top-16 z-20"
-        style={{ 
-          left: '50%',
-          x: '-50%' // Use Framer Motion's transform property
-        }}
-      >
-        <motion.span 
-          className="inline-flex flex-col items-center gap-6 px-12 py-10 text-white font-medium rounded-3xl"
-          style={{
-            background: 'linear-gradient(135deg, rgba(23, 49, 100, 0.4) 0%, rgba(212, 175, 55, 0.2) 100%)',
-            backdropFilter: 'blur(10px)',
-            WebkitBackdropFilter: 'blur(10px)',
-            border: '1px solid rgba(255, 255, 255, 0.18)',
-            boxShadow: '0 8px 32px 0 rgba(23, 49, 100, 0.1)'
-          }}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <Image 
-            src="/logo.png" 
-            alt="JTH Logo" 
-            width={320} 
-            height={320} 
-            className="opacity-95"
-          />
-          <span className="text-5xl font-semibold">J Taylor Horseboxes</span>
-        </motion.span>
-      </motion.div>
-
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col justify-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto w-full">
