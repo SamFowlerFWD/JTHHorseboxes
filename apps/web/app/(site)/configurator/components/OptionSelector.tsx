@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react'
 import { useConfiguratorStore } from '@/lib/configurator/store'
 import { OPTION_CATEGORIES } from '@/lib/configurator/types'
-import { formatPrice } from '@/lib/configurator/calculations'
+import { formatPrice as _formatPrice } from '@/lib/configurator/calculations'
+import { useRegionPricing } from '@/lib/configurator/hooks'
 import { 
   Palette, Home, Shield, Cpu, Wind, 
   Check, Plus, Minus, Info, Search,
@@ -29,6 +30,9 @@ export default function OptionSelector() {
     setActiveCategory,
     isLoading
   } = useConfiguratorStore()
+
+  const { region } = useRegionPricing()
+  const formatPrice = (amount: number) => _formatPrice(amount, region)
 
   const [searchTerm, setSearchTerm] = useState('')
   const [expandedSubcategories, setExpandedSubcategories] = useState<Set<string>>(new Set())
@@ -157,6 +161,7 @@ export default function OptionSelector() {
                     option={option}
                     isSelected={isOptionSelected(option.id)}
                     onToggle={() => toggleOption(option)}
+                    formatPrice={formatPrice}
                   />
                 ))}
               </div>
@@ -214,13 +219,13 @@ export default function OptionSelector() {
 }
 
 // Individual Option Card Component
-function OptionCard({ option, isSelected, onToggle }: any) {
+function OptionCard({ option, isSelected, onToggle, formatPrice }: any) {
   const [showInfo, setShowInfo] = useState(false)
 
   return (
     <div className={`border rounded-lg p-4 transition-all ${
-      isSelected 
-        ? 'border-blue-700 bg-blue-50' 
+      isSelected
+        ? 'border-blue-700 bg-blue-50'
         : 'border-slate-200 hover:border-slate-300'
     }`}>
       <div className="flex items-start justify-between">
@@ -236,7 +241,7 @@ function OptionCard({ option, isSelected, onToggle }: any) {
             >
               {isSelected && <Check className="w-4 h-4 text-white" />}
             </button>
-            
+
             <div className="flex-1">
               <h4 className="font-medium text-slate-900">{option.name}</h4>
               {option.sku && (
@@ -253,7 +258,7 @@ function OptionCard({ option, isSelected, onToggle }: any) {
             </div>
           </div>
         </div>
-        
+
         <div className="flex items-center gap-3 ml-4">
           <div className="text-right">
             <p className="font-semibold text-slate-900">

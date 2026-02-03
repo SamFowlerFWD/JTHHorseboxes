@@ -1,26 +1,30 @@
 // Price Calculation Utilities for Configurator
 
 import type { SelectedOption, ConfigurationData } from './types'
+import { type Region, getRegionConfig } from './region'
 
 /**
- * Format a price in pounds with proper formatting
+ * Format a price in the correct currency for the given region.
+ * `amount` is in GBP pounds. For IE, markup + exchange rate are applied at display time.
  */
-export function formatPrice(pence: number): string {
-  const pounds = pence / 100
-  return new Intl.NumberFormat('en-GB', {
+export function formatPrice(amount: number, region: Region = 'GB'): string {
+  const config = getRegionConfig(region)
+  const converted = amount * config.markup * config.exchangeRate
+  return new Intl.NumberFormat(config.locale, {
     style: 'currency',
-    currency: 'GBP',
+    currency: config.currency,
     minimumFractionDigits: 0,
     maximumFractionDigits: 0
-  }).format(pounds)
+  }).format(converted)
 }
 
 /**
  * Format a price without currency symbol
  */
-export function formatPriceNumber(pence: number): string {
-  const pounds = pence / 100
-  return pounds.toLocaleString('en-GB')
+export function formatPriceNumber(amount: number, region: Region = 'GB'): string {
+  const config = getRegionConfig(region)
+  const converted = amount * config.markup * config.exchangeRate
+  return converted.toLocaleString(config.locale, { maximumFractionDigits: 0 })
 }
 
 /**
@@ -175,31 +179,32 @@ export function validateConfiguration(config: ConfigurationData | null): {
 /**
  * Format configuration for display
  */
-export function formatConfigurationSummary(config: ConfigurationData): string {
+export function formatConfigurationSummary(config: ConfigurationData, region: Region = 'GB'): string {
+  const regionConfig = getRegionConfig(region)
   const lines: string[] = []
-  
+
   lines.push(`Model: ${config.model_name}`)
-  lines.push(`Base Price: ${formatPrice(config.base_price)}`)
-  
+  lines.push(`Base Price: ${formatPrice(config.base_price, region)}`)
+
   if (config.selected_options.length > 0) {
     lines.push('')
     lines.push('Selected Options:')
-    
+
     const grouped = groupOptionsByCategory(config.selected_options)
-    
+
     Object.entries(grouped).forEach(([category, options]) => {
       lines.push(`  ${category}:`)
       options.forEach(option => {
-        lines.push(`    - ${option.name}: ${formatPrice(option.price)}`)
+        lines.push(`    - ${option.name}: ${formatPrice(option.price, region)}`)
       })
     })
   }
-  
+
   lines.push('')
-  lines.push(`Subtotal: ${formatPrice(config.total_ex_vat)}`)
-  lines.push(`VAT (20%): ${formatPrice(config.vat_amount)}`)
-  lines.push(`Total: ${formatPrice(config.total_inc_vat)}`)
-  
+  lines.push(`Subtotal: ${formatPrice(config.total_ex_vat, region)}`)
+  lines.push(`VAT (${regionConfig.vatRate * 100}%): ${formatPrice(config.vat_amount, region)}`)
+  lines.push(`Total: ${formatPrice(config.total_inc_vat, region)}`)
+
   return lines.join('\n')
 }
 

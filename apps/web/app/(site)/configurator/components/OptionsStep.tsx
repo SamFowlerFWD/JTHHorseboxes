@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react'
 import { useConfiguratorStore } from '@/lib/configurator/store'
 import { OPTION_CATEGORIES, PIONEER_PACKAGE } from '@/lib/configurator/types'
+import { useRegionPricing } from '@/lib/configurator/hooks'
+import { formatPrice } from '@/lib/configurator/calculations'
 import { Package, Plus, Minus, Check, X, Info, ChevronDown, ChevronUp } from 'lucide-react'
 import PioneerPackageDialog from './PioneerPackageDialog'
 
@@ -26,14 +28,8 @@ export default function OptionsStep() {
   const [showPioneerDialog, setShowPioneerDialog] = useState(false)
   const [expandedCategories, setExpandedCategories] = useState<string[]>(['exterior'])
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-GB', {
-      style: 'currency',
-      currency: 'GBP',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    }).format(price)
-  }
+  const { region } = useRegionPricing()
+  const fp = (price: number) => formatPrice(price, region)
 
   const handlePioneerToggle = () => {
     // Only allow Pioneer Package for eligible models (4.5T models)
@@ -169,7 +165,7 @@ export default function OptionsStep() {
             
             <div className="ml-6 text-right">
               <div className="text-2xl font-bold text-blue-700 mb-2">
-                {formatPrice(PIONEER_PACKAGE.price)}
+                {fp(PIONEER_PACKAGE.price)}
               </div>
               <div className="text-sm text-slate-500 mb-4">Total Package Price</div>
               
@@ -256,7 +252,7 @@ export default function OptionsStep() {
                                 <p className="text-sm text-slate-600 mb-2">{option.description}</p>
                               )}
                               <p className="text-lg font-semibold text-slate-900">
-                                {formatPrice(option.price)}
+                                {fp(option.price)}
                                 {hasQuantity && ' each'}
                                 {isPerFoot && ' per foot'}
                               </p>
@@ -333,7 +329,7 @@ export default function OptionsStep() {
                 : 'Options Total:'
               }
             </span>
-            <span className="text-2xl font-bold text-blue-700">{formatPrice(optionsTotal)}</span>
+            <span className="text-2xl font-bold text-blue-700">{fp(optionsTotal)}</span>
           </div>
         </div>
       )}

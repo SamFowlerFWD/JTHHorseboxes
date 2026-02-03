@@ -1,4 +1,8 @@
 {
+  "regionConfig": {
+    "GB": { "vatRate": 0.20, "currency": "GBP", "markup": 1.0, "exchangeRate": 1.0 },
+    "IE": { "vatRate": 0.23, "currency": "EUR", "markup": 1.15, "exchangeRate": 1.17 }
+  },
   "vatRate": 0.2,
   "depositDefaultPence": 500000,
   "agents": [

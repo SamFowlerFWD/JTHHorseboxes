@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'JTH Horsebox Models - Complete 3.5t, 4.5t & 7.2t Range',
     description: 'View our complete range of British-built horseboxes. 3.5t, 4.5t & 7.2t models from £18,500. Compare specifications and configure online.',
-    images: ['/models/hero.jpg'],
+    images: ['/models/professional-35/01.webp'],
     type: 'website',
   },
   alternates: {
@@ -35,7 +35,7 @@ export default async function ModelsPage() {
   const productSchemas = modelsWithPricing.map(model => generateProductSchema({
     name: model.name,
     description: `JTH ${model.name} - Premium ${model.slug.includes('35') ? '3.5 tonne' : model.slug.includes('45') ? '4.5 tonne' : '7.2 tonne'} horsebox built in Norfolk, UK`,
-    image: `https://jthltd.co.uk/models/${model.slug}/01.jpg`,
+    image: `https://jthltd.co.uk/models/${model.slug}/01.webp`,
     price: model.basePricePence! / 100,
     sku: model.slug.toUpperCase(),
     category: model.slug.includes('35') ? '3.5 Tonne Horsebox' : model.slug.includes('45') ? '4.5 Tonne Horsebox' : '7.2 Tonne Horsebox'
@@ -47,8 +47,8 @@ export default async function ModelsPage() {
       <main>
       {/* Hero Section */}
       <Hero 
-        primarySrc="/models/hero.jpg" 
-        fallbackSrc="/models/professional-35/01.jpg"
+        primarySrc="/models/professional-35/01.webp" 
+        fallbackSrc="/models/professional-35/01.webp"
         height="md"
         overlay="gradient"
       >
@@ -72,7 +72,7 @@ export default async function ModelsPage() {
             <div key={model.id} className="group bg-white overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
               <div className="relative h-64">
                 <Image 
-                  src={`/models/${model.slug}/01.jpg`} 
+                  src={`/models/${model.slug}/01.webp`} 
                   alt={model.name} 
                   fill 
                   sizes="(min-width: 1024px) 33vw, 100vw" 
@@ -112,7 +112,7 @@ export default async function ModelsPage() {
                 <p className="text-slate-600 mb-6">
                   {model.slug === 'professional-35' && 'The ultimate in luxury and performance for the professional rider.'}
                   {model.slug === 'principle-35' && 'Perfect balance of quality and value for the discerning owner.'}
-                  {model.slug === 'progeny-35' && 'Top of the range with Pioneer Package included.'}
+                  {model.slug === 'progeny-35' && 'Our flagship 3.5 tonne model with premium specification throughout.'}
                   {model.slug === 'jth-principle-45' && 'Essential 4.5t horsebox with proven JTH quality at an affordable price.'}
                   {model.slug === 'jth-professional-45' && 'Premium 4.5t horsebox with luxury features included as standard.'}
                   {model.slug === 'jth-progeny-45' && 'Crew cab 4.5t horsebox designed for teams and families.'}
@@ -201,18 +201,18 @@ export default async function ModelsPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
               <Shield className="w-8 h-8 text-blue-700 mx-auto mb-3" />
-              <div className="text-2xl font-bold text-slate-900">2 Year</div>
-              <div className="text-sm text-slate-600">Warranty</div>
+              <div className="text-2xl font-bold text-slate-900">British Built</div>
+              <div className="text-sm text-slate-600">Beeston, Norfolk</div>
             </div>
             <div className="text-center">
               <Award className="w-8 h-8 text-blue-700 mx-auto mb-3" />
-              <div className="text-2xl font-bold text-slate-900">30+</div>
-              <div className="text-sm text-slate-600">Years Experience</div>
+              <div className="text-2xl font-bold text-slate-900">KPH Heritage</div>
+              <div className="text-sm text-slate-600">Proven Designs</div>
             </div>
             <div className="text-center">
               <Star className="w-8 h-8 text-blue-700 mx-auto mb-3" />
-              <div className="text-2xl font-bold text-slate-900">500+</div>
-              <div className="text-sm text-slate-600">Happy Owners</div>
+              <div className="text-2xl font-bold text-slate-900">Family Run</div>
+              <div className="text-sm text-slate-600">Personal Service</div>
             </div>
             <div className="text-center">
               <Check className="w-8 h-8 text-blue-700 mx-auto mb-3" />
@@ -230,8 +230,8 @@ export default async function ModelsPage() {
             Complete Guide to Choosing Your <span className="text-blue-700">3.5t, 4.5t or 7.2t Horsebox</span>
           </h2>
           <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-            With over 30 years of experience building horseboxes, we understand that choosing the right model is crucial. 
-            Our comprehensive range covers every need from amateur riders to Olympic competitors.
+            As specialists in horsebox manufacturing, we understand that choosing the right model is crucial.
+            Our comprehensive range covers every need from amateur riders to professional competitors.
           </p>
         </div>
 
@@ -551,8 +551,8 @@ export default async function ModelsPage() {
             </div>
             <div className="text-center">
               <Users className="w-8 h-8 text-white mx-auto mb-3" />
-              <h3 className="text-white font-semibold mb-2">Experience</h3>
-              <p className="text-blue-100 text-sm">30+ Years<br />500+ Happy Customers</p>
+              <h3 className="text-white font-semibold mb-2">Family Run</h3>
+              <p className="text-blue-100 text-sm">Personal service<br />Built to your spec</p>
             </div>
           </div>
         </div>

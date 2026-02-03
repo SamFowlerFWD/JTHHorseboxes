@@ -9,7 +9,7 @@ export default function ShowcasePage() {
   // Sample gallery images
   const galleryImages = [
     {
-      src: '/models/professional-35/01.jpg',
+      src: '/models/professional-35/01.webp',
       alt: 'Professional 35 - Exterior View',
       title: 'Professional 35',
       description: 'Premium British horsebox with luxury finish',
@@ -19,16 +19,16 @@ export default function ShowcasePage() {
       ]
     },
     {
-      src: '/models/principle-35/01.jpg',
+      src: '/models/principle-35/01.webp',
       alt: 'Principle 35 - Side View',
       title: 'Principle 35',
       description: 'Perfect balance of quality and value'
     },
     {
-      src: '/models/progeny-35/01.jpg',
+      src: '/models/progeny-35/01.webp',
       alt: 'Progeny 35 - Front View',
       title: 'Progeny 35',
-      description: 'Top of the range with Pioneer Package'
+      description: 'Top of the range 3.5 tonne model'
     }
   ]
 
@@ -41,7 +41,7 @@ export default function ShowcasePage() {
       description: 'The ultimate in luxury and performance for the professional rider.',
       price: '£22,000',
       priceNote: 'exc. VAT',
-      images: ['/models/professional-35/01.jpg', '/models/professional-35/02.jpg'],
+      images: ['/models/professional-35/01.webp', '/models/professional-35/02.webp'],
       badge: {
         text: 'Most Popular',
         variant: 'default' as const
@@ -65,7 +65,7 @@ export default function ShowcasePage() {
       description: 'Perfect balance of quality and value for the discerning owner.',
       price: '£18,500',
       priceNote: 'exc. VAT',
-      images: ['/models/principle-35/01.jpg'],
+      images: ['/models/principle-35/01.webp'],
       badge: {
         text: 'Best Value',
         variant: 'secondary' as const
@@ -86,10 +86,10 @@ export default function ShowcasePage() {
       id: 'progeny-35',
       title: 'Progeny 35',
       subtitle: '3.5 Tonne Premium',
-      description: 'Top of the range with Pioneer Package included.',
+      description: 'Our flagship 3.5 tonne model with premium specification.',
       price: '£25,500',
       priceNote: 'exc. VAT',
-      images: ['/models/progeny-35/01.jpg'],
+      images: ['/models/progeny-35/01.webp'],
       badge: {
         text: 'Premium',
         variant: 'default' as const
@@ -99,7 +99,7 @@ export default function ShowcasePage() {
       features: [
         { label: 'Payload', value: '1,150kg' },
         { label: 'Horse Capacity', value: '2 horses' },
-        { label: 'Living', value: 'Pioneer Package (£10,800)' },
+        { label: 'Living', value: 'Day living as standard' },
         { label: 'Warranty', value: '2 years structural' }
       ],
       availability: 'Limited' as const,
@@ -124,8 +124,8 @@ export default function ShowcasePage() {
           href: "#gallery"
         }}
         media={[
-          { type: 'image', src: '/hero.jpg' },
-          { type: 'image', src: '/models/professional-35/01.jpg' }
+          { type: 'image', src: '/hero.webp' },
+          { type: 'image', src: '/models/professional-35/01.webp' }
         ]}
         overlay="gradient"
         height="full"
@@ -189,7 +189,7 @@ export default function ShowcasePage() {
               transition={{ delay: 0.3 }}
               className="bento-item-wide gradient-premium p-8 rounded-2xl text-white"
             >
-              <h3 className="text-xl font-semibold mb-2">30+ Years Experience</h3>
+              <h3 className="text-xl font-semibold mb-2">KPH Heritage</h3>
               <p className="text-sm opacity-90">Incorporating the legacy of KPH</p>
             </motion.div>
           </div>
@@ -277,9 +277,9 @@ export default function ShowcasePage() {
             className="grid md:grid-cols-3 gap-8 mt-12"
           >
             {[
-              { number: '500+', label: 'Happy Customers' },
-              { number: '30+', label: 'Years Experience' },
-              { number: '100%', label: 'British Made' }
+              { number: 'KPH', label: 'Heritage Designs' },
+              { number: 'Norfolk', label: 'British Built' },
+              { number: '100%', label: 'Customisable' }
             ].map((stat, index) => (
               <motion.div
                 key={index}

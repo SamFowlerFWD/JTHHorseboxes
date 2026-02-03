@@ -1,7 +1,9 @@
 'use client'
 
 import { useConfiguratorStore } from '@/lib/configurator/store'
-import { PoundSterling, Info, Calculator } from 'lucide-react'
+import { useRegionPricing } from '@/lib/configurator/hooks'
+import { formatPrice } from '@/lib/configurator/calculations'
+import { Info, Calculator } from 'lucide-react'
 
 const PRESET_DEPOSITS = [2500, 5000, 7500, 10000]
 
@@ -13,14 +15,8 @@ export default function DepositStep() {
     selectedModel
   } = useConfiguratorStore()
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-GB', {
-      style: 'currency',
-      currency: 'GBP',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    }).format(price)
-  }
+  const { region, config: regionConfig } = useRegionPricing()
+  const fp = (price: number) => formatPrice(price, region)
 
   const calculatePercentage = () => {
     if (!selectedModel || basePrice === 0) return 0
@@ -37,7 +33,7 @@ export default function DepositStep() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-slate-600 mb-1">Current Deposit Amount</p>
-              <p className="text-3xl font-bold text-blue-700">{formatPrice(deposit)}</p>
+              <p className="text-3xl font-bold text-blue-700">{fp(deposit)}</p>
               {selectedModel && (
                 <p className="text-sm text-slate-500 mt-1">
                   {calculatePercentage()}% of base price
@@ -64,7 +60,7 @@ export default function DepositStep() {
                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
-                {formatPrice(amount)}
+                {fp(amount)}
               </button>
             ))}
           </div>
@@ -86,10 +82,10 @@ export default function DepositStep() {
               min="1000"
               step="500"
             />
-            <PoundSterling className="absolute left-4 top-3.5 w-5 h-5 text-slate-400" />
+            <span className="absolute left-4 top-3.5 text-slate-400 font-medium">{regionConfig.currencySymbol}</span>
           </div>
           <p className="mt-2 text-sm text-slate-500">
-            Minimum deposit: £1,000 | Recommended: £5,000
+            Minimum deposit: {fp(1000)} | Recommended: {fp(5000)}
           </p>
         </div>
 

@@ -85,14 +85,14 @@ const modelContent: Record<string, {
         'Emergency breakdown kit included'
       ]
     },
-    gallery: ['01.jpg', '02.jpg', '03.jpg', '04.jpg', '05.jpg'],
+    gallery: ['01.webp', '02.webp', '03.webp', '04.webp', '05.webp'],
     testimonial: {
       name: 'Sarah Thompson',
       role: 'Professional Event Rider',
       quote: 'The Professional 35 has transformed my competition experience. The quality is outstanding and the attention to detail is second to none. It\'s given me a real competitive edge.'
     },
     seoKeywords: '3.5t professional horsebox, Professional 35, premium 3.5 tonne horsebox, competition horsebox, luxury horsebox, British horsebox manufacturer, best 3.5t horsebox UK, professional horse transport',
-    heroImage: '/models/professional-35/01.jpg'
+    heroImage: '/models/professional-35/01.webp'
   },
   'principle-35': {
     title: 'Principle 35 - Essential Quality 3.5t Horsebox',
@@ -135,28 +135,28 @@ const modelContent: Record<string, {
         'Secure door locks'
       ]
     },
-    gallery: ['01.jpg', '02.jpg', '03.jpg', '04.jpg'],
+    gallery: ['01.webp', '02.webp', '03.webp', '04.webp'],
     testimonial: {
       name: 'Louise Carter',
       role: 'Happy Hacker',
       quote: 'The Principle 35 is perfect for my needs. Great value without compromising on quality or safety. I couldn\'t be happier with my choice.'
     },
     seoKeywords: '3.5t horsebox, value horsebox, Principle 35, affordable horsebox, British horsebox, 3.5 tonne horsebox for sale',
-    heroImage: '/models/principle-35/01.jpg'
+    heroImage: '/models/principle-35/01.webp'
   },
   'progeny-35': {
     title: 'Progeny 35 - Top of the Range 3.5t Horsebox',
     description: 'The JTH Progeny 35 is our flagship 3.5 tonne horsebox, featuring the highest specification and luxury finishes. British-built in Norfolk from £25,500.',
     longDescription: [
-      'The Progeny 35 represents the pinnacle of 3.5 tonne horsebox design. This flagship model incorporates every premium feature as standard, including our exclusive Pioneer Package worth £10,800.',
+      'The Progeny 35 represents the pinnacle of 3.5 tonne horsebox design. This flagship model incorporates every premium feature as standard with the finest materials and craftsmanship.',
       'Building on the Professional 35 platform, the Progeny adds premium materials throughout, advanced technology features, and bespoke customization options that set it apart from any other horsebox in its class.',
       'For owners who demand the absolute best, the Progeny 35 delivers an unmatched combination of luxury, performance, and British engineering excellence.'
     ],
     features: [
-      'Exclusive Pioneer package included',
+      'Premium specification throughout',
       'Premium leather upholstery',
       'Advanced technology suite',
-      'Luxury living quarters',
+      'Day living as standard',
       'Premium paint and graphics',
       'Solar power system',
       'CCTV monitoring system',
@@ -186,14 +186,14 @@ const modelContent: Record<string, {
         'GPS tracking system'
       ]
     },
-    gallery: ['01.jpg', '02.jpg', '03.jpg', '04.jpg', '05.jpg'],
+    gallery: ['01.webp', '02.webp', '03.webp', '04.webp', '05.webp'],
     testimonial: {
       name: 'Richard Pemberton',
       role: 'Competition Rider',
-      quote: 'The Progeny 35 exceeds all expectations. The Pioneer package adds features I didn\'t know I needed but now can\'t live without.'
+      quote: 'The Progeny 35 exceeds all expectations. The attention to detail and premium finish is outstanding.'
     },
-    seoKeywords: '3.5t luxury horsebox, Progeny 35, premium horsebox, Pioneer package, top specification horsebox, best 3.5 tonne horsebox',
-    heroImage: '/models/progeny-35/01.jpg'
+    seoKeywords: '3.5t luxury horsebox, Progeny 35, premium horsebox, top specification horsebox, best 3.5 tonne horsebox, flagship model',
+    heroImage: '/models/progeny-35/01.webp'
   },
   'aeos-edge-45': {
     title: 'Aeos Edge 45 - Pre-Built Professional Package',
@@ -237,14 +237,14 @@ const modelContent: Record<string, {
         'Anti-slip flooring'
       ]
     },
-    gallery: ['01.jpg', '02.jpg', '03.jpg'],
+    gallery: ['01.webp', '02.webp', '03.webp'],
     testimonial: {
       name: 'Mark Richardson',
       role: 'Professional Rider',
       quote: 'The Aeos Edge was perfect - ready to collect immediately with exactly the specification I needed. No waiting, no complex choices, just a quality horsebox ready to go.'
     },
     seoKeywords: '4.5t horsebox, pre-built horsebox, Aeos Edge 45, ready made horsebox, quick delivery horsebox, professional package horsebox',
-    heroImage: '/models/aeos-edge-45/01.jpg'
+    heroImage: '/models/aeos-edge-45/01.webp'
   },
   'aeos-freedom-45': {
     title: 'Aeos Freedom 45 - Weekender Pre-Built Package',
@@ -288,14 +288,14 @@ const modelContent: Record<string, {
         'Premium brakes'
       ]
     },
-    gallery: ['01.jpg', '02.jpg', '03.jpg', '04.jpg'],
+    gallery: ['01.webp', '02.webp', '03.webp', '04.webp'],
     testimonial: {
       name: 'Sarah & Tom Williams',
       role: 'Family Riders',
       quote: 'We needed a horsebox quickly for our planned summer trips. The Aeos Freedom package was ideal - family-friendly and available immediately without the usual wait.'
     },
     seoKeywords: '4.5t family horsebox, pre-built family horsebox, Aeos Freedom 45, weekender horsebox, ready-made family horsebox, quick delivery horsebox UK',
-    heroImage: '/models/aeos-freedom-45/01.jpg'
+    heroImage: '/models/aeos-freedom-45/01.webp'
   },
   'aeos-discovery-45': {
     title: 'Aeos Discovery 45 - Luxury Pre-Built Package',
@@ -339,14 +339,14 @@ const modelContent: Record<string, {
         'Medical kit storage'
       ]
     },
-    gallery: ['01.jpg', '02.jpg', '03.jpg', '04.jpg', '05.jpg', '06.jpg'],
+    gallery: ['01.webp', '02.webp', '03.webp', '04.webp', '05.webp', '06.webp'],
     testimonial: {
       name: 'Victoria Hamilton',
       role: 'Competition Rider',
       quote: 'The Aeos Discovery package exceeded expectations. Luxury specification with immediate availability - exactly what I needed without months of waiting for custom build.'
     },
     seoKeywords: '4.5t luxury horsebox, pre-built luxury horsebox, Aeos Discovery 45, ready-made luxury horsebox, premium package horsebox, immediate delivery luxury horsebox',
-    heroImage: '/models/aeos-discovery-45/01.jpg'
+    heroImage: '/models/aeos-discovery-45/01.webp'
   },
   'aeos-edge-st-45': {
     title: 'Aeos Edge ST 45 - Stallion 4.5t Horsebox',
@@ -390,14 +390,14 @@ const modelContent: Record<string, {
         'Surveillance system'
       ]
     },
-    gallery: ['01.jpg', '02.jpg', '03.jpg'],
+    gallery: ['01.webp', '02.webp', '03.webp'],
     testimonial: {
       name: 'David Mitchell',
       role: 'Stud Owner',
       quote: 'The Edge ST 45 gives me complete confidence when transporting our valuable stallions. The reinforced construction is exceptional.'
     },
     seoKeywords: '4.5t stallion horsebox, Aeos Edge ST 45, stallion transport, reinforced horsebox, breeding horsebox, stallion partition',
-    heroImage: '/models/aeos-edge-st-45/01.jpg'
+    heroImage: '/models/aeos-edge-st-45/01.webp'
   },
   'aeos-discovery-72': {
     title: 'Aeos Discovery 72 - Luxury Living 7.2t Horsebox',
@@ -444,14 +444,14 @@ const modelContent: Record<string, {
         'Medical equipment storage'
       ]
     },
-    gallery: ['01.jpg', '02.jpg', '03.jpg', '04.jpg', '05.jpg', '06.jpg', '07.jpg', '08.jpg'],
+    gallery: ['01.webp', '02.webp', '03.webp', '04.webp', '05.webp', '06.webp', '07.webp', '08.webp'],
     testimonial: {
       name: 'Team GB Rider',
       role: 'Olympic Competitor',
       quote: 'The Aeos Discovery 72 is essential for international competition. It\'s our mobile base, providing everything we need to perform at the highest level.'
     },
     seoKeywords: '7.2t horsebox, 7.2 tonne horsebox, Aeos Discovery 72, Aeos Discovery 72, large horsebox, luxury horsebox, professional team horsebox, 4 horse transport',
-    heroImage: '/models/aeos-discovery-72/01.jpg'
+    heroImage: '/models/aeos-discovery-72/01.webp'
   },
   'jth-principle-45': {
     title: 'JTH Principle 45 - Essential 4.5t Horsebox | Basic Back End | Norfolk',
@@ -497,14 +497,14 @@ const modelContent: Record<string, {
         'First aid kit storage'
       ]
     },
-    gallery: ['01.jpg', '02.jpg', '03.jpg', '04.jpg'],
+    gallery: ['01.webp', '02.webp', '03.webp', '04.webp'],
     testimonial: {
       name: 'Mark Stevens',
       role: 'Competition Rider',
       quote: 'The Principle 45 gives me everything I need at a price I can afford. The extra payload makes all the difference for longer trips.'
     },
     seoKeywords: 'Principle 45 horsebox, 4.5t basic horsebox, 4.5 tonne entry level, affordable 4.5t horsebox, JTH Principle 45, 4 piece back end, British 4.5t horsebox, Norfolk horsebox builder',
-    heroImage: '/models/jth-principle-45/01.jpg'
+    heroImage: '/models/jth-principle-45/01.webp'
   },
   'jth-professional-45': {
     title: 'JTH Professional 45 - Premium 4.5t Horsebox | Included Extras | Norfolk',
@@ -553,14 +553,14 @@ const modelContent: Record<string, {
         'Reversing camera system'
       ]
     },
-    gallery: ['01.jpg', '02.jpg', '03.jpg', '04.jpg', '05.jpg'],
+    gallery: ['01.webp', '02.webp', '03.webp', '04.webp', '05.webp'],
     testimonial: {
       name: 'Emma Richardson',
       role: 'Professional Event Rider',
       quote: 'The Professional 45 is incredible value - so many premium features included as standard. It\'s transformed my competition experience.'
     },
     seoKeywords: 'Professional 45 horsebox, premium 4.5t horsebox, luxury 4.5 tonne, JTH Professional 45, metallic paint horsebox, reversing camera, climate control horsebox, professional competition horsebox',
-    heroImage: '/models/jth-professional-45/01.jpg'
+    heroImage: '/models/jth-professional-45/01.webp'
   },
   'jth-progeny-45': {
     title: 'JTH Progeny 45 - Crew Cab 4.5t Horsebox | Team Transport | Norfolk',
@@ -607,14 +607,14 @@ const modelContent: Record<string, {
         'First aid kit included'
       ]
     },
-    gallery: ['01.jpg', '02.jpg', '03.jpg', '04.jpg'],
+    gallery: ['01.webp', '02.webp', '03.webp', '04.webp'],
     testimonial: {
       name: 'Sarah Johnson',
       role: 'Riding School Owner',
       quote: 'The Progeny 45 is perfect for our team events. We can transport horses and riders together safely and comfortably.'
     },
     seoKeywords: 'Progeny 45 horsebox, crew cab horsebox, 4.5t team horsebox, JTH Progeny 45, crew cab horse transport, family horsebox, side windows horsebox, external doors option',
-    heroImage: '/models/jth-progeny-45/01.jpg'
+    heroImage: '/models/jth-progeny-45/01.webp'
   },
   'zenos-72': {
     title: 'Zenos 72 - Professional 7.2t Horsebox | Premium Range | JTH',
@@ -661,14 +661,14 @@ const modelContent: Record<string, {
         'Professional specification'
       ]
     },
-    gallery: ['01.jpg', '02.jpg', '03.jpg', '04.jpg'],
+    gallery: ['01.webp', '02.webp', '03.webp', '04.webp'],
     testimonial: {
       name: 'Professional Team',
       role: 'Competition Stable',
       quote: 'The Zenos 72 gives us the capacity and reliability we need for professional competition. Outstanding build quality.'
     },
     seoKeywords: 'Zenos 72 horsebox, 7.2t horsebox, 7.2 tonne horse transport, professional horsebox, Zenos range, premium horsebox UK',
-    heroImage: '/models/zenos-72/01.jpg'
+    heroImage: '/models/zenos-72/01.webp'
   },
   'zenos-xl-72': {
     title: 'Zenos XL 72 - Extended 7.2t Luxury Horsebox | Flagship Model | JTH',
@@ -715,14 +715,14 @@ const modelContent: Record<string, {
         'Professional safety features'
       ]
     },
-    gallery: ['01.jpg', '02.jpg', '03.jpg', '04.jpg', '05.jpg'],
+    gallery: ['01.webp', '02.webp', '03.webp', '04.webp', '05.webp'],
     testimonial: {
       name: 'International Competitor',
       role: 'Elite Rider',
       quote: 'The Zenos XL 72 is simply the best horsebox available. The luxury and functionality are unmatched.'
     },
     seoKeywords: 'Zenos XL 72, extended 7.2t horsebox, luxury 7.2 tonne, flagship horsebox, Zenos XL range, premium horse transport',
-    heroImage: '/models/zenos-xl-72/01.jpg'
+    heroImage: '/models/zenos-xl-72/01.webp'
   }
 }
 
@@ -854,7 +854,7 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
       {/* Hero Section */}
       <Hero 
         primarySrc={content.heroImage}
-        fallbackSrc="/models/hero.jpg"
+        fallbackSrc="/models/professional-35/01.webp"
         height="xl"
         overlay="gradient"
       >
@@ -1195,7 +1195,7 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
               <div>
                 <h4 className="font-semibold text-slate-900 mb-3">Proven Track Record</h4>
                 <p className="text-slate-600">
-                  With over 500 happy customers and 30+ years of experience (including our KPH heritage), 
+                  Incorporating the heritage of KPH Horseboxes and built in our Norfolk workshop,
                   JTH is a name you can trust for quality, reliability, and value.
                 </p>
               </div>

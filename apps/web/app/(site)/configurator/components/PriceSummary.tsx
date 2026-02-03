@@ -1,11 +1,12 @@
 'use client'
 
 import { useConfiguratorStore } from '@/lib/configurator/store'
-import { 
-  formatPrice, 
-  calculateMonthlyPayment, 
+import { useRegionPricing } from '@/lib/configurator/hooks'
+import {
+  formatPrice as _formatPrice,
+  calculateMonthlyPayment,
   calculateDeposit,
-  groupOptionsByCategory 
+  groupOptionsByCategory
 } from '@/lib/configurator/calculations'
 import { 
   Calculator, Download, Share2, Save, 
@@ -29,6 +30,9 @@ export default function PriceSummary({ showActions = true, detailed = false }: P
     totalIncVat,
     removeOption
   } = useConfiguratorStore()
+
+  const { region, config: regionConfig } = useRegionPricing()
+  const formatPrice = (amount: number) => _formatPrice(amount, region)
 
   const [showFinance, setShowFinance] = useState(false)
   const [depositPercent, setDepositPercent] = useState(10)
@@ -114,7 +118,7 @@ export default function PriceSummary({ showActions = true, detailed = false }: P
             <span className="font-medium text-slate-900">{formatPrice(totalExVat)}</span>
           </div>
           <div className="flex justify-between items-center mt-2">
-            <span className="text-slate-600">VAT (20%)</span>
+            <span className="text-slate-600">VAT ({regionConfig.vatRate * 100}%)</span>
             <span className="font-medium text-slate-900">{formatPrice(vatAmount)}</span>
           </div>
         </div>

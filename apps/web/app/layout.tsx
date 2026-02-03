@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     default: 'JTH Horseboxes - Premium 3.5t, 4.5t & 7.2t British Horseboxes | Norfolk UK',
     template: '%s | JTH Horseboxes Norfolk'
   },
-  description: 'Leading British horsebox manufacturer in Norfolk. Premium 3.5 tonne, 4.5 tonne & 7.2 tonne horseboxes from £18,500. Professional 35, Principle 35, Progeny 35 & Zenos 72 models. Formerly KPH. 30+ years building luxury horseboxes. Factory showroom visits welcome.',
+  description: 'Leading British horsebox manufacturer in Norfolk. Premium 3.5 tonne, 4.5 tonne & 7.2 tonne horseboxes from £18,500. Professional 35, Principle 35, Progeny 35 & Zenos 72 models. Incorporating KPH heritage. Factory showroom visits welcome.',
   keywords: '3.5t horsebox, 3.5 tonne horsebox, 4.5t horsebox, 4.5 tonne horsebox, 7.2t horsebox, 7.2 tonne horsebox, British horsebox manufacturer, luxury horsebox UK, horsebox for sale Norfolk, custom horsebox builder UK, JTH horseboxes, J Taylor Horseboxes, KPH horseboxes, horse lorry UK, equine transport, horsebox Norfolk, horsebox East Anglia',
   authors: [{ name: 'J Taylor Horseboxes' }],
   creator: 'J Taylor Horseboxes',

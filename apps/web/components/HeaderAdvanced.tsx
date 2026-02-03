@@ -72,7 +72,7 @@ const navigation: NavigationItem[] = [
       {
         label: 'Progeny 35',
         href: '/models/progeny-35',
-        description: 'Top of the range with Pioneer Package',
+        description: 'Top of the range 3.5T model',
         icon: <Sparkles className="w-4 h-4" />,
         badge: 'Premium'
       },
@@ -91,7 +91,7 @@ const navigation: NavigationItem[] = [
       {
         label: 'Progeny 45',
         href: '/models/jth-progeny-45',
-        description: 'Premium 4.5T with Pioneer Package',
+        description: 'Premium 4.5T flagship model',
         icon: <Sparkles className="w-4 h-4" />
       },
       {
@@ -168,7 +168,7 @@ const navigation: NavigationItem[] = [
       {
         label: 'Our Story',
         href: '/about',
-        description: '30+ years of British craftsmanship',
+        description: 'British craftsmanship from Norfolk',
         icon: <Globe className="w-4 h-4" />
       },
       {
@@ -184,6 +184,10 @@ const navigation: NavigationItem[] = [
         icon: <Sparkles className="w-4 h-4" />
       }
     ]
+  },
+  {
+    label: 'Ireland',
+    href: '/ireland'
   },
   {
     label: 'Contact',
@@ -216,6 +220,7 @@ export default function HeaderAdvanced() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const pathname = usePathname()
+  const isIreland = pathname === '/ireland'
   
   const { scrollY } = useScroll()
   const headerOpacity = useTransform(scrollY, [0, 100], [0.7, 1])
@@ -270,21 +275,39 @@ export default function HeaderAdvanced() {
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 group">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="relative"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-amber-500 rounded-full blur-lg opacity-20 group-hover:opacity-40 transition-opacity" />
-                <div className="relative w-12 h-12 bg-gradient-to-br from-blue-700 to-blue-800 rounded-full flex items-center justify-center shadow-lg">
-                  <span className="text-white font-bold text-xl">JTH</span>
-                </div>
-              </motion.div>
-              <div className="hidden sm:block">
-                <div className="text-lg font-light text-slate-900 tracking-wide">J Taylor</div>
-                <div className="text-xs font-medium text-blue-700 tracking-widest uppercase">Horseboxes</div>
-              </div>
+            <Link href={isIreland ? '/ireland' : '/'} className="flex items-center gap-3 group">
+              {isIreland ? (
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Image
+                    src="/logo-ireland.jpg"
+                    alt="JTH Horseboxes Ireland"
+                    width={180}
+                    height={60}
+                    className="h-10 w-auto"
+                    priority
+                  />
+                </motion.div>
+              ) : (
+                <>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="relative"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-amber-500 rounded-full blur-lg opacity-20 group-hover:opacity-40 transition-opacity" />
+                    <div className="relative w-12 h-12 bg-gradient-to-br from-blue-700 to-blue-800 rounded-full flex items-center justify-center shadow-lg">
+                      <span className="text-white font-bold text-xl">JTH</span>
+                    </div>
+                  </motion.div>
+                  <div className="hidden sm:block">
+                    <div className="text-lg font-light text-slate-900 tracking-wide">J Taylor</div>
+                    <div className="text-xs font-medium text-blue-700 tracking-widest uppercase">Horseboxes</div>
+                  </div>
+                </>
+              )}
             </Link>
 
             {/* Desktop Navigation */}

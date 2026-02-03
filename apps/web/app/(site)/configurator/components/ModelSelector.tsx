@@ -1,7 +1,8 @@
 'use client'
 
 import { MODELS, type Model } from '@/lib/configurator/types'
-import { formatPrice } from '@/lib/configurator/calculations'
+import { formatPrice as _formatPrice } from '@/lib/configurator/calculations'
+import { useRegionPricing } from '@/lib/configurator/hooks'
 import { Check, Truck, Weight, Users, Gauge, Badge, Phone } from 'lucide-react'
 import Image from 'next/image'
 
@@ -18,7 +19,9 @@ export default function ModelSelector({
   filterRange,
   filterTonnage
 }: ModelSelectorProps) {
-  
+  const { region } = useRegionPricing()
+  const formatPrice = (amount: number) => _formatPrice(amount, region)
+
   // Filter models based on range and tonnage if provided
   const filteredModels = MODELS.filter(model => {
     if (filterRange && filterRange !== 'PREMIUM') {
@@ -64,7 +67,7 @@ export default function ModelSelector({
       <div>
         <p className="text-sm text-slate-600 mb-1">Starting from</p>
         <p className="text-2xl font-bold text-slate-900">
-          {formatPrice(model.base_price * 100)}
+          {formatPrice(model.base_price)}
         </p>
         <p className="text-xs text-slate-500 mt-1">+ VAT</p>
         {model.pioneer_package_eligible && (

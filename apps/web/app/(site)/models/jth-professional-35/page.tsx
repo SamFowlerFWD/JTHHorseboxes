@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: 'JTH Professional 35 - Premium 3.5t Competition Horsebox',
     description: 'The ultimate luxury 3.5 tonne horsebox for professional riders. Premium materials, advanced safety, from £22,950.',
     images: [{
-      url: 'https://jthltd.co.uk/models/professional-35/01.jpg',
+      url: 'https://jthltd.co.uk/models/professional-35/01.webp',
       width: 1200,
       height: 630,
       alt: 'JTH Professional 35 luxury 3.5 tonne horsebox exterior view'
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Professional 35 - Premium 3.5t Horsebox',
     description: 'The ultimate luxury 3.5 tonne horsebox for professional riders from £22,950',
-    images: ['https://jthltd.co.uk/models/professional-35/01.jpg'],
+    images: ['https://jthltd.co.uk/models/professional-35/01.webp'],
   },
   alternates: {
     canonical: 'https://jthltd.co.uk/models/professional-35',
@@ -54,7 +54,7 @@ export default function Professional35Page() {
   const productSchema = generateProductSchema({
     name: 'JTH Professional 35',
     description: 'Premium 3.5 tonne horsebox for professional riders. Luxury materials, advanced safety features, British-built quality.',
-    image: 'https://jthltd.co.uk/models/professional-35/01.jpg',
+    image: 'https://jthltd.co.uk/models/professional-35/01.webp',
     price: 22950,
     sku: 'PROFESSIONAL-35',
     category: '3.5 Tonne Horsebox'
@@ -109,8 +109,8 @@ export default function Professional35Page() {
       <main className="bg-white">
       {/* Hero Section with Premium Dark Overlay */}
       <Hero 
-        primarySrc="/models/professional-35/01.jpg" 
-        fallbackSrc="/models/professional-35/02.jpg"
+        primarySrc="/models/professional-35/01.webp"
+        fallbackSrc="/models/professional-35/02.webp"
         height="xl"
         overlay="gradient"
       >
@@ -183,8 +183,8 @@ export default function Professional35Page() {
                 Bloomfields, Stephex, and Owens, the Professional 35 offers superior value and quality.
               </p>
               <p className="text-lg text-slate-600 mb-10 leading-relaxed">
-                Built in Great Britain with over 30 years of expertise, this model combines 
-                traditional craftsmanship with cutting-edge innovation, setting new standards 
+                Built in Great Britain at our Norfolk workshop, this model combines
+                traditional craftsmanship with cutting-edge innovation, setting new standards
                 in the luxury horsebox market.
               </p>
               <div className="space-y-4">
@@ -210,7 +210,7 @@ export default function Professional35Page() {
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-blue-400 opacity-20 blur-2xl group-hover:opacity-30 transition-opacity duration-500"></div>
               <div className="relative image-premium">
                 <Image 
-                  src="/models/professional-35/02.jpg" 
+                  src="/models/professional-35/02.webp" 
                   alt="JTH Professional 35 luxury interior" 
                   width={600} 
                   height={400} 
@@ -446,7 +446,7 @@ export default function Professional35Page() {
             {[1, 2, 3, 4, 5, 6].map((num) => (
               <div key={num} className="image-premium group cursor-pointer">
                 <Image
-                  src={`/models/professional-35/0${num}.jpg`}
+                  src={`/models/professional-35/0${num}.webp`}
                   alt={`Professional 35 view ${num}`}
                   width={400}
                   height={300}
@@ -638,10 +638,9 @@ export default function Professional35Page() {
               <div>
                 <h3 className="text-2xl font-semibold text-slate-900 mb-6">Why Choose the Professional 35?</h3>
                 <p className="text-slate-600 mb-6 leading-relaxed">
-                  The Professional 35 is JTH's premium 3.5 tonne horsebox, designed specifically for professional riders, 
-                  serious competitors, and those who demand the very best for their horses. Built at our state-of-the-art 
-                  facility in Norfolk, each Professional 35 combines over 30 years of horsebox building expertise with the 
-                  latest innovations in equine transport.
+                  The Professional 35 is JTH's premium 3.5 tonne horsebox, designed specifically for professional riders,
+                  serious competitors, and those who demand the very best for their horses. Built at our facility in Norfolk,
+                  each Professional 35 incorporates the proven KPH heritage with the latest innovations in equine transport.
                 </p>
                 <p className="text-slate-600 mb-6 leading-relaxed">
                   Starting from £22,950 (excluding VAT), the Professional 35 offers exceptional value when compared to similar 

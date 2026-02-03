@@ -1,103 +1,96 @@
-import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 import { rateLimit, getSecurityHeaders } from '@/lib/security'
-
-// Define protected routes and their required roles
-const PROTECTED_ROUTES = {
-  '/ops': ['admin', 'staff', 'viewer'],
-  '/ops/settings': ['admin'],
-  '/ops/pipeline': ['admin', 'staff'],
-  '/ops/builds': ['admin', 'staff'],
-  '/ops/inventory': ['admin', 'staff'],
-  '/ops/customers': ['admin', 'staff'],
-  '/ops/quotes': ['admin', 'staff'],
-  '/ops/knowledge': ['admin', 'staff', 'viewer'],
-  '/ops/reports': ['admin', 'staff', 'viewer'],
-  '/api/ops': ['admin', 'staff', 'viewer'], // Protect all /api/ops/* API routes
-  '/api/search/admin': ['admin'], // Protect search admin endpoint
-  '/admin': ['admin'],
-}
-
-// Session timeout in milliseconds (30 minutes default)
-const SESSION_TIMEOUT = 30 * 60 * 1000
 
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
   const ip = request.ip || request.headers.get('x-forwarded-for') || 'unknown'
-  const userAgent = request.headers.get('user-agent') || 'unknown'
-  
-  // Rate limiting for all routes
-  const identifier = ip
-  const isAuthApiRoute = pathname.startsWith('/api/auth') // Only API auth routes, not login pages
-  const isApiRoute = pathname.startsWith('/api')
-  const isOpsRoute = pathname.startsWith('/ops')
 
-  // Apply stricter rate limiting for auth API routes (actual login/logout endpoints)
-  if (isAuthApiRoute) {
-    if (!rateLimit(identifier, 10)) { // 10 attempts per minute for auth API
+  // Rate limiting for API routes
+  if (pathname.startsWith('/api')) {
+    if (!rateLimit(ip, 60)) {
       return NextResponse.json(
-        { error: 'Too many authentication attempts. Please try again later.' },
+        { error: 'Too many requests' },
         {
           status: 429,
           headers: {
             'Retry-After': '60',
-            ...getSecurityHeaders()
-          }
-        }
-      )
-    }
-  } else if (isApiRoute) {
-    if (!rateLimit(identifier, 60)) { // 60 requests per minute for API
-      return NextResponse.json(
-        { error: 'Too many requests' },
-        { 
-          status: 429,
-          headers: {
-            'Retry-After': '60',
-            ...getSecurityHeaders()
-          }
-        }
-      )
-    }
-  } else if (isOpsRoute) {
-    if (!rateLimit(identifier, 100)) { // 100 requests per minute for ops pages
-      return NextResponse.json(
-        { error: 'Too many requests' },
-        { 
-          status: 429,
-          headers: {
-            'Retry-After': '60',
-            ...getSecurityHeaders()
-          }
+            ...getSecurityHeaders(),
+          },
         }
       )
     }
   }
 
-  let supabaseResponse = NextResponse.next({
-    request,
-  })
+  // Region detection and cookie persistence
+  const existingRegionCookie = request.cookies.get('region')?.value
+  const hadCookie = !!existingRegionCookie
+  let region = existingRegionCookie || 'GB'
 
-  // Add security headers to all responses
+  if (!hadCookie) {
+    const country = request.headers.get('x-vercel-ip-country')
+    region = country === 'IE' ? 'IE' : 'GB'
+  }
+
+  // Rewrite / to /ireland for first-time Irish IP visitors (no cookie yet)
+  if (pathname === '/' && region === 'IE' && !hadCookie) {
+    const url = request.nextUrl.clone()
+    url.pathname = '/ireland'
+    const rewriteResponse = NextResponse.rewrite(url, { request })
+    rewriteResponse.cookies.set('region', region, {
+      path: '/',
+      maxAge: 31536000,
+      sameSite: 'lax',
+    })
+    // Apply security headers to rewrite response
+    const secHeaders = getSecurityHeaders()
+    Object.entries(secHeaders).forEach(([key, value]) => {
+      rewriteResponse.headers.set(key, value)
+    })
+    if (process.env.NODE_ENV === 'production') {
+      rewriteResponse.headers.set(
+        'Content-Security-Policy',
+        `default-src 'self'; ` +
+        `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live; ` +
+        `style-src 'self' 'unsafe-inline'; ` +
+        `img-src 'self' data: https: http: blob:; ` +
+        `font-src 'self' data:; ` +
+        `connect-src 'self' https://vercel.live https://*.sanity.io; ` +
+        `frame-src 'self'; ` +
+        `frame-ancestors 'none'; ` +
+        `base-uri 'self'; ` +
+        `form-action 'self';`
+      )
+    }
+    return rewriteResponse
+  }
+
+  const response = NextResponse.next({ request })
+
+  // Set region cookie if not already present
+  if (!hadCookie) {
+    response.cookies.set('region', region, {
+      path: '/',
+      maxAge: 31536000,
+      sameSite: 'lax',
+    })
+  }
+
+  // Security headers
   const securityHeaders = getSecurityHeaders()
   Object.entries(securityHeaders).forEach(([key, value]) => {
-    supabaseResponse.headers.set(key, value)
+    response.headers.set(key, value)
   })
 
-  // Enhanced CSP header for production
-  // Note: 'unsafe-inline' is required for Next.js inline scripts
-  // Note: upgrade-insecure-requests is removed since VPS doesn't have SSL yet
+  // CSP for production
   if (process.env.NODE_ENV === 'production') {
-    const nonce = Buffer.from(crypto.randomUUID()).toString('base64')
-    supabaseResponse.headers.set('X-Nonce', nonce)
-    supabaseResponse.headers.set(
+    response.headers.set(
       'Content-Security-Policy',
       `default-src 'self'; ` +
-      `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.supabase.co https://vercel.live; ` +
+      `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live; ` +
       `style-src 'self' 'unsafe-inline'; ` +
       `img-src 'self' data: https: http: blob:; ` +
       `font-src 'self' data:; ` +
-      `connect-src 'self' https://*.supabase.co wss://*.supabase.co https://vercel.live http:; ` +
+      `connect-src 'self' https://vercel.live https://*.sanity.io; ` +
       `frame-src 'self'; ` +
       `frame-ancestors 'none'; ` +
       `base-uri 'self'; ` +
@@ -105,228 +98,7 @@ export async function middleware(request: NextRequest) {
     )
   }
 
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll()
-        },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) =>
-            request.cookies.set(name, value)
-          )
-          supabaseResponse = NextResponse.next({
-            request,
-          })
-          cookiesToSet.forEach(({ name, value, options }) =>
-            supabaseResponse.cookies.set(name, value, options)
-          )
-        },
-      },
-    }
-  )
-
-  // Get current user and session
-  const { data: { user }, error: authError } = await supabase.auth.getUser()
-  
-  // Check if this is a protected route
-  const isProtectedRoute = Object.keys(PROTECTED_ROUTES).some(route => 
-    pathname.startsWith(route)
-  )
-  
-  // Allow access to login page
-  if (pathname === '/ops/login') {
-    // If already logged in, redirect to ops dashboard
-    if (user) {
-      const url = request.nextUrl.clone()
-      url.pathname = '/ops'
-      return NextResponse.redirect(url)
-    }
-    return supabaseResponse
-  }
-  
-  // Check authentication for protected routes
-  if (isProtectedRoute) {
-    // TEMPORARY: Bypass auth in development mode for /admin, /ops, and /api/ops routes
-    if (process.env.NODE_ENV === 'development' && (pathname.startsWith('/admin') || pathname.startsWith('/ops') || pathname.startsWith('/api/ops'))) {
-      console.log('🔓 Development mode: Bypassing authentication for', pathname)
-      return supabaseResponse
-    }
-
-    if (!user) {
-      // Store the original URL to redirect back after login
-      const url = request.nextUrl.clone()
-      url.pathname = '/ops/login'
-      url.searchParams.set('redirect', pathname)
-
-      // Log unauthorized access attempt
-      console.warn(`Unauthorized access attempt to ${pathname} from ${ip}`)
-
-      return NextResponse.redirect(url)
-    }
-
-    // Get user profile with role (with caching)
-    const PROFILE_CACHE_TIME = 60 * 1000 // 1 minute cache
-    const profileCacheKey = `profile_${user.id}`
-    const cachedProfileStr = request.cookies.get(profileCacheKey)?.value
-
-    let profile
-    if (cachedProfileStr) {
-      try {
-        const cached = JSON.parse(cachedProfileStr)
-        if (Date.now() - cached.cached_at < PROFILE_CACHE_TIME) {
-          profile = cached.data
-        }
-      } catch (e) {
-        // Invalid cache, fetch fresh
-      }
-    }
-
-    // Fetch fresh profile if not cached
-    if (!profile) {
-      const { data: freshProfile, error: profileError } = await supabase
-        .from('profiles')
-        .select('role, is_active, locked_until, last_login_at')
-        .eq('id', user.id)
-        .single()
-
-      if (profileError || !freshProfile) {
-        console.error('Failed to fetch user profile:', profileError)
-        const url = request.nextUrl.clone()
-        url.pathname = '/ops/login'
-        return NextResponse.redirect(url)
-      }
-
-      profile = freshProfile
-
-      // Cache the profile
-      supabaseResponse.cookies.set(profileCacheKey, JSON.stringify({
-        data: profile,
-        cached_at: Date.now()
-      }), {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
-        maxAge: 60 // 1 minute
-      })
-    }
-
-    // Check if account is locked
-    if (profile.locked_until && new Date(profile.locked_until) > new Date()) {
-      const url = request.nextUrl.clone()
-      url.pathname = '/ops/locked'
-      return NextResponse.redirect(url)
-    }
-
-    // Check if account is active
-    if (!profile.is_active) {
-      const url = request.nextUrl.clone()
-      url.pathname = '/ops/inactive'
-      return NextResponse.redirect(url)
-    }
-
-    // Check session timeout
-    if (profile.last_login_at) {
-      const lastLogin = new Date(profile.last_login_at).getTime()
-      const now = Date.now()
-      if (now - lastLogin > SESSION_TIMEOUT) {
-        // Session expired, force re-authentication
-        await supabase.auth.signOut()
-        const url = request.nextUrl.clone()
-        url.pathname = '/ops/login'
-        url.searchParams.set('message', 'Session expired. Please log in again.')
-        return NextResponse.redirect(url)
-      }
-    }
-
-    // Check role-based access
-    const requiredRoles = Object.entries(PROTECTED_ROUTES).find(([route]) => 
-      pathname.startsWith(route)
-    )?.[1]
-
-    if (requiredRoles && !requiredRoles.includes(profile.role)) {
-      // Log unauthorized access attempt (async - don't block request)
-      void supabase.rpc('log_audit_event', {
-        p_user_id: user.id,
-        p_event_type: 'data_access',
-        p_action: 'Unauthorized access attempt',
-        p_resource_type: 'ops',
-        p_resource_id: pathname,
-        p_ip_address: ip,
-        p_user_agent: userAgent,
-        p_success: false,
-        p_error_message: `Insufficient permissions. Required role: ${requiredRoles.join(' or ')}, User role: ${profile.role}`
-      }).then(() => {}, (err: Error) => console.error('Audit logging failed:', err))
-
-      const url = request.nextUrl.clone()
-      url.pathname = '/ops/unauthorized'
-      return NextResponse.redirect(url)
-    }
-
-    // Log successful access for audit trail (async - don't block request)
-    if (pathname.includes('/customers') || pathname.includes('/quotes')) {
-      void supabase.rpc('log_audit_event', {
-        p_user_id: user.id,
-        p_event_type: 'data_access',
-        p_action: 'Page access',
-        p_resource_type: 'ops',
-        p_resource_id: pathname,
-        p_ip_address: ip,
-        p_user_agent: userAgent,
-        p_personal_data: pathname.includes('/customers'),
-        p_data_categories: pathname.includes('/customers') ? ['customer_data'] : null
-      }).then(() => {}, (err: Error) => console.error('Audit logging failed:', err))
-    }
-
-    // Update last activity timestamp less frequently (every 5 minutes instead of every request)
-    const LAST_LOGIN_UPDATE_INTERVAL = 5 * 60 * 1000 // 5 minutes
-    const shouldUpdateLastLogin = !profile.last_login_at ||
-      (Date.now() - new Date(profile.last_login_at).getTime() > LAST_LOGIN_UPDATE_INTERVAL)
-
-    if (shouldUpdateLastLogin) {
-      // Update async, don't block the request
-      void supabase
-        .from('profiles')
-        .update({ last_login_at: new Date().toISOString() })
-        .eq('id', user.id)
-        .then(() => {
-          // Invalidate profile cache on successful update
-          supabaseResponse.cookies.delete(profileCacheKey)
-        }, (err: Error) => console.error('Failed to update last_login_at:', err))
-    }
-  }
-
-  // Protected admin routes
-  if (pathname.startsWith('/admin')) {
-    // TEMPORARY: Bypass auth in development mode
-    if (process.env.NODE_ENV === 'development') {
-      console.log('🔓 Development mode: Bypassing admin authentication for', pathname)
-      return supabaseResponse
-    }
-
-    if (!user) {
-      const url = request.nextUrl.clone()
-      url.pathname = '/login'
-      return NextResponse.redirect(url)
-    }
-
-    // Check if user is admin
-    const { data: profile } = await supabase
-      .from('profiles')
-      .select('role')
-      .eq('id', user.id)
-      .single()
-
-    if (profile?.role !== 'admin') {
-      const url = request.nextUrl.clone()
-      url.pathname = '/unauthorized'
-      return NextResponse.redirect(url)
-    }
-  }
-
-  return supabaseResponse
+  return response
 }
 
 export const config = {

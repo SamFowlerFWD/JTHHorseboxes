@@ -3,7 +3,9 @@
 import { useState } from 'react'
 import { useConfiguratorStore } from '@/lib/configurator/store'
 import { MODELS, type Model } from '@/lib/configurator/types'
-import { Truck, Palette, PoundSterling, Check, Badge, Phone, Mail, Star, Package, Crown } from 'lucide-react'
+import { useRegionPricing } from '@/lib/configurator/hooks'
+import { formatPrice } from '@/lib/configurator/calculations'
+import { Truck, Palette, Check, Badge, Phone, Mail, Star, Package, Crown } from 'lucide-react'
 import Image from 'next/image'
 
 export default function VehicleChassisStep() {
@@ -19,14 +21,8 @@ export default function VehicleChassisStep() {
   const [selectedRange, setSelectedRange] = useState<string | null>(selectedModel?.range || null)
   const [selectedTonnage, setSelectedTonnage] = useState<string | null>(selectedModel?.tonnage || null)
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-GB', {
-      style: 'currency',
-      currency: 'GBP',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    }).format(price)
-  }
+  const { region, config: regionConfig } = useRegionPricing()
+  const fp = (price: number) => formatPrice(price, region)
 
   const ranges = [
     {
@@ -120,7 +116,7 @@ export default function VehicleChassisStep() {
     }
     return (
       <div className="text-center">
-        <p className="text-2xl font-bold text-blue-700">{formatPrice(model.base_price)}</p>
+        <p className="text-2xl font-bold text-blue-700">{fp(model.base_price)}</p>
         <p className="text-xs text-slate-500 mt-1">Base Price (ex VAT)</p>
         {model.pioneer_package_eligible && (
           <p className="text-xs text-green-600 mt-1">Pioneer Package Available</p>
@@ -319,12 +315,12 @@ export default function VehicleChassisStep() {
                   min="0"
                   step="100"
                 />
-                <PoundSterling className="absolute left-4 top-3.5 w-5 h-5 text-slate-400" />
+                <span className="absolute left-4 top-3.5 text-slate-400 font-medium">{regionConfig.currencySymbol}</span>
               </div>
               <p className="mt-2 text-sm text-slate-500">
                 Enter the cost of your chosen chassis excluding VAT. 
-                {selectedModel.tonnage === '3.5T' && ' Typical range: £15,000 - £25,000'}
-                {selectedModel.tonnage === '4.5T' && ' Typical range: £20,000 - £35,000'}
+                {selectedModel.tonnage === '3.5T' && ` Typical range: ${fp(15000)} - ${fp(25000)}`}
+                {selectedModel.tonnage === '4.5T' && ` Typical range: ${fp(20000)} - ${fp(35000)}`}
               </p>
             </div>
 
@@ -356,7 +352,7 @@ export default function VehicleChassisStep() {
             <ul className="text-sm text-amber-700 space-y-1">
               <li>• The chassis cost is separate from the horsebox build cost</li>
               <li>• We can source chassis for you or work with your supplied chassis</li>
-              <li>• VAT will be calculated automatically at 20%</li>
+              <li>• VAT will be calculated automatically at {regionConfig.vatRate * 100}%</li>
               <li>• Chassis payment is due with the first build payment</li>
             </ul>
           </div>
@@ -368,7 +364,7 @@ export default function VehicleChassisStep() {
         <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-8 mt-6">
           <h2 className="text-xl font-semibold text-slate-900 mb-4">Pioneer Package Available</h2>
           <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
-            <h4 className="text-sm font-semibold text-green-800 mb-2">Upgrade to Pioneer Package - £10,800</h4>
+            <h4 className="text-sm font-semibold text-green-800 mb-2">Upgrade to Pioneer Package - {fp(10800)}</h4>
             <div className="text-sm text-green-700 space-y-2">
               <p className="font-medium">Complete package includes:</p>
               <div className="grid md:grid-cols-2 gap-2 mt-2">

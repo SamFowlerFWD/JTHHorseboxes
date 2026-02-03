@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useConfiguratorStore } from '@/lib/configurator/store'
 import { MODELS } from '@/lib/configurator/types'
+import { getRegionFromCookie } from '@/lib/configurator/region'
+import { useRegionPricing } from '@/lib/configurator/hooks'
+import { formatPrice } from '@/lib/configurator/calculations'
 import { ArrowLeft, ArrowRight, Save, Send, Info } from 'lucide-react'
 
 // Import new components
@@ -16,7 +19,8 @@ import ReviewStep from './components/ReviewStep'
 export default function ConfiguratorPage() {
   const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
-  
+  const { region, config: regionConfig } = useRegionPricing()
+
   const {
     currentStep,
     setCurrentStep,
@@ -26,10 +30,17 @@ export default function ConfiguratorPage() {
     resetConfiguration,
     setLoading,
     setError,
+    setRegion,
     error,
     isLoading,
     customerEmail
   } = useConfiguratorStore()
+
+  // Sync region from cookie into the store on mount
+  useEffect(() => {
+    const cookieRegion = getRegionFromCookie()
+    setRegion(cookieRegion)
+  }, [])
 
   // Fetch pricing options when model is selected
   useEffect(() => {
@@ -123,21 +134,19 @@ export default function ConfiguratorPage() {
         throw new Error('No configuration to submit')
       }
 
-      // Submit lead with configuration
-      const response = await fetch('/api/leads', {
+      // Submit configuration via contact API
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          first_name: configuration.customerName.split(' ')[0] || '',
-          last_name: configuration.customerName.split(' ').slice(1).join(' ') || '',
+          name: configuration.customerName,
           email: configuration.customerEmail,
           phone: configuration.customerPhone,
+          message: `Configurator submission for ${configuration.model_name || 'horsebox'}. Total: ${configuration.total_inc_vat ? formatPrice(configuration.total_inc_vat, region) : 'TBC'}`,
           source: 'configurator',
           configuration: configuration,
-          quote_amount: configuration.total_inc_vat,
-          agent_name: configuration.agentName
         })
       })
 
@@ -145,10 +154,8 @@ export default function ConfiguratorPage() {
         throw new Error('Failed to submit configuration')
       }
 
-      const result = await response.json()
-      
       // Navigate to success page
-      router.push(`/configurator/success?id=${result.id}`)
+      router.push(`/configurator/success?id=${Date.now()}`)
     } catch (err) {
       console.error('Error submitting configuration:', err)
       setError('Failed to submit your configuration. Please try again.')
@@ -182,7 +189,7 @@ export default function ConfiguratorPage() {
         return 'Choose your range, tonnage, and specific model'
       case 3:
         return selectedModel?.availability === 'configurable' 
-          ? 'Set your deposit amount (default £5,000)' 
+          ? `Set your deposit amount (default ${formatPrice(5000, region)})`
           : 'Deposit information (for reference only)'
       case 4:
         if (!selectedModel) return 'Choose additional options and customizations'

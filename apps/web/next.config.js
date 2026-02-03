@@ -1,13 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    unoptimized: true, // Disable image optimization for VPS without sharp
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
+    ],
   },
-  experimental: {
-    serverActions: {
-      bodySizeLimit: '2mb'
-    }
-  }
 }
 
 module.exports = nextConfig

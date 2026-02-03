@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { createServerSupabaseClient } from '@/lib/supabase/server'
+import { getBlogPost, getRelatedPosts } from '@/lib/sanity/client'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -13,13 +13,7 @@ interface BlogPostPageProps {
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const supabase = await createServerSupabaseClient()
-  const { data: post } = await supabase
-    .from('blog_posts')
-    .select('title, excerpt, meta_title, meta_description, keywords, featured_image')
-    .eq('slug', params.slug)
-    .eq('status', 'published')
-    .single()
+  const post = await getBlogPost(params.slug)
 
   if (!post) {
     return {
@@ -29,57 +23,43 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   }
 
   return {
-    title: post.meta_title || post.title,
-    description: post.meta_description || post.excerpt,
+    title: post.metaTitle || post.title,
+    description: post.metaDescription || post.excerpt,
     keywords: post.keywords || [],
     openGraph: {
-      title: post.meta_title || post.title,
-      description: post.meta_description || post.excerpt,
+      title: post.metaTitle || post.title,
+      description: post.metaDescription || post.excerpt,
       type: 'article',
       url: `https://jthltd.co.uk/blog/${params.slug}`,
-      images: post.featured_image ? [{ url: post.featured_image }] : [],
+      images: post.featuredImage?.asset?.url ? [{ url: post.featuredImage.asset.url }] : [],
     },
   }
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const supabase = await createServerSupabaseClient()
+  const post = await getBlogPost(params.slug)
 
-  // Fetch the blog post
-  const { data: post, error } = await supabase
-    .from('blog_posts')
-    .select('*')
-    .eq('slug', params.slug)
-    .eq('status', 'published')
-    .single()
-
-  if (error || !post) {
+  if (!post) {
     notFound()
   }
 
-  // Fetch related posts (same category, exclude current)
-  const { data: relatedPosts } = await supabase
-    .from('blog_posts')
-    .select('id, title, slug, excerpt, category, featured_image, published_at')
-    .eq('status', 'published')
-    .eq('category', post.category)
-    .neq('id', post.id)
-    .order('published_at', { ascending: false })
-    .limit(3)
+  const relatedPosts = post.category
+    ? await getRelatedPosts(post.category, post._id)
+    : []
 
   const breadcrumbs = [
     { name: 'Home', url: 'https://jthltd.co.uk' },
     { name: 'Blog', url: 'https://jthltd.co.uk/blog' },
-    { name: post.title, url: `https://jthltd.co.uk/blog/${post.slug}` }
+    { name: post.title, url: `https://jthltd.co.uk/blog/${post.slug.current}` }
   ]
 
   const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs)
   const articleSchema = generateArticleSchema({
     headline: post.title,
     description: post.excerpt || '',
-    datePublished: post.published_at,
-    dateModified: post.updated_at,
-    image: post.featured_image || '',
+    datePublished: post.publishedAt || '',
+    dateModified: post.updatedAt || '',
+    image: post.featuredImage?.asset?.url || '',
     author: 'J Taylor Horseboxes',
     publisher: 'J Taylor Horseboxes',
   })
@@ -92,11 +72,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <article className="min-h-screen bg-slate-50">
         {/* Header with Featured Image */}
         <div className="relative">
-          {post.featured_image ? (
+          {post.featuredImage?.asset?.url ? (
             <div className="relative h-96 md:h-[500px] w-full">
               <Image
-                src={post.featured_image}
-                alt={post.title}
+                src={post.featuredImage.asset.url}
+                alt={post.featuredImage.alt || post.title}
                 fill
                 className="object-cover"
                 priority
@@ -122,11 +102,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 {post.title}
               </h1>
               <div className="flex flex-wrap items-center gap-6 text-white/90">
-                {post.published_at && (
+                {post.publishedAt && (
                   <div className="flex items-center">
                     <Calendar className="w-5 h-5 mr-2" />
-                    <time dateTime={post.published_at}>
-                      {new Date(post.published_at).toLocaleDateString('en-GB', {
+                    <time dateTime={post.publishedAt}>
+                      {new Date(post.publishedAt).toLocaleDateString('en-GB', {
                         day: 'numeric',
                         month: 'long',
                         year: 'numeric'
@@ -164,26 +144,32 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           )}
 
           {/* Main Content */}
-          <div
-            className="prose prose-lg prose-slate max-w-none
-              prose-headings:font-bold prose-headings:text-slate-900
-              prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
-              prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
-              prose-p:text-slate-700 prose-p:leading-relaxed prose-p:mb-6
-              prose-a:text-blue-600 prose-a:no-underline hover:prose-a:text-blue-700
-              prose-strong:text-slate-900 prose-strong:font-semibold
-              prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6
-              prose-ol:my-6 prose-ol:list-decimal prose-ol:pl-6
-              prose-li:text-slate-700 prose-li:my-2
-              prose-img:rounded-lg prose-img:shadow-lg
-              prose-blockquote:border-l-4 prose-blockquote:border-blue-600
-              prose-blockquote:bg-blue-50 prose-blockquote:py-4 prose-blockquote:px-6
-              prose-blockquote:rounded-r-lg prose-blockquote:not-italic
-              prose-code:bg-slate-100 prose-code:px-2 prose-code:py-1 prose-code:rounded
-              prose-code:text-sm prose-code:font-mono prose-code:text-slate-800
-            "
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
+          {post.content ? (
+            <div
+              className="prose prose-lg prose-slate max-w-none
+                prose-headings:font-bold prose-headings:text-slate-900
+                prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
+                prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
+                prose-p:text-slate-700 prose-p:leading-relaxed prose-p:mb-6
+                prose-a:text-blue-600 prose-a:no-underline hover:prose-a:text-blue-700
+                prose-strong:text-slate-900 prose-strong:font-semibold
+                prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6
+                prose-ol:my-6 prose-ol:list-decimal prose-ol:pl-6
+                prose-li:text-slate-700 prose-li:my-2
+                prose-img:rounded-lg prose-img:shadow-lg
+                prose-blockquote:border-l-4 prose-blockquote:border-blue-600
+                prose-blockquote:bg-blue-50 prose-blockquote:py-4 prose-blockquote:px-6
+                prose-blockquote:rounded-r-lg prose-blockquote:not-italic
+                prose-code:bg-slate-100 prose-code:px-2 prose-code:py-1 prose-code:rounded
+                prose-code:text-sm prose-code:font-mono prose-code:text-slate-800
+              "
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
+          ) : (
+            <div className="text-center py-12 text-slate-500">
+              <p>Content is being prepared. Check back soon.</p>
+            </div>
+          )}
 
           {/* Tags */}
           {post.tags && post.tags.length > 0 && (
@@ -207,7 +193,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <h3 className="text-lg font-semibold text-slate-900 mb-4">Share this article</h3>
             <div className="flex gap-3">
               <a
-                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`https://jthltd.co.uk/blog/${post.slug}`)}`}
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`https://jthltd.co.uk/blog/${post.slug.current}`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition-colors font-medium text-sm"
@@ -215,7 +201,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 Twitter
               </a>
               <a
-                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://jthltd.co.uk/blog/${post.slug}`)}`}
+                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://jthltd.co.uk/blog/${post.slug.current}`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition-colors font-medium text-sm"
@@ -223,7 +209,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 Facebook
               </a>
               <a
-                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://jthltd.co.uk/blog/${post.slug}`)}`}
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://jthltd.co.uk/blog/${post.slug.current}`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition-colors font-medium text-sm"
@@ -235,22 +221,22 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
 
         {/* Related Posts */}
-        {relatedPosts && relatedPosts.length > 0 && (
+        {relatedPosts.length > 0 && (
           <div className="bg-white py-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <h2 className="text-3xl font-bold text-slate-900 mb-8">Related Articles</h2>
               <div className="grid md:grid-cols-3 gap-8">
                 {relatedPosts.map((relatedPost) => (
                   <Link
-                    key={relatedPost.id}
-                    href={`/blog/${relatedPost.slug}`}
+                    key={relatedPost._id}
+                    href={`/blog/${relatedPost.slug.current}`}
                     className="group bg-slate-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
                   >
-                    {relatedPost.featured_image && (
+                    {relatedPost.featuredImage?.asset?.url && (
                       <div className="relative h-48 overflow-hidden">
                         <Image
-                          src={relatedPost.featured_image}
-                          alt={relatedPost.title}
+                          src={relatedPost.featuredImage.asset.url}
+                          alt={relatedPost.featuredImage.alt || relatedPost.title}
                           fill
                           className="object-cover group-hover:scale-105 transition-transform duration-300"
                         />
@@ -271,10 +257,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         </p>
                       )}
                       <div className="flex items-center text-xs text-slate-500">
-                        {relatedPost.published_at && (
+                        {relatedPost.publishedAt && (
                           <div className="flex items-center">
                             <Calendar className="w-3 h-3 mr-1" />
-                            {new Date(relatedPost.published_at).toLocaleDateString('en-GB', {
+                            {new Date(relatedPost.publishedAt).toLocaleDateString('en-GB', {
                               day: 'numeric',
                               month: 'short',
                               year: 'numeric'

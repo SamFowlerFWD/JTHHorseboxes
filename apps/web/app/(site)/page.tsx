@@ -8,6 +8,7 @@ import { motion } from 'framer-motion'
 import { organizationSchema, localBusinessSchema } from '@/components/Schema'
 import { Star, Shield, Award, Truck, Phone, MapPin, ArrowRight, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 // SEO metadata is preserved from original homepage
 export default function HomePage() {
@@ -24,12 +25,12 @@ export default function HomePage() {
     }
   }, [])
 
-  // Sample gallery images - external shots showing full horseboxes
+  // Gallery images - mixture from optimised JTH images
   const galleryImages = [
     {
-      src: '/models/professional-35/01.jpg',
-      alt: 'JTH Professional 3.5T - Exterior Side View',
-      title: 'Professional 35',
+      src: '/gallery/professional-01.webp',
+      alt: 'JTH Professional 4.5T - Exterior View',
+      title: 'Professional 45',
       description: 'Premium British horsebox with luxury finish',
       hotspots: [
         { x: 30, y: 40, label: 'GRP Construction', description: 'Durable and lightweight' },
@@ -37,28 +38,58 @@ export default function HomePage() {
       ]
     },
     {
-      src: '/models/principle-35/02.jpg',
-      alt: 'JTH Principle 3.5T - External Full Length View',
-      title: 'Principle 35',
+      src: '/gallery/principle-01.webp',
+      alt: 'JTH Principle - Exterior View',
+      title: 'Principle',
       description: 'Perfect balance of quality and value'
     },
     {
-      src: '/models/progeny-35/01.jpg',
-      alt: 'JTH Progeny 3.5T - Exterior Angle View',
-      title: 'Progeny 35',
-      description: 'Top of the range with Pioneer Package'
+      src: '/gallery/progeny-01.webp',
+      alt: 'JTH Progeny - Interior Horse Area',
+      title: 'Progeny',
+      description: 'Top of the range 3.5 tonne model'
     },
     {
-      src: '/models/professional-35/03.jpg',
-      alt: 'JTH Professional 3.5T - Three Quarter View',
-      title: 'Professional 35',
+      src: '/gallery/freedom-01.webp',
+      alt: 'Aeos Freedom 45 - Full Side View',
+      title: 'Aeos Freedom 45',
+      description: 'KPH heritage lightweight design'
+    },
+    {
+      src: '/gallery/discovery45-01.webp',
+      alt: 'Aeos Discovery 45 - Exterior',
+      title: 'Aeos Discovery 45',
+      description: 'Versatile and practical horsebox'
+    },
+    {
+      src: '/gallery/discovery72-01.webp',
+      alt: 'Aeos Discovery 72 - Full Length',
+      title: 'Aeos Discovery 72',
+      description: '7.2 tonne capacity for multiple horses'
+    },
+    {
+      src: '/gallery/professional-02.webp',
+      alt: 'JTH Professional - Three Quarter View',
+      title: 'Professional',
       description: 'Showcasing premium British craftsmanship'
     },
     {
-      src: '/models/principle-35/03.jpg',
-      alt: 'JTH Principle 3.5T - Side Profile',
-      title: 'Principle 35',
+      src: '/gallery/principle-02.webp',
+      alt: 'JTH Principle - Detail View',
+      title: 'Principle',
       description: 'Essential features with exceptional value'
+    },
+    {
+      src: '/gallery/progeny-02.webp',
+      alt: 'JTH Progeny - Interior Living',
+      title: 'Progeny',
+      description: 'Luxury living quarters included'
+    },
+    {
+      src: '/gallery/discovery45-02.webp',
+      alt: 'Aeos Discovery 45 - Side Profile',
+      title: 'Aeos Discovery 45',
+      description: 'Aerodynamic design for fuel efficiency'
     }
   ]
 
@@ -71,7 +102,7 @@ export default function HomePage() {
       description: 'The ultimate in luxury and performance for the professional rider.',
       price: '£22,000',
       priceNote: 'exc. VAT',
-      images: ['/models/professional-35/02.jpg', '/models/professional-35/03.jpg', '/models/professional-35/01.jpg'],
+      images: ['/models/professional-35/02.webp', '/models/professional-35/03.webp', '/models/professional-35/01.webp'],
       badge: {
         text: 'Most Popular',
         variant: 'default' as const
@@ -95,7 +126,7 @@ export default function HomePage() {
       description: 'Perfect balance of quality and value for the discerning owner.',
       price: '£18,500',
       priceNote: 'exc. VAT',
-      images: ['/models/principle-35/02.jpg', '/models/principle-35/03.jpg', '/models/principle-35/01.jpg'],
+      images: ['/models/principle-35/02.webp', '/models/principle-35/03.webp', '/models/principle-35/01.webp'],
       badge: {
         text: 'Best Value',
         variant: 'secondary' as const
@@ -116,10 +147,10 @@ export default function HomePage() {
       id: 'progeny-35',
       title: 'Progeny 35',
       subtitle: '3.5 Tonne Premium',
-      description: 'Top of the range with Pioneer Package included.',
+      description: 'Our flagship 3.5 tonne model with premium specification.',
       price: '£25,500',
       priceNote: 'exc. VAT',
-      images: ['/models/progeny-35/02.jpg', '/models/progeny-35/03.jpg', '/models/progeny-35/01.jpg'],
+      images: ['/models/progeny-35/02.webp', '/models/progeny-35/03.webp', '/models/progeny-35/01.webp'],
       badge: {
         text: 'Premium',
         variant: 'default' as const
@@ -129,7 +160,7 @@ export default function HomePage() {
       features: [
         { label: 'Payload', value: '1,150kg' },
         { label: 'Horse Capacity', value: '2 horses' },
-        { label: 'Living', value: 'Pioneer Package (£10,800)' },
+        { label: 'Living', value: 'Day living as standard' },
         { label: 'Warranty', value: '2 years structural' }
       ],
       availability: 'Limited' as const,
@@ -154,9 +185,9 @@ export default function HomePage() {
           href: "/configurator"
         }}
         media={[
-          { type: 'image', src: '/models/professional-35/02.jpg' },
-          { type: 'image', src: '/models/principle-35/01.jpg' },
-          { type: 'image', src: '/models/progeny-35/02.jpg' }
+          { type: 'image', src: '/models/professional-35/02.webp' },
+          { type: 'image', src: '/models/principle-35/01.webp' },
+          { type: 'image', src: '/models/progeny-35/02.webp' }
         ]}
         overlay="gradient"
         height="full"
@@ -169,23 +200,23 @@ export default function HomePage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
               <Shield className="w-8 h-8 text-blue-700 mx-auto mb-3" />
-              <div className="text-2xl font-bold text-slate-900">2 Year</div>
-              <div className="text-sm text-slate-700">Structural Warranty</div>
+              <div className="text-2xl font-bold text-slate-900">British Built</div>
+              <div className="text-sm text-slate-700">Beeston, Norfolk</div>
             </div>
             <div className="text-center">
               <Award className="w-8 h-8 text-blue-700 mx-auto mb-3" />
-              <div className="text-2xl font-bold text-slate-900">30+</div>
-              <div className="text-sm text-slate-700">Years Experience</div>
+              <div className="text-2xl font-bold text-slate-900">KPH Heritage</div>
+              <div className="text-sm text-slate-700">Proven Designs</div>
             </div>
             <div className="text-center">
               <Star className="w-8 h-8 text-amber-500 mx-auto mb-3" />
-              <div className="text-2xl font-bold text-slate-900">500+</div>
-              <div className="text-sm text-slate-700">Happy Customers</div>
+              <div className="text-2xl font-bold text-slate-900">Family Run</div>
+              <div className="text-sm text-slate-700">Personal Service</div>
             </div>
             <div className="text-center">
               <Truck className="w-8 h-8 text-blue-700 mx-auto mb-3" />
               <div className="text-2xl font-bold text-slate-900">UK & IE</div>
-              <div className="text-sm text-slate-700">Delivery Service</div>
+              <div className="text-sm text-slate-700">Delivery Available</div>
             </div>
           </div>
         </div>
@@ -246,10 +277,19 @@ export default function HomePage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="bento-item-wide gradient-premium p-8 rounded-2xl text-white"
+              className="bento-item-wide rounded-2xl text-white relative overflow-hidden min-h-[200px]"
             >
-              <h3 className="text-xl font-semibold mb-2">30+ Years Experience</h3>
-              <p className="text-sm text-white/90">Incorporating the legacy of KPH</p>
+              <Image
+                src="/kph-heritage.webp"
+                alt="Aeos Freedom 45 horsebox - KPH Heritage"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent" />
+              <div className="relative z-10 p-8 h-full flex flex-col justify-end">
+                <h3 className="text-xl font-semibold mb-2">KPH Heritage</h3>
+                <p className="text-sm text-white/90">Incorporating Kevin Parker's proven designs</p>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -265,10 +305,10 @@ export default function HomePage() {
             className="text-center mb-12"
           >
             <h2 className="text-fluid-4xl font-light text-slate-900 mb-4">
-              Immersive Gallery <span className="text-amber-500">Experience</span>
+              Crafted in <span className="text-amber-500">Norfolk</span>
             </h2>
             <p className="text-fluid-lg text-slate-700 max-w-3xl mx-auto">
-              Explore our models with our flagship dissolve-style gallery featuring hotspot interactions
+              Every JTH horsebox is built by hand at our Beeston workshop. See the quality and attention to detail that goes into each build.
             </p>
           </motion.div>
 
@@ -355,9 +395,9 @@ export default function HomePage() {
               </p>
             </div>
             <div className="glass-dark p-8 rounded-2xl">
-              <h4 className="font-semibold mb-3 text-amber-400">30+ Years of Experience</h4>
+              <h4 className="font-semibold mb-3 text-amber-400">KPH Heritage</h4>
               <p className="text-slate-300 leading-relaxed">
-                Incorporating the legacy of Kevin Parker Horseboxes (KPH), we bring over 30 years of horsebox building expertise.
+                Incorporating the proven designs and legacy of Kevin Parker Horseboxes (KPH), built on years of refinement.
               </p>
             </div>
             <div className="glass-dark p-8 rounded-2xl">

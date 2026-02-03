@@ -2,6 +2,7 @@
 
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { type Region, getRegionConfig } from './region'
 import type {
   ConfigurationData,
   SelectedOption,
@@ -57,12 +58,19 @@ interface ConfiguratorState {
   calculationWarnings: CalculationWarning[]
   chassisExtensionPricePerFoot: number
 
+  // Region
+  region: Region
+  vatRate: number
+
   // UI State
   activeCategory: string
   currentStep: number
   isLoading: boolean
   error: string | null
-  
+
+  // Actions - Region
+  setRegion: (region: Region) => void
+
   // Actions - Customer
   setCustomerInfo: (info: { name?: string; email?: string; phone?: string; agent?: string }) => void
 
@@ -98,8 +106,6 @@ interface ConfiguratorState {
   setLoading: (loading: boolean) => void
   setError: (error: string | null) => void
 }
-
-const VAT_RATE = 0.20 // 20% VAT
 
 export const useConfiguratorStore = create<ConfiguratorState>()(
   persist(
@@ -148,11 +154,25 @@ export const useConfiguratorStore = create<ConfiguratorState>()(
       calculationWarnings: [],
       chassisExtensionPricePerFoot: 1000, // Default £1000 per foot
 
+      // Initial state - Region
+      region: 'GB' as Region,
+      vatRate: 0.20,
+
       // Initial state - UI
       activeCategory: 'exterior',
       currentStep: 1,
       isLoading: false,
       error: null,
+
+      // Set region and update VAT rate
+      setRegion: (region: Region) => {
+        const config = getRegionConfig(region)
+        set({ region, vatRate: config.vatRate })
+        // Recalculate if a model is selected
+        if (get().selectedModel) {
+          get().recalculateAll()
+        }
+      },
 
       // Set customer information
       setCustomerInfo: (info) => {
@@ -418,7 +438,7 @@ export const useConfiguratorStore = create<ConfiguratorState>()(
         const totalExVat = buildSubtotal + state.chassisCost
         
         // Calculate VAT
-        const vatAmount = totalExVat * VAT_RATE
+        const vatAmount = totalExVat * state.vatRate
         const totalIncVat = totalExVat + vatAmount
 
         set({ 
@@ -455,14 +475,14 @@ export const useConfiguratorStore = create<ConfiguratorState>()(
         }
 
         // Calculate chassis with VAT
-        const chassisWithVat = chassisCost * (1 + VAT_RATE)
+        const chassisWithVat = chassisCost * (1 + state.vatRate)
 
         // Calculate build total with VAT
         let buildTotal = basePrice + optionsTotal
         if (pioneerPackage && selectedModel.pioneer_package_eligible) {
           buildTotal += PIONEER_PACKAGE.price
         }
-        const buildWithVat = buildTotal * (1 + VAT_RATE)
+        const buildWithVat = buildTotal * (1 + state.vatRate)
 
         // Build balance minus deposit
         const buildBalanceMinusDeposit = buildWithVat - deposit
@@ -540,7 +560,7 @@ export const useConfiguratorStore = create<ConfiguratorState>()(
           pioneerPackageEnabled: pioneerPackage,
           pioneerPackageCost: PIONEER_PACKAGE.price,
           chassisExtensionPricePerFoot: extensionPrice,
-          vatRate: VAT_RATE
+          vatRate: state.vatRate
         })
 
         // Update state with calculation results
@@ -553,8 +573,8 @@ export const useConfiguratorStore = create<ConfiguratorState>()(
           optionsTotal: result.pricing.options_total,
           buildSubtotal: result.pricing.build_subtotal + state.basePrice,
           totalExVat: result.pricing.total_ex_vat + state.basePrice + state.chassisCost,
-          vatAmount: (result.pricing.total_ex_vat + state.basePrice + state.chassisCost) * VAT_RATE,
-          totalIncVat: (result.pricing.total_ex_vat + state.basePrice + state.chassisCost) * (1 + VAT_RATE)
+          vatAmount: (result.pricing.total_ex_vat + state.basePrice + state.chassisCost) * state.vatRate,
+          totalIncVat: (result.pricing.total_ex_vat + state.basePrice + state.chassisCost) * (1 + state.vatRate)
         })
 
         // Recalculate payment schedule with updated totals

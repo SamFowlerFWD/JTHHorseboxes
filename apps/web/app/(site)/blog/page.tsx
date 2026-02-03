@@ -1,9 +1,9 @@
 import { Metadata } from 'next'
-import { createServerSupabaseClient } from '@/lib/supabase/server'
+import { getBlogPosts } from '@/lib/sanity/client'
 import Link from 'next/link'
 import Image from 'next/image'
 import Hero from '@/components/Hero'
-import { Calendar, User, ArrowRight, Tag } from 'lucide-react'
+import { Calendar, ArrowRight, Tag } from 'lucide-react'
 import Schema, { generateBreadcrumbSchema } from '@/components/Schema'
 
 export const metadata: Metadata = {
@@ -19,21 +19,12 @@ export const metadata: Metadata = {
 }
 
 export default async function BlogPage() {
-  const supabase = await createServerSupabaseClient()
+  const posts = await getBlogPosts()
 
-  // Fetch published posts
-  const { data: posts, error } = await supabase
-    .from('blog_posts')
-    .select('id, title, slug, excerpt, category, tags, featured_image, published_at, author_id, featured')
-    .eq('status', 'published')
-    .order('published_at', { ascending: false })
+  const featuredPost = posts.find(p => p.featured) || posts[0]
+  const regularPosts = posts.filter(p => p._id !== featuredPost?._id)
 
-  // Get featured post
-  const featuredPost = posts?.find(p => p.featured) || posts?.[0]
-  const regularPosts = posts?.filter(p => p.id !== featuredPost?.id) || []
-
-  // Get unique categories
-  const categories = Array.from(new Set(posts?.map(p => p.category).filter(Boolean))) as string[]
+  const categories = Array.from(new Set(posts.map(p => p.category).filter(Boolean))) as string[]
 
   const breadcrumbs = [
     { name: 'Home', url: 'https://jthltd.co.uk' },
@@ -63,6 +54,19 @@ export default async function BlogPage() {
       </Hero>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* No posts state */}
+        {posts.length === 0 && (
+          <div className="text-center py-16">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Content Coming Soon</h2>
+            <p className="text-lg text-slate-600 mb-2">
+              We're preparing expert horsebox advice and tips for you.
+            </p>
+            <p className="text-slate-500">
+              Check back soon, or <Link href="/contact" className="text-blue-600 hover:text-blue-700 underline">contact us</Link> for immediate help.
+            </p>
+          </div>
+        )}
+
         {/* Featured Post */}
         {featuredPost && (
           <div className="mb-16">
@@ -70,21 +74,21 @@ export default async function BlogPage() {
               <h2 className="text-2xl font-bold text-slate-900">Featured Article</h2>
             </div>
             <Link
-              href={`/blog/${featuredPost.slug}`}
+              href={`/blog/${featuredPost.slug.current}`}
               className="group block bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
             >
               <div className="md:flex">
-                {featuredPost.featured_image && (
+                {featuredPost.featuredImage?.asset?.url && (
                   <div className="md:w-1/2 relative h-64 md:h-auto">
                     <Image
-                      src={featuredPost.featured_image}
-                      alt={featuredPost.title}
+                      src={featuredPost.featuredImage.asset.url}
+                      alt={featuredPost.featuredImage.alt || featuredPost.title}
                       fill
                       className="object-cover"
                     />
                   </div>
                 )}
-                <div className={`${featuredPost.featured_image ? 'md:w-1/2' : 'w-full'} p-8`}>
+                <div className={`${featuredPost.featuredImage?.asset?.url ? 'md:w-1/2' : 'w-full'} p-8`}>
                   {featuredPost.category && (
                     <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 mb-4">
                       {featuredPost.category}
@@ -99,10 +103,10 @@ export default async function BlogPage() {
                     </p>
                   )}
                   <div className="flex items-center text-sm text-slate-500 space-x-4">
-                    {featuredPost.published_at && (
+                    {featuredPost.publishedAt && (
                       <div className="flex items-center">
                         <Calendar className="w-4 h-4 mr-1" />
-                        {new Date(featuredPost.published_at).toLocaleDateString('en-GB', {
+                        {new Date(featuredPost.publishedAt).toLocaleDateString('en-GB', {
                           day: 'numeric',
                           month: 'long',
                           year: 'numeric'
@@ -144,19 +148,19 @@ export default async function BlogPage() {
         )}
 
         {/* Blog Posts Grid */}
-        {regularPosts.length > 0 ? (
+        {regularPosts.length > 0 && (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {regularPosts.map((post) => (
               <Link
-                key={post.id}
-                href={`/blog/${post.slug}`}
+                key={post._id}
+                href={`/blog/${post.slug.current}`}
                 className="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
               >
-                {post.featured_image && (
+                {post.featuredImage?.asset?.url && (
                   <div className="relative h-48 overflow-hidden">
                     <Image
-                      src={post.featured_image}
-                      alt={post.title}
+                      src={post.featuredImage.asset.url}
+                      alt={post.featuredImage.alt || post.title}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
@@ -177,10 +181,10 @@ export default async function BlogPage() {
                     </p>
                   )}
                   <div className="flex items-center justify-between text-xs text-slate-500">
-                    {post.published_at && (
+                    {post.publishedAt && (
                       <div className="flex items-center">
                         <Calendar className="w-3 h-3 mr-1" />
-                        {new Date(post.published_at).toLocaleDateString('en-GB', {
+                        {new Date(post.publishedAt).toLocaleDateString('en-GB', {
                           day: 'numeric',
                           month: 'short',
                           year: 'numeric'
@@ -205,13 +209,6 @@ export default async function BlogPage() {
               </Link>
             ))}
           </div>
-        ) : (
-          !featuredPost && (
-            <div className="text-center py-16">
-              <p className="text-xl text-slate-600">No blog posts available yet.</p>
-              <p className="text-slate-500 mt-2">Check back soon for expert horsebox advice!</p>
-            </div>
-          )
         )}
 
         {/* CTA Section */}

@@ -1,6 +1,8 @@
 'use client'
 
 import { useConfiguratorStore } from '@/lib/configurator/store'
+import { useRegionPricing } from '@/lib/configurator/hooks'
+import { formatPrice } from '@/lib/configurator/calculations'
 import { Check, Calendar, CreditCard, Package, Truck, User, Mail, Phone } from 'lucide-react'
 
 interface ReviewStepProps {
@@ -30,14 +32,8 @@ export default function ReviewStep({ onSubmit, isSubmitting }: ReviewStepProps) 
     paymentSchedule
   } = useConfiguratorStore()
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-GB', {
-      style: 'currency',
-      currency: 'GBP',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    }).format(price)
-  }
+  const { region, config: regionConfig } = useRegionPricing()
+  const fp = (price: number) => formatPrice(price, region)
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
@@ -82,11 +78,11 @@ export default function ReviewStep({ onSubmit, isSubmitting }: ReviewStepProps) 
           </div>
           <div className="flex justify-between items-center pb-3 border-b border-slate-100">
             <span className="text-slate-600">Base Price:</span>
-            <span className="font-medium text-slate-900">{formatPrice(basePrice)}</span>
+            <span className="font-medium text-slate-900">{fp(basePrice)}</span>
           </div>
           <div className="flex justify-between items-center pb-3 border-b border-slate-100">
             <span className="text-slate-600">Chassis Cost:</span>
-            <span className="font-medium text-slate-900">{formatPrice(chassisCost)}</span>
+            <span className="font-medium text-slate-900">{fp(chassisCost)}</span>
           </div>
           {color && (
             <div className="flex justify-between items-center pb-3 border-b border-slate-100">
@@ -115,7 +111,7 @@ export default function ReviewStep({ onSubmit, isSubmitting }: ReviewStepProps) 
                     </span>
                   )}
                 </div>
-                <span className="font-medium text-blue-950">{formatPrice(10800)}</span>
+                <span className="font-medium text-blue-950">{fp(10800)}</span>
               </div>
             </div>
           )}
@@ -129,7 +125,7 @@ export default function ReviewStep({ onSubmit, isSubmitting }: ReviewStepProps) 
                 )}
               </div>
               <span className="text-slate-900">
-                {formatPrice(option.price * option.quantity)}
+                {fp(option.price * option.quantity)}
               </span>
             </div>
           ))}
@@ -142,7 +138,7 @@ export default function ReviewStep({ onSubmit, isSubmitting }: ReviewStepProps) 
         <div className="mt-4 pt-4 border-t border-slate-200">
           <div className="flex justify-between items-center">
             <span className="font-medium text-slate-700">Options Total:</span>
-            <span className="font-semibold text-slate-900">{formatPrice(optionsTotal)}</span>
+            <span className="font-semibold text-slate-900">{fp(optionsTotal)}</span>
           </div>
         </div>
       </div>
@@ -156,23 +152,23 @@ export default function ReviewStep({ onSubmit, isSubmitting }: ReviewStepProps) 
         <div className="space-y-3">
           <div className="flex justify-between items-center">
             <span className="text-slate-600">Build Subtotal:</span>
-            <span className="text-slate-900">{formatPrice(buildSubtotal)}</span>
+            <span className="text-slate-900">{fp(buildSubtotal)}</span>
           </div>
           <div className="flex justify-between items-center">
             <span className="text-slate-600">Chassis Cost:</span>
-            <span className="text-slate-900">{formatPrice(chassisCost)}</span>
+            <span className="text-slate-900">{fp(chassisCost)}</span>
           </div>
           <div className="flex justify-between items-center pb-3 border-b border-slate-200">
             <span className="text-slate-600">Total (ex VAT):</span>
-            <span className="font-medium text-slate-900">{formatPrice(totalExVat)}</span>
+            <span className="font-medium text-slate-900">{fp(totalExVat)}</span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-slate-600">VAT (20%):</span>
-            <span className="text-slate-900">{formatPrice(vatAmount)}</span>
+            <span className="text-slate-600">VAT ({regionConfig.vatRate * 100}%):</span>
+            <span className="text-slate-900">{fp(vatAmount)}</span>
           </div>
           <div className="flex justify-between items-center pt-3 border-t border-slate-200">
             <span className="text-lg font-semibold text-slate-900">Total (inc VAT):</span>
-            <span className="text-2xl font-bold text-blue-700">{formatPrice(totalIncVat)}</span>
+            <span className="text-2xl font-bold text-blue-700">{fp(totalIncVat)}</span>
           </div>
         </div>
       </div>
@@ -187,22 +183,22 @@ export default function ReviewStep({ onSubmit, isSubmitting }: ReviewStepProps) 
         <div className="grid md:grid-cols-4 gap-4 mb-6">
           <div className="bg-white p-4 rounded-lg">
             <p className="text-sm text-slate-600 mb-1">Deposit</p>
-            <p className="text-xl font-bold text-slate-900">{formatPrice(paymentSchedule.deposit)}</p>
+            <p className="text-xl font-bold text-slate-900">{fp(paymentSchedule.deposit)}</p>
             <p className="text-xs text-slate-500 mt-1">Due on order</p>
           </div>
           <div className="bg-white p-4 rounded-lg">
             <p className="text-sm text-slate-600 mb-1">1st Payment</p>
-            <p className="text-xl font-bold text-slate-900">{formatPrice(paymentSchedule.firstPayment)}</p>
+            <p className="text-xl font-bold text-slate-900">{fp(paymentSchedule.firstPayment)}</p>
             <p className="text-xs text-slate-500 mt-1">Includes chassis</p>
           </div>
           <div className="bg-white p-4 rounded-lg">
             <p className="text-sm text-slate-600 mb-1">2nd Payment</p>
-            <p className="text-xl font-bold text-slate-900">{formatPrice(paymentSchedule.secondPayment)}</p>
+            <p className="text-xl font-bold text-slate-900">{fp(paymentSchedule.secondPayment)}</p>
             <p className="text-xs text-slate-500 mt-1">Build start</p>
           </div>
           <div className="bg-white p-4 rounded-lg">
             <p className="text-sm text-slate-600 mb-1">Final Payment</p>
-            <p className="text-xl font-bold text-slate-900">{formatPrice(paymentSchedule.finalPayment)}</p>
+            <p className="text-xl font-bold text-slate-900">{fp(paymentSchedule.finalPayment)}</p>
             <p className="text-xs text-slate-500 mt-1">On completion</p>
           </div>
         </div>
@@ -210,9 +206,9 @@ export default function ReviewStep({ onSubmit, isSubmitting }: ReviewStepProps) 
         <div className="bg-white/50 p-4 rounded-lg">
           <h4 className="text-sm font-semibold text-slate-700 mb-2">Payment Breakdown:</h4>
           <ul className="text-sm text-slate-600 space-y-1">
-            <li>• Chassis with VAT: {formatPrice(paymentSchedule.chassisWithVat)}</li>
-            <li>• Build with VAT: {formatPrice(paymentSchedule.buildWithVat)}</li>
-            <li>• Balance after deposit: {formatPrice(paymentSchedule.buildBalanceMinusDeposit)}</li>
+            <li>• Chassis with VAT: {fp(paymentSchedule.chassisWithVat)}</li>
+            <li>• Build with VAT: {fp(paymentSchedule.buildWithVat)}</li>
+            <li>• Balance after deposit: {fp(paymentSchedule.buildBalanceMinusDeposit)}</li>
             <li>• Balance split into 3 equal payments</li>
           </ul>
         </div>

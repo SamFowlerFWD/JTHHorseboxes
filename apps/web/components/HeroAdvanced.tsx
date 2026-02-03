@@ -54,7 +54,7 @@ export default function HeroAdvanced({
   description = "Leading UK horsebox manufacturer in Norfolk. Handcrafted luxury horseboxes from £18,500.",
   primaryCTA = { text: "Explore Models", href: "/models" },
   secondaryCTA = { text: "Start Configuring", href: "/configurator" },
-  media = [{ type: 'image', src: '/hero.jpg' }],
+  media = [{ type: 'image', src: '/hero.webp' }],
   overlay = 'gradient',
   height = 'full',
   autoplay = true,
