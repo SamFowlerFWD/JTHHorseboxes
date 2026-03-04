@@ -100,6 +100,26 @@ const navigation = {
   }
 }
 
+const irelandNavigation = {
+  models: {
+    title: 'Models',
+    sections: [
+      {
+        title: 'Available in Ireland (3.5T)',
+        isCategory: true,
+        items: []
+      },
+      {
+        title: '3.5T Models',
+        items: [
+          { name: 'Principle 35', href: '/ireland/models/principle-35' },
+          { name: 'Professional 35', href: '/ireland/models/professional-35' },
+        ]
+      },
+    ]
+  }
+}
+
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null)
@@ -114,7 +134,7 @@ export default function Header() {
     const cookieRegion = getRegionCookie()
     if (cookieRegion) {
       setRegion(cookieRegion)
-    } else if (pathname === '/ireland') {
+    } else if (pathname.startsWith('/ireland')) {
       setRegion('IE')
     }
   }, [pathname])
@@ -132,7 +152,8 @@ export default function Header() {
     }
   }, [regionDropdownOpen])
 
-  const isIreland = pathname === '/ireland' || region === 'IE'
+  const isIreland = pathname.startsWith('/ireland') || region === 'IE'
+  const activeNav = isIreland ? irelandNavigation : navigation
 
   function handleRegionSelect(newRegion: string) {
     setRegion(newRegion)
@@ -193,12 +214,12 @@ export default function Header() {
             
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-8">
-              <Link href="/" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">
+              <Link href={isIreland ? '/ireland' : '/'} className="text-slate-700 hover:text-blue-600 transition-colors font-medium">
                 Home
               </Link>
-              
+
               {/* Models Dropdown */}
-              <div 
+              <div
                 className="relative"
                 onMouseEnter={() => setDropdownOpen('models')}
                 onMouseLeave={() => setDropdownOpen(null)}
@@ -209,13 +230,13 @@ export default function Header() {
                   Models
                   <ChevronDown className="h-4 w-4" />
                 </button>
-                
+
                 {dropdownOpen === 'models' && (
-                  <div className="absolute top-full left-0 mt-0 pt-2 w-[700px]">
+                  <div className={`absolute top-full left-0 mt-0 pt-2 ${isIreland ? 'w-[400px]' : 'w-[700px]'}`}>
                     <div className="bg-white shadow-xl border border-slate-200">
                       <div className="p-6">
                         <div className="space-y-6">
-                          {navigation.models.sections.map((section, index) => (
+                          {activeNav.models.sections.map((section, index) => (
                             <div key={section.title}>
                               {section.isCategory ? (
                                 <h2 className="text-sm font-bold text-slate-900 border-b border-slate-200 pb-2 mb-3">
@@ -260,10 +281,10 @@ export default function Header() {
                       </div>
                       <div className="bg-slate-50 px-6 py-4 border-t border-slate-200">
                         <Link
-                          href="/models"
+                          href={isIreland ? '/ireland' : '/models'}
                           className="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
                         >
-                          View All Models →
+                          {isIreland ? 'View Ireland Range →' : 'View All Models →'}
                         </Link>
                       </div>
                     </div>
@@ -345,13 +366,13 @@ export default function Header() {
         {mobileMenuOpen && (
           <div className="lg:hidden bg-white border-t border-slate-200">
             <nav className="px-4 py-6 space-y-4">
-              <Link href="/" className="block text-slate-700 hover:text-blue-600 transition-colors font-medium">
+              <Link href={isIreland ? '/ireland' : '/'} className="block text-slate-700 hover:text-blue-600 transition-colors font-medium">
                 Home
               </Link>
               <div>
                 <div className="font-medium text-slate-700 mb-2">Models</div>
                 <div className="ml-4 space-y-3">
-                  {navigation.models.sections.map((section) => (
+                  {activeNav.models.sections.map((section) => (
                     <div key={section.title}>
                       {section.isCategory ? (
                         <div className="text-sm font-bold text-slate-900 border-b border-slate-200 pb-1 mb-2">
@@ -388,8 +409,8 @@ export default function Header() {
                     </div>
                   ))}
                   
-                  <Link href="/models" className="block text-sm font-medium text-blue-600 hover:text-blue-700 mt-4 pt-2 border-t border-slate-200">
-                    View All Models →
+                  <Link href={isIreland ? '/ireland' : '/models'} className="block text-sm font-medium text-blue-600 hover:text-blue-700 mt-4 pt-2 border-t border-slate-200">
+                    {isIreland ? 'View Ireland Range →' : 'View All Models →'}
                   </Link>
                 </div>
               </div>

@@ -24,8 +24,8 @@ const REGION_CONFIGS: Record<Region, RegionConfig> = {
     vatRate: 0.23,
     currency: 'EUR',
     locale: 'en-IE',
-    markup: 1.15,
-    exchangeRate: 1.17,
+    markup: parseFloat(process.env.NEXT_PUBLIC_IE_MARKUP || '1.15'),
+    exchangeRate: parseFloat(process.env.NEXT_PUBLIC_IE_EXCHANGE_RATE || '1.17'),
     currencySymbol: '€',
   },
 }

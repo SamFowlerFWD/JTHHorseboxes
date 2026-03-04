@@ -3,15 +3,24 @@ import Image from 'next/image'
 import { ArrowRight, Check, Shield, Star, Truck, Users, Phone, Wrench, MapPin } from 'lucide-react'
 import type { Metadata } from 'next'
 import Schema, { generateProductSchema, generateBreadcrumbSchema } from '@/components/Schema'
+import { formatPrice } from '@/lib/configurator/calculations'
+import { getRegionConfig } from '@/lib/configurator/region'
 import IrelandHero from './IrelandHero'
+
+// Compute EUR prices at module scope (pure functions, safe for server components)
+const ieConfig = getRegionConfig('IE')
+const toEur = (gbp: number) => Math.round(gbp * ieConfig.markup * ieConfig.exchangeRate)
+
+const eurPrinciple = formatPrice(18500, 'IE')
+const eurProfessional = formatPrice(22000, 'IE')
 
 export const metadata: Metadata = {
   title: 'Horseboxes Ireland - Premium 3.5t British Horseboxes Delivered to Ireland | JTH',
-  description: 'Premium British-built 3.5 tonne horseboxes delivered direct to Ireland. Principle 35 from £18,500, Professional 35 from £22,000, Progeny 35 from £25,500. Drive on a standard car licence. Direct delivery with full handover training included.',
-  keywords: 'horsebox Ireland, 3.5t horsebox Ireland, horsebox delivery Ireland, British horsebox Ireland, buy horsebox Ireland, JTH Ireland, horse transport Ireland, Principle 35, Professional 35, Progeny 35',
+  description: `Premium British-built 3.5 tonne horseboxes delivered direct to Ireland. Principle 35 from ${eurPrinciple}, Professional 35 from ${eurProfessional}. Drive on a standard car licence. Direct delivery with full handover training included.`,
+  keywords: 'horsebox Ireland, 3.5t horsebox Ireland, horsebox delivery Ireland, British horsebox Ireland, buy horsebox Ireland, JTH Ireland, horse transport Ireland, Principle 35, Professional 35',
   openGraph: {
     title: 'JTH Horseboxes Ireland - Premium 3.5t Range Delivered Direct',
-    description: 'Premium British-built 3.5t horseboxes delivered to Ireland. From £18,500 exc. VAT. Drive on a standard car licence.',
+    description: `Premium British-built 3.5t horseboxes delivered to Ireland. From ${eurPrinciple} exc. VAT. Drive on a standard car licence.`,
     images: ['/models/professional-35/02.webp'],
     type: 'website',
     locale: 'en_IE',
@@ -27,7 +36,8 @@ const models = [
     slug: 'principle-35',
     name: 'Principle 35',
     subtitle: 'Best Value Entry Point',
-    price: '£18,500',
+    price: eurPrinciple,
+    gbpBase: 18500,
     description: 'The perfect balance of quality and value. Ideal for first-time horsebox buyers looking for British build quality without compromise.',
     image: '/models/principle-35/02.webp',
     features: [
@@ -43,7 +53,8 @@ const models = [
     slug: 'professional-35',
     name: 'Professional 35',
     subtitle: 'Most Popular Choice',
-    price: '£22,000',
+    price: eurProfessional,
+    gbpBase: 22000,
     description: 'Our most popular model with premium features included as standard. The choice of serious competitors across the UK and Ireland.',
     image: '/models/professional-35/02.webp',
     features: [
@@ -54,22 +65,6 @@ const models = [
     ],
     badge: 'Most Popular',
     badgeColor: 'bg-blue-700',
-  },
-  {
-    slug: 'progeny-35',
-    name: 'Progeny 35',
-    subtitle: 'Top of the Range',
-    price: '£25,500',
-    description: 'Our flagship 3.5 tonne model with premium specification throughout. The ultimate in luxury for the discerning Irish equestrian.',
-    image: '/models/progeny-35/02.webp',
-    features: [
-      'Stallion partition included',
-      'Premium materials throughout',
-      'Day living as standard',
-      'Enhanced safety features',
-    ],
-    badge: 'Premium',
-    badgeColor: 'bg-amber-600',
   },
 ]
 
@@ -107,9 +102,10 @@ export default function IrelandPage() {
       name: `JTH ${model.name}`,
       description: `JTH ${model.name} - Premium 3.5 tonne horsebox delivered to Ireland. ${model.description}`,
       image: `https://jthltd.co.uk${model.image}`,
-      price: parseInt(model.price.replace(/[£,]/g, '')),
+      price: toEur(model.gbpBase),
       sku: model.slug.toUpperCase(),
       category: '3.5 Tonne Horsebox',
+      priceCurrency: 'EUR',
     })
   )
 
@@ -159,11 +155,11 @@ export default function IrelandPage() {
                 Our 3.5 Tonne <span className="text-blue-700">Range for Ireland</span>
               </h2>
               <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                Three premium models to suit every budget and requirement. All built in Great Britain, delivered direct to your door in Ireland.
+                Two premium models to suit every budget and requirement. All built in Great Britain, delivered direct to your door in Ireland.
               </p>
             </div>
 
-            <div className="grid gap-8 md:grid-cols-3">
+            <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
               {models.map((model) => (
                 <div
                   key={model.slug}
@@ -217,7 +213,7 @@ export default function IrelandPage() {
 
                     <div className="flex gap-3">
                       <Link
-                        href={`/models/${model.slug}`}
+                        href={`/ireland/models/${model.slug}`}
                         className="group/btn flex-1 inline-flex items-center justify-center bg-blue-700 px-4 py-3 text-white font-semibold hover:bg-blue-800 transition-all duration-300"
                       >
                         View Details

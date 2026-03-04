@@ -116,6 +116,7 @@ export function generateProductSchema(product: {
   sku: string
   category?: string
   brand?: string
+  priceCurrency?: string
 }) {
   return {
     "@context": "https://schema.org",
@@ -139,7 +140,7 @@ export function generateProductSchema(product: {
     "offers": {
       "@type": "Offer",
       "price": product.price,
-      "priceCurrency": "GBP",
+      "priceCurrency": product.priceCurrency || "GBP",
       "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
       "availability": "https://schema.org/InStock",
       "seller": {
