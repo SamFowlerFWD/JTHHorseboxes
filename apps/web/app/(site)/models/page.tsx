@@ -2,7 +2,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Hero from '@/components/Hero'
 import { loadPricingConfig } from '@/lib/pricing'
-import { ArrowRight, Check, Star, Award, Shield, Phone, Mail, MapPin, Users } from 'lucide-react'
+import { ArrowRight, Check, Phone, Mail, MapPin, Users, Star } from 'lucide-react'
+import TrustIndicators from '@/components/TrustIndicators'
 import type { Metadata } from 'next'
 import Schema, { generateProductSchema, generateBreadcrumbSchema } from '@/components/Schema'
 
@@ -196,32 +197,7 @@ export default async function ModelsPage() {
       </section>
 
       {/* Trust Indicators */}
-      <section className="bg-blue-50 py-12 border-y border-blue-200">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <Shield className="w-8 h-8 text-blue-700 mx-auto mb-3" />
-              <div className="text-2xl font-bold text-slate-900">British Built</div>
-              <div className="text-sm text-slate-600">Beeston, Norfolk</div>
-            </div>
-            <div className="text-center">
-              <Award className="w-8 h-8 text-blue-700 mx-auto mb-3" />
-              <div className="text-2xl font-bold text-slate-900">KPH Heritage</div>
-              <div className="text-sm text-slate-600">Proven Designs</div>
-            </div>
-            <div className="text-center">
-              <Star className="w-8 h-8 text-blue-700 mx-auto mb-3" />
-              <div className="text-2xl font-bold text-slate-900">Family Run</div>
-              <div className="text-sm text-slate-600">Personal Service</div>
-            </div>
-            <div className="text-center">
-              <Check className="w-8 h-8 text-blue-700 mx-auto mb-3" />
-              <div className="text-2xl font-bold text-slate-900">Premium</div>
-              <div className="text-sm text-slate-600">Quality Standard</div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <TrustIndicators variant="alt" />
 
       {/* Comprehensive Model Comparison Section */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">

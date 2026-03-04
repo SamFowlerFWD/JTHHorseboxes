@@ -43,11 +43,11 @@ export default function Footer() {
               built for the future with innovation and materials technology.
             </p>
             <div className="flex items-center gap-4">
-              <a href="#" className="w-10 h-10 bg-slate-800 hover:bg-blue-600 transition-colors flex items-center justify-center">
+              <a href="https://www.facebook.com/JTHHorseboxes" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 hover:bg-blue-600 transition-colors flex items-center justify-center">
                 <Facebook className="w-5 h-5" />
                 <span className="sr-only">Facebook</span>
               </a>
-              <a href="#" className="w-10 h-10 bg-slate-800 hover:bg-blue-600 transition-colors flex items-center justify-center">
+              <a href="https://www.instagram.com/jtaylorhorseboxes/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 hover:bg-blue-600 transition-colors flex items-center justify-center">
                 <Instagram className="w-5 h-5" />
                 <span className="sr-only">Instagram</span>
               </a>
@@ -202,13 +202,13 @@ export default function Footer() {
               <span className="text-blue-400 font-medium">Made in Great Britain</span>
             </div>
             <div className="flex items-center gap-6 text-sm">
-              <Link href="/privacy" className="text-slate-400 hover:text-blue-400 transition-colors">
+              <Link href="/privacy-policy" className="text-slate-400 hover:text-blue-400 transition-colors">
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="text-slate-400 hover:text-blue-400 transition-colors">
+              <Link href="/terms-conditions" className="text-slate-400 hover:text-blue-400 transition-colors">
                 Terms & Conditions
               </Link>
-              <Link href="/cookies" className="text-slate-400 hover:text-blue-400 transition-colors">
+              <Link href="/cookie-policy" className="text-slate-400 hover:text-blue-400 transition-colors">
                 Cookie Policy
               </Link>
             </div>

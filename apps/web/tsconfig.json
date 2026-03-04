@@ -19,7 +19,8 @@
     "isolatedModules": true,
     "incremental": true,
     "types": [
-      "node"
+      "node",
+      "@cloudflare/workers-types"
     ],
     "baseUrl": ".",
     "paths": {

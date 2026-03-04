@@ -79,20 +79,28 @@ export default function DissolveGallery({
     containScroll: 'trimSnaps'
   })
 
-  // Preload images
+  // Preload the next 2 images relative to current index
   useEffect(() => {
-    images.forEach((image, index) => {
-      const img = new window.Image()
-      img.src = image.src
-      img.onload = () => {
-        setImageLoaded(prev => {
-          const newState = [...prev]
-          newState[index] = true
-          return newState
-        })
+    const indicesToPreload = [
+      currentIndex,
+      (currentIndex + 1) % images.length,
+      (currentIndex + 2) % images.length,
+    ]
+
+    indicesToPreload.forEach((index) => {
+      if (!imageLoaded[index]) {
+        const img = new window.Image()
+        img.src = images[index].src
+        img.onload = () => {
+          setImageLoaded((prev) => {
+            const newState = [...prev]
+            newState[index] = true
+            return newState
+          })
+        }
       }
     })
-  }, [images])
+  }, [currentIndex, images, imageLoaded])
 
   // Auto-play functionality
   useEffect(() => {

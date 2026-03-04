@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useCallback } from 'react'
+import Image from 'next/image'
 
 type HeroProps = {
   primarySrc: string
@@ -47,10 +48,13 @@ export default function Hero({
   return (
     <section className={`relative ${heightClasses[height]} ${className || ''}`}>
       {!failed && (
-        <img
+        <Image
           src={src}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover"
+          alt="JTH Horsebox"
+          fill
+          priority
+          sizes="100vw"
+          className="absolute inset-0 object-cover"
           onError={onError}
         />
       )}

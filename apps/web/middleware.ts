@@ -1,6 +1,28 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { rateLimit, getSecurityHeaders } from '@/lib/security'
 
+const CSP_HEADER =
+  `default-src 'self'; ` +
+  `script-src 'self' 'unsafe-inline'; ` +
+  `style-src 'self' 'unsafe-inline'; ` +
+  `img-src 'self' data: https: http: blob:; ` +
+  `font-src 'self' data:; ` +
+  `connect-src 'self' https://*.sanity.io; ` +
+  `frame-src 'self'; ` +
+  `frame-ancestors 'none'; ` +
+  `base-uri 'self'; ` +
+  `form-action 'self';`
+
+function applyHeaders(response: NextResponse) {
+  const headers = getSecurityHeaders()
+  Object.entries(headers).forEach(([key, value]) => {
+    response.headers.set(key, value)
+  })
+  if (process.env.NODE_ENV === 'production') {
+    response.headers.set('Content-Security-Policy', CSP_HEADER)
+  }
+}
+
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
   const ip = request.ip || request.headers.get('x-forwarded-for') || 'unknown'
@@ -33,7 +55,8 @@ export async function middleware(request: NextRequest) {
   }
 
   // Rewrite / to /ireland for first-time Irish IP visitors (no cookie yet)
-  if (pathname === '/' && region === 'IE' && !hadCookie) {
+  // Exclude /admin paths from region redirect
+  if (pathname === '/' && region === 'IE' && !hadCookie && !pathname.startsWith('/admin')) {
     const url = request.nextUrl.clone()
     url.pathname = '/ireland'
     const rewriteResponse = NextResponse.rewrite(url, { request })
@@ -42,26 +65,7 @@ export async function middleware(request: NextRequest) {
       maxAge: 31536000,
       sameSite: 'lax',
     })
-    // Apply security headers to rewrite response
-    const secHeaders = getSecurityHeaders()
-    Object.entries(secHeaders).forEach(([key, value]) => {
-      rewriteResponse.headers.set(key, value)
-    })
-    if (process.env.NODE_ENV === 'production') {
-      rewriteResponse.headers.set(
-        'Content-Security-Policy',
-        `default-src 'self'; ` +
-        `script-src 'self' 'unsafe-inline' 'unsafe-eval'; ` +
-        `style-src 'self' 'unsafe-inline'; ` +
-        `img-src 'self' data: https: http: blob:; ` +
-        `font-src 'self' data:; ` +
-        `connect-src 'self' https://*.sanity.io; ` +
-        `frame-src 'self'; ` +
-        `frame-ancestors 'none'; ` +
-        `base-uri 'self'; ` +
-        `form-action 'self';`
-      )
-    }
+    applyHeaders(rewriteResponse)
     return rewriteResponse
   }
 
@@ -76,28 +80,7 @@ export async function middleware(request: NextRequest) {
     })
   }
 
-  // Security headers
-  const securityHeaders = getSecurityHeaders()
-  Object.entries(securityHeaders).forEach(([key, value]) => {
-    response.headers.set(key, value)
-  })
-
-  // CSP for production
-  if (process.env.NODE_ENV === 'production') {
-    response.headers.set(
-      'Content-Security-Policy',
-      `default-src 'self'; ` +
-      `script-src 'self' 'unsafe-inline' 'unsafe-eval'; ` +
-      `style-src 'self' 'unsafe-inline'; ` +
-      `img-src 'self' data: https: http: blob:; ` +
-      `font-src 'self' data:; ` +
-      `connect-src 'self' https://*.sanity.io; ` +
-      `frame-src 'self'; ` +
-      `frame-ancestors 'none'; ` +
-      `base-uri 'self'; ` +
-      `form-action 'self';`
-    )
-  }
+  applyHeaders(response)
 
   return response
 }

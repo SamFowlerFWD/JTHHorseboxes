@@ -29,10 +29,6 @@
   --jth-gold-600: hsl(45, 60%, 42%);
   --jth-gold-700: hsl(45, 60%, 35%);
   
-  /* Legacy Blue (for transition) */
-  --jth-blue-600: #2563eb;
-  --jth-blue-700: #1d4ed8;
-  
   --jth-dark: #0f172a;
   --jth-silver: #c0c0c0;
   

@@ -1,29 +1,17 @@
 "use client"
 
-import { useEffect } from 'react'
 import HeroAdvanced from '@/components/HeroAdvanced'
 import DissolveGallery from '@/components/DissolveGallery'
 import ProductShowcase from '@/components/ProductShowcase'
 import { motion } from 'framer-motion'
-import { organizationSchema, localBusinessSchema } from '@/components/Schema'
-import { Star, Shield, Award, Truck, Phone, MapPin, ArrowRight, ChevronRight } from 'lucide-react'
+import Schema, { organizationSchema, localBusinessSchema } from '@/components/Schema'
+import { Phone, MapPin, ArrowRight, ChevronRight } from 'lucide-react'
+import TrustIndicators from '@/components/TrustIndicators'
 import Link from 'next/link'
 import Image from 'next/image'
 
 // SEO metadata is preserved from original homepage
 export default function HomePage() {
-  // Add structured data to head
-  useEffect(() => {
-    const script = document.createElement('script')
-    script.type = 'application/ld+json'
-    script.text = JSON.stringify([organizationSchema, localBusinessSchema])
-    document.head.appendChild(script)
-    return () => {
-      if (script.parentNode) {
-        script.parentNode.removeChild(script)
-      }
-    }
-  }, [])
 
   // Gallery images - mixture from optimised JTH images
   const galleryImages = [
@@ -171,6 +159,8 @@ export default function HomePage() {
 
   return (
     <main>
+      <Schema schema={[organizationSchema, localBusinessSchema]} />
+
       {/* Advanced Hero Section with British Racing Green */}
       <HeroAdvanced
         title="Premium British Horseboxes"
@@ -194,33 +184,8 @@ export default function HomePage() {
         parallax
       />
 
-      {/* Trust Indicators with new colors */}
-      <section className="bg-slate-50 py-12 border-y border-slate-200">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <Shield className="w-8 h-8 text-blue-700 mx-auto mb-3" />
-              <div className="text-2xl font-bold text-slate-900">British Built</div>
-              <div className="text-sm text-slate-700">Beeston, Norfolk</div>
-            </div>
-            <div className="text-center">
-              <Award className="w-8 h-8 text-blue-700 mx-auto mb-3" />
-              <div className="text-2xl font-bold text-slate-900">KPH Heritage</div>
-              <div className="text-sm text-slate-700">Proven Designs</div>
-            </div>
-            <div className="text-center">
-              <Star className="w-8 h-8 text-amber-500 mx-auto mb-3" />
-              <div className="text-2xl font-bold text-slate-900">Family Run</div>
-              <div className="text-sm text-slate-700">Personal Service</div>
-            </div>
-            <div className="text-center">
-              <Truck className="w-8 h-8 text-blue-700 mx-auto mb-3" />
-              <div className="text-2xl font-bold text-slate-900">UK & IE</div>
-              <div className="text-sm text-slate-700">Delivery Available</div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Trust Indicators */}
+      <TrustIndicators />
 
       {/* Bento Grid Section with British Racing Green */}
       <section className="py-20 bg-gradient-to-b from-white to-slate-50">

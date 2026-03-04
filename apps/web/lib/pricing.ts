@@ -10,6 +10,7 @@ export type Model = {
   name: string
   basePricePence: MoneyPence | null
   active: boolean
+  category?: string
   notes?: string
 }
 
@@ -48,7 +49,15 @@ export type Option = {
   includedByDefault?: boolean
 }
 
+export type RegionConfig = {
+  vatRate: number
+  currency: string
+  markup: number
+  exchangeRate: number
+}
+
 export type PricingConfig = {
+  regionConfig?: Record<string, RegionConfig>
   vatRate: number
   depositDefaultPence: MoneyPence
   agents: Agent[]
@@ -57,6 +66,20 @@ export type PricingConfig = {
   options: Option[]
 }
 
+/**
+ * Load pricing configuration.
+ * At runtime on Cloudflare Workers → reads from KV.
+ * At build time / local dev (Node.js) → falls back to static JSON.
+ */
 export async function loadPricingConfig(): Promise<PricingConfig> {
+  try {
+    // Dynamic import so Node.js builds don't choke on Workers-only APIs
+    const { getPricingFromKV } = await import('./kv')
+    const kv = await getPricingFromKV()
+    if (kv) return kv
+  } catch {
+    // Not in a Workers context — fall through to static data
+  }
+
   return pricingData as PricingConfig
 }

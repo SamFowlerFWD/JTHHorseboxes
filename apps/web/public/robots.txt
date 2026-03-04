@@ -57,6 +57,4 @@ User-agent: MJ12bot
 Disallow: /
 
 Sitemap: https://jthltd.co.uk/sitemap.xml
-Sitemap: https://jthltd.co.uk/sitemap-models.xml
-Sitemap: https://jthltd.co.uk/sitemap-gallery.xml
 Host: https://jthltd.co.uk

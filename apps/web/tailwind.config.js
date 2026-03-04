@@ -89,9 +89,9 @@ module.exports = {
   				'sans-serif'
   			],
   			display: [
-  				'Inter',
-  				'system-ui',
-  				'sans-serif'
+  				'Playfair Display',
+  				'Georgia',
+  				'serif'
   			]
   		},
   		fontSize: {

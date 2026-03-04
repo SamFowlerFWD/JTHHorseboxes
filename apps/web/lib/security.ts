@@ -4,48 +4,13 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 
-// Rate limiting configuration
-const rateLimitMap = new Map<string, { count: number; timestamp: number }>()
-const RATE_LIMIT_WINDOW = 60 * 1000 // 1 minute
-const RATE_LIMIT_MAX_REQUESTS = 60 // 60 requests per minute
-
 /**
- * Simple in-memory rate limiter
- * In production, use Redis or similar for distributed rate limiting
+ * Rate limiter pass-through.
+ * // TODO: implement distributed rate limiting via KV
  */
-export function rateLimit(identifier: string, limit = RATE_LIMIT_MAX_REQUESTS): boolean {
-  const now = Date.now()
-  const record = rateLimitMap.get(identifier)
-
-  if (!record) {
-    rateLimitMap.set(identifier, { count: 1, timestamp: now })
-    return true
-  }
-
-  if (now - record.timestamp > RATE_LIMIT_WINDOW) {
-    rateLimitMap.set(identifier, { count: 1, timestamp: now })
-    return true
-  }
-
-  if (record.count >= limit) {
-    return false
-  }
-
-  record.count++
+export function rateLimit(_identifier: string, _limit = 60): boolean {
   return true
 }
-
-/**
- * Clean up old rate limit entries
- */
-setInterval(() => {
-  const now = Date.now()
-  for (const [key, value] of rateLimitMap.entries()) {
-    if (now - value.timestamp > RATE_LIMIT_WINDOW * 2) {
-      rateLimitMap.delete(key)
-    }
-  }
-}, RATE_LIMIT_WINDOW)
 
 /**
  * Security headers for API responses
@@ -57,6 +22,7 @@ export function getSecurityHeaders(): HeadersInit {
     'X-XSS-Protection': '1; mode=block',
     'Referrer-Policy': 'strict-origin-when-cross-origin',
     'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+    'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
   }
 }
 
@@ -138,25 +104,17 @@ export function isBot(userAgent?: string | null): boolean {
 }
 
 /**
- * Generate a secure random token
+ * Generate a secure random token using crypto.getRandomValues(),
+ * which is available in both Node.js and Cloudflare Workers.
  */
 export function generateSecureToken(length = 32): string {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  const array = new Uint8Array(length)
+  crypto.getRandomValues(array)
   let token = ''
-  
-  if (typeof window !== 'undefined' && window.crypto) {
-    const array = new Uint8Array(length)
-    window.crypto.getRandomValues(array)
-    for (let i = 0; i < length; i++) {
-      token += chars[array[i] % chars.length]
-    }
-  } else {
-    // Server-side fallback
-    for (let i = 0; i < length; i++) {
-      token += chars[Math.floor(Math.random() * chars.length)]
-    }
+  for (let i = 0; i < length; i++) {
+    token += chars[array[i] % chars.length]
   }
-  
   return token
 }
 

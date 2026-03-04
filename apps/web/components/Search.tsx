@@ -43,7 +43,7 @@ export default function Search({
         const response = await fetch(
           `/api/search?q=${encodeURIComponent(query)}&index=${index}&limit=10`
         )
-        const data = await response.json()
+        const data: any = await response.json()
 
         if (data.success) {
           setResults(data.hits || [])

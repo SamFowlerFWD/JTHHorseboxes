@@ -1,17 +1,10 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { useConfiguratorStore } from '@/lib/configurator/store'
 import { Mail, Phone, User, UserCheck } from 'lucide-react'
 
-// List of agents (could be fetched from database)
-const AGENTS = [
-  'No Agent',
-  'John Smith',
-  'Sarah Johnson',
-  'Mike Williams',
-  'Emma Brown',
-  'Tom Davis'
-]
+type Agent = { name: string; email: string }
 
 export default function CustomerInfoStep() {
   const {
@@ -22,11 +15,23 @@ export default function CustomerInfoStep() {
     setCustomerInfo
   } = useConfiguratorStore()
 
+  const [agents, setAgents] = useState<Agent[]>([])
+
+  useEffect(() => {
+    fetch('/api/pricing/agents')
+      .then(r => r.json())
+      .then((data: unknown) => {
+        const d = data as { agents?: Agent[] }
+        if (Array.isArray(d.agents)) setAgents(d.agents)
+      })
+      .catch(err => console.error('Failed to load agents:', err))
+  }, [])
+
   return (
     <div className="max-w-2xl mx-auto">
       <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-8">
         <h2 className="text-xl font-semibold text-slate-900 mb-6">Customer Information</h2>
-        
+
         <div className="space-y-6">
           {/* Name Field */}
           <div>
@@ -97,9 +102,10 @@ export default function CustomerInfoStep() {
                 onChange={(e) => setCustomerInfo({ agent: e.target.value })}
                 className="w-full px-4 py-3 pl-12 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-colors appearance-none bg-white"
               >
-                {AGENTS.map((agent) => (
-                  <option key={agent} value={agent === 'No Agent' ? '' : agent}>
-                    {agent}
+                <option value="">No Agent</option>
+                {agents.map((agent) => (
+                  <option key={agent.name} value={agent.name}>
+                    {agent.name}
                   </option>
                 ))}
               </select>
@@ -119,7 +125,7 @@ export default function CustomerInfoStep() {
         {/* Info Box */}
         <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
           <p className="text-sm text-blue-900">
-            <strong>Note:</strong> Your information will be used to generate a formal quote and will be kept confidential. 
+            <strong>Note:</strong> Your information will be used to generate a formal quote and will be kept confidential.
             We will contact you within 24 hours to discuss your requirements.
           </p>
         </div>

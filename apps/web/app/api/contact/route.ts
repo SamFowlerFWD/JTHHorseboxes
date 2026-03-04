@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { z } from 'zod'
+import { loadPricingConfig } from '@/lib/pricing'
 
 export const runtime = 'edge'
 
@@ -14,6 +15,7 @@ const contactSchema = z.object({
   // Configurator submission fields
   source: z.string().optional(),
   configuration: z.any().optional(),
+  agentName: z.string().optional(),
 })
 
 export async function POST(request: NextRequest) {
@@ -40,19 +42,36 @@ export async function POST(request: NextRequest) {
 
     const modelLine = data.model ? `Model of Interest: ${data.model}\n` : ''
 
-    // Send notification to JTH sales team
+    // Determine recipients — always sales@jthltd.co.uk + selected agent (if different)
+    const ADMIN_EMAIL = 'sales@jthltd.co.uk'
+    const recipients: string[] = [ADMIN_EMAIL]
+
+    if (data.agentName) {
+      const cfg = await loadPricingConfig()
+      const agent = cfg.agents.find(a => a.name === data.agentName)
+      if (agent && agent.email !== ADMIN_EMAIL) {
+        recipients.push(agent.email)
+      }
+    }
+
+    const subject = isConfiguratorSubmission
+      ? `New Configurator Submission from ${data.name}`
+      : `New Enquiry from ${data.name}`
+
+    const agentLine = data.agentName ? `Sales Agent: ${data.agentName}\n` : ''
+
+    // Send notification to JTH sales team (+ agent)
     await resend.emails.send({
       from: 'JTH Website <noreply@jthltd.co.uk>',
-      to: 'sales@jthltd.co.uk',
-      subject: isConfiguratorSubmission
-        ? `New Configurator Submission from ${data.name}`
-        : `New Enquiry from ${data.name}`,
+      to: recipients,
+      subject,
       text: [
         `New ${isConfiguratorSubmission ? 'configurator submission' : 'website enquiry'}`,
         '',
         `Name: ${data.name}`,
         `Email: ${data.email}`,
         `Phone: ${data.phone}`,
+        agentLine,
         modelLine,
         `Message: ${data.message}`,
         '',

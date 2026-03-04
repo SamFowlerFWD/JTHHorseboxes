@@ -1,6 +1,15 @@
 name = "jth-web"
-compatibility_date = "2024-09-23"
+pages_build_output_dir = ".vercel/output/static"
+compatibility_date = "2025-12-01"
 compatibility_flags = ["nodejs_compat"]
+
+[[kv_namespaces]]
+binding = "JTH_PRICING"
+id = "c455848d59db439b8c2f3471325c342b"
+
+[[kv_namespaces]]
+binding = "JTH_CONFIGS"
+id = "86f73f8f1dfa4e928e19b27004c24b63"
 
 [vars]
 NEXT_PUBLIC_IE_MARKUP = "1.15"

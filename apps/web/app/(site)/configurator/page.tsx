@@ -63,8 +63,8 @@ export default function ConfiguratorPage() {
         throw new Error('Failed to fetch pricing options')
       }
       
-      const data = await response.json()
-      
+      const data: any = await response.json()
+
       // Transform options to match the expected format
       const transformedOptions = data.options?.map((opt: any) => ({
         id: opt.id,
@@ -147,6 +147,7 @@ export default function ConfiguratorPage() {
           message: `Configurator submission for ${configuration.model_name || 'horsebox'}. Total: ${configuration.total_inc_vat ? formatPrice(configuration.total_inc_vat, region) : 'TBC'}`,
           source: 'configurator',
           configuration: configuration,
+          agentName: configuration.agentName,
         })
       })
 
@@ -263,7 +264,20 @@ export default function ConfiguratorPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
           <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg flex items-start gap-2">
             <Info className="w-5 h-5 mt-0.5 flex-shrink-0" />
-            <span>{error}</span>
+            <div className="flex-1 flex items-start justify-between gap-3">
+              <span>{error}</span>
+              <button
+                onClick={() => {
+                  setError(null)
+                  if (selectedModel) {
+                    fetchPricingOptions(selectedModel.name)
+                  }
+                }}
+                className="shrink-0 text-sm font-medium text-red-700 hover:text-red-900 underline underline-offset-2 transition-colors"
+              >
+                Retry
+              </button>
+            </div>
           </div>
         </div>
       )}
