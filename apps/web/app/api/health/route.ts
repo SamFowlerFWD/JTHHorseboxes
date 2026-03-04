@@ -5,7 +5,6 @@ export async function GET(request: NextRequest) {
     const checks: Record<string, any> = {
       status: 'ok',
       timestamp: new Date().toISOString(),
-      uptime: process.uptime(),
       environment: process.env.NODE_ENV || 'development',
     }
 

@@ -1,5 +1,4 @@
-import fs from 'node:fs/promises'
-import path from 'node:path'
+import pricingData from '@/data/pricing.json'
 
 export type MoneyPence = number
 
@@ -59,7 +58,5 @@ export type PricingConfig = {
 }
 
 export async function loadPricingConfig(): Promise<PricingConfig> {
-  const filePath = path.join(process.cwd(), 'data/pricing.json')
-  const content = await fs.readFile(filePath, 'utf-8')
-  return JSON.parse(content)
+  return pricingData as PricingConfig
 }

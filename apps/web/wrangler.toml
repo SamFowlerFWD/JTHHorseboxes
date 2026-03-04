@@ -1,0 +1,7 @@
+name = "jth-web"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+NEXT_PUBLIC_IE_MARKUP = "1.15"
+NEXT_PUBLIC_IE_EXCHANGE_RATE = "1.17"

@@ -27,7 +27,8 @@ export async function middleware(request: NextRequest) {
   let region = existingRegionCookie || 'GB'
 
   if (!hadCookie) {
-    const country = request.headers.get('x-vercel-ip-country')
+    // Cloudflare provides country via CF-IPCountry header
+    const country = request.headers.get('cf-ipcountry') || request.headers.get('x-vercel-ip-country')
     region = country === 'IE' ? 'IE' : 'GB'
   }
 
@@ -50,11 +51,11 @@ export async function middleware(request: NextRequest) {
       rewriteResponse.headers.set(
         'Content-Security-Policy',
         `default-src 'self'; ` +
-        `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live; ` +
+        `script-src 'self' 'unsafe-inline' 'unsafe-eval'; ` +
         `style-src 'self' 'unsafe-inline'; ` +
         `img-src 'self' data: https: http: blob:; ` +
         `font-src 'self' data:; ` +
-        `connect-src 'self' https://vercel.live https://*.sanity.io; ` +
+        `connect-src 'self' https://*.sanity.io; ` +
         `frame-src 'self'; ` +
         `frame-ancestors 'none'; ` +
         `base-uri 'self'; ` +
@@ -86,11 +87,11 @@ export async function middleware(request: NextRequest) {
     response.headers.set(
       'Content-Security-Policy',
       `default-src 'self'; ` +
-      `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live; ` +
+      `script-src 'self' 'unsafe-inline' 'unsafe-eval'; ` +
       `style-src 'self' 'unsafe-inline'; ` +
       `img-src 'self' data: https: http: blob:; ` +
       `font-src 'self' data:; ` +
-      `connect-src 'self' https://vercel.live https://*.sanity.io; ` +
+      `connect-src 'self' https://*.sanity.io; ` +
       `frame-src 'self'; ` +
       `frame-ancestors 'none'; ` +
       `base-uri 'self'; ` +
