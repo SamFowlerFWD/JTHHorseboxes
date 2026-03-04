@@ -1,14 +1,11 @@
 'use client'
 
-import { useState, useEffect, createContext, useContext } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { LogOut, Lock } from 'lucide-react'
-
-type AdminCtx = { token: string; logout: () => void }
-const AdminContext = createContext<AdminCtx | null>(null)
-export const useAdmin = () => useContext(AdminContext)!
+import { AdminContext } from './admin-context'
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [token, setToken] = useState<string | null>(null)

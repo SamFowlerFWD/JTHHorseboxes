@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { useAdmin } from './layout'
+import { useAdmin } from './admin-context'
 import type { PricingConfig } from '@/lib/pricing'
 import ModelsTab from './components/ModelsTab'
 import OptionsTab from './components/OptionsTab'
