@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { loadPricingConfig } from '@/lib/pricing'
 
+export const runtime = 'edge'
+
 // Sample saved configurations for development
 const SAVED_CONFIGS: Record<string, any> = {
   'sample-35t-config': {

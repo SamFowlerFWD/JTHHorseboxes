@@ -3,6 +3,8 @@ import { loadPricingConfig } from '@/lib/pricing'
 import Link from 'next/link'
 import Image from 'next/image'
 import Hero from '@/components/Hero'
+
+export const runtime = 'edge'
 import { ArrowRight, Check, Shield, Award, Star, Truck, ChevronRight, Phone, Mail, MapPin, Users, Clock } from 'lucide-react'
 import type { Metadata } from 'next'
 import Schema, { generateProductSchema, generateBreadcrumbSchema, generateFAQSchema } from '@/components/Schema'

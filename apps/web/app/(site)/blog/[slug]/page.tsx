@@ -1,6 +1,8 @@
 import { Metadata } from 'next'
 import { getBlogPost, getRelatedPosts } from '@/lib/sanity/client'
 import { notFound } from 'next/navigation'
+
+export const runtime = 'edge'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, User, ArrowRight, Tag, ArrowLeft } from 'lucide-react'
