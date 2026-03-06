@@ -44,19 +44,24 @@ export async function middleware(request: NextRequest) {
   }
 
   // Region detection and cookie persistence
+  const hostname = request.headers.get('host') || ''
+  const isIrishDomain = hostname.endsWith('.ie') || hostname.endsWith('.ie:3000')
   const existingRegionCookie = request.cookies.get('region')?.value
   const hadCookie = !!existingRegionCookie
   let region = existingRegionCookie || 'GB'
 
-  if (!hadCookie) {
+  // Irish domain always forces IE region
+  if (isIrishDomain) {
+    region = 'IE'
+  } else if (!hadCookie) {
     // Cloudflare provides country via CF-IPCountry header
     const country = request.headers.get('cf-ipcountry') || request.headers.get('x-vercel-ip-country')
     region = country === 'IE' ? 'IE' : 'GB'
   }
 
-  // Rewrite / to /ireland for first-time Irish IP visitors (no cookie yet)
-  // Exclude /admin paths from region redirect
-  if (pathname === '/' && region === 'IE' && !hadCookie && !pathname.startsWith('/admin')) {
+  // Rewrite / to /ireland for Irish visitors (domain-based or first-time IP detection)
+  const needsCookieUpdate = isIrishDomain && existingRegionCookie !== 'IE'
+  if (pathname === '/' && region === 'IE' && (!hadCookie || isIrishDomain) && !pathname.startsWith('/admin')) {
     const url = request.nextUrl.clone()
     url.pathname = '/ireland'
     const rewriteResponse = NextResponse.rewrite(url, { request })
@@ -71,8 +76,8 @@ export async function middleware(request: NextRequest) {
 
   const response = NextResponse.next({ request })
 
-  // Set region cookie if not already present
-  if (!hadCookie) {
+  // Set region cookie if not already present, or update if domain forces a different region
+  if (!hadCookie || needsCookieUpdate) {
     response.cookies.set('region', region, {
       path: '/',
       maxAge: 31536000,
