@@ -279,23 +279,23 @@ export default function IrelandPage() {
         <section className="py-20 bg-gradient-to-b from-slate-50 to-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 md:p-12 text-center">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 text-amber-400 text-sm font-medium mb-6 rounded-full">
-                Coming Soon
-              </div>
               <h2 className="text-3xl md:text-4xl font-light text-white mb-6">
-                Local Representation in <span className="text-amber-400">Ireland</span>
+                Your Representative in <span className="text-amber-400">Ireland</span>
               </h2>
-              <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-8">
-                We are working on establishing local representation in Ireland to provide even closer support.
-                In the meantime, our Norfolk team is just a phone call away and we deliver directly to your door.
+              <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-4">
+                Paul Morton is your dedicated JTH representative in Ireland, based in Dublin.
+                Contact Paul directly for sales enquiries, viewings and delivery arrangements.
+              </p>
+              <p className="text-sm text-slate-400 mb-8">
+                Taylors Lane, Ballyboden, Rathfarnham, Dublin, D16 CV91
               </p>
               <div className="flex flex-wrap items-center justify-center gap-4">
                 <a
-                  href="tel:01603552109"
+                  href="tel:+353872557015"
                   className="inline-flex items-center px-8 py-4 bg-white text-slate-900 font-semibold hover:bg-slate-50 transition-all rounded-lg"
                 >
                   <Phone className="mr-2 w-5 h-5" />
-                  Call 01603 552109
+                  Call +353 87 255 7015
                 </a>
                 <Link
                   href="/contact"
@@ -376,24 +376,24 @@ export default function IrelandPage() {
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
               <a
-                href="tel:01603552109"
+                href="tel:+353872557015"
                 className="inline-flex items-center px-10 py-4 border-2 border-white text-white font-semibold hover:bg-white hover:text-blue-700 transition-all rounded-lg"
               >
                 <Phone className="mr-2 w-5 h-5" />
-                Call Us
+                Call +353 87 255 7015
               </a>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8 pt-12 mt-12 border-t border-blue-500">
               <div className="text-center">
                 <MapPin className="w-8 h-8 text-white mx-auto mb-3" />
-                <h3 className="text-white font-semibold mb-2">Norfolk Workshop</h3>
-                <p className="text-blue-100 text-sm">Beeston, Norfolk<br />United Kingdom</p>
+                <h3 className="text-white font-semibold mb-2">Ireland Representative</h3>
+                <p className="text-blue-100 text-sm">Paul Morton<br />Ballyboden, Dublin</p>
               </div>
               <div className="text-center">
                 <Phone className="w-8 h-8 text-white mx-auto mb-3" />
                 <h3 className="text-white font-semibold mb-2">Call Us</h3>
-                <p className="text-blue-100 text-sm">01603 552109<br />Mon-Sat</p>
+                <p className="text-blue-100 text-sm">+353 87 255 7015<br />Mon-Sat</p>
               </div>
               <div className="text-center">
                 <Truck className="w-8 h-8 text-white mx-auto mb-3" />
