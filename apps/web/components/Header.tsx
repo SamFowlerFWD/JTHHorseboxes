@@ -178,9 +178,9 @@ export default function Header() {
               <span className="text-slate-400">Safety | Quality | Durability</span>
             </div>
             <div className="flex items-center gap-6">
-              <a href="tel:+441603552109" className="flex items-center gap-2 hover:text-blue-400 transition-colors">
+              <a href={isIreland ? 'tel:+353872557015' : 'tel:+441603552109'} className="flex items-center gap-2 hover:text-blue-400 transition-colors">
                 <Phone className="h-3.5 w-3.5" />
-                +44 1603 552109
+                {isIreland ? '+353 87 255 7015' : '+44 1603 552109'}
               </a>
               <a href="mailto:sales@jthltd.co.uk" className="flex items-center gap-2 hover:text-blue-400 transition-colors">
                 <Mail className="h-3.5 w-3.5" />
@@ -449,9 +449,9 @@ export default function Header() {
               </div>
 
               <div className="pt-4 space-y-2 text-sm">
-                <a href="tel:+441603552109" className="flex items-center gap-2 text-slate-600 hover:text-blue-600">
+                <a href={isIreland ? 'tel:+353872557015' : 'tel:+441603552109'} className="flex items-center gap-2 text-slate-600 hover:text-blue-600">
                   <Phone className="h-4 w-4" />
-                  +44 1603 552109
+                  {isIreland ? '+353 87 255 7015' : '+44 1603 552109'}
                 </a>
                 <a href="mailto:sales@jthltd.co.uk" className="flex items-center gap-2 text-slate-600 hover:text-blue-600">
                   <Mail className="h-4 w-4" />
