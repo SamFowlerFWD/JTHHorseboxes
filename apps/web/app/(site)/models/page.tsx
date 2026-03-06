@@ -183,11 +183,11 @@ export default async function ModelsPage() {
                     View Details
                     <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
                   </Link>
-                  <Link 
-                    href={`/configurator/${model.slug}`} 
+                  <Link
+                    href="/contact"
                     className="flex-1 inline-flex items-center justify-center border-2 border-blue-700 px-4 py-3 text-blue-700 font-semibold hover:bg-blue-50 transition-colors"
                   >
-                    Configure
+                    Get a Quote
                   </Link>
                 </div>
               </div>
@@ -495,11 +495,11 @@ export default async function ModelsPage() {
               Ready to Find Your Perfect Horsebox?
             </h2>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
-              Configure your ideal 3.5t, 4.5t or 7.2t horsebox online or visit our Norfolk showroom to see our models in person.
+              Find your ideal 3.5t, 4.5t or 7.2t horsebox. Contact us for a quote or visit our Norfolk showroom to see our models in person.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link href="/configurator" className="inline-flex items-center px-8 py-4 bg-white text-blue-700 font-semibold hover:bg-slate-50 transition-all">
-                Configure Online
+              <Link href="/contact" className="inline-flex items-center px-8 py-4 bg-white text-blue-700 font-semibold hover:bg-slate-50 transition-all">
+                Get a Quote
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
               <a href="tel:01603552109" className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold hover:bg-white hover:text-blue-700 transition-all">

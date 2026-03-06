@@ -171,8 +171,8 @@ export default function HomePage() {
           href: "/models"
         }}
         secondaryCTA={{
-          text: "Start Configuring",
-          href: "/configurator"
+          text: "Get a Quote",
+          href: "/contact"
         }}
         media={[
           { type: 'image', src: '/models/professional-35/02.webp' },
@@ -427,8 +427,8 @@ export default function HomePage() {
               Browse All Models
               <ChevronRight className="ml-2 w-5 h-5" />
             </Link>
-            <Link href="/configurator" className="inline-flex items-center px-10 py-4 border-2 border-white text-white font-medium hover:bg-white hover:text-blue-700 transition-all duration-300 rounded-lg">
-              Start Configuring
+            <Link href="/contact" className="inline-flex items-center px-10 py-4 border-2 border-white text-white font-medium hover:bg-white hover:text-blue-700 transition-all duration-300 rounded-lg">
+              Get a Quote
               <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
           </div>

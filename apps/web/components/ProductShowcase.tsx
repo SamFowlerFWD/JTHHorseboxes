@@ -378,7 +378,7 @@ export default function ProductShowcase({
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
-            <Link href={`/configurator/${product.id}`}>
+            <Link href="/contact">
               <Button variant="outline" className="border-blue-700 text-blue-700 hover:bg-blue-50">
                 <Sparkles className="w-4 h-4" />
               </Button>
@@ -449,9 +449,9 @@ export default function ProductShowcase({
                       <ArrowRight className="ml-2 w-5 h-5" />
                     </Button>
                   </Link>
-                  <Link href={`/configurator/${featuredProduct.id}`}>
+                  <Link href="/contact">
                     <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                      Configure
+                      Get a Quote
                     </Button>
                   </Link>
                 </div>

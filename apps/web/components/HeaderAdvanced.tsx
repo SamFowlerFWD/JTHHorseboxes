@@ -159,10 +159,6 @@ const navigation: NavigationItem[] = [
     ]
   },
   {
-    label: 'Configurator',
-    href: '/configurator'
-  },
-  {
     label: 'About',
     children: [
       {
@@ -575,9 +571,9 @@ export default function HeaderAdvanced() {
                           <ArrowRight className="ml-2 w-4 h-4" />
                         </Button>
                       </Link>
-                      <Link href="/configurator" onClick={() => setIsMobileMenuOpen(false)}>
+                      <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
                         <Button variant="outline" className="w-full border-blue-700 text-blue-700 hover:bg-blue-50">
-                          Build Your Horsebox
+                          Get a Quote
                         </Button>
                       </Link>
                     </div>
@@ -630,7 +626,7 @@ export default function HeaderAdvanced() {
                 <div className="mt-4 flex gap-2 text-sm">
                   <span className="text-slate-500">Popular:</span>
                   <Link href="/models/professional-35" className="text-blue-700 hover:underline">Professional 35</Link>
-                  <Link href="/configurator" className="text-blue-700 hover:underline">Configurator</Link>
+                  <Link href="/contact" className="text-blue-700 hover:underline">Get Quote</Link>
                   <Link href="/contact/quote" className="text-blue-700 hover:underline">Get Quote</Link>
                 </div>
               </div>

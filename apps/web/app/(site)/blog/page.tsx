@@ -226,10 +226,10 @@ export default async function BlogPage() {
               <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
             <Link
-              href="/configurator"
+              href="/contact"
               className="inline-flex items-center justify-center px-8 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-400 transition-colors"
             >
-              Configure Your Horsebox
+              Get a Quote
             </Link>
           </div>
         </div>

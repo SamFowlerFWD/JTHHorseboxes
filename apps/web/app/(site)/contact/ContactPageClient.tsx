@@ -68,7 +68,7 @@ const reasons = [
     title: 'Get a Quote',
     description: 'Receive a personalized quotation',
     action: 'Request Quote',
-    link: '/configurator'
+    link: '/contact'
   }
 ]
 
@@ -501,8 +501,8 @@ export default function ContactPageClient() {
             Whether you're ready to order or just exploring options, we're here to help
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6">
-            <Link href="/configurator" className="btn-premium bg-white text-blue-700 hover:bg-slate-50">
-              Build Your Horsebox
+            <Link href="/models" className="btn-premium bg-white text-blue-700 hover:bg-slate-50">
+              Browse Our Models
               <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
             <a href="tel:01603552109" className="btn-premium-outline border-white text-white">

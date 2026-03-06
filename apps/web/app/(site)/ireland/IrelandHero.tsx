@@ -16,8 +16,8 @@ export default function IrelandHero() {
         href: "#models",
       }}
       secondaryCTA={{
-        text: "Start Configuring",
-        href: "/configurator",
+        text: "Get a Quote",
+        href: "/contact",
       }}
       media={[
         { type: 'image', src: '/models/professional-35/02.webp' },

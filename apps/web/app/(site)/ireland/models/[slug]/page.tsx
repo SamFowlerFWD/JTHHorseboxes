@@ -272,8 +272,8 @@ export default async function IrelandModelDetailPage({ params }: { params: { slu
             {content.description}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6 animate-slideUp animation-delay-400">
-            <Link href={`/configurator/${params.slug}`} className="btn-premium">
-              Configure Your {modelName}
+            <Link href="/contact" className="btn-premium">
+              Get a Quote
               <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
             <Link href="#specifications" className="btn-premium-outline border-white text-white hover:text-slate-900">
@@ -613,8 +613,8 @@ export default async function IrelandModelDetailPage({ params }: { params: { slu
             We deliver direct to Ireland with full handover training included.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6">
-            <Link href={`/configurator/${params.slug}`} className="btn-premium bg-white text-blue-600 hover:bg-slate-50">
-              Configure Now
+            <Link href="/contact" className="btn-premium bg-white text-blue-600 hover:bg-slate-50">
+              Get a Quote
               <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
             <a href="tel:01603552109" className="btn-premium-outline border-white text-white">

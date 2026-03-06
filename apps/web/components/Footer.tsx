@@ -69,9 +69,9 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/configurator" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
+                <Link href="/contact" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
-                  Configurator
+                  Get a Quote
                 </Link>
               </li>
               <li>

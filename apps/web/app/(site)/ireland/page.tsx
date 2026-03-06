@@ -220,10 +220,10 @@ export default function IrelandPage() {
                         <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
                       </Link>
                       <Link
-                        href="/configurator"
+                        href="/contact"
                         className="flex-1 inline-flex items-center justify-center border-2 border-blue-700 px-4 py-3 text-blue-700 font-semibold hover:bg-blue-50 transition-colors"
                       >
-                        Configure
+                        Get a Quote
                       </Link>
                     </div>
                   </div>
@@ -338,8 +338,8 @@ export default function IrelandPage() {
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-3">Fully Customisable</h3>
                 <p className="text-slate-600">
-                  Use our online configurator to build your perfect horsebox. Choose colours, layouts, and optional
-                  extras to create a horsebox that is uniquely yours.
+                  Every JTH horsebox is fully customisable. Choose colours, layouts, and optional
+                  extras to create a horsebox that is uniquely yours. Contact us to discuss your requirements.
                 </p>
               </div>
               <div className="bg-gradient-to-b from-white to-slate-50 p-8 rounded-2xl border border-slate-200">
@@ -364,15 +364,15 @@ export default function IrelandPage() {
             </h2>
             <div className="w-24 h-px bg-amber-400 mx-auto mb-8" />
             <p className="text-lg text-blue-100 max-w-3xl mx-auto mb-10">
-              Configure your perfect 3.5 tonne horsebox online or call our team to discuss your requirements.
+              Contact our team to discuss your perfect 3.5 tonne horsebox.
               We deliver direct to Ireland with full handover training included.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Link
-                href="/configurator"
+                href="/contact"
                 className="inline-flex items-center px-10 py-4 bg-white text-blue-700 font-semibold hover:bg-slate-50 transition-all rounded-lg"
               >
-                Start Configuring
+                Get a Quote
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
               <a

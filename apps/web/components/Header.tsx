@@ -292,9 +292,6 @@ export default function Header() {
                 )}
               </div>
 
-              <Link href="/configurator" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">
-                Configurator
-              </Link>
               <Link href="/about" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">
                 About
               </Link>
@@ -341,10 +338,10 @@ export default function Header() {
               </div>
 
               <Link
-                href="/configurator"
+                href="/contact"
                 className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-all duration-300 hover:shadow-lg"
               >
-                Start Configuring
+                Get a Quote
               </Link>
             </div>
 
@@ -414,9 +411,6 @@ export default function Header() {
                   </Link>
                 </div>
               </div>
-              <Link href="/configurator" className="block text-slate-700 hover:text-blue-600 transition-colors font-medium">
-                Configurator
-              </Link>
               <Link href="/about" className="block text-slate-700 hover:text-blue-600 transition-colors font-medium">
                 About
               </Link>
@@ -425,11 +419,11 @@ export default function Header() {
               </Link>
               
               <div className="pt-4 border-t border-slate-200">
-                <Link 
-                  href="/configurator" 
+                <Link
+                  href="/contact"
                   className="block w-full text-center px-6 py-3 bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors"
                 >
-                  Start Configuring
+                  Get a Quote
                 </Link>
               </div>
               
