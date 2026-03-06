@@ -1,14 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Hero from '@/components/Hero'
 import Link from 'next/link'
-import { 
-  ArrowRight, 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Clock, 
+import { getRegionFromCookie } from '@/lib/configurator/region'
+import {
+  ArrowRight,
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
   Send,
   MessageSquare,
   Calendar,
@@ -41,7 +42,7 @@ const models = [
   { value: 'helios-75', label: 'Helios 75 (7.5T)' },
 ]
 
-const reasons = [
+const reasonsGB = [
   {
     icon: Phone,
     title: 'Call Us Direct',
@@ -66,13 +67,38 @@ const reasons = [
   {
     icon: MessageSquare,
     title: 'Get a Quote',
-    description: 'Receive a personalized quotation',
+    description: 'Receive a personalised quotation',
     action: 'Request Quote',
-    link: '/contact'
+    link: '#contact-form'
+  }
+]
+
+const reasonsIE = [
+  {
+    icon: Phone,
+    title: 'Call Us',
+    description: 'Speak to our team about Irish deliveries',
+    action: '+44 1603 552109',
+    link: 'tel:+441603552109'
+  },
+  {
+    icon: Mail,
+    title: 'Email Us',
+    description: 'Get in touch about your requirements',
+    action: 'Send Email',
+    link: '#contact-form'
+  },
+  {
+    icon: MessageSquare,
+    title: 'Get a Quote',
+    description: 'Receive a personalised quotation in EUR',
+    action: 'Request Quote',
+    link: '#contact-form'
   }
 ]
 
 export default function ContactPageClient() {
+  const [region, setRegion] = useState<'GB' | 'IE'>('GB')
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -85,6 +111,13 @@ export default function ContactPageClient() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
+  useEffect(() => {
+    setRegion(getRegionFromCookie() as 'GB' | 'IE')
+  }, [])
+
+  const isIreland = region === 'IE'
+  const reasons = isIreland ? reasonsIE : reasonsGB
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
@@ -94,7 +127,7 @@ export default function ContactPageClient() {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({ ...formData, region })
       })
 
       if (response.ok) {
@@ -139,12 +172,14 @@ export default function ContactPageClient() {
             Get in Touch
           </h1>
           <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-12 font-light leading-relaxed animate-slideUp animation-delay-200">
-            Visit our Norfolk showroom or contact our expert team
+            {isIreland
+              ? 'Contact our team about horsebox deliveries to Ireland'
+              : 'Visit our Norfolk showroom or contact our expert team'}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6 animate-slideUp animation-delay-400">
-            <a href="tel:01603552109" className="btn-premium">
+            <a href={isIreland ? 'tel:+441603552109' : 'tel:01603552109'} className="btn-premium">
               <Phone className="mr-2 w-5 h-5" />
-              Call 01603 552109
+              {isIreland ? 'Call +44 1603 552109' : 'Call 01603 552109'}
             </a>
             <a href="#contact-form" className="btn-premium-outline border-white text-white hover:text-slate-900">
               Send Message
@@ -157,7 +192,7 @@ export default function ContactPageClient() {
       {/* Quick Contact Options */}
       <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className={`grid gap-6 ${isIreland ? 'md:grid-cols-3' : 'md:grid-cols-4'}`}>
             {reasons.map((reason, index) => (
               <a
                 key={index}
@@ -186,44 +221,49 @@ export default function ContactPageClient() {
             {/* Contact Information */}
             <div>
               <h2 className="text-4xl md:text-5xl font-light text-slate-900 mb-8">
-                Visit Our
-                <span className="text-gradient-blue block mt-2">Norfolk Showroom</span>
+                {isIreland ? (
+                  <>Contact Our<span className="text-gradient-blue block mt-2">Ireland Team</span></>
+                ) : (
+                  <>Visit Our<span className="text-gradient-blue block mt-2">Norfolk Showroom</span></>
+                )}
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-blue-700 to-amber-500 mb-8"></div>
-              
+
               <div className="space-y-6 mb-8">
-                <div className="flex items-start">
-                  <MapPin className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
-                  <div>
-                    <h3 className="text-lg font-semibold text-slate-900 mb-2">Showroom Address</h3>
-                    <p className="text-slate-600">
-                      J Taylor Horseboxes<br />
-                      Beeston<br />
-                      Norfolk<br />
-                      United Kingdom<br />
-                      NR12
-                    </p>
-                    <a 
-                      href="https://maps.google.com/?q=J+Taylor+Horseboxes+Beeston+Norfolk"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-700 hover:text-blue-800 font-semibold mt-2 inline-flex items-center"
-                    >
-                      Get Directions
-                      <Navigation className="ml-2 w-4 h-4" />
-                    </a>
+                {!isIreland && (
+                  <div className="flex items-start">
+                    <MapPin className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
+                    <div>
+                      <h3 className="text-lg font-semibold text-slate-900 mb-2">Showroom Address</h3>
+                      <p className="text-slate-600">
+                        J Taylor Horseboxes<br />
+                        Beeston<br />
+                        Norfolk<br />
+                        United Kingdom<br />
+                        NR12
+                      </p>
+                      <a
+                        href="https://maps.google.com/?q=J+Taylor+Horseboxes+Beeston+Norfolk"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-700 hover:text-blue-800 font-semibold mt-2 inline-flex items-center"
+                      >
+                        Get Directions
+                        <Navigation className="ml-2 w-4 h-4" />
+                      </a>
+                    </div>
                   </div>
-                </div>
+                )}
 
                 <div className="flex items-start">
                   <Phone className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
                   <div>
                     <h3 className="text-lg font-semibold text-slate-900 mb-2">Phone</h3>
-                    <a href="tel:01603552109" className="text-slate-600 hover:text-blue-700">
-                      01603 552109
+                    <a href={isIreland ? 'tel:+441603552109' : 'tel:01603552109'} className="text-slate-600 hover:text-blue-700">
+                      {isIreland ? '+44 1603 552109' : '01603 552109'}
                     </a>
                     <p className="text-sm text-slate-500 mt-1">
-                      Direct line - no call centers
+                      Direct line - no call centres
                     </p>
                   </div>
                 </div>
@@ -244,7 +284,9 @@ export default function ContactPageClient() {
                 <div className="flex items-start">
                   <Clock className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
                   <div>
-                    <h3 className="text-lg font-semibold text-slate-900 mb-2">Opening Hours</h3>
+                    <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                      {isIreland ? 'Contact Hours' : 'Opening Hours'}
+                    </h3>
                     <div className="text-slate-600 space-y-1">
                       <p><span className="font-semibold">Monday - Friday:</span> 9:00 AM - 5:00 PM</p>
                       <p><span className="font-semibold">Saturday:</span> 10:00 AM - 4:00 PM</p>
@@ -252,6 +294,19 @@ export default function ContactPageClient() {
                     </div>
                   </div>
                 </div>
+
+                {isIreland && (
+                  <div className="flex items-start">
+                    <Navigation className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
+                    <div>
+                      <h3 className="text-lg font-semibold text-slate-900 mb-2">Delivery to Ireland</h3>
+                      <p className="text-slate-600">
+                        We deliver direct to Ireland with full handover training included.
+                        Collection from our Norfolk workshop is also available.
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Social Media */}
@@ -425,46 +480,50 @@ export default function ContactPageClient() {
         </div>
       </section>
 
-      {/* Map Section Placeholder */}
-      <section className="py-20 bg-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white p-8 md:p-12 shadow-lg">
-            <h2 className="text-3xl font-light text-slate-900 mb-6 text-center">
-              Find Us in Norfolk
-            </h2>
-            <div className="bg-slate-200 h-96 flex items-center justify-center">
-              <div className="text-center">
-                <MapPin className="w-12 h-12 text-slate-400 mx-auto mb-4" />
-                <p className="text-slate-600">Interactive map will be displayed here</p>
-                <a 
-                  href="https://maps.google.com/?q=J+Taylor+Horseboxes+Beeston+Norfolk"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-premium mt-6 inline-flex"
-                >
-                  Open in Google Maps
-                  <Navigation className="ml-2 w-5 h-5" />
-                </a>
+      {/* Map Section Placeholder - GB only */}
+      {!isIreland && (
+        <section className="py-20 bg-slate-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="bg-white p-8 md:p-12 shadow-lg">
+              <h2 className="text-3xl font-light text-slate-900 mb-6 text-center">
+                Find Us in Norfolk
+              </h2>
+              <div className="bg-slate-200 h-96 flex items-center justify-center">
+                <div className="text-center">
+                  <MapPin className="w-12 h-12 text-slate-400 mx-auto mb-4" />
+                  <p className="text-slate-600">Interactive map will be displayed here</p>
+                  <a
+                    href="https://maps.google.com/?q=J+Taylor+Horseboxes+Beeston+Norfolk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-premium mt-6 inline-flex"
+                  >
+                    Open in Google Maps
+                    <Navigation className="ml-2 w-5 h-5" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Additional Information */}
       <section className="py-20 md:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Car className="w-8 h-8 text-white" />
+          <div className={`grid gap-8 ${isIreland ? 'md:grid-cols-2' : 'md:grid-cols-3'}`}>
+            {!isIreland && (
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Car className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold text-slate-900 mb-4">Showroom Visits</h3>
+                <p className="text-slate-600">
+                  See our full range of models in person. No appointment necessary during opening hours,
+                  but we recommend calling ahead to ensure availability of specific models.
+                </p>
               </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-4">Showroom Visits</h3>
-              <p className="text-slate-600">
-                See our full range of models in person. No appointment necessary during opening hours, 
-                but we recommend calling ahead to ensure availability of specific models.
-              </p>
-            </div>
+            )}
 
             <div className="text-center">
               <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -472,21 +531,34 @@ export default function ContactPageClient() {
               </div>
               <h3 className="text-xl font-semibold text-slate-900 mb-4">Expert Advice</h3>
               <p className="text-slate-600">
-                Our knowledgeable team is here to help you choose the perfect horsebox. 
-                We'll discuss your requirements and guide you through all available options.
+                Our knowledgeable team is here to help you choose the perfect horsebox.
+                We&apos;ll discuss your requirements and guide you through all available options.
               </p>
             </div>
 
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
-                <CheckCircle className="w-8 h-8 text-white" />
+            {isIreland ? (
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Navigation className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold text-slate-900 mb-4">Direct Delivery</h3>
+                <p className="text-slate-600">
+                  We deliver directly to Ireland with full handover training included.
+                  All pricing available in EUR. No hidden costs or surprises.
+                </p>
               </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-4">Test Drives</h3>
-              <p className="text-slate-600">
-                Experience the quality and handling of our horseboxes with a test drive. 
-                Available by appointment - bring your driving license and we'll arrange everything.
-              </p>
-            </div>
+            ) : (
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <CheckCircle className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold text-slate-900 mb-4">Test Drives</h3>
+                <p className="text-slate-600">
+                  Experience the quality and handling of our horseboxes with a test drive.
+                  Available by appointment - bring your driving licence and we&apos;ll arrange everything.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </section>
