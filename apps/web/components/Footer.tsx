@@ -1,8 +1,20 @@
+'use client'
+
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Logo from '@/components/Logo'
+import { getRegionFromCookie } from '@/lib/configurator/region'
 import { Facebook, Instagram, Youtube, MapPin, Phone, Mail, ChevronRight } from 'lucide-react'
 
 export default function Footer() {
+  const [region, setRegion] = useState<'GB' | 'IE'>('GB')
+
+  useEffect(() => {
+    setRegion(getRegionFromCookie() as 'GB' | 'IE')
+  }, [])
+
+  const isIreland = region === 'IE'
+
   return (
     <footer className="bg-slate-900 text-white">
       {/* Newsletter Section */}
@@ -39,8 +51,9 @@ export default function Footer() {
               <Logo width={160} height={44} className="h-10 w-auto brightness-0 invert" />
             </Link>
             <p className="text-slate-400 mb-6 leading-relaxed">
-              Premium British horseboxes for discerning owners. Incorporating the legacy of KPH, 
-              built for the future with innovation and materials technology.
+              {isIreland
+                ? 'Premium British horseboxes delivered direct to Ireland. Handcrafted in Norfolk, incorporating the legacy of KPH.'
+                : 'Premium British horseboxes for discerning owners. Incorporating the legacy of KPH, built for the future with innovation and materials technology.'}
             </p>
             <div className="flex items-center gap-4">
               <a href="https://www.facebook.com/JTHHorseboxes" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 hover:bg-blue-600 transition-colors flex items-center justify-center">
@@ -63,9 +76,9 @@ export default function Footer() {
             <h3 className="font-semibold text-white mb-6">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/models" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
+                <Link href={isIreland ? '/ireland' : '/models'} className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
-                  All Models
+                  {isIreland ? 'Ireland Models' : 'All Models'}
                 </Link>
               </li>
               <li>
@@ -86,66 +99,66 @@ export default function Footer() {
                   Contact
                 </Link>
               </li>
-              <li>
-                <Link href="/warranty" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-4 h-4" />
-                  Warranty
-                </Link>
-              </li>
             </ul>
           </div>
 
           {/* Model Ranges */}
           <div>
-            <h3 className="font-semibold text-white mb-6">Model Ranges</h3>
+            <h3 className="font-semibold text-white mb-6">
+              {isIreland ? 'Available Models' : 'Model Ranges'}
+            </h3>
             <ul className="space-y-4">
               <li>
                 <div className="text-blue-400 font-medium mb-2">JTH Range</div>
                 <ul className="ml-3 space-y-2">
                   <li>
-                    <Link href="/models/professional-35" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
+                    <Link href={isIreland ? '/ireland/models/professional-35' : '/models/professional-35'} className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
                       <ChevronRight className="w-3 h-3" />
                       Professional 35
                     </Link>
                   </li>
                   <li>
-                    <Link href="/models/principle-35" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
+                    <Link href={isIreland ? '/ireland/models/principle-35' : '/models/principle-35'} className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
                       <ChevronRight className="w-3 h-3" />
                       Principle 35
                     </Link>
                   </li>
                 </ul>
               </li>
-              <li>
-                <div className="text-blue-400 font-medium mb-2">AEOS Range</div>
-                <ul className="ml-3 space-y-2">
+              {!isIreland && (
+                <>
                   <li>
-                    <Link href="/models/aeos-edge-45" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
-                      <ChevronRight className="w-3 h-3" />
-                      Edge 45
-                      <span className="text-xs bg-amber-700 text-amber-100 px-1 py-0.5 rounded ml-1">Pre-Built</span>
-                    </Link>
+                    <div className="text-blue-400 font-medium mb-2">AEOS Range</div>
+                    <ul className="ml-3 space-y-2">
+                      <li>
+                        <Link href="/models/aeos-edge-45" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
+                          <ChevronRight className="w-3 h-3" />
+                          Edge 45
+                          <span className="text-xs bg-amber-700 text-amber-100 px-1 py-0.5 rounded ml-1">Pre-Built</span>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/models/aeos-discovery-45" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
+                          <ChevronRight className="w-3 h-3" />
+                          Discovery 45
+                          <span className="text-xs bg-amber-700 text-amber-100 px-1 py-0.5 rounded ml-1">Pre-Built</span>
+                        </Link>
+                      </li>
+                    </ul>
                   </li>
                   <li>
-                    <Link href="/models/aeos-discovery-45" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
-                      <ChevronRight className="w-3 h-3" />
-                      Discovery 45
-                      <span className="text-xs bg-amber-700 text-amber-100 px-1 py-0.5 rounded ml-1">Pre-Built</span>
-                    </Link>
+                    <div className="text-blue-400 font-medium mb-2">Premium Range</div>
+                    <ul className="ml-3 space-y-2">
+                      <li>
+                        <Link href="/models/zenos-72" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
+                          <ChevronRight className="w-3 h-3" />
+                          Zenos 72
+                        </Link>
+                      </li>
+                    </ul>
                   </li>
-                </ul>
-              </li>
-              <li>
-                <div className="text-blue-400 font-medium mb-2">Premium Range</div>
-                <ul className="ml-3 space-y-2">
-                  <li>
-                    <Link href="/models/zenos-72" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
-                      <ChevronRight className="w-3 h-3" />
-                      Zenos 72
-                    </Link>
-                  </li>
-                </ul>
-              </li>
+                </>
+              )}
             </ul>
           </div>
 
@@ -175,15 +188,20 @@ export default function Footer() {
                 <div className="flex items-start gap-3 text-slate-400">
                   <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0" />
                   <div>
-                    <div className="font-medium text-white">Location</div>
+                    <div className="font-medium text-white">
+                      {isIreland ? 'Workshop' : 'Location'}
+                    </div>
                     <div>Norfolk, England</div>
+                    {isIreland && (
+                      <div className="text-xs text-slate-500 mt-1">Direct delivery to Ireland</div>
+                    )}
                   </div>
                 </div>
               </li>
             </ul>
-            
-            <Link 
-              href="/contact" 
+
+            <Link
+              href="/contact"
               className="inline-flex items-center mt-6 px-4 py-2 bg-blue-600 text-white font-medium hover:bg-blue-700 transition-colors"
             >
               Get Quote
