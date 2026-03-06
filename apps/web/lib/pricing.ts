@@ -67,19 +67,9 @@ export type PricingConfig = {
 }
 
 /**
- * Load pricing configuration.
- * At runtime on Cloudflare Workers → reads from KV.
- * At build time / local dev (Node.js) → falls back to static JSON.
+ * Load pricing configuration from static JSON.
+ * KV-based pricing is available via the admin API routes.
  */
 export async function loadPricingConfig(): Promise<PricingConfig> {
-  try {
-    // Dynamic import so Node.js builds don't choke on Workers-only APIs
-    const { getPricingFromKV } = await import('./kv')
-    const kv = await getPricingFromKV()
-    if (kv) return kv
-  } catch {
-    // Not in a Workers context — fall through to static data
-  }
-
   return pricingData as PricingConfig
 }
