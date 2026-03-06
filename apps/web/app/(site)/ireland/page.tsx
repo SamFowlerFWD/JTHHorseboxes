@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, Check, Shield, Star, Truck, Users, Phone, Wrench, MapPin } from 'lucide-react'
+import { ArrowRight, Check, Phone, MapPin, Truck } from 'lucide-react'
 import type { Metadata } from 'next'
 import Schema, { generateProductSchema, generateBreadcrumbSchema } from '@/components/Schema'
 import { formatPrice } from '@/lib/configurator/calculations'
@@ -68,29 +68,6 @@ const models = [
   },
 ]
 
-const deliverySteps = [
-  {
-    step: '1',
-    title: 'Configure & Order',
-    description: 'Choose your model, select options, and place your order. We handle everything from our Norfolk workshop.',
-  },
-  {
-    step: '2',
-    title: 'Built to Your Spec',
-    description: 'Your horsebox is handcrafted in our Beeston workshop, built to your exact specification with British precision.',
-  },
-  {
-    step: '3',
-    title: 'Direct Delivery',
-    description: 'We deliver directly to your door anywhere in Ireland. Professional transport with full insurance coverage.',
-  },
-  {
-    step: '4',
-    title: 'Handover Training',
-    description: 'Comprehensive handover and training session included with every delivery. We ensure you are fully confident with your new horsebox.',
-  },
-]
-
 export default function IrelandPage() {
   const breadcrumbs = [
     { name: 'Home', url: 'https://jthltd.co.uk' },
@@ -116,36 +93,8 @@ export default function IrelandPage() {
         {/* Hero Section */}
         <IrelandHero />
 
-        {/* Trust Indicators */}
-        <section className="bg-slate-50 py-12 border-y border-slate-200">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              <div className="text-center">
-                <Shield className="w-8 h-8 text-blue-700 mx-auto mb-3" />
-                <div className="text-2xl font-bold text-slate-900">British Built</div>
-                <div className="text-sm text-slate-700">Beeston, Norfolk</div>
-              </div>
-              <div className="text-center">
-                <Truck className="w-8 h-8 text-emerald-600 mx-auto mb-3" />
-                <div className="text-2xl font-bold text-slate-900">Direct to Ireland</div>
-                <div className="text-sm text-slate-700">Delivery Included</div>
-              </div>
-              <div className="text-center">
-                <Star className="w-8 h-8 text-amber-500 mx-auto mb-3" />
-                <div className="text-2xl font-bold text-slate-900">Family Run</div>
-                <div className="text-sm text-slate-700">Personal Service</div>
-              </div>
-              <div className="text-center">
-                <Users className="w-8 h-8 text-blue-700 mx-auto mb-3" />
-                <div className="text-2xl font-bold text-slate-900">35+ Years</div>
-                <div className="text-sm text-slate-700">Combined Experience</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* 3.5t Model Cards */}
-        <section className="py-20 bg-gradient-to-b from-white to-slate-50">
+        <section id="models" className="py-20 bg-gradient-to-b from-white to-slate-50">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-800 text-sm font-medium mb-6">
@@ -155,7 +104,7 @@ export default function IrelandPage() {
                 Our 3.5 Tonne <span className="text-blue-700">Range for Ireland</span>
               </h2>
               <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                Two premium models to suit every budget and requirement. All built in Great Britain, delivered direct to your door in Ireland.
+                Two premium models available for delivery to Ireland. Built in Great Britain, delivered direct to your door.
               </p>
             </div>
 
@@ -233,49 +182,7 @@ export default function IrelandPage() {
           </div>
         </section>
 
-        {/* Delivery to Ireland Section */}
-        <section className="py-20 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-light text-slate-900 mb-6">
-                Delivery to <span className="text-emerald-600">Ireland</span>
-              </h2>
-              <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                We deliver directly to customers throughout Ireland. Every delivery includes a comprehensive handover and training session.
-              </p>
-            </div>
-
-            <div className="grid gap-8 md:grid-cols-4">
-              {deliverySteps.map((item) => (
-                <div key={item.step} className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                    <span className="text-white font-bold text-xl">{item.step}</span>
-                  </div>
-                  <h3 className="text-lg font-semibold text-slate-900 mb-2">{item.title}</h3>
-                  <p className="text-slate-600 text-sm">{item.description}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-16 bg-gradient-to-r from-emerald-50 to-blue-50 p-8 rounded-2xl">
-              <div className="flex flex-col md:flex-row items-center gap-8">
-                <div className="flex-shrink-0">
-                  <Wrench className="w-12 h-12 text-emerald-600" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-slate-900 mb-2">Full Handover Training Included</h3>
-                  <p className="text-slate-600">
-                    Every delivery to Ireland includes a comprehensive walkthrough of your new horsebox. We cover all features,
-                    maintenance requirements, and safety systems to ensure you are completely confident. Our team stays with you
-                    until you are happy with every detail.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Dealer Teaser */}
+        {/* Your Representative in Ireland */}
         <section className="py-20 bg-gradient-to-b from-slate-50 to-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 md:p-12 text-center">
@@ -309,62 +216,14 @@ export default function IrelandPage() {
           </div>
         </section>
 
-        {/* Why Choose JTH */}
-        <section className="py-20 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-light text-slate-900 mb-6">
-                Why Choose <span className="text-blue-700">JTH?</span>
-              </h2>
-              <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                Built in Great Britain with decades of expertise, every JTH horsebox leads through innovation.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-gradient-to-b from-white to-slate-50 p-8 rounded-2xl border border-slate-200">
-                <div className="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center mb-4">
-                  <Shield className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-3">Lightweight Aluminium Construction</h3>
-                <p className="text-slate-600">
-                  Advanced lightweight construction means more payload for your horses and equipment. Our 3.5t models
-                  maximise usable weight while maintaining structural integrity.
-                </p>
-              </div>
-              <div className="bg-gradient-to-b from-white to-slate-50 p-8 rounded-2xl border border-slate-200">
-                <div className="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center mb-4">
-                  <Star className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-3">Fully Customisable</h3>
-                <p className="text-slate-600">
-                  Every JTH horsebox is fully customisable. Choose colours, layouts, and optional
-                  extras to create a horsebox that is uniquely yours. Contact us to discuss your requirements.
-                </p>
-              </div>
-              <div className="bg-gradient-to-b from-white to-slate-50 p-8 rounded-2xl border border-slate-200">
-                <div className="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center mb-4">
-                  <Wrench className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-3">Warranty & Aftercare</h3>
-                <p className="text-slate-600">
-                  Every JTH horsebox comes with a 2-year structural warranty. Our aftercare team supports customers across
-                  the UK and Ireland with advice and parts.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Final CTA */}
-        <section className="bg-gradient-to-r from-blue-700 to-blue-800 py-20 relative overflow-hidden">
+        <section className="bg-gradient-to-r from-blue-700 to-blue-800 py-16 relative overflow-hidden">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <h2 className="text-3xl md:text-4xl font-light text-white mb-6">
               Ready to Find Your Horsebox?
             </h2>
-            <div className="w-24 h-px bg-amber-400 mx-auto mb-8" />
             <p className="text-lg text-blue-100 max-w-3xl mx-auto mb-10">
-              Contact our team to discuss your perfect 3.5 tonne horsebox.
+              Contact us to discuss your perfect 3.5 tonne horsebox.
               We deliver direct to Ireland with full handover training included.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
@@ -382,24 +241,6 @@ export default function IrelandPage() {
                 <Phone className="mr-2 w-5 h-5" />
                 Call +353 87 255 7015
               </a>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8 pt-12 mt-12 border-t border-blue-500">
-              <div className="text-center">
-                <MapPin className="w-8 h-8 text-white mx-auto mb-3" />
-                <h3 className="text-white font-semibold mb-2">Ireland Representative</h3>
-                <p className="text-blue-100 text-sm">Paul Morton<br />Ballyboden, Dublin</p>
-              </div>
-              <div className="text-center">
-                <Phone className="w-8 h-8 text-white mx-auto mb-3" />
-                <h3 className="text-white font-semibold mb-2">Call Us</h3>
-                <p className="text-blue-100 text-sm">+353 87 255 7015<br />Mon-Sat</p>
-              </div>
-              <div className="text-center">
-                <Truck className="w-8 h-8 text-white mx-auto mb-3" />
-                <h3 className="text-white font-semibold mb-2">Ireland Delivery</h3>
-                <p className="text-blue-100 text-sm">Direct to your door<br />Training included</p>
-              </div>
             </div>
           </div>
         </section>
