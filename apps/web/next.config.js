@@ -3,8 +3,9 @@ const { setupDevPlatform } = require('@cloudflare/next-on-pages/next-dev')
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    loader: 'custom',
-    loaderFile: './lib/image-loader.ts',
+    // Cloudflare Pages doesn't support next/image optimization natively;
+    // use unoptimized images (Cloudflare Images or a loader can be added later)
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
