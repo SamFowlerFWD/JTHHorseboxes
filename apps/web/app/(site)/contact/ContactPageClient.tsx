@@ -77,9 +77,9 @@ const reasonsIE = [
   {
     icon: Phone,
     title: 'Call Us',
-    description: 'Speak to our team about Irish deliveries',
-    action: '+44 1603 552109',
-    link: 'tel:+441603552109'
+    description: 'Speak to our Ireland representative directly',
+    action: '+353 87 255 7015',
+    link: 'tel:+353872557015'
   },
   {
     icon: Mail,
@@ -177,9 +177,9 @@ export default function ContactPageClient() {
               : 'Visit our Norfolk showroom or contact our expert team'}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6 animate-slideUp animation-delay-400">
-            <a href={isIreland ? 'tel:+441603552109' : 'tel:01603552109'} className="btn-premium">
+            <a href={isIreland ? 'tel:+353872557015' : 'tel:01603552109'} className="btn-premium">
               <Phone className="mr-2 w-5 h-5" />
-              {isIreland ? 'Call +44 1603 552109' : 'Call 01603 552109'}
+              {isIreland ? 'Call +353 87 255 7015' : 'Call 01603 552109'}
             </a>
             <a href="#contact-form" className="btn-premium-outline border-white text-white hover:text-slate-900">
               Send Message
@@ -230,7 +230,20 @@ export default function ContactPageClient() {
               <div className="w-24 h-1 bg-gradient-to-r from-blue-700 to-amber-500 mb-8"></div>
 
               <div className="space-y-6 mb-8">
-                {!isIreland && (
+                {isIreland ? (
+                  <div className="flex items-start">
+                    <MapPin className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
+                    <div>
+                      <h3 className="text-lg font-semibold text-slate-900 mb-2">Ireland Representative</h3>
+                      <p className="text-slate-600">
+                        Paul Morton<br />
+                        Taylors Lane<br />
+                        Ballyboden, Rathfarnham<br />
+                        Dublin, D16 CV91
+                      </p>
+                    </div>
+                  </div>
+                ) : (
                   <div className="flex items-start">
                     <MapPin className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
                     <div>
@@ -259,11 +272,11 @@ export default function ContactPageClient() {
                   <Phone className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
                   <div>
                     <h3 className="text-lg font-semibold text-slate-900 mb-2">Phone</h3>
-                    <a href={isIreland ? 'tel:+441603552109' : 'tel:01603552109'} className="text-slate-600 hover:text-blue-700">
-                      {isIreland ? '+44 1603 552109' : '01603 552109'}
+                    <a href={isIreland ? 'tel:+353872557015' : 'tel:01603552109'} className="text-slate-600 hover:text-blue-700">
+                      {isIreland ? '+353 87 255 7015' : '01603 552109'}
                     </a>
                     <p className="text-sm text-slate-500 mt-1">
-                      Direct line - no call centres
+                      {isIreland ? 'Ireland representative - Paul Morton' : 'Direct line - no call centres'}
                     </p>
                   </div>
                 </div>
@@ -449,7 +462,7 @@ export default function ContactPageClient() {
                   {submitStatus === 'error' && (
                     <div className="bg-red-50 border border-red-200 p-4 text-red-700">
                       <p className="text-sm">
-                        There was an error sending your message. Please try again or call us directly on 01603 552109.
+                        There was an error sending your message. Please try again or call us directly on {isIreland ? '+353 87 255 7015' : '01603 552109'}.
                       </p>
                     </div>
                   )}
@@ -573,13 +586,13 @@ export default function ContactPageClient() {
             Whether you're ready to order or just exploring options, we're here to help
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6">
-            <Link href="/models" className="btn-premium bg-white text-blue-700 hover:bg-slate-50">
+            <Link href={isIreland ? '/ireland' : '/models'} className="btn-premium bg-white text-blue-700 hover:bg-slate-50">
               Browse Our Models
               <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
-            <a href="tel:01603552109" className="btn-premium-outline border-white text-white">
+            <a href={isIreland ? 'tel:+353872557015' : 'tel:01603552109'} className="btn-premium-outline border-white text-white">
               <Phone className="mr-2 w-5 h-5" />
-              Call 01603 552109
+              {isIreland ? 'Call +353 87 255 7015' : 'Call 01603 552109'}
             </a>
           </div>
         </div>

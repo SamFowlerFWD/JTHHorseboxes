@@ -167,11 +167,11 @@ export default function Footer() {
             <h3 className="font-semibold text-white mb-6">Get in Touch</h3>
             <ul className="space-y-4">
               <li>
-                <a href="tel:+441603552109" className="text-slate-400 hover:text-blue-400 transition-colors flex items-start gap-3">
+                <a href={isIreland ? 'tel:+353872557015' : 'tel:+441603552109'} className="text-slate-400 hover:text-blue-400 transition-colors flex items-start gap-3">
                   <Phone className="w-5 h-5 mt-0.5 flex-shrink-0" />
                   <div>
                     <div className="font-medium text-white">Call Us</div>
-                    <div>+44 1603 552109</div>
+                    <div>{isIreland ? '+353 87 255 7015' : '+44 1603 552109'}</div>
                   </div>
                 </a>
               </li>
@@ -189,11 +189,16 @@ export default function Footer() {
                   <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0" />
                   <div>
                     <div className="font-medium text-white">
-                      {isIreland ? 'Workshop' : 'Location'}
+                      {isIreland ? 'Ireland Representative' : 'Location'}
                     </div>
-                    <div>Norfolk, England</div>
-                    {isIreland && (
-                      <div className="text-xs text-slate-500 mt-1">Direct delivery to Ireland</div>
+                    {isIreland ? (
+                      <>
+                        <div>Paul Morton</div>
+                        <div>Ballyboden, Rathfarnham</div>
+                        <div>Dublin, D16 CV91</div>
+                      </>
+                    ) : (
+                      <div>Norfolk, England</div>
                     )}
                   </div>
                 </div>
