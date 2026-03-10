@@ -5,6 +5,10 @@ import { Inter, Playfair_Display } from 'next/font/google'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
+  icons: {
+    icon: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
   metadataBase: new URL('https://jthltd.co.uk'),
   title: {
     default: 'JTH Horseboxes - Premium 3.5t, 4.5t & 7.2t British Horseboxes | Norfolk UK',
