@@ -1,6 +1,7 @@
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import ReviewMode from '@/components/review/ReviewMode'
 import { Inter, Playfair_Display } from 'next/font/google'
 import type { Metadata } from 'next'
 
@@ -87,6 +88,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </div>
         <Footer />
+        <ReviewMode />
       </body>
     </html>
   )

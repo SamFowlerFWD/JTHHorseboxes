@@ -46,9 +46,11 @@ export async function middleware(request: NextRequest) {
   const ip = request.ip || request.headers.get('x-forwarded-for') || 'unknown'
   const hostname = request.headers.get('host') || ''
   const isIrishDomain = hostname.endsWith('.ie') || hostname.endsWith('.ie:3000')
+  const isLocalDev = hostname.startsWith('localhost') || hostname.startsWith('127.0.0.1')
 
-  // Password-protect UK site only (entire .ie domain is public)
-  if (!isIrishDomain && !pathname.startsWith('/api') && !pathname.startsWith('/admin')) {
+  // Password-protect the UK preview only. The .ie domain is public, and local
+  // dev is skipped so relative fetches aren't broken by credentials in the URL.
+  if (!isIrishDomain && !isLocalDev && !pathname.startsWith('/api') && !pathname.startsWith('/admin')) {
     const denied = checkBasicAuth(request)
     if (denied) return denied
   }

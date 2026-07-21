@@ -24,3 +24,7 @@ pnpm-debug.log*
 playwright-report/
 test-results/
 JTH sales resources/
+
+# Build artifacts
+.wrangler
+*.tsbuildinfo
