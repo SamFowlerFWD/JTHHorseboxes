@@ -45,14 +45,9 @@ export const organizationSchema = {
   "sameAs": [
     "https://www.facebook.com/JTHHorseboxes",
     "https://www.instagram.com/jthhorseboxes"
-  ],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "127",
-    "bestRating": "5",
-    "worstRating": "1"
-  }
+  ]
+  // No aggregateRating until there are real, verifiable reviews to aggregate —
+  // invented review markup breaches Google's structured data policy.
 }
 
 export const localBusinessSchema = {
@@ -148,12 +143,8 @@ export function generateProductSchema(product: {
         "name": "J Taylor Horseboxes"
       },
       "warranty": "2 years structural warranty"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "42"
     }
+    // No aggregateRating — see organizationSchema above.
   }
 }
 

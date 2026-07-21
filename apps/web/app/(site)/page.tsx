@@ -95,8 +95,6 @@ export default function HomePage() {
         text: 'Most Popular',
         variant: 'default' as const
       },
-      rating: 4.8,
-      reviews: 47,
       features: [
         { label: 'Payload', value: '1,200kg' },
         { label: 'Horse Capacity', value: '2 horses' },
@@ -119,8 +117,6 @@ export default function HomePage() {
         text: 'Best Value',
         variant: 'secondary' as const
       },
-      rating: 4.6,
-      reviews: 31,
       features: [
         { label: 'Payload', value: '1,250kg' },
         { label: 'Horse Capacity', value: '2 horses' },
@@ -143,8 +139,6 @@ export default function HomePage() {
         text: 'Premium',
         variant: 'default' as const
       },
-      rating: 5.0,
-      reviews: 18,
       features: [
         { label: 'Seating', value: 'Up to 7 seats' },
         { label: 'Crew Cab', value: '3 front + 4 rear' },

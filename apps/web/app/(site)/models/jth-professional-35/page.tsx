@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Hero from '@/components/Hero'
 import { ArrowRight, Check, Shield, Award, Star, Truck, Users, Clock, ChevronRight, Phone, Mail, MapPin } from 'lucide-react'
 import type { Metadata } from 'next'
-import Schema, { organizationSchema, generateProductSchema, generateBreadcrumbSchema, generateFAQSchema, generateReviewSchema } from '@/components/Schema'
+import Schema, { organizationSchema, generateProductSchema, generateBreadcrumbSchema, generateFAQSchema } from '@/components/Schema'
 
 export const metadata: Metadata = {
   title: 'Professional 35 - Premium 3.5t Horsebox for Professional Riders | JTH Norfolk',
@@ -87,25 +87,9 @@ export default function Professional35Page() {
     }
   ]
 
-  const reviews = [
-    generateReviewSchema({
-      author: 'Sarah Mitchell',
-      reviewBody: 'The Professional 35 has transformed how I travel to competitions. The luxury living area means I can rest properly between events, and my horses travel in absolute comfort.',
-      reviewRating: 5,
-      datePublished: '2024-10-15',
-      itemReviewed: 'JTH Professional 35'
-    }),
-    generateReviewSchema({
-      author: 'James Thompson',
-      reviewBody: 'Outstanding build quality and attention to detail. The Professional 35 is worth every penny. My horses are calmer and more relaxed when we arrive at venues.',
-      reviewRating: 5,
-      datePublished: '2024-09-22',
-      itemReviewed: 'JTH Professional 35'
-    })
-  ]
   return (
     <>
-      <Schema schema={[organizationSchema, generateBreadcrumbSchema(breadcrumbs), productSchema, generateFAQSchema(faqs), ...reviews]} />
+      <Schema schema={[organizationSchema, generateBreadcrumbSchema(breadcrumbs), productSchema, generateFAQSchema(faqs)]} />
       <main className="bg-white">
       {/* Hero Section with Premium Dark Overlay */}
       <Hero 
@@ -509,56 +493,6 @@ export default function Professional35Page() {
                 </tr>
               </tbody>
             </table>
-          </div>
-        </div>
-      </section>
-
-      {/* Customer Testimonials */}
-      <section className="py-20 md:py-32 bg-gradient-to-br from-slate-900 to-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-light text-white mb-6">
-              What Our Customers Say
-            </h2>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-              Professional riders trust the Professional 35 for their competition needs
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                name: 'Sarah Mitchell',
-                role: 'Professional Event Rider',
-                quote: 'The Professional 35 has transformed how I travel to competitions. The luxury living area means I can rest properly between events, and my horses travel in absolute comfort.',
-                rating: 5
-              },
-              {
-                name: 'James Thompson',
-                role: 'Dressage Competitor',
-                quote: 'Outstanding build quality and attention to detail. The Professional 35 is worth every penny. My horses are calmer and more relaxed when we arrive at venues.',
-                rating: 5
-              },
-              {
-                name: 'Emma Richards',
-                role: 'Show Jumper',
-                quote: 'After comparing all the options, the Professional 35 was the clear winner. The safety features give me peace of mind, and the customization options meant I got exactly what I needed.',
-                rating: 5
-              }
-            ].map((testimonial, index) => (
-              <div key={index} className="bg-white/5 backdrop-blur-sm border border-white/10 p-8">
-                <div className="flex mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-                <p className="text-slate-300 mb-6 italic">"{testimonial.quote}"</p>
-                <div>
-                  <p className="text-white font-semibold">{testimonial.name}</p>
-                  <p className="text-slate-400 text-sm">{testimonial.role}</p>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>

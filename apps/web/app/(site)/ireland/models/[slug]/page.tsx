@@ -104,11 +104,6 @@ const modelContent: Record<string, {
       'JTH Professional 35 horsebox dramatic low angle rear view — premium 3.5t horsebox in Ireland',
       'JTH Professional 35 horsebox boarding ferry for direct delivery to Ireland',
     ],
-    testimonial: {
-      name: 'Sarah Thompson',
-      role: 'Professional Event Rider',
-      quote: 'The Professional 35 has transformed my competition experience. The quality is outstanding and the attention to detail is second to none. It\'s given me a real competitive edge.'
-    },
     seoKeywords: '3.5t horsebox Ireland, Professional 35 Ireland, premium 3.5 tonne horsebox Ireland, competition horsebox Ireland, luxury horsebox delivered Ireland, British horsebox manufacturer, best 3.5t horsebox Ireland',
     heroImage: '/ireland/jth-professional-35-horsebox-navy-gold-front-ireland.webp',
     gbpBasePrice: 22000,
@@ -167,11 +162,6 @@ const modelContent: Record<string, {
       'JTH Principle 35 horsebox rear view in racing green with HORSES signage — Dublin registered',
       'JTH Principle 35 horsebox rear detail — premium finish and J Taylor Horseboxes badge',
     ],
-    testimonial: {
-      name: 'Louise Carter',
-      role: 'Happy Hacker',
-      quote: 'The Principle 35 is perfect for my needs. Great value without compromising on quality or safety. I couldn\'t be happier with my choice.'
-    },
     seoKeywords: '3.5t horsebox Ireland, Principle 35 Ireland, value horsebox Ireland, affordable horsebox Ireland, British horsebox delivered Ireland, 3.5 tonne horsebox for sale Ireland',
     heroImage: '/ireland/jth-principle-35-horsebox-green-rear-quarter-ireland.webp',
     gbpBasePrice: 18500,

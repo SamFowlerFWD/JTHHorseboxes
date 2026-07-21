@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, Star, Check } from 'lucide-react'
+import { ArrowRight, Check } from 'lucide-react'
 
 type ProductCardProps = {
   title: string
@@ -50,14 +50,6 @@ export default function ProductCard({
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           
           <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-            <div className="flex items-center gap-2 mb-2">
-              <Star className="w-4 h-4 fill-blue-400 text-blue-400" />
-              <Star className="w-4 h-4 fill-blue-400 text-blue-400" />
-              <Star className="w-4 h-4 fill-blue-400 text-blue-400" />
-              <Star className="w-4 h-4 fill-blue-400 text-blue-400" />
-              <Star className="w-4 h-4 fill-blue-400 text-blue-400" />
-              <span className="text-sm ml-1">5.0 Rating</span>
-            </div>
             <p className="text-sm">Click to explore</p>
           </div>
         </div>

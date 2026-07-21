@@ -75,11 +75,6 @@ const modelContent: Record<string, {
       ]
     },
     gallery: ['01.webp', '02.webp', '03.webp', '04.webp', '05.webp'],
-    testimonial: {
-      name: 'Sarah Thompson',
-      role: 'Professional Event Rider',
-      quote: 'The Professional 35 has transformed my competition experience. The quality is outstanding and the attention to detail is second to none. It\'s given me a real competitive edge.'
-    },
     seoKeywords: '3.5t professional horsebox, Professional 35, premium 3.5 tonne horsebox, competition horsebox, luxury horsebox, British horsebox manufacturer, best 3.5t horsebox UK, professional horse transport',
     heroImage: '/models/professional-35/01.webp'
   },
@@ -124,11 +119,6 @@ const modelContent: Record<string, {
       ]
     },
     gallery: ['01.webp', '02.webp', '03.webp', '04.webp'],
-    testimonial: {
-      name: 'Louise Carter',
-      role: 'Happy Hacker',
-      quote: 'The Principle 35 is perfect for my needs. Great value without compromising on quality or safety. I couldn\'t be happier with my choice.'
-    },
     seoKeywords: '3.5t horsebox, value horsebox, Principle 35, affordable horsebox, British horsebox, 3.5 tonne horsebox for sale',
     heroImage: '/models/principle-35/01.webp'
   },
@@ -174,11 +164,6 @@ const modelContent: Record<string, {
       ]
     },
     gallery: ['01.webp', '02.webp', '03.webp', '04.webp', '05.webp'],
-    testimonial: {
-      name: 'Richard Pemberton',
-      role: 'Competition Rider',
-      quote: 'The Progeny 35 exceeds all expectations. The attention to detail and premium finish is outstanding.'
-    },
     seoKeywords: '3.5t crew cab horsebox, Progeny 35, crew cab horsebox 7 seats, premium horsebox, top specification horsebox, best 3.5 tonne horsebox, team horsebox',
     heroImage: '/models/progeny-35/01.webp'
   },
@@ -248,11 +233,6 @@ const modelContent: Record<string, {
       ]
     },
     gallery: ['hero.jpg', 'blue-front.jpg', 'layout.jpg'],
-    testimonial: {
-      name: 'Mark Richardson',
-      role: 'Professional Rider',
-      quote: 'The Aeos Edge is a fantastic horsebox — compact, generous payload and everything I need for competition days.'
-    },
     seoKeywords: '4.5t horsebox, Aeos Edge 45, compact 4.5 tonne horsebox, generous payload horsebox, air suspension horsebox, British horsebox, Norfolk horsebox',
     heroImage: '/models/aeos-edge-45/hero.jpg'
   },
@@ -332,11 +312,6 @@ const modelContent: Record<string, {
       ]
     },
     gallery: ['01.webp', '02.webp', '03.webp', '04.webp'],
-    testimonial: {
-      name: 'Sarah & Tom Williams',
-      role: 'Family Riders',
-      quote: 'The Freedom 45 is perfect for weekend events. The day living area and bed make overnight stays comfortable, and the horses travel brilliantly.'
-    },
     seoKeywords: '4.5t horsebox with living, Aeos Freedom 45, multipurpose horsebox, day living horsebox, 4.5 tonne horsebox bed, weekend horsebox, Aeos horsebox UK',
     heroImage: '/models/aeos-freedom-45/01.webp'
   },
@@ -431,11 +406,6 @@ const modelContent: Record<string, {
       ]
     },
     gallery: ['01.webp', '02.webp', '03.webp', '04.webp', '05.webp', '06.webp'],
-    testimonial: {
-      name: 'Victoria Hamilton',
-      role: 'Competition Rider',
-      quote: 'The Aeos Discovery 45 is a game-changer. The luxury living area is like a motorhome, but it still transports my horses beautifully.'
-    },
     seoKeywords: '4.5t luxury horsebox, Aeos Discovery 45, luxury living horsebox, motorhome horsebox, 4.5 tonne horsebox shower toilet, premium horsebox UK, Aeos horsebox, horsebox with living area',
     heroImage: '/models/aeos-discovery-45/01.webp'
   },
@@ -504,11 +474,6 @@ const modelContent: Record<string, {
       ]
     },
     gallery: ['hero.jpg', 'layout.jpg'],
-    testimonial: {
-      name: 'David Mitchell',
-      role: 'Stud Owner',
-      quote: 'The Edge ST 45 gives me complete confidence when transporting our stallions. The fixed partition is excellent.'
-    },
     seoKeywords: '4.5t stallion horsebox, Aeos Edge ST 45, stallion transport horsebox, fixed partition horsebox, stallion stall horsebox UK',
     heroImage: '/models/aeos-edge-st-45/hero.jpg'
   },
@@ -609,11 +574,6 @@ const modelContent: Record<string, {
       ]
     },
     gallery: ['01.webp', '02.webp', '03.webp', '04.webp', '05.webp', '06.webp', '07.webp', '08.webp'],
-    testimonial: {
-      name: 'Team GB Rider',
-      role: 'Olympic Competitor',
-      quote: 'The Aeos Discovery 72 is essential for international competition. It\'s our mobile base, providing everything we need to perform at the highest level.'
-    },
     seoKeywords: '7.2t horsebox, 7.2 tonne horsebox, Aeos Discovery 72, luxury horsebox, 3 tonne payload horsebox, professional horsebox, motorhome horsebox',
     heroImage: '/models/aeos-discovery-72/hero.jpg'
   },
@@ -661,11 +621,6 @@ const modelContent: Record<string, {
       ]
     },
     gallery: ['01.webp', '02.webp', '03.webp', '04.webp'],
-    testimonial: {
-      name: 'Mark Stevens',
-      role: 'Competition Rider',
-      quote: 'The Principle 45 gives me everything I need at a price I can afford. The extra payload makes all the difference for longer trips.'
-    },
     seoKeywords: 'Principle 45 horsebox, 4.5t basic horsebox, 4.5 tonne entry level, affordable 4.5t horsebox, JTH Principle 45, 4 piece back end, British 4.5t horsebox, Norfolk horsebox builder',
     heroImage: '/models/jth-principle-45/01.webp'
   },
@@ -716,11 +671,6 @@ const modelContent: Record<string, {
       ]
     },
     gallery: ['01.webp', '02.webp', '03.webp', '04.webp', '05.webp'],
-    testimonial: {
-      name: 'Emma Richardson',
-      role: 'Professional Event Rider',
-      quote: 'The Professional 45 is incredible value - so many premium features included as standard. It\'s transformed my competition experience.'
-    },
     seoKeywords: 'Professional 45 horsebox, premium 4.5t horsebox, luxury 4.5 tonne, JTH Professional 45, metallic paint horsebox, reversing camera, climate control horsebox, professional competition horsebox',
     heroImage: '/models/jth-professional-45/01.webp'
   },
@@ -769,11 +719,6 @@ const modelContent: Record<string, {
       ]
     },
     gallery: ['01.webp', '02.webp', '03.webp', '04.webp'],
-    testimonial: {
-      name: 'Sarah Johnson',
-      role: 'Riding School Owner',
-      quote: 'The Progeny 45 is perfect for our team events. We can transport horses and riders together safely and comfortably.'
-    },
     seoKeywords: 'Progeny 45 horsebox, crew cab horsebox, 4.5t team horsebox, JTH Progeny 45, crew cab horse transport, family horsebox, side windows horsebox, external doors option',
     heroImage: '/models/jth-progeny-45/01.webp'
   },
@@ -820,11 +765,6 @@ const modelContent: Record<string, {
       ]
     },
     gallery: ['hero.jpg', 'layout.webp'],
-    testimonial: {
-      name: 'James Mitchell',
-      role: 'Professional Event Rider',
-      quote: 'The Helios 75 is in a league of its own. The living is genuinely like a luxury apartment and the horses travel in complete comfort.'
-    },
     seoKeywords: '7.5t horsebox, Helios 75, luxury horsebox, 3 horse horsebox, 7.5 tonne horsebox with living, premium horsebox, horsebox with shower, horsebox with kitchen',
     heroImage: '/models/helios-75/hero.jpg'
   },
