@@ -235,7 +235,7 @@ export function getModelKeywords(modelSlug: string): string[] {
     'aeos-edge-45': ['professional 4.5t', 'competition ready', 'edge horsebox'],
     'aeos-freedom-45': ['family horsebox', 'versatile horsebox', 'freedom horsebox'],
     'aeos-discovery-45': ['luxury living horsebox', 'apartment horsebox', 'discovery horsebox'],
-    'zenos-72': ['flagship horsebox', 'ultimate horsebox', 'luxury 7.2t horsebox'],
+    'aeos-discovery-72': ['flagship horsebox', 'ultimate horsebox', 'luxury 7.2t horsebox'],
   }
   
   if (modelSpecific[modelSlug]) {

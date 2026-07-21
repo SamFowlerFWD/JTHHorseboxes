@@ -1,49 +1,18 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import Logo from '@/components/Logo'
 import { ChevronDown, Menu, X, Phone, Mail } from 'lucide-react'
 
-function UKFlag({ className = '' }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 60 30" className={className} aria-hidden="true">
-      <clipPath id="uk-clip"><rect width="60" height="30" /></clipPath>
-      <g clipPath="url(#uk-clip)">
-        <rect width="60" height="30" fill="#012169" />
-        <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" strokeWidth="6" />
-        <path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" strokeWidth="4" clipPath="url(#uk-diag)" />
-        <clipPath id="uk-diag">
-          <path d="M30,15 L60,30 L60,25 ZM30,15 L0,0 L0,5 ZM30,15 L0,30 L5,30 ZM30,15 L60,0 L55,0 Z" />
-        </clipPath>
-        <path d="M30,0 V30 M0,15 H60" stroke="#fff" strokeWidth="10" />
-        <path d="M30,0 V30 M0,15 H60" stroke="#C8102E" strokeWidth="6" />
-      </g>
-    </svg>
-  )
-}
-
-function IrelandFlag({ className = '' }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 3 2" className={className} aria-hidden="true">
-      <rect width="1" height="2" fill="#169B62" />
-      <rect x="1" width="1" height="2" fill="#FFFFFF" />
-      <rect x="2" width="1" height="2" fill="#FF883E" />
-    </svg>
-  )
-}
-
 function getRegionCookie(): string | null {
   if (typeof document === 'undefined') return null
-  const match = document.cookie.match(/(?:^|;\s*)region=([^;]*)/)
+  const match = document.cookie.match(/(?:^|; )region=([^;]*)/)
   return match ? match[1] : null
 }
 
-function setRegionCookie(region: string) {
-  document.cookie = `region=${region}; path=/; max-age=31536000; SameSite=Lax`
-}
 
 const navigation = {
   models: {
@@ -91,8 +60,7 @@ const navigation = {
       {
         title: '7.2T & 7.5T Models',
         items: [
-          { name: 'Zenos 72', href: '/models/zenos-72', note: 'Contact for Pricing' },
-          { name: 'Zenos XL', href: '/models/zenos-xl', note: 'Contact for Pricing' },
+          { name: 'Aeos Discovery 72', href: '/models/aeos-discovery-72' },
           { name: 'Helios 75', href: '/models/helios-75', note: 'Contact for Pricing' },
         ]
       }
@@ -123,49 +91,15 @@ const irelandNavigation = {
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null)
-  const [regionDropdownOpen, setRegionDropdownOpen] = useState(false)
-  const [region, setRegion] = useState<string>('GB')
-  const regionRef = useRef<HTMLDivElement>(null)
+  const [regionCookie, setRegionCookie] = useState<string | null>(null)
   const pathname = usePathname()
-  const router = useRouter()
 
-  // Determine region from cookie or pathname
   useEffect(() => {
-    const cookieRegion = getRegionCookie()
-    if (cookieRegion) {
-      setRegion(cookieRegion)
-    } else if (pathname.startsWith('/ireland')) {
-      setRegion('IE')
-    }
-  }, [pathname])
+    setRegionCookie(getRegionCookie())
+  }, [])
 
-  // Close region dropdown on click outside
-  useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      if (regionRef.current && !regionRef.current.contains(e.target as Node)) {
-        setRegionDropdownOpen(false)
-      }
-    }
-    if (regionDropdownOpen) {
-      document.addEventListener('mousedown', handleClickOutside)
-      return () => document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [regionDropdownOpen])
-
-  const isIreland = pathname.startsWith('/ireland') || region === 'IE'
+  const isIreland = pathname.startsWith('/ireland') || regionCookie === 'IE'
   const activeNav = isIreland ? irelandNavigation : navigation
-
-  function handleRegionSelect(newRegion: string) {
-    setRegion(newRegion)
-    setRegionCookie(newRegion)
-    setRegionDropdownOpen(false)
-    setMobileMenuOpen(false)
-    if (newRegion === 'IE') {
-      router.push('/ireland')
-    } else {
-      router.push('/')
-    }
-  }
 
   return (
     <>
@@ -182,9 +116,9 @@ export default function Header() {
                 <Phone className="h-3.5 w-3.5" />
                 {isIreland ? '+353 87 255 7015' : '+44 1603 552109'}
               </a>
-              <a href="mailto:sales@jthltd.co.uk" className="flex items-center gap-2 hover:text-blue-400 transition-colors">
+              <a href={isIreland ? 'mailto:Paul@JTHltd.ie' : 'mailto:sales@jthltd.co.uk'} className="flex items-center gap-2 hover:text-blue-400 transition-colors">
                 <Mail className="h-3.5 w-3.5" />
-                sales@jthltd.co.uk
+                {isIreland ? 'Paul@JTHltd.ie' : 'sales@jthltd.co.uk'}
               </a>
             </div>
           </div>
@@ -198,16 +132,21 @@ export default function Header() {
             {/* Logo */}
             <Link href={isIreland ? '/ireland' : '/'} className="flex items-center gap-3 group">
               {isIreland ? (
-                <Image
-                  src="/logo-ireland.jpg"
-                  alt="JTH Horseboxes Ireland"
-                  width={180}
-                  height={50}
-                  className="h-12 w-auto transition-transform group-hover:scale-105"
-                  priority
-                />
+                <div className="overflow-hidden h-12">
+                  <Image
+                    src="/logo-ireland.jpg"
+                    alt="J Taylor Horseboxes Ireland"
+                    width={180}
+                    height={50}
+                    className="h-12 w-auto transition-transform group-hover:scale-105 border-0"
+                    style={{ clipPath: 'inset(0 1px 0 0)' }}
+                    priority
+                  />
+                </div>
               ) : (
-                <Logo width={180} height={50} className="h-12 w-auto transition-transform group-hover:scale-105" priority />
+                <div className="overflow-hidden h-12">
+                  <Logo width={180} height={50} className="h-12 w-auto transition-transform group-hover:scale-105 border-0" priority />
+                </div>
               )}
               <span className="sr-only">JTH Horseboxes</span>
             </Link>
@@ -258,14 +197,14 @@ export default function Header() {
                                             {item.name}
                                           </span>
                                           <div className="flex items-center gap-2">
-                                            {'badge' in item && item.badge && (
+                                            {(item as { badge?: string }).badge && (
                                               <span className="px-2 py-0.5 text-xs font-medium bg-amber-100 text-amber-700 rounded-full">
-                                                {item.badge}
+                                                {(item as { badge?: string }).badge}
                                               </span>
                                             )}
-                                            {'note' in item && item.note && (
+                                            {(item as { note?: string }).note && (
                                               <span className="text-xs text-slate-500 italic">
-                                                {item.note}
+                                                {(item as { note?: string }).note}
                                               </span>
                                             )}
                                           </div>
@@ -292,6 +231,16 @@ export default function Header() {
                 )}
               </div>
 
+              {!isIreland && (
+                <Link href="/coat-x" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">
+                  Coat-X
+                </Link>
+              )}
+              {isIreland && (
+                <Link href="/ireland/in-stock" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">
+                  In Stock
+                </Link>
+              )}
               <Link href="/about" className="text-slate-700 hover:text-blue-600 transition-colors font-medium">
                 About
               </Link>
@@ -300,43 +249,8 @@ export default function Header() {
               </Link>
             </nav>
 
-            {/* Desktop CTA + Region Switcher */}
+            {/* Desktop CTA */}
             <div className="hidden lg:flex items-center gap-4">
-              {/* Region Switcher */}
-              <div className="relative" ref={regionRef}>
-                <button
-                  onClick={() => setRegionDropdownOpen(!regionDropdownOpen)}
-                  className="flex items-center gap-1.5 px-2 py-1.5 rounded border border-slate-200 hover:border-slate-300 transition-colors text-sm text-slate-600"
-                  aria-label="Select region"
-                >
-                  {region === 'IE' ? (
-                    <IrelandFlag className="w-5 h-3.5 rounded-sm" />
-                  ) : (
-                    <UKFlag className="w-5 h-3.5 rounded-sm" />
-                  )}
-                  <ChevronDown className={`h-3.5 w-3.5 transition-transform ${regionDropdownOpen ? 'rotate-180' : ''}`} />
-                </button>
-
-                {regionDropdownOpen && (
-                  <div className="absolute top-full right-0 mt-1 w-48 bg-white shadow-lg border border-slate-200 rounded-md overflow-hidden z-50">
-                    <button
-                      onClick={() => handleRegionSelect('GB')}
-                      className={`flex items-center gap-3 w-full px-3 py-2.5 text-sm hover:bg-slate-50 transition-colors ${region === 'GB' ? 'bg-blue-50 text-blue-700' : 'text-slate-700'}`}
-                    >
-                      <UKFlag className="w-6 h-4 rounded-sm flex-shrink-0" />
-                      United Kingdom
-                    </button>
-                    <button
-                      onClick={() => handleRegionSelect('IE')}
-                      className={`flex items-center gap-3 w-full px-3 py-2.5 text-sm hover:bg-slate-50 transition-colors ${region === 'IE' ? 'bg-blue-50 text-blue-700' : 'text-slate-700'}`}
-                    >
-                      <IrelandFlag className="w-6 h-4 rounded-sm flex-shrink-0" />
-                      Ireland
-                    </button>
-                  </div>
-                )}
-              </div>
-
               <Link
                 href="/contact"
                 className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-all duration-300 hover:shadow-lg"
@@ -388,14 +302,14 @@ export default function Header() {
                             >
                               <span>{item.name}</span>
                               <div className="flex items-center gap-2">
-                                {'badge' in item && item.badge && (
+                                {(item as { badge?: string }).badge && (
                                   <span className="px-1.5 py-0.5 text-xs font-medium bg-amber-100 text-amber-700 rounded-full">
-                                    {item.badge}
+                                    {(item as { badge?: string }).badge}
                                   </span>
                                 )}
-                                {'note' in item && item.note && (
+                                {(item as { note?: string }).note && (
                                   <span className="text-xs text-slate-500 italic">
-                                    {item.note}
+                                    {(item as { note?: string }).note}
                                   </span>
                                 )}
                               </div>
@@ -411,6 +325,16 @@ export default function Header() {
                   </Link>
                 </div>
               </div>
+              {!isIreland && (
+                <Link href="/coat-x" className="block text-slate-700 hover:text-blue-600 transition-colors font-medium">
+                  Coat-X
+                </Link>
+              )}
+              {isIreland && (
+                <Link href="/ireland/in-stock" className="block text-slate-700 hover:text-blue-600 transition-colors font-medium">
+                  In Stock
+                </Link>
+              )}
               <Link href="/about" className="block text-slate-700 hover:text-blue-600 transition-colors font-medium">
                 About
               </Link>
@@ -427,35 +351,14 @@ export default function Header() {
                 </Link>
               </div>
               
-              {/* Region Switcher - Mobile */}
-              <div className="pt-4 border-t border-slate-200">
-                <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Region</div>
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => handleRegionSelect('GB')}
-                    className={`flex items-center gap-2 flex-1 px-3 py-2 rounded border text-sm transition-colors ${region === 'GB' ? 'border-blue-500 bg-blue-50 text-blue-700' : 'border-slate-200 text-slate-600 hover:border-slate-300'}`}
-                  >
-                    <UKFlag className="w-5 h-3.5 rounded-sm flex-shrink-0" />
-                    UK
-                  </button>
-                  <button
-                    onClick={() => handleRegionSelect('IE')}
-                    className={`flex items-center gap-2 flex-1 px-3 py-2 rounded border text-sm transition-colors ${region === 'IE' ? 'border-blue-500 bg-blue-50 text-blue-700' : 'border-slate-200 text-slate-600 hover:border-slate-300'}`}
-                  >
-                    <IrelandFlag className="w-5 h-3.5 rounded-sm flex-shrink-0" />
-                    Ireland
-                  </button>
-                </div>
-              </div>
-
-              <div className="pt-4 space-y-2 text-sm">
+              <div className="pt-4 border-t border-slate-200 space-y-2 text-sm">
                 <a href={isIreland ? 'tel:+353872557015' : 'tel:+441603552109'} className="flex items-center gap-2 text-slate-600 hover:text-blue-600">
                   <Phone className="h-4 w-4" />
                   {isIreland ? '+353 87 255 7015' : '+44 1603 552109'}
                 </a>
-                <a href="mailto:sales@jthltd.co.uk" className="flex items-center gap-2 text-slate-600 hover:text-blue-600">
+                <a href={isIreland ? 'mailto:Paul@JTHltd.ie' : 'mailto:sales@jthltd.co.uk'} className="flex items-center gap-2 text-slate-600 hover:text-blue-600">
                   <Mail className="h-4 w-4" />
-                  sales@jthltd.co.uk
+                  {isIreland ? 'Paul@JTHltd.ie' : 'sales@jthltd.co.uk'}
                 </a>
               </div>
             </nav>

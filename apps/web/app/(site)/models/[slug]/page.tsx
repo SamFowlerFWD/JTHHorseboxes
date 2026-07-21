@@ -3,6 +3,7 @@ import { loadPricingConfig } from '@/lib/pricing'
 import Link from 'next/link'
 import Image from 'next/image'
 import Hero from '@/components/Hero'
+import LightboxGallery from '@/components/Lightbox'
 
 export const runtime = 'edge'
 import { ArrowRight, Check, Shield, Award, Star, Truck, ChevronRight, Phone, Mail, MapPin, Users, Clock } from 'lucide-react'
@@ -36,55 +37,41 @@ const modelContent: Record<string, {
     description: 'The JTH Professional 35 is the ultimate 3.5 tonne horsebox for professional riders and serious competitors. Premium features, luxury finish, advanced safety systems. British-built in Norfolk from £22,000.',
     longDescription: [
       'The Professional 35 represents the pinnacle of 3.5 tonne horsebox design and engineering. Built for professional riders, serious competitors, and discerning owners who demand the very best, this model combines luxury, performance, and practicality in a package that can be driven on a standard car license.',
-      'Every Professional 35 is handcrafted at our Norfolk facility using the finest materials and components. The premium GRP construction ensures exceptional durability while keeping weight to a minimum, maximizing your available payload for horses and equipment. The Iveco Daily chassis provides reliable performance and excellent handling characteristics that inspire confidence on any journey.',
+      'Every Professional 35 is handcrafted at our Norfolk facility using the finest materials and components. The premium GRP construction ensures exceptional durability while keeping weight to a minimum, maximizing your available payload for horses and equipment.',
       'The living area in the Professional 35 sets new standards for the 3.5 tonne category. Premium upholstery, solid surface worktops, and thoughtful storage solutions create a comfortable environment for competition days. The horse area features our advanced safety systems including reinforced partitions, premium anti-slip flooring, and comprehensive CCTV monitoring.',
       'Professional riders choose the Professional 35 because it delivers everything needed for successful competition without compromise. From the hydraulic ramp option to the solar power system, every feature has been carefully selected to enhance your equestrian lifestyle. This is more than just transport – it\'s your mobile base for achieving excellence.'
     ],
     features: [
-      'Premium GRP monocoque construction for strength and low weight',
-      'Luxury living area with leather upholstery and solid surfaces',
-      'Advanced CCTV system with horse area monitoring',
-      'Solar panel system with leisure battery and inverter',
-      'Hydraulic ramp option for easy loading',
-      'Premium Iveco Daily chassis with enhanced suspension',
-      'Full LED lighting throughout including external work lights',
-      'Bluetooth sound system with premium speakers',
-      'Air conditioning in living area',
-      'External hot and cold shower',
-      'Reinforced breast and bum bars',
-      'Premium paint finish with metallic options',
-      'Tack locker with saddle racks and bridle hooks',
-      'Water tank with pump system',
-      'Gas hob and grill in kitchen area',
-      'Luxury seating converts to sleeping area',
-      'Comprehensive warranty and aftercare package'
+      'Head padding, partition padding, and top door padding',
+      'Electric fan with temperature and rain sensor',
+      'Loading light as standard',
+      'EVA wall matting up to 5 feet',
+      'Full aluminium bulkhead at the horse\'s head',
+      'Escape doors',
+      'Two bench storage seats in the groom\'s area',
+      'Reversing camera as standard',
+      'Adjustable tie rings',
     ],
     specifications: {
       dimensions: {
-        'Overall Length': '6.8m',
+        'Overall Length': '6.32m',
         'Overall Width': '2.3m',
         'Overall Height': '3.2m',
         'Internal Height': '2.3m',
-        'Horse Area Length': '3.6m',
-        'Living Area Length': '2.2m'
       },
       weights: {
         'Gross Weight': '3,500kg',
-        'Unladen Weight': '2,200kg',
-        'Payload': '1,300kg',
-        'Horse Capacity': '2 Horses up to 16.2hh',
-        'Tack Storage': 'Premium Locker',
-        'Water Capacity': '120 Litres'
+        'Payload': 'Approx. 1.0 tonne',
+        'Horse Capacity': '1 horse or 2 ponies',
+        'Licence': 'Category B (car licence)',
+        'Warranty': '2 year build warranty',
       },
       safety: [
-        'CCTV monitoring system',
-        'Emergency exit doors front and rear',
-        'Premium anti-slip rubber flooring',
-        'Internal and external LED lighting',
-        'Reinforced padded partitions',
-        'Secure multi-point door locks',
-        'Fire extinguisher and first aid kit',
-        'Emergency breakdown kit included'
+        'Triple reinforced bulkhead',
+        'Full height gapless, stepless & lightweight ramp',
+        'Composite floor',
+        'Escape doors',
+        'Stallion partition available',
       ]
     },
     gallery: ['01.webp', '02.webp', '03.webp', '04.webp', '05.webp'],
@@ -98,43 +85,42 @@ const modelContent: Record<string, {
   },
   'principle-35': {
     title: 'Principle 35 - Essential Quality 3.5t Horsebox',
-    description: 'The JTH Principle 35 offers the perfect balance of quality and value for discerning horsebox owners. British built 3.5 tonne horsebox with essential features from £18,500.',
+    description: 'The JTH Principle 35 offers the perfect balance of quality and value for discerning horsebox owners. All the safety, less of the thrills. British built 3.5 tonne horsebox from £18,500.',
     longDescription: [
-      'The Principle 35 represents exceptional value in the 3.5 tonne horsebox market. Built with the same British craftsmanship and attention to detail as our premium models, the Principle 35 delivers essential features without compromise.',
-      'Perfect for owners seeking quality construction and reliable performance, this model includes everything you need for safe and comfortable horse transportation. Every Principle 35 is built in our Norfolk facility with decades of expertise.',
-      'The Principle 35 proves that quality doesn\'t have to mean expensive. With thoughtful design and efficient production, we deliver a horsebox that meets the needs of most equestrian enthusiasts.'
+      'This entry level horsebox has a reduced specification to keep payload up and the cost down. A crossover of the KPH Aeos QV 35 and the JTH 3.5 Tonne Horsebox range.',
+      'The bespoke design allows us to tailor the horse area length and breast bar height specifically for you. In the groom\'s area you\'ll find an extra wide rear groom\'s door, long seat and internal saddle racks and bridle cups.',
+      'Customers can add items from a comprehensive list of colours and extras. Two year warranty included. For the more advanced specification, see the JTH Professional 35.'
     ],
     features: [
-      'Quality GRP construction',
-      'Essential safety features',
-      'Comfortable living area',
-      'Practical storage solutions',
-      'Reliable Iveco Daily chassis',
-      'Full 2-year warranty',
-      'British built quality',
-      'Customization options available'
+      '4-foot EVA wall matting',
+      'Reinforced bulkhead',
+      'Partition without padding',
+      'Two aluminium escape doors',
+      'Four tie rings',
+      'Roof vent as standard',
+      'Interior mood lighting and normal lighting',
+      'Wall storage for tack, including bridle hooks',
     ],
     specifications: {
       dimensions: {
-        'Overall Length': '6.5m',
+        'Overall Length': '6.32m',
         'Overall Width': '2.3m',
         'Overall Height': '3.1m',
         'Internal Height': '2.2m',
-        'Horse Area': '3.4m'
       },
       weights: {
         'Gross Weight': '3,500kg',
-        'Unladen Weight': '2,100kg',
-        'Payload': '1,400kg',
-        'Horse Capacity': '2 Horses',
-        'Tack Storage': 'Standard'
+        'Payload': 'Approx. 1.0 tonne',
+        'Horse Capacity': '1 horse or 2 ponies',
+        'Licence': 'Category B (car licence)',
+        'Warranty': '2 year build warranty',
       },
       safety: [
-        'Emergency exit doors',
-        'Anti-slip rubber flooring',
-        'Internal lighting',
-        'Padded partitions',
-        'Secure door locks'
+        'Triple reinforced bulkhead',
+        'Full height gapless, stepless & lightweight ramp',
+        'Composite floor',
+        'Two aluminium escape doors',
+        'Stallion partition available',
       ]
     },
     gallery: ['01.webp', '02.webp', '03.webp', '04.webp'],
@@ -147,20 +133,20 @@ const modelContent: Record<string, {
     heroImage: '/models/principle-35/01.webp'
   },
   'progeny-35': {
-    title: 'Progeny 35 - Top of the Range 3.5t Horsebox',
-    description: 'The JTH Progeny 35 is our flagship 3.5 tonne horsebox, featuring the highest specification and luxury finishes. British-built in Norfolk from £25,500.',
+    title: 'Progeny 35 - Crew Cab 3.5t Horsebox with Up to 7 Seats',
+    description: 'The JTH Progeny 35 is a crew cab 3.5 tonne horsebox seating up to 7 passengers — 3 in the front, 4 in the rear crew cab. Top of the range specification. British-built in Norfolk from £25,500.',
     longDescription: [
-      'The Progeny 35 represents the pinnacle of 3.5 tonne horsebox design. This flagship model incorporates every premium feature as standard with the finest materials and craftsmanship.',
-      'Building on the Professional 35 platform, the Progeny adds premium materials throughout, advanced technology features, and bespoke customization options that set it apart from any other horsebox in its class.',
-      'For owners who demand the absolute best, the Progeny 35 delivers an unmatched combination of luxury, performance, and British engineering excellence.'
+      'The Progeny 35 is our top of the range 3.5 tonne crew cab horsebox, designed for teams, families, and professionals who need to transport both horses and passengers in comfort. With seating for up to 7 — 3 in the front and 4 in the rear crew cab — everyone travels together.',
+      'Building on the Professional 35 platform, the Progeny adds a full crew cab with premium materials throughout, advanced technology features, and bespoke customization options that set it apart from any other horsebox in its class.',
+      'For owners who demand the absolute best, the Progeny 35 delivers an unmatched combination of crew cab practicality, luxury finish, and British engineering excellence.'
     ],
     features: [
+      'Crew cab — up to 7 seats',
+      '3 front seats, 4 rear crew cab seats',
       'Premium specification throughout',
       'Premium leather upholstery',
-      'Advanced technology suite',
       'Day living as standard',
       'Premium paint and graphics',
-      'Solar power system',
       'CCTV monitoring system',
       'Hydraulic ramp option'
     ],
@@ -174,10 +160,9 @@ const modelContent: Record<string, {
       },
       weights: {
         'Gross Weight': '3,500kg',
-        'Unladen Weight': '2,300kg',
         'Payload': '1,200kg',
         'Horse Capacity': '2 Horses',
-        'Tack Storage': 'Luxury'
+        'Seating': 'Up to 7 (3 front + 4 rear crew cab)'
       },
       safety: [
         'Advanced CCTV system',
@@ -194,256 +179,433 @@ const modelContent: Record<string, {
       role: 'Competition Rider',
       quote: 'The Progeny 35 exceeds all expectations. The attention to detail and premium finish is outstanding.'
     },
-    seoKeywords: '3.5t luxury horsebox, Progeny 35, premium horsebox, top specification horsebox, best 3.5 tonne horsebox, flagship model',
+    seoKeywords: '3.5t crew cab horsebox, Progeny 35, crew cab horsebox 7 seats, premium horsebox, top specification horsebox, best 3.5 tonne horsebox, team horsebox',
     heroImage: '/models/progeny-35/01.webp'
   },
   'aeos-edge-45': {
-    title: 'Aeos Edge 45 - Pre-Built Professional Package',
-    description: 'The Aeos Edge 45 is a professionally specified pre-built package ready for immediate delivery. Purpose-built for serious competitors with limited customization required.',
+    title: 'Aeos Edge 45 - Compact 4.5t Horsebox with Generous Payload',
+    description: 'The Aeos Edge 45 is a compact 4.5 tonne horsebox with a generous payload of approximately 1.8 tonnes. Stalled for 2 large horses with adjustable air suspension. British-built in Norfolk.',
     longDescription: [
-      'The Aeos Edge 45 is our pre-configured professional package, designed for competitors who need a high-specification horsebox with minimal wait time. This model combines proven features in a ready-to-go package.',
-      'Unlike our fully customizable JTH range, the Aeos Edge comes pre-specified with carefully selected features that professional riders need most. Built using different construction methods and components optimized for production efficiency.',
-      'The Edge 45 offers quicker delivery than custom builds while maintaining professional-grade quality. Perfect for those who value speed of delivery over extensive personalization.'
+      'The Aeos Edge 45 is a compact horsebox with a generous payload. Stalled for two large horses (rear facing) with adjustable air suspension for added stability.',
+      'The groom\'s area has a large leather seat and lockable wardrobe. Stallion stall version also available (Aeos Edge ST 45).',
+      'Built with the same quality and attention to detail as all Aeos models, the Edge 45 offers a practical, professional horsebox solution with all essential safety features included.'
     ],
     features: [
-      'Pre-built professional specification',
-      'Quick delivery - no waiting for custom build',
-      'Proven feature combination',
-      'Professional-grade components',
-      'Limited customization available',
-      'Different construction from JTH range',
-      'Contact for current availability',
-      'Finance options available'
+      'Steel construction horse ramp with slip rails',
+      'Horse area with drain tube',
+      'Green interior running light in horse area',
+      'Horse partition with padding and skirt (sliding)',
+      'Internal stainless steel tie rings x 3',
+      'Internal hay net rings x 2',
+      'LED interior lights',
+      'Opening roof vent',
+      'Luton storage (open)',
+      'Horse and reversing camera',
+      'Adjustable and removable breast bar (1350–1450mm)',
+      'Checker plate under horses head',
+      'Equi Travel Safe rails',
+      'Low level ventilation for each horse',
+      'Large leather seat in groom\'s area',
+      'Lockable wardrobe with hanging rail',
+      'Leather upholstery in groom\'s area',
+      'Solar charging system',
+      '800mm escape door to groom\'s area',
+      'New alloy wheels with Aeos logo',
+      'New deep tread tyres with Puncture Safe gel',
+      'Adjustable air suspension',
+      'Metallic paint (one colour)',
+      'Large exterior tack locker (near side)',
+      'Stainless steel saddle racks x 2',
+      'Stainless steel bridle cups x 2',
+      'External stainless steel tie rings x 2 with protectors',
+      'Vinyl HORSES front and rear',
+      'Bonded horse windows with stainless steel bars x 2',
     ],
     specifications: {
       dimensions: {
-        'Overall Length': '7.5m',
-        'Overall Width': '2.4m',
+        'Overall Length': '6.70m',
+        'Overall Width': '2.3m',
         'Overall Height': '3.4m',
         'Internal Height': '2.4m',
-        'Horse Area': '3.8m'
       },
       weights: {
         'Gross Weight': '4,500kg',
-        'Unladen Weight': '2,800kg',
-        'Payload': '1,700kg',
-        'Horse Capacity': '2-3 Horses',
-        'Tack Storage': 'Professional'
+        'Payload': 'Approx. 1.8 tonnes',
+        'Horse Capacity': '2 large horses (rear facing)',
+        'Licence': 'Category C or C1',
+        'Warranty': 'JTH 2 year build warranty',
       },
       safety: [
-        'Reinforced chassis',
-        'Advanced braking system',
-        'Emergency exits',
-        'CCTV ready',
-        'LED lighting',
-        'Anti-slip flooring'
+        'Reinforced and double skinned box section off-side wall',
+        'Reinforced and double skinned box section bulkhead wall to cab',
+        '35mm kick matting on bulkhead wall to cab',
+        'Adjustable air suspension',
+        '800mm escape door to groom\'s area',
+        'Wide 800mm rear door with gas ram',
+        'Alloy rear step',
+        '12 volt power certificate',
+        'Weight certificate',
       ]
     },
-    gallery: ['01.webp', '02.webp', '03.webp'],
+    gallery: ['hero.jpg', 'blue-front.jpg', 'layout.jpg'],
     testimonial: {
       name: 'Mark Richardson',
       role: 'Professional Rider',
-      quote: 'The Aeos Edge was perfect - ready to collect immediately with exactly the specification I needed. No waiting, no complex choices, just a quality horsebox ready to go.'
+      quote: 'The Aeos Edge is a fantastic horsebox — compact, generous payload and everything I need for competition days.'
     },
-    seoKeywords: '4.5t horsebox, pre-built horsebox, Aeos Edge 45, ready made horsebox, quick delivery horsebox, professional package horsebox',
-    heroImage: '/models/aeos-edge-45/01.webp'
+    seoKeywords: '4.5t horsebox, Aeos Edge 45, compact 4.5 tonne horsebox, generous payload horsebox, air suspension horsebox, British horsebox, Norfolk horsebox',
+    heroImage: '/models/aeos-edge-45/hero.jpg'
   },
   'aeos-freedom-45': {
-    title: 'Aeos Freedom 45 - Weekender Pre-Built Package',
-    description: 'The Aeos Freedom 45 is our family-friendly weekender package, pre-configured for immediate delivery. Perfect for leisure riders and families wanting a ready-to-go solution.',
+    title: 'Aeos Freedom 45 - Multipurpose 4.5t Horsebox with Day Living',
+    description: 'The Aeos Freedom 45 is a new 4.5 tonne multipurpose horsebox with separate day living area, single bed, and large payload of approximately 1.6 tonnes. Stalled for 2 large horses.',
     longDescription: [
-      'The Aeos Freedom 45 is our pre-built weekender package, designed specifically for families and leisure riders. This ready-to-go solution eliminates the wait time of custom builds.',
-      'Pre-configured with family-friendly features and optimized for weekend adventures, the Freedom uses efficient construction methods different from our bespoke JTH range.',
-      'Ideal for those who want to start their equestrian adventures immediately without the complexity of specification choices. Available for quicker delivery than fully custom horseboxes.'
+      'The latest addition to the Aeos range, evolved from the Aeos Hybrid (our best selling horsebox). The Freedom 45 works equally well across many disciplines.',
+      'Designed to offer a large payload and separate day living area with bed, whilst remaining compact in overall length. Stalled for two large horses (rear facing) with adjustable air suspension.',
+      'The living area has a long seat, single bed, wardrobe, sink and hob plus two large overhead lockers. All essentials for overnight stays including a portable toilet and an auxiliary battery system with solar and engine charging.'
     ],
     features: [
-      'Pre-configured weekender package',
-      'Ready for immediate family adventures',
-      'Family-friendly pre-selected features',
-      'Quick delivery availability',
-      'Standardized family-focused specification',
-      'Efficient construction methods',
-      'Limited customization options',
-      'Contact for current package details'
+      'Steel construction horse ramp with slip rails',
+      'Horse area with drain tube',
+      'Green interior running light in horse area',
+      'Horse partition with padding and skirt (sliding)',
+      'Internal stainless steel tie rings x 3',
+      'Internal hay net rings x 2',
+      'LED interior lights',
+      'Opening roof vent',
+      'Luton storage (open)',
+      'Horse and reversing camera',
+      'Breast bar 1350–1450mm high',
+      'Checker plate under horses head',
+      'Equi Travel Safe rails',
+      'Low level ventilation for each horse',
+      'Tack area seat/bed (single bed)',
+      'Portable toilet stored under seat/bed',
+      'Cold water with 95L water tank',
+      'Modern glass hob with 2 burner',
+      'Sink and flush fitting drawer',
+      'Leather seats with lumbar support',
+      'Designer wood finish in living area',
+      'RGBW LED strip lights and reading lights',
+      'Wardrobe with two large overhead lockers',
+      'Auxiliary power with solar and engine charging',
+      '240 volt hook up with double sockets and mains lead',
+      'USB charging points',
+      'Opening roof vent with fly screen and blackout blind',
+      'Offset bulkhead wall with jockey door',
+      'New alloy wheels with Aeos logo',
+      'New deep tread tyres with Puncture Safe gel',
+      'Adjustable air suspension',
+      'Metallic paint (one colour)',
+      'Large exterior tack locker (near side)',
+      'Stainless steel saddle racks x 2 and bridle cups x 2',
+      'External stainless steel tie rings x 2 with protectors',
+      'Vinyl HORSES front and rear',
+      'Outside water filler',
+      'Carbon monoxide CO2 and smoke detector',
+      'Fire extinguisher',
     ],
     specifications: {
       dimensions: {
-        'Overall Length': '7.5m',
-        'Overall Width': '2.4m',
+        'Overall Length': '6.70m',
+        'Overall Width': '2.3m',
         'Overall Height': '3.4m',
         'Internal Height': '2.4m',
-        'Horse Area': '3.6m'
       },
       weights: {
         'Gross Weight': '4,500kg',
-        'Unladen Weight': '2,700kg',
-        'Payload': '1,800kg',
-        'Horse Capacity': '2-3 Horses',
-        'Tack Storage': 'Extensive'
+        'Payload': 'Approx. 1.6 tonnes',
+        'Horse Capacity': '2 large horses (rear facing)',
+        'Licence': 'Category C or C1',
+        'Warranty': '2 year warranty',
       },
       safety: [
-        'Family safety features',
-        'Child-proof locks',
-        'Emergency communication',
-        'Enhanced visibility',
-        'Stability control',
-        'Premium brakes'
+        'Reinforced and double skinned box section off-side wall',
+        'Reinforced and double skinned box section bulkhead wall to cab',
+        '35mm kick matting on bulkhead wall to cab',
+        'Adjustable air suspension',
+        'Wide 800mm rear door with gas ram',
+        'Alloy rear step',
+        'Carbon monoxide CO2 and smoke detector',
+        'Fire extinguisher',
+        '230 volt, 12 volt, gas and weight certificates',
       ]
     },
     gallery: ['01.webp', '02.webp', '03.webp', '04.webp'],
     testimonial: {
       name: 'Sarah & Tom Williams',
       role: 'Family Riders',
-      quote: 'We needed a horsebox quickly for our planned summer trips. The Aeos Freedom package was ideal - family-friendly and available immediately without the usual wait.'
+      quote: 'The Freedom 45 is perfect for weekend events. The day living area and bed make overnight stays comfortable, and the horses travel brilliantly.'
     },
-    seoKeywords: '4.5t family horsebox, pre-built family horsebox, Aeos Freedom 45, weekender horsebox, ready-made family horsebox, quick delivery horsebox UK',
+    seoKeywords: '4.5t horsebox with living, Aeos Freedom 45, multipurpose horsebox, day living horsebox, 4.5 tonne horsebox bed, weekend horsebox, Aeos horsebox UK',
     heroImage: '/models/aeos-freedom-45/01.webp'
   },
   'aeos-discovery-45': {
-    title: 'Aeos Discovery 45 - Luxury Pre-Built Package',
-    description: 'The Aeos Discovery 45 is our premium pre-built luxury package, ready for immediate delivery. Pre-configured with luxury living quarters for discerning customers.',
+    title: 'Aeos Discovery 45 - Luxury Living 4.5t Horsebox',
+    description: 'The spectacular Aeos Discovery 45 combines the features of a motorhome with a horsebox. New design, new materials and a new level of luxury. 7.37m overall length with approx. 1.4 tonne payload.',
     longDescription: [
-      'The Aeos Discovery 45 is our flagship pre-built luxury package, designed for customers who want premium accommodation without the wait of custom specification.',
-      'Pre-configured with carefully selected luxury features, this package uses streamlined construction methods different from our fully bespoke JTH range while maintaining high-quality finishes.',
-      'Perfect for discerning customers who value immediate availability over extensive customization. Ready for delivery much faster than fully custom luxury builds.'
+      'The spectacular Aeos Discovery 45 horsebox is here! New design, new materials and a new level of luxury, combining the features of a motorhome with a horsebox.',
+      'Designed as a high end quality 4.5 tonne horsebox with features only normally found on larger 7.5 tonne horseboxes. The largest horsebox in the Aeos range at 7.37 metres (24\' 2") overall length.',
+      'Extra length and load allowance handled with adjustable air suspension. Fuel consumption is highly economical with significant reduction in road noise. Equipped with anti-lock brakes, alloy wheels, deep tread tyres filled with Puncture Safe and a very low centre of gravity.'
     ],
     features: [
-      'Pre-built luxury specification',
-      'Ready-to-go premium package',
-      'Luxury features pre-selected',
-      'Quick delivery for luxury specification',
-      'Premium finishes included',
-      'Streamlined luxury construction',
-      'Limited customization available',
-      'Contact for immediate availability'
+      'Steel construction horse ramp with slip rails',
+      'Green interior running light in horse area',
+      'Horse partition with padding and skirt (sliding)',
+      'Internal stainless steel tie rings x 3',
+      'Internal hay net rings x 2',
+      'LED interior lights',
+      'Opening roof vent',
+      'Luton storage (open)',
+      'Horse and reversing camera',
+      'Grooms door between living and horse area',
+      'Breast bar 1350–1450mm high',
+      'Checker plate under horses head',
+      'Equi Travel Safe rails',
+      'Low level ventilation for each horse',
+      'Temperature sensor and monitoring of horse area',
+      'Leather seats with lumbar support (removable to make pillows)',
+      'Seats/double bed with full storage',
+      'Shower and swivel toilet',
+      'Bespoke vanity unit with mirror',
+      'Hot/cold water with 95L water tank',
+      '60 litre fridge',
+      'Glass hob with 2 burner and sink',
+      'Free standing table with legs',
+      'Designer wood finish in living area',
+      'RGBW LED strip lights',
+      'Window fly screens with blackout blinds',
+      'Wardrobe including shoe rack, clothes rail and table storage',
+      'Flat screen TV with flush wall mount and digital aerial',
+      'Auxiliary power with 150Ah lithium battery',
+      'Solar charging to auxiliary battery',
+      '240 volt hook up with double sockets and mains lead',
+      'USB charging points',
+      'Opening roof vent with fly screen and blackout blind',
+      '405 watt solar panel',
+      'Metallic paint (one colour)',
+      'Exterior single tack locker x 2 (near and off side)',
+      'Stainless steel saddle racks x 2 and bridle cups x 2',
+      'Easy close steel half ramp with 3 slip rails',
+      'Top opening half door with 2 gas rams and padding',
+      'Top opening half door alarm and light warning',
+      'External stainless steel tie rings x 2 with protectors',
+      'Horse shower (cold only)',
+      'Outside water filler',
+      'New alloy wheels with Aeos logo',
+      'New deep tread tyres with Puncture Safe gel',
+      'Bonded horse windows with stainless steel bars x 2',
+      'Bonded living windows x 3 (blackout blind & fly screen)',
+      'Vinyl HORSES front and rear',
+      'Carbon monoxide CO2 and smoke detector',
+      'Fire extinguisher',
     ],
     specifications: {
       dimensions: {
-        'Overall Length': '8.0m',
-        'Overall Width': '2.4m',
+        'Overall Length': '7.37m (24\' 2")',
+        'Overall Width': '2.3m',
         'Overall Height': '3.5m',
         'Internal Height': '2.4m',
-        'Horse Area': '3.6m'
       },
       weights: {
         'Gross Weight': '4,500kg',
-        'Unladen Weight': '2,900kg',
-        'Payload': '1,600kg',
-        'Horse Capacity': '2 Horses',
-        'Tack Storage': 'Premium'
+        'Payload': 'Approx. 1.4 tonnes',
+        'Horse Capacity': '2 large horses (rear facing)',
+        'Licence': 'Category C1',
+        'Warranty': '2 year warranty',
+        'Chassis': 'Sourced to your requirements',
       },
       safety: [
-        'Full CCTV system',
-        'Remote monitoring',
-        'Alarm system',
-        'Emergency beacon',
-        'Fire suppression',
-        'Medical kit storage'
+        'Reinforced and double skinned box section off-side wall',
+        'Reinforced and double skinned box section bulkhead wall to cab',
+        '35mm kick matting on bulkhead wall to cab',
+        'Adjustable air suspension',
+        'Anti-Lock Braking System (ABS)',
+        'Advanced Emergency Braking System (AEBS)',
+        'Electronic Brakeforce Distribution (EBD)',
+        'Tyre pressure monitoring system',
+        'Wide 800mm rear door with gas ram',
+        'Carbon monoxide CO2 and smoke detector',
+        'Fire extinguisher',
+        '230 volt, 12 volt, gas and weight certificates',
       ]
     },
     gallery: ['01.webp', '02.webp', '03.webp', '04.webp', '05.webp', '06.webp'],
     testimonial: {
       name: 'Victoria Hamilton',
       role: 'Competition Rider',
-      quote: 'The Aeos Discovery package exceeded expectations. Luxury specification with immediate availability - exactly what I needed without months of waiting for custom build.'
+      quote: 'The Aeos Discovery 45 is a game-changer. The luxury living area is like a motorhome, but it still transports my horses beautifully.'
     },
-    seoKeywords: '4.5t luxury horsebox, pre-built luxury horsebox, Aeos Discovery 45, ready-made luxury horsebox, premium package horsebox, immediate delivery luxury horsebox',
+    seoKeywords: '4.5t luxury horsebox, Aeos Discovery 45, luxury living horsebox, motorhome horsebox, 4.5 tonne horsebox shower toilet, premium horsebox UK, Aeos horsebox, horsebox with living area',
     heroImage: '/models/aeos-discovery-45/01.webp'
   },
   'aeos-edge-st-45': {
     title: 'Aeos Edge ST 45 - Stallion 4.5t Horsebox',
-    description: 'The Aeos Edge ST 45 features reinforced stallion partitions for safe transport of stallions. Professional grade 4.5 tonne horsebox.',
+    description: 'The Aeos Edge ST 45 is a compact 4.5 tonne stallion stall horsebox with a generous payload of approximately 1.7 tonnes. Fixed stallion partition with padding.',
     longDescription: [
-      'The Aeos Edge ST 45 is specifically designed for the safe transportation of stallions. With reinforced partitions and enhanced safety features, this model provides peace of mind when transporting valuable breeding stock.',
-      'Built on the proven Edge 45 platform, the ST variant adds specialized features required for stallion transport while maintaining the comfort and quality of the standard model.',
-      'Every aspect of the stallion area has been engineered for strength and safety, from the reinforced walls to the heavy-duty breast and bum bars.'
+      'The Aeos Edge ST 45 is a compact 4.5 tonne stallion stall horsebox with a generous payload. Stalled for two large horses (rear facing) with adjustable air suspension.',
+      'The groom\'s area has a large leather seat and lockable wardrobe. Standard stall version also available (Aeos Edge 45).',
+      'Built with the same quality and attention to detail as all Aeos models, the Edge ST features a fixed stallion partition with padding for safe transport of stallions.'
     ],
     features: [
-      'Reinforced stallion partition',
-      'Heavy-duty construction',
-      'Enhanced ventilation',
-      'Separate stallion access',
-      'Reinforced flooring',
-      'Additional safety barriers',
-      'CCTV monitoring',
-      'Emergency restraint system'
+      'Steel construction horse ramp with slip rails',
+      'Horse area with drain tube',
+      'Green interior running light in horse area',
+      'Stallion stall horse partition with padding (fixed)',
+      'Internal stainless steel tie rings x 3',
+      'Internal hay net rings x 2',
+      'LED interior lights',
+      'Opening roof vent',
+      'Luton storage (open)',
+      'Horse and reversing camera',
+      'Adjustable and removable breast bar (1350–1450mm)',
+      'Checker plate under horses head',
+      'Equi Travel Safe rails',
+      'Low level ventilation for each horse',
+      'Large leather seat in groom\'s area',
+      'Lockable wardrobe with hanging rail',
+      'Leather upholstery in groom\'s area',
+      'Solar charging system',
+      '800mm escape door to groom\'s area',
+      'New alloy wheels with Aeos logo',
+      'New deep tread tyres with Puncture Safe gel',
+      'Adjustable air suspension',
+      'Metallic paint (one colour)',
+      'Large exterior tack locker (near side)',
+      'Stainless steel saddle racks x 2 and bridle cups x 2',
+      'External stainless steel tie rings x 2 with protectors',
+      'Vinyl HORSES front and rear',
+      'Bonded horse windows with stainless steel bars x 2',
     ],
     specifications: {
       dimensions: {
-        'Overall Length': '7.5m',
-        'Overall Width': '2.4m',
+        'Overall Length': '6.70m',
+        'Overall Width': '2.3m',
         'Overall Height': '3.4m',
         'Internal Height': '2.4m',
-        'Stallion Area': '4.0m'
       },
       weights: {
         'Gross Weight': '4,500kg',
-        'Unladen Weight': '2,850kg',
-        'Payload': '1,650kg',
-        'Horse Capacity': '1 Stallion + 1 Horse',
-        'Partition Strength': 'Reinforced'
+        'Payload': 'Approx. 1.7 tonnes',
+        'Horse Capacity': '2 large horses (rear facing)',
+        'Licence': 'Category C or C1',
+        'Warranty': 'JTH 2 year after sales support',
       },
       safety: [
-        'Stallion-grade partitions',
-        'Reinforced kick walls',
-        'Emergency sedation access',
-        'Dual exit routes',
-        'Heavy-duty locks',
-        'Surveillance system'
+        'Reinforced and double skinned box section off-side wall',
+        'Reinforced and double skinned box section bulkhead wall to cab',
+        '35mm kick matting on bulkhead wall to cab',
+        'Adjustable air suspension',
+        '800mm escape door to groom\'s area',
+        'Wide 800mm rear door with gas ram',
+        'Alloy rear step',
+        '12 volt power certificate',
+        'Weight certificate',
       ]
     },
-    gallery: ['01.webp', '02.webp', '03.webp'],
+    gallery: ['hero.jpg', 'layout.jpg'],
     testimonial: {
       name: 'David Mitchell',
       role: 'Stud Owner',
-      quote: 'The Edge ST 45 gives me complete confidence when transporting our valuable stallions. The reinforced construction is exceptional.'
+      quote: 'The Edge ST 45 gives me complete confidence when transporting our stallions. The fixed partition is excellent.'
     },
-    seoKeywords: '4.5t stallion horsebox, Aeos Edge ST 45, stallion transport, reinforced horsebox, breeding horsebox, stallion partition',
-    heroImage: '/models/aeos-edge-st-45/01.webp'
+    seoKeywords: '4.5t stallion horsebox, Aeos Edge ST 45, stallion transport horsebox, fixed partition horsebox, stallion stall horsebox UK',
+    heroImage: '/models/aeos-edge-st-45/hero.jpg'
   },
   'aeos-discovery-72': {
-    title: 'Aeos Discovery 72 - Luxury Living 7.2t Horsebox',
-    description: 'The Aeos Discovery 72 is our flagship 7.2 tonne horsebox with unparalleled luxury living quarters. Maximum comfort and space for extended stays at events.',
+    title: 'Aeos Discovery 72 - Flagship Luxury Living 7.2t Horsebox',
+    description: 'The flagship Aeos Discovery 72 horsebox — combining the best features of a motorhome and a horsebox with a 3 tonne payload.',
     longDescription: [
-      'The Aeos Discovery 72 represents the pinnacle of luxury horsebox living. This 7.2 tonne masterpiece prioritizes spacious, apartment-quality accommodation while maintaining excellent facilities for two horses.',
-      'Built for discerning owners who spend significant time at events and competitions, the Aeos Discovery 72 features living quarters that rival the finest motorhomes. The additional space allows for amenities typically impossible in smaller horseboxes.',
-      'Every Aeos Discovery 72 is custom-built to the owner\'s exact specifications, with virtually unlimited options for customization. From the chassis specification to the interior design, every detail can be tailored to create your perfect mobile home.'
+      'The flagship Aeos Discovery 72 horsebox — combining the best features of a motorhome and a horsebox with a 3 tonne payload.',
+      'Designed as a high end quality 7.2 tonne horsebox with features only normally found on larger 7.5 tonne Helios horseboxes. Benefits from luxury living including designer wood finish units, leather upholstery, sink/hob, fridge, TV, large top lockers, under seat storage, spacious double bed and separate shower/toilet.',
+      'Two large external tack lockers with two air vents each and insulated doors. The largest horsebox in the Aeos range at 7.37 metres (24\' 2").'
     ],
     features: [
-      'Capacity for 2 horses',
-      'Luxury apartment living',
-      'Separate bedroom',
-      'Full bathroom with shower',
-      'Gourmet kitchen',
-      'Slide-out sections available',
-      'Satellite communications',
-      'Workshop area option',
-      'Pop-up roof option',
-      'Hydraulic leveling system'
+      'Steel construction horse ramp with slip rails',
+      'Green interior running light in horse area',
+      'Horse partition with padding and skirt (sliding)',
+      'Internal stainless steel tie rings x 3',
+      'Internal hay net rings x 2',
+      'LED interior lights',
+      'Opening roof vent',
+      'Luton storage (open)',
+      'Horse and reversing camera',
+      'Grooms door between living and horse area',
+      'Breast bar 1350–1450mm high',
+      'Checker plate under horses head',
+      'Equi Travel Safe rails',
+      'Low level ventilation for each horse',
+      'Temperature sensor and monitoring of horse area',
+      'Leather seats with lumbar support (removable to make pillows)',
+      'Seats/double bed with full storage',
+      'Shower and swivel toilet',
+      'Bespoke vanity unit with mirror',
+      'Hot/cold water with 95L water tank',
+      '60 litre fridge',
+      'Glass hob with 2 burner and sink',
+      'Free standing table with legs',
+      'Designer wood finish in living area',
+      'RGBW LED strip lights',
+      'Window fly screens with blackout blinds',
+      'Wardrobe including shoe rack, clothes rail and table storage',
+      'Flat screen TV with flush wall mount and digital aerial',
+      'Auxiliary power with 150Ah lithium battery',
+      'Solar charging to auxiliary battery',
+      '240 volt hook up with double sockets and mains lead',
+      'USB charging points',
+      'Opening roof vent with fly screen and blackout blind',
+      '410 watt solar panel',
+      'Chassis sourced to your requirements',
+      'Metallic paint (one colour)',
+      'Exterior single tack locker x 2 (near and off side)',
+      'Stainless steel saddle racks x 2 and bridle cups x 2',
+      'Easy close steel full ramp with 3 slip rails',
+      'Top opening half door with 2 gas rams and padding',
+      'Top opening half door alarm and light warning',
+      'External stainless steel tie rings x 2 with protectors',
+      'Horse shower (cold only)',
+      'Outside water filler',
+      'New deep tread tyres with Puncture Safe gel',
+      'Adjustable air suspension',
+      'Bonded horse windows with stainless steel bars x 2',
+      'Bonded living windows x 3 (blackout blind & fly screen)',
+      'Vinyl HORSES front and rear',
+      'Carbon monoxide CO2 and smoke detector',
+      'Fire extinguisher',
+      'Remote central locking',
+      'Air conditioning and cruise control',
+      'Rear parking sensors',
+      'Alloy wheels',
+      'Variable power steering',
     ],
     specifications: {
       dimensions: {
-        'Overall Length': '10.5m',
+        'Overall Length': '7.37m (24\' 2")',
         'Overall Width': '2.5m',
         'Overall Height': '3.8m',
         'Internal Height': '2.5m',
-        'Horse Area': '5.0m'
       },
       weights: {
         'Gross Weight': '7,200kg',
-        'Unladen Weight': '4,500kg',
-        'Payload': '2,700kg',
-        'Horse Capacity': '2 Horses',
-        'Living Space': 'Luxury Apartment'
+        'Payload': '3 tonnes',
+        'Horse Capacity': '2 large horses (rear facing)',
+        'Licence': 'Category C1',
+        'Warranty': '2 year warranty',
+        'Chassis': 'Sourced to your requirements',
       },
       safety: [
-        'Commercial-grade chassis',
-        'Air brakes',
-        'Stability management',
-        'Full CCTV coverage',
-        'Fire suppression system',
-        'Emergency communication',
-        'Medical equipment storage'
+        'Reinforced and double skinned box section off-side wall',
+        'Reinforced and double skinned box section bulkhead wall to cab',
+        '35mm kick matting on bulkhead wall to cab',
+        'Adjustable air suspension',
+        'Anti-Lock Braking System (ABS)',
+        'Electronic Brakeforce Distribution (EBD)',
+        'Anti Slip Regulator (ASR)',
+        'Temperature sensor and monitoring of horse area',
+        'Wide 800mm rear door with gas ram',
+        'Carbon monoxide CO2 and smoke detector',
+        'Fire extinguisher',
+        '230 volt, 12 volt, gas and weight certificates',
       ]
     },
     gallery: ['01.webp', '02.webp', '03.webp', '04.webp', '05.webp', '06.webp', '07.webp', '08.webp'],
@@ -452,8 +614,8 @@ const modelContent: Record<string, {
       role: 'Olympic Competitor',
       quote: 'The Aeos Discovery 72 is essential for international competition. It\'s our mobile base, providing everything we need to perform at the highest level.'
     },
-    seoKeywords: '7.2t horsebox, 7.2 tonne horsebox, Aeos Discovery 72, Aeos Discovery 72, large horsebox, luxury horsebox, professional team horsebox, 4 horse transport',
-    heroImage: '/models/aeos-discovery-72/01.webp'
+    seoKeywords: '7.2t horsebox, 7.2 tonne horsebox, Aeos Discovery 72, luxury horsebox, 3 tonne payload horsebox, professional horsebox, motorhome horsebox',
+    heroImage: '/models/aeos-discovery-72/hero.jpg'
   },
   'jth-principle-45': {
     title: 'JTH Principle 45 - Essential 4.5t Horsebox | Basic Back End | Norfolk',
@@ -483,11 +645,10 @@ const modelContent: Record<string, {
       },
       weights: {
         'Gross Weight': '4,500kg',
-        'Unladen Weight': '2,700kg',
         'Payload': '1,800kg',
         'Horse Capacity': '2-3 horses',
         'Living Area': 'Standard',
-        'Chassis': 'Iveco Daily 45'
+        'Chassis': 'Sourced to your requirements'
       },
       safety: [
         'Emergency exit doors',
@@ -538,18 +699,17 @@ const modelContent: Record<string, {
       },
       weights: {
         'Gross Weight': '4,500kg',
-        'Unladen Weight': '2,700kg',
         'Payload': '1,800kg',
         'Horse Capacity': '2-3 horses',
         'Living Area': 'Luxury',
-        'Chassis': 'Iveco Daily 45'
+        'Chassis': 'Sourced to your requirements'
       },
       safety: [
         'CCTV monitoring system',
         'Emergency exit doors',
         'Premium anti-slip flooring',
         'Internal and external LED lighting',
-        'Reinforced padded partitions',
+        'Reinforced partitions',
         'Secure multi-point locks',
         'Fire extinguisher and first aid',
         'Reversing camera system'
@@ -592,11 +752,10 @@ const modelContent: Record<string, {
       },
       weights: {
         'Gross Weight': '4,500kg',
-        'Unladen Weight': '2,800kg',
         'Payload': '1,700kg',
         'Horse Capacity': '2 horses',
         'Crew Capacity': '3-4 people',
-        'Chassis': 'Iveco Daily 45'
+        'Chassis': 'Sourced to your requirements'
       },
       safety: [
         'Enhanced passenger safety',
@@ -618,114 +777,57 @@ const modelContent: Record<string, {
     seoKeywords: 'Progeny 45 horsebox, crew cab horsebox, 4.5t team horsebox, JTH Progeny 45, crew cab horse transport, family horsebox, side windows horsebox, external doors option',
     heroImage: '/models/jth-progeny-45/01.webp'
   },
-  'zenos-72': {
-    title: 'Zenos 72 - Professional 7.2t Horsebox | Premium Range | JTH',
-    description: 'Zenos 72 - Professional 7.2 tonne horsebox for serious competitors. Premium build quality, maximum capacity. Contact for pricing. British-built.',
+  'helios-75': {
+    title: 'Helios 75 - Premium 7.5 Tonne Horsebox',
+    description: 'The JTH Helios 75 is our flagship 7.5 tonne horsebox with luxury apartment-style living, 3 stalls, wet room, full kitchen, and premium specification throughout. British-built in Norfolk.',
     longDescription: [
-      'The Zenos 72 represents our entry into the 7.2 tonne professional category. Built for serious competitors who need maximum capacity and features.',
-      'With capacity for larger horses or additional storage, the Zenos 72 is the choice of professional teams.',
-      'Every Zenos 72 is custom-built to exact specifications, with extensive customization options available to create your perfect professional horsebox.'
+      'The Helios 75 is the ultimate horsebox for those who demand the very best. This flagship 7.5 tonne model combines apartment-quality living with professional horse transport capabilities, featuring a full wet room, kitchen, and generous living space.',
+      'With accommodation for up to 3 horses and luxury living that includes a double bed in the luton, L-shaped seating, full shower/toilet wet room, hob, sink, fridge, and extensive storage — the Helios 75 is designed for extended stays at events and competitions.',
+      'Every Helios 75 is built to the highest specification with Coat-X protection in the horse area, 150Ah lithium battery, 410 watt solar panel, and premium finishes throughout. Safety features include a stainless steel safety cage, anti-lock brakes, and comprehensive certification.'
     ],
     features: [
-      '7.2 tonne capacity',
-      'Professional specification',
-      'Maximum payload',
-      'Premium construction',
-      'Extended living area',
-      'Commercial chassis',
-      'Full customization available',
-      'Contact for pricing'
+      '3 horse stalls with Coat-X protection',
+      'Luxury living with double bed',
+      'Full wet room — shower, toilet, fold-down sink',
+      'Kitchen — hob, sink, 60L fridge',
+      '150Ah lithium battery with solar charging',
+      '410 watt solar panel',
+      'Whale iVan touch screen controller',
+      'Metallic paint finish'
     ],
     specifications: {
       dimensions: {
-        'Overall Length': '8.5m',
-        'Overall Width': '2.5m',
-        'Overall Height': '3.6m',
-        'Internal Height': '2.5m',
-        'Horse Area': '4.5m'
+        'Headroom (Horse Area)': '2.51m (8\' 3")',
+        'Living Length': 'Up to 2.5m (8\')',
+        'Water Tank': '80 litres',
+        'Stall Configuration': '3 stalls (right-hand seat layout)'
       },
       weights: {
-        'Gross Weight': '7,200kg',
-        'Unladen Weight': '4,200kg',
-        'Payload': '3,000kg',
-        'Horse Capacity': '3-4 horses',
-        'Living Area': 'Premium',
-        'Chassis': 'DAF LF'
+        'Gross Weight': '7,500kg',
+        'Horse Capacity': '3 Horses',
+        'Chassis': 'Sourced to your requirements',
+        'Living': 'Apartment-quality'
       },
       safety: [
-        'Commercial-grade construction',
-        'Air brakes',
-        'Stability control',
-        'Emergency exits',
-        'CCTV ready',
-        'LED lighting',
-        'Anti-slip flooring',
-        'Professional specification'
+        'Stainless steel safety cage on centre partition',
+        'Anti-lock brakes',
+        'Full width ramp — lower load height',
+        'Double skinned walls — kick protection',
+        '230V, 12V, 24V power certificates',
+        'Gas certificate',
+        'Weight and calibration certificate',
+        'Smoke and CO2 detector'
       ]
     },
-    gallery: ['01.webp', '02.webp', '03.webp', '04.webp'],
+    gallery: ['hero.jpg', 'layout.webp'],
     testimonial: {
-      name: 'Professional Team',
-      role: 'Competition Stable',
-      quote: 'The Zenos 72 gives us the capacity and reliability we need for professional competition. Outstanding build quality.'
+      name: 'James Mitchell',
+      role: 'Professional Event Rider',
+      quote: 'The Helios 75 is in a league of its own. The living is genuinely like a luxury apartment and the horses travel in complete comfort.'
     },
-    seoKeywords: 'Zenos 72 horsebox, 7.2t horsebox, 7.2 tonne horse transport, professional horsebox, Zenos range, premium horsebox UK',
-    heroImage: '/models/zenos-72/01.webp'
+    seoKeywords: '7.5t horsebox, Helios 75, luxury horsebox, 3 horse horsebox, 7.5 tonne horsebox with living, premium horsebox, horsebox with shower, horsebox with kitchen',
+    heroImage: '/models/helios-75/hero.jpg'
   },
-  'zenos-xl-72': {
-    title: 'Zenos XL 72 - Extended 7.2t Luxury Horsebox | Flagship Model | JTH',
-    description: 'Zenos XL 72 - Extended 7.2 tonne luxury horsebox with premium living quarters. The ultimate in professional horse transport. Contact for pricing.',
-    longDescription: [
-      'The Zenos XL 72 is our extended flagship model with luxury living quarters rivaling the finest motorhomes.',
-      'For those who accept no compromise, the Zenos XL provides apartment-quality living with professional horse transport.',
-      'Every Zenos XL 72 is a bespoke creation, built to the exact requirements of discerning owners who demand the absolute best.'
-    ],
-    features: [
-      'Extended 7.2t design',
-      'Luxury living quarters',
-      'Maximum specification',
-      'Apartment-quality interior',
-      'Professional features throughout',
-      'Ultimate customization',
-      'Flagship model',
-      'Price on application'
-    ],
-    specifications: {
-      dimensions: {
-        'Overall Length': '9.2m',
-        'Overall Width': '2.5m',
-        'Overall Height': '3.6m',
-        'Internal Height': '2.5m',
-        'Horse Area': '4.2m'
-      },
-      weights: {
-        'Gross Weight': '7,200kg',
-        'Unladen Weight': '4,400kg',
-        'Payload': '2,800kg',
-        'Horse Capacity': '3 horses',
-        'Living Area': 'Ultimate luxury',
-        'Chassis': 'DAF LF Extended'
-      },
-      safety: [
-        'Ultimate safety specification',
-        'Advanced braking systems',
-        'Stability management',
-        'Full CCTV coverage',
-        'Emergency communication',
-        'Fire suppression ready',
-        'Medical equipment storage',
-        'Professional safety features'
-      ]
-    },
-    gallery: ['01.webp', '02.webp', '03.webp', '04.webp', '05.webp'],
-    testimonial: {
-      name: 'International Competitor',
-      role: 'Elite Rider',
-      quote: 'The Zenos XL 72 is simply the best horsebox available. The luxury and functionality are unmatched.'
-    },
-    seoKeywords: 'Zenos XL 72, extended 7.2t horsebox, luxury 7.2 tonne, flagship horsebox, Zenos XL range, premium horse transport',
-    heroImage: '/models/zenos-xl-72/01.webp'
-  }
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
@@ -738,13 +840,22 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 
   return {
-    title: `${content.title} | J Taylor Horseboxes`,
+    title: content.title,
     description: content.description,
     keywords: content.seoKeywords,
     openGraph: {
       title: content.title,
       description: content.description,
       images: [content.heroImage],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: content.title,
+      description: content.description,
+      images: [content.heroImage],
+    },
+    alternates: {
+      canonical: `https://jthltd.co.uk/models/${params.slug}`,
     },
   }
 }
@@ -790,8 +901,6 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
       'jth-principle-45': 28950,
       'jth-professional-45': 31500,
       'jth-progeny-45': 36500,
-      'zenos-72': 12345, // Placeholder - shows "Contact for pricing"
-      'zenos-xl-72': 12345 // Placeholder - shows "Contact for pricing"
     }
     basePrice = defaultPrices[params.slug] || 0
   }
@@ -813,7 +922,7 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
       question: `How much does the ${content.title.split(' - ')[0]} cost?`,
       answer: basePrice === 12345 
         ? `The ${content.title.split(' - ')[0]} is built to order with pricing based on your exact specifications. Please contact us for a detailed quotation. We offer competitive finance packages and accept part exchange.`
-        : `The ${content.title.split(' - ')[0]} starts from the prices shown, excluding VAT. Final pricing depends on your chosen options and customizations. We offer competitive finance packages and accept part exchange.`
+        : `All prices shown are for the body build only, excluding VAT. The base vehicle (van/chassis) is sourced separately to your requirements. Final pricing depends on your chosen options and customisations. Contact us to discuss your complete build.`
     },
     {
       question: `What license do I need to drive this horsebox?`,
@@ -892,7 +1001,7 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
               <div className="text-2xl font-bold text-white">
                 {basePrice === 12345 ? 'Contact for pricing' : `£${basePrice.toLocaleString()}`}
               </div>
-              <div className="text-sm text-slate-400 uppercase tracking-wider">Starting Price</div>
+              <div className="text-sm text-slate-400 uppercase tracking-wider">Body Build · exc. VAT</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-white">{content.specifications.weights['Gross Weight']}</div>
@@ -940,12 +1049,13 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
             <div className="relative group">
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-blue-400 opacity-20 blur-2xl group-hover:opacity-30 transition-opacity duration-500"></div>
               <div className="relative image-premium">
-                <Image 
+                <Image
                   src={content.gallery[1] ? `/models/${params.slug}/${content.gallery[1]}` : content.heroImage}
                   alt={`${modelName} interior view`}
-                  width={600} 
-                  height={400} 
+                  width={600}
+                  height={400}
                   className="shadow-2xl"
+                  unoptimized
                 />
               </div>
             </div>
@@ -957,9 +1067,9 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
       <section id="specifications" className="py-20 md:py-32 bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="badge-gold mx-auto mb-6">
+            <span className="inline-flex items-center px-4 py-1.5 text-xs font-semibold tracking-wider uppercase bg-blue-600 text-white mb-6">
               Full Specifications
-            </div>
+            </span>
             <h2 className="text-4xl md:text-5xl font-light text-white mb-6">
               {modelName} Technical Details
             </h2>
@@ -1055,19 +1165,12 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {content.gallery.map((image, index) => (
-              <div key={index} className="image-premium group cursor-pointer">
-                <Image
-                  src={`/models/${params.slug}/${image}`}
-                  alt={`${modelName} view ${index + 1}`}
-                  width={400}
-                  height={300}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
+          <LightboxGallery
+            images={content.gallery.map((image, index) => ({
+              src: `/models/${params.slug}/${image}`,
+              alt: `${modelName} view ${index + 1}`,
+            }))}
+          />
         </div>
       </section>
 

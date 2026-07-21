@@ -40,7 +40,7 @@ export default function ShowcasePage() {
       subtitle: '3.5 Tonne Luxury',
       description: 'The ultimate in luxury and performance for the professional rider.',
       price: '£22,000',
-      priceNote: 'exc. VAT',
+      priceNote: 'body build only · exc. VAT',
       images: ['/models/professional-35/01.webp', '/models/professional-35/02.webp'],
       badge: {
         text: 'Most Popular',
@@ -64,7 +64,7 @@ export default function ShowcasePage() {
       subtitle: '3.5 Tonne Essential',
       description: 'Perfect balance of quality and value for the discerning owner.',
       price: '£18,500',
-      priceNote: 'exc. VAT',
+      priceNote: 'body build only · exc. VAT',
       images: ['/models/principle-35/01.webp'],
       badge: {
         text: 'Best Value',
@@ -88,7 +88,7 @@ export default function ShowcasePage() {
       subtitle: '3.5 Tonne Premium',
       description: 'Our flagship 3.5 tonne model with premium specification.',
       price: '£25,500',
-      priceNote: 'exc. VAT',
+      priceNote: 'body build only · exc. VAT',
       images: ['/models/progeny-35/01.webp'],
       badge: {
         text: 'Premium',

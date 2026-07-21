@@ -2,18 +2,24 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import Logo from '@/components/Logo'
+import Image from 'next/image'
 import { getRegionFromCookie } from '@/lib/configurator/region'
 import { Facebook, Instagram, Youtube, MapPin, Phone, Mail, ChevronRight } from 'lucide-react'
 
 export default function Footer() {
-  const [region, setRegion] = useState<'GB' | 'IE'>('GB')
+  const [isIreland, setIsIreland] = useState(false)
 
   useEffect(() => {
-    setRegion(getRegionFromCookie() as 'GB' | 'IE')
+    // Determine region from pathname — more reliable than cookie when navigating between regions
+    const onIrelandPage = window.location.pathname.startsWith('/ireland')
+    if (onIrelandPage) {
+      setIsIreland(true)
+    } else {
+      // Fall back to cookie for ambiguous pages (e.g. /contact)
+      const cookieRegion = getRegionFromCookie()
+      setIsIreland(cookieRegion === 'IE')
+    }
   }, [])
-
-  const isIreland = region === 'IE'
 
   return (
     <footer className="bg-slate-900 text-white">
@@ -48,7 +54,14 @@ export default function Footer() {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block mb-6">
-              <Logo width={160} height={44} className="h-10 w-auto brightness-0 invert" />
+              <Image
+                src={isIreland ? '/logo-ireland.jpg' : '/logo.png'}
+                alt="J Taylor Horseboxes"
+                width={180}
+                height={50}
+                className="h-12 w-auto"
+                unoptimized
+              />
             </Link>
             <p className="text-slate-400 mb-6 leading-relaxed">
               {isIreland
@@ -81,6 +94,14 @@ export default function Footer() {
                   {isIreland ? 'Ireland Models' : 'All Models'}
                 </Link>
               </li>
+              {isIreland && (
+                <li>
+                  <Link href="/ireland/in-stock" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
+                    <ChevronRight className="w-4 h-4" />
+                    In Stock
+                  </Link>
+                </li>
+              )}
               <li>
                 <Link href="/contact" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
@@ -150,9 +171,9 @@ export default function Footer() {
                     <div className="text-blue-400 font-medium mb-2">Premium Range</div>
                     <ul className="ml-3 space-y-2">
                       <li>
-                        <Link href="/models/zenos-72" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
+                        <Link href="/models/aeos-discovery-72" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
                           <ChevronRight className="w-3 h-3" />
-                          Zenos 72
+                          Aeos Discovery 72
                         </Link>
                       </li>
                     </ul>
@@ -176,11 +197,11 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="mailto:sales@jthltd.co.uk" className="text-slate-400 hover:text-blue-400 transition-colors flex items-start gap-3">
+                <a href={isIreland ? 'mailto:Paul@JTHltd.ie' : 'mailto:sales@jthltd.co.uk'} className="text-slate-400 hover:text-blue-400 transition-colors flex items-start gap-3">
                   <Mail className="w-5 h-5 mt-0.5 flex-shrink-0" />
                   <div>
                     <div className="font-medium text-white">Email</div>
-                    <div>sales@jthltd.co.uk</div>
+                    <div>{isIreland ? 'Paul@JTHltd.ie' : 'sales@jthltd.co.uk'}</div>
                   </div>
                 </a>
               </li>

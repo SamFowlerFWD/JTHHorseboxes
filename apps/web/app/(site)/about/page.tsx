@@ -1,8 +1,8 @@
 import Hero from '@/components/Hero'
 import Schema, { organizationSchema, generateBreadcrumbSchema, generateServiceSchema } from '@/components/Schema'
 import Link from 'next/link'
-import Image from 'next/image'
 import type { Metadata } from 'next'
+import ClickableImage from '@/components/ClickableImage'
 import {
   ArrowRight,
   Award,
@@ -177,12 +177,12 @@ export default function AboutPage() {
                   but lead through innovation, creative designs and materials technology.
                 </p>
                 <p className="text-lg text-slate-600 mb-6 leading-relaxed">
-                  JTH Horseboxes was founded by James Taylor, bringing over a decade of horsebox-building expertise.
+                  JTH was founded by James Taylor, bringing over a decade of horsebox-building expertise.
                   In early 2025, we acquired the KPH Horseboxes designs and brand from Kevin Parker,
                   continuing his legacy of quality and innovation in the industry.
                 </p>
                 <p className="text-xl text-amber-600 font-semibold mb-8 italic">
-                  "Stunning is fitted as standard on every JTH horsebox"
+                  "Stunning comes as standard on every JTH horsebox"
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <div className="flex items-center">
@@ -201,15 +201,13 @@ export default function AboutPage() {
               </div>
               <div className="relative group">
                 <div className="absolute -inset-4 bg-gradient-to-r from-blue-700 to-amber-500 opacity-20 blur-2xl group-hover:opacity-30 transition-opacity duration-500"></div>
-                <div className="relative image-premium">
-                  <Image
-                    src="/about-workshop.webp"
-                    alt="JTH horsebox craftsmanship"
-                    width={600}
-                    height={400}
-                    className="shadow-2xl"
-                  />
-                </div>
+                <ClickableImage
+                  src="/about-workshop.webp"
+                  alt="JTH horsebox craftsmanship"
+                  width={600}
+                  height={400}
+                  className="shadow-2xl w-full h-auto"
+                />
               </div>
             </div>
           </div>
@@ -371,15 +369,13 @@ export default function AboutPage() {
               </div>
               <div className="relative group">
                 <div className="absolute -inset-4 bg-gradient-to-r from-blue-700 to-amber-500 opacity-20 blur-2xl group-hover:opacity-30 transition-opacity duration-500"></div>
-                <div className="relative image-premium">
-                  <Image
-                    src="/models/jth-progeny-45/01.webp"
-                    alt="JTH Progeny horsebox"
-                    width={600}
-                    height={500}
-                    className="shadow-2xl"
-                  />
-                </div>
+                <ClickableImage
+                  src="/models/jth-progeny-45/01.webp"
+                  alt="JTH Progeny horsebox"
+                  width={600}
+                  height={500}
+                  className="shadow-2xl w-full h-auto"
+                />
               </div>
             </div>
           </div>

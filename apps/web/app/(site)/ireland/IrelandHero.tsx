@@ -20,8 +20,9 @@ export default function IrelandHero() {
         href: "/contact",
       }}
       media={[
-        { type: 'image', src: '/models/professional-35/02.webp' },
-        { type: 'image', src: '/models/principle-35/02.webp' },
+        { type: 'image', src: '/ireland/jth-professional-35-horsebox-navy-gold-front-ireland.webp' },
+        { type: 'image', src: '/ireland/jth-principle-35-horsebox-green-side-profile-ireland.webp' },
+        { type: 'image', src: '/ireland/jth-35t-horsebox-green-front-petrol-station-ireland.webp' },
       ]}
       overlay="gradient"
       height="full"

@@ -20,7 +20,7 @@ export default function Logo({ className, width = 160, height = 44, priority }: 
       alt="J Taylor Horseboxes"
       width={width}
       height={height}
-      className={className}
+      className={`border-0 ${className || ''}`}
       onError={handleError}
       priority={priority}
     />

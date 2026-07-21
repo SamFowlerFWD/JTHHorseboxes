@@ -56,6 +56,7 @@ export default function Hero({
           sizes="100vw"
           className="absolute inset-0 object-cover"
           onError={onError}
+          unoptimized
         />
       )}
       <div className={`absolute inset-0 ${overlayClasses[overlay]}`} />

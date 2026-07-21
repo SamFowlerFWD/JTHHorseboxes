@@ -34,6 +34,7 @@ Allow: /
 User-agent: Googlebot-Image
 Allow: /models/
 Allow: /gallery/
+Allow: /ireland/
 Allow: *.jpg
 Allow: *.jpeg
 Allow: *.webp
@@ -57,4 +58,5 @@ User-agent: MJ12bot
 Disallow: /
 
 Sitemap: https://jthltd.co.uk/sitemap.xml
+Sitemap: https://jthltd.ie/sitemap.xml
 Host: https://jthltd.co.uk

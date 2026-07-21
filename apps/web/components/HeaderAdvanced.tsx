@@ -130,18 +130,10 @@ const navigation: NavigationItem[] = [
         badge: 'Category'
       },
       {
-        label: 'Zenos 72',
-        href: '/models/zenos-72',
+        label: 'Aeos Discovery 72',
+        href: '/models/aeos-discovery-72',
         description: 'Ultimate 7.2T luxury experience',
         icon: <Sparkles className="w-4 h-4" />,
-        badge: 'Contact for Price'
-      },
-      {
-        label: 'Zenos XL',
-        href: '/models/zenos-xl',
-        description: 'Extended luxury horsebox',
-        icon: <Sparkles className="w-4 h-4" />,
-        badge: 'Contact for Price'
       },
       {
         label: 'Helios 75',

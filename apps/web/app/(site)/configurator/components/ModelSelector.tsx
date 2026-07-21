@@ -29,7 +29,7 @@ export default function ModelSelector({
              (!filterTonnage || model.tonnage === filterTonnage)
     }
     if (filterRange === 'PREMIUM') {
-      return (model.range === 'ZENOS' || model.range === 'HELIOS') &&
+      return (model.range === 'AEOS' || model.range === 'HELIOS') &&
              (!filterTonnage || model.tonnage === filterTonnage)
     }
     return !filterTonnage || model.tonnage === filterTonnage

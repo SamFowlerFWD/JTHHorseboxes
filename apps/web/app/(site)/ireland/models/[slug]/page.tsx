@@ -3,6 +3,7 @@ import { loadPricingConfig } from '@/lib/pricing'
 import Link from 'next/link'
 import Image from 'next/image'
 import Hero from '@/components/Hero'
+import LightboxGallery from '@/components/Lightbox'
 
 export const runtime = 'edge'
 import { ArrowRight, Check, Shield, Award, Star, Truck, ChevronRight, Phone, Mail, MapPin, Users, Clock } from 'lucide-react'
@@ -29,6 +30,7 @@ const modelContent: Record<string, {
     safety: string[]
   }
   gallery: string[]
+  galleryAlts?: string[]
   testimonial?: {
     name: string
     role: string
@@ -43,65 +45,72 @@ const modelContent: Record<string, {
     description: 'The JTH Professional 35 is the ultimate 3.5 tonne horsebox for professional riders and serious competitors. Premium features, luxury finish, advanced safety systems. British-built in Norfolk.',
     longDescription: [
       'The Professional 35 represents the pinnacle of 3.5 tonne horsebox design and engineering. Built for professional riders, serious competitors, and discerning owners who demand the very best, this model combines luxury, performance, and practicality in a package that can be driven on a standard car license.',
-      'Every Professional 35 is handcrafted at our Norfolk facility using the finest materials and components. The premium GRP construction ensures exceptional durability while keeping weight to a minimum, maximizing your available payload for horses and equipment. The Iveco Daily chassis provides reliable performance and excellent handling characteristics that inspire confidence on any journey.',
+      'Every Professional 35 is handcrafted at our Norfolk facility using the finest materials and components. The premium GRP construction ensures exceptional durability while keeping weight to a minimum, maximizing your available payload for horses and equipment.',
       'The living area in the Professional 35 sets new standards for the 3.5 tonne category. Premium upholstery, solid surface worktops, and thoughtful storage solutions create a comfortable environment for competition days. The horse area features our advanced safety systems including reinforced partitions, premium anti-slip flooring, and comprehensive CCTV monitoring.',
       'Professional riders choose the Professional 35 because it delivers everything needed for successful competition without compromise. From the hydraulic ramp option to the solar power system, every feature has been carefully selected to enhance your equestrian lifestyle. This is more than just transport – it\'s your mobile base for achieving excellence.'
     ],
     features: [
-      'Premium GRP monocoque construction for strength and low weight',
-      'Luxury living area with leather upholstery and solid surfaces',
-      'Advanced CCTV system with horse area monitoring',
-      'Solar panel system with leisure battery and inverter',
-      'Hydraulic ramp option for easy loading',
-      'Premium Iveco Daily chassis with enhanced suspension',
-      'Full LED lighting throughout including external work lights',
-      'Bluetooth sound system with premium speakers',
-      'Air conditioning in living area',
-      'External hot and cold shower',
-      'Reinforced breast and bum bars',
-      'Premium paint finish with metallic options',
-      'Tack locker with saddle racks and bridle hooks',
-      'Water tank with pump system',
-      'Gas hob and grill in kitchen area',
-      'Luxury seating converts to sleeping area',
-      'Comprehensive warranty and aftercare package'
+      'Head padding, partition padding, and top door padding',
+      'Electric fan with temperature and rain sensor',
+      'Loading light as standard',
+      'EVA wall matting up to 5 feet',
+      'Full aluminium bulkhead at the horse\'s head',
+      'Escape doors',
+      'Two bench storage seats in the groom\'s area',
+      'Reversing camera as standard',
+      'Adjustable tie rings',
     ],
     specifications: {
       dimensions: {
-        'Overall Length': '6.8m',
+        'Overall Length': '6.32m',
         'Overall Width': '2.3m',
         'Overall Height': '3.2m',
         'Internal Height': '2.3m',
-        'Horse Area Length': '3.6m',
-        'Living Area Length': '2.2m'
       },
       weights: {
         'Gross Weight': '3,500kg',
-        'Unladen Weight': '2,200kg',
-        'Payload': '1,300kg',
-        'Horse Capacity': '2 Horses up to 16.2hh',
-        'Tack Storage': 'Premium Locker',
-        'Water Capacity': '120 Litres'
+        'Payload': 'Approx. 1.0 tonne',
+        'Horse Capacity': '1 horse or 2 ponies',
+        'Licence': 'Category B (car licence)',
+        'Warranty': '2 year build warranty',
       },
       safety: [
-        'CCTV monitoring system',
-        'Emergency exit doors front and rear',
-        'Premium anti-slip rubber flooring',
-        'Internal and external LED lighting',
-        'Reinforced padded partitions',
-        'Secure multi-point door locks',
-        'Fire extinguisher and first aid kit',
-        'Emergency breakdown kit included'
+        'Triple reinforced bulkhead',
+        'Full height gapless, stepless & lightweight ramp',
+        'Composite floor',
+        'Escape doors',
+        'Stallion partition available',
       ]
     },
-    gallery: ['01.webp', '02.webp', '03.webp', '04.webp', '05.webp'],
+    gallery: [
+      '/ireland/jth-professional-35-horsebox-navy-gold-front-ireland.webp',
+      '/ireland/jth-professional-35-horsebox-rear-quarter-ireland.webp',
+      '/ireland/jth-professional-35-horsebox-rear-view-ireland.webp',
+      '/ireland/jth-professional-35-horsebox-side-ramp-loading-ireland.webp',
+      '/ireland/jth-professional-35-horsebox-interior-padded-stalls-ireland.webp',
+      '/ireland/jth-professional-35-horsebox-interior-led-lighting-ireland.webp',
+      '/ireland/jth-professional-35-horsebox-interior-tack-storage-ireland.webp',
+      '/ireland/jth-professional-35-horsebox-low-angle-rear-ireland.webp',
+      '/ireland/jth-professional-35-horsebox-ferry-delivery-front-ireland.webp',
+    ],
+    galleryAlts: [
+      'JTH Professional 35 horsebox in navy blue with gold trim — front three-quarter view, delivered to Ireland',
+      'JTH Professional 35 3.5t horsebox rear three-quarter view showing aerodynamic bodywork in Ireland',
+      'JTH Professional 35 horsebox rear view with HORSES signage — Irish registered 3.5 tonne horsebox',
+      'JTH Professional 35 horsebox with side ramp open for easy horse loading — delivered to Ireland',
+      'JTH Professional 35 horsebox interior — stall partitions, rubber matting and roof ventilation',
+      'JTH Professional 35 horsebox interior with LED lighting, head protectors and aluminium partitions',
+      'JTH Professional 35 horsebox tack storage area with aluminium shelving and secure fittings',
+      'JTH Professional 35 horsebox dramatic low angle rear view — premium 3.5t horsebox in Ireland',
+      'JTH Professional 35 horsebox boarding ferry for direct delivery to Ireland',
+    ],
     testimonial: {
       name: 'Sarah Thompson',
       role: 'Professional Event Rider',
       quote: 'The Professional 35 has transformed my competition experience. The quality is outstanding and the attention to detail is second to none. It\'s given me a real competitive edge.'
     },
     seoKeywords: '3.5t horsebox Ireland, Professional 35 Ireland, premium 3.5 tonne horsebox Ireland, competition horsebox Ireland, luxury horsebox delivered Ireland, British horsebox manufacturer, best 3.5t horsebox Ireland',
-    heroImage: '/models/professional-35/01.webp',
+    heroImage: '/ireland/jth-professional-35-horsebox-navy-gold-front-ireland.webp',
     gbpBasePrice: 22000,
   },
   'principle-35': {
@@ -113,46 +122,58 @@ const modelContent: Record<string, {
       'The Principle 35 proves that quality doesn\'t have to mean expensive. With thoughtful design and efficient production, we deliver a horsebox that meets the needs of most equestrian enthusiasts.'
     ],
     features: [
-      'Quality GRP construction',
-      'Essential safety features',
-      'Comfortable living area',
-      'Practical storage solutions',
-      'Reliable Iveco Daily chassis',
-      'Full 2-year warranty',
-      'British built quality',
-      'Customization options available'
+      '4-foot EVA wall matting',
+      'Reinforced bulkhead',
+      'Partition without padding',
+      'Two aluminium escape doors',
+      'Four tie rings',
+      'Roof vent as standard',
+      'Interior mood lighting and normal lighting',
+      'Wall storage for tack, including bridle hooks',
     ],
     specifications: {
       dimensions: {
-        'Overall Length': '6.5m',
+        'Overall Length': '6.32m',
         'Overall Width': '2.3m',
         'Overall Height': '3.1m',
         'Internal Height': '2.2m',
-        'Horse Area': '3.4m'
       },
       weights: {
         'Gross Weight': '3,500kg',
-        'Unladen Weight': '2,100kg',
-        'Payload': '1,400kg',
-        'Horse Capacity': '2 Horses',
-        'Tack Storage': 'Standard'
+        'Payload': 'Approx. 1.0 tonne',
+        'Horse Capacity': '1 horse or 2 ponies',
+        'Licence': 'Category B (car licence)',
+        'Warranty': '2 year build warranty',
       },
       safety: [
-        'Emergency exit doors',
-        'Anti-slip rubber flooring',
-        'Internal lighting',
-        'Padded partitions',
-        'Secure door locks'
+        'Triple reinforced bulkhead',
+        'Full height gapless, stepless & lightweight ramp',
+        'Composite floor',
+        'Two aluminium escape doors',
+        'Stallion partition available',
       ]
     },
-    gallery: ['01.webp', '02.webp', '03.webp', '04.webp'],
+    gallery: [
+      '/ireland/jth-principle-35-horsebox-green-rear-quarter-ireland.webp',
+      '/ireland/jth-principle-35-horsebox-green-side-profile-ireland.webp',
+      '/ireland/jth-principle-35-horsebox-horse-loaded-side-ireland.webp',
+      '/ireland/jth-principle-35-horsebox-green-rear-view-ireland.webp',
+      '/ireland/jth-principle-35-horsebox-green-rear-close-ireland.webp',
+    ],
+    galleryAlts: [
+      'JTH Principle 35 horsebox in British racing green — rear three-quarter view, delivered to Irish customer',
+      'JTH Principle 35 3.5t horsebox side profile in racing green — compact design for easy driving in Ireland',
+      'JTH Principle 35 horsebox with horse loaded — side hatches open for ventilation at Irish event',
+      'JTH Principle 35 horsebox rear view in racing green with HORSES signage — Dublin registered',
+      'JTH Principle 35 horsebox rear detail — premium finish and J Taylor Horseboxes badge',
+    ],
     testimonial: {
       name: 'Louise Carter',
       role: 'Happy Hacker',
       quote: 'The Principle 35 is perfect for my needs. Great value without compromising on quality or safety. I couldn\'t be happier with my choice.'
     },
     seoKeywords: '3.5t horsebox Ireland, Principle 35 Ireland, value horsebox Ireland, affordable horsebox Ireland, British horsebox delivered Ireland, 3.5 tonne horsebox for sale Ireland',
-    heroImage: '/models/principle-35/01.webp',
+    heroImage: '/ireland/jth-principle-35-horsebox-green-rear-quarter-ireland.webp',
     gbpBasePrice: 18500,
   },
 }
@@ -178,8 +199,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       images: [content.heroImage],
       locale: 'en_IE',
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${content.title} - Delivered to Ireland`,
+      description: `${content.description} From ${eurPrice} exc. VAT.`,
+      images: [content.heroImage],
+    },
     alternates: {
-      canonical: `https://jthltd.co.uk/ireland/models/${params.slug}`,
+      canonical: `https://jthltd.ie/ireland/models/${params.slug}`,
     },
   }
 }
@@ -216,7 +243,7 @@ export default async function IrelandModelDetailPage({ params }: { params: { slu
   const modelFAQs = [
     {
       question: `How much does the ${modelName} cost in Ireland?`,
-      answer: `The ${modelName} starts from ${eurPrice} excluding VAT when delivered to Ireland. Final pricing depends on your chosen options and customizations. We offer competitive finance packages and accept part exchange.`
+      answer: `The ${modelName} starts from ${eurPrice} excluding VAT when delivered to Ireland. Final pricing depends on your chosen options and customizations. Finance can be arranged through a third party if required.`
     },
     {
       question: `What license do I need to drive this horsebox?`,
@@ -234,15 +261,15 @@ export default async function IrelandModelDetailPage({ params }: { params: { slu
 
   // Schema markup
   const breadcrumbs = [
-    { name: 'Home', url: 'https://jthltd.co.uk' },
-    { name: 'Ireland', url: 'https://jthltd.co.uk/ireland' },
-    { name: modelName, url: `https://jthltd.co.uk/ireland/models/${params.slug}` }
+    { name: 'Home', url: 'https://jthltd.ie' },
+    { name: 'Ireland', url: 'https://jthltd.ie/ireland' },
+    { name: modelName, url: `https://jthltd.ie/ireland/models/${params.slug}` }
   ]
 
   const productSchema = generateProductSchema({
     name: `JTH ${modelName}`,
     description: content.description,
-    image: `https://jthltd.co.uk${content.heroImage}`,
+    image: `https://jthltd.ie${content.heroImage}`,
     price: eurNumeric,
     sku: `${params.slug.toUpperCase()}-IE`,
     category: `${modelCategory} Horsebox`,
@@ -290,7 +317,7 @@ export default async function IrelandModelDetailPage({ params }: { params: { slu
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="text-2xl font-bold text-white">{eurPrice}</div>
-              <div className="text-sm text-slate-400 uppercase tracking-wider">Starting Price</div>
+              <div className="text-sm text-slate-400 uppercase tracking-wider">Body Build · exc. VAT</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-white">{content.specifications.weights['Gross Weight']}</div>
@@ -339,8 +366,8 @@ export default async function IrelandModelDetailPage({ params }: { params: { slu
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-blue-400 opacity-20 blur-2xl group-hover:opacity-30 transition-opacity duration-500"></div>
               <div className="relative image-premium">
                 <Image
-                  src={content.gallery[1] ? `/models/${params.slug}/${content.gallery[1]}` : content.heroImage}
-                  alt={`${modelName} interior view`}
+                  src={content.gallery[1] || content.heroImage}
+                  alt={content.galleryAlts?.[1] || `${modelName} interior view — premium horsebox delivered to Ireland`}
                   width={600}
                   height={400}
                   className="shadow-2xl"
@@ -453,19 +480,12 @@ export default async function IrelandModelDetailPage({ params }: { params: { slu
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {content.gallery.map((image, index) => (
-              <div key={index} className="image-premium group cursor-pointer">
-                <Image
-                  src={`/models/${params.slug}/${image}`}
-                  alt={`${modelName} view ${index + 1}`}
-                  width={400}
-                  height={300}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
+          <LightboxGallery
+            images={content.gallery.map((image, index) => ({
+              src: image,
+              alt: content.galleryAlts?.[index] || `${modelName} view ${index + 1} — 3.5t horsebox Ireland`,
+            }))}
+          />
         </div>
       </section>
 
@@ -548,12 +568,10 @@ export default async function IrelandModelDetailPage({ params }: { params: { slu
 
               <div className="bg-slate-50 p-6">
                 <h3 className="text-lg font-semibold text-slate-900 mb-3">
-                  What finance options are available?
+                  Is finance available?
                 </h3>
                 <p className="text-slate-600 leading-relaxed">
-                  We offer competitive HP and lease purchase options from 1-7 years with deposits from 10%.
-                  Part exchange is welcome and can form part or all of your deposit.
-                  Monthly payments for the {modelName} typically start from {formatPrice(Math.round(basePrice * 0.02), 'IE')} per month.
+                  Finance can be arranged through a third party if required. Contact us for more details.
                 </p>
               </div>
 
@@ -642,9 +660,9 @@ export default async function IrelandModelDetailPage({ params }: { params: { slu
                 <h3 className="text-white font-semibold mb-4">Contact Us</h3>
                 <p className="text-blue-100">
                   <Phone className="inline w-4 h-4 mr-2" />
-                  01603 552109<br />
+                  +353 87 255 7015<br />
                   <Mail className="inline w-4 h-4 mr-2" />
-                  sales@jthltd.co.uk
+                  paul@jthltd.ie
                 </p>
               </div>
               <div>

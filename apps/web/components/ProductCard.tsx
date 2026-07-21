@@ -70,7 +70,7 @@ export default function ProductCard({
             </div>
             <div className="text-right">
               <span className="text-2xl font-bold text-slate-900">{price}</span>
-              <p className="text-xs text-slate-500">exc. VAT</p>
+              <p className="text-xs text-slate-500">body build only · exc. VAT</p>
             </div>
           </div>
           

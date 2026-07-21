@@ -11,6 +11,10 @@ id = "c455848d59db439b8c2f3471325c342b"
 binding = "JTH_CONFIGS"
 id = "86f73f8f1dfa4e928e19b27004c24b63"
 
+[[kv_namespaces]]
+binding = "STOCK_KV"
+id = "a4064938d38a46119bf4ae93ab68064e"
+
 [vars]
 NEXT_PUBLIC_IE_MARKUP = "1.15"
 NEXT_PUBLIC_IE_EXCHANGE_RATE = "1.17"

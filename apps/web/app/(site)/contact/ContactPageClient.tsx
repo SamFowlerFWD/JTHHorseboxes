@@ -37,8 +37,6 @@ const models = [
   { value: 'aeos-edge-st-45', label: 'Aeos Edge ST 45 (4.5T)' },
   // Premium Range - 7.2T & 7.5T
   { value: 'aeos-discovery-72', label: 'Aeos Discovery 72 (7.2T)' },
-  { value: 'zenos-72', label: 'Zenos 72 (7.2T)' },
-  { value: 'zenos-xl-72', label: 'Zenos XL 72 (7.2T)' },
   { value: 'helios-75', label: 'Helios 75 (7.5T)' },
 ]
 
@@ -98,7 +96,7 @@ const reasonsIE = [
 ]
 
 export default function ContactPageClient() {
-  const [region, setRegion] = useState<'GB' | 'IE'>('GB')
+  const [isIreland, setIsIreland] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -112,10 +110,15 @@ export default function ContactPageClient() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
   useEffect(() => {
-    setRegion(getRegionFromCookie() as 'GB' | 'IE')
+    // Detect Ireland from hostname (.ie domain) since /contact is shared
+    const onIrishDomain = window.location.hostname.endsWith('.ie')
+    if (onIrishDomain) {
+      setIsIreland(true)
+    } else {
+      const cookieRegion = getRegionFromCookie()
+      setIsIreland(cookieRegion === 'IE')
+    }
   }, [])
-
-  const isIreland = region === 'IE'
   const reasons = isIreland ? reasonsIE : reasonsGB
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -127,7 +130,7 @@ export default function ContactPageClient() {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, region })
+        body: JSON.stringify({ ...formData, region: isIreland ? 'IE' : 'GB' })
       })
 
       if (response.ok) {
@@ -285,8 +288,8 @@ export default function ContactPageClient() {
                   <Mail className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
                   <div>
                     <h3 className="text-lg font-semibold text-slate-900 mb-2">Email</h3>
-                    <a href="mailto:sales@jthltd.co.uk" className="text-slate-600 hover:text-blue-700">
-                      sales@jthltd.co.uk
+                    <a href={isIreland ? 'mailto:Paul@JTHltd.ie' : 'mailto:sales@jthltd.co.uk'} className="text-slate-600 hover:text-blue-700">
+                      {isIreland ? 'Paul@JTHltd.ie' : 'sales@jthltd.co.uk'}
                     </a>
                     <p className="text-sm text-slate-500 mt-1">
                       We respond within 24 hours

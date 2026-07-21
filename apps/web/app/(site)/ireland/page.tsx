@@ -6,6 +6,7 @@ import Schema, { generateProductSchema, generateBreadcrumbSchema } from '@/compo
 import { formatPrice } from '@/lib/configurator/calculations'
 import { getRegionConfig } from '@/lib/configurator/region'
 import IrelandHero from './IrelandHero'
+import IrelandGallery from '@/components/IrelandGallery'
 
 // Compute EUR prices at module scope (pure functions, safe for server components)
 const ieConfig = getRegionConfig('IE')
@@ -20,14 +21,20 @@ export const metadata: Metadata = {
   keywords: 'horsebox Ireland, 3.5t horsebox Ireland, horsebox delivery Ireland, British horsebox Ireland, buy horsebox Ireland, JTH Ireland, horse transport Ireland, Principle 35, Professional 35',
   openGraph: {
     title: 'JTH Horseboxes Ireland - Premium 3.5t Range Delivered Direct',
-    description: `Premium British-built 3.5t horseboxes delivered to Ireland. From ${eurPrinciple} exc. VAT. Drive on a standard car licence.`,
-    images: ['/models/professional-35/02.webp'],
+    description: `Premium British-built 3.5t horseboxes delivered to Ireland. From ${eurPrinciple} body build only · exc. VAT. Drive on a standard car licence.`,
+    images: ['/ireland/jth-professional-35-horsebox-navy-gold-front-ireland.webp'],
     type: 'website',
     locale: 'en_IE',
     siteName: 'JTH Horseboxes',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'JTH Horseboxes Ireland - Premium 3.5t Range Delivered Direct',
+    description: `Premium British-built 3.5t horseboxes delivered to Ireland. From ${eurPrinciple} body build only · exc. VAT. Drive on a standard car licence.`,
+    images: ['/ireland/jth-professional-35-horsebox-navy-gold-front-ireland.webp'],
+  },
   alternates: {
-    canonical: 'https://jthltd.co.uk/ireland',
+    canonical: 'https://jthltd.ie',
   },
 }
 
@@ -39,12 +46,12 @@ const models = [
     price: eurPrinciple,
     gbpBase: 18500,
     description: 'The perfect balance of quality and value. Ideal for first-time horsebox buyers looking for British build quality without compromise.',
-    image: '/models/principle-35/02.webp',
+    image: '/ireland/jth-principle-35-horsebox-green-rear-quarter-ireland.webp',
     features: [
-      'Quality GRP construction',
-      '2 horse capacity up to 16.2hh',
-      'Essential features included',
-      'Lightweight aluminium design',
+      'Reinforced bulkhead',
+      'EVA wall matting & roof vent',
+      'Two aluminium escape doors',
+      'Wall storage for tack with bridle hooks',
     ],
     badge: 'Best Value',
     badgeColor: 'bg-emerald-600',
@@ -56,12 +63,12 @@ const models = [
     price: eurProfessional,
     gbpBase: 22000,
     description: 'Our most popular model with premium features included as standard. The choice of serious competitors across the UK and Ireland.',
-    image: '/models/professional-35/02.webp',
+    image: '/ireland/jth-professional-35-horsebox-navy-gold-front-ireland.webp',
     features: [
-      'Premium finish and materials',
-      'Advanced safety features',
-      'Professional specification throughout',
-      'Comfort living area',
+      'Head, partition & door padding',
+      'Electric fan with temperature sensor',
+      'Reversing camera as standard',
+      'EVA wall matting up to 5 feet',
     ],
     badge: 'Most Popular',
     badgeColor: 'bg-blue-700',
@@ -70,8 +77,8 @@ const models = [
 
 export default function IrelandPage() {
   const breadcrumbs = [
-    { name: 'Home', url: 'https://jthltd.co.uk' },
-    { name: 'Ireland', url: 'https://jthltd.co.uk/ireland' },
+    { name: 'Home', url: 'https://jthltd.ie' },
+    { name: 'Ireland', url: 'https://jthltd.ie/ireland' },
   ]
 
   const productSchemas = models.map((model) =>
@@ -143,7 +150,7 @@ export default function IrelandPage() {
                       </div>
                       <div className="text-right">
                         <span className="text-2xl font-bold text-slate-900">{model.price}</span>
-                        <p className="text-xs text-slate-500">exc. VAT</p>
+                        <p className="text-xs text-slate-500">body build only · exc. VAT</p>
                       </div>
                     </div>
 
@@ -179,6 +186,45 @@ export default function IrelandPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Ireland Gallery - Customer Horseboxes */}
+        <section id="gallery" className="py-20 bg-white">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-light text-slate-900 mb-6">
+                JTH <span className="text-blue-700">in Ireland</span>
+              </h2>
+              <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+                Real horseboxes delivered to Irish customers. From ferry crossing to first ride — see the quality for yourself.
+              </p>
+            </div>
+
+            <IrelandGallery
+              images={[
+                { src: '/ireland/jth-professional-35-horsebox-navy-gold-front-ireland.webp', alt: 'JTH Professional 35 horsebox in navy blue with gold trim — front three-quarter view, delivered to Ireland', span: 'md:col-span-2 md:row-span-2' },
+                { src: '/ireland/jth-professional-35-horsebox-rear-quarter-ireland.webp', alt: 'JTH Professional 35 3.5t horsebox — rear three-quarter view showing aerodynamic bodywork in Ireland' },
+                { src: '/ireland/jth-professional-35-horsebox-rear-view-ireland.webp', alt: 'JTH Professional 35 horsebox rear view with HORSES signage — Irish registered 3.5 tonne horsebox' },
+                { src: '/ireland/jth-professional-35-horsebox-side-ramp-loading-ireland.webp', alt: 'JTH Professional 35 horsebox with side ramp open for easy horse loading — delivered to Ireland' },
+                { src: '/ireland/jth-professional-35-horsebox-interior-padded-stalls-ireland.webp', alt: 'JTH Professional 35 horsebox interior — stall partitions, rubber matting and roof ventilation for horse comfort' },
+                { src: '/ireland/jth-professional-35-horsebox-interior-led-lighting-ireland.webp', alt: 'JTH Professional 35 horsebox interior with LED lighting, head protectors and aluminium stall partitions' },
+                { src: '/ireland/jth-professional-35-horsebox-interior-tack-storage-ireland.webp', alt: 'JTH Professional 35 horsebox tack storage area with aluminium shelving and secure fittings' },
+                { src: '/ireland/jth-principle-35-horsebox-green-rear-quarter-ireland.webp', alt: 'JTH Principle 35 horsebox in British racing green — rear three-quarter view, Irish customer delivery', span: 'md:col-span-2 md:row-span-2' },
+                { src: '/ireland/jth-principle-35-horsebox-green-rear-view-ireland.webp', alt: 'JTH Principle 35 horsebox rear view in racing green with HORSES signage — Dublin registered' },
+                { src: '/ireland/jth-principle-35-horsebox-green-side-profile-ireland.webp', alt: 'JTH Principle 35 3.5t horsebox side profile in racing green — compact design for easy driving in Ireland' },
+                { src: '/ireland/jth-principle-35-horsebox-horse-loaded-side-ireland.webp', alt: 'JTH Principle 35 horsebox with horse loaded — side hatches open for ventilation at Irish equestrian event' },
+                { src: '/ireland/jth-principle-35-horsebox-green-rear-close-ireland.webp', alt: 'JTH Principle 35 horsebox rear detail — premium finish and J Taylor Horseboxes badge' },
+                { src: '/ireland/jth-35t-horsebox-green-front-petrol-station-ireland.webp', alt: 'JTH 3.5 tonne horsebox with JTH branding — front view at Irish petrol station' },
+                { src: '/ireland/jth-professional-35-horsebox-ferry-delivery-front-ireland.webp', alt: 'JTH Professional 35 horsebox boarding ferry for delivery to Ireland — direct UK to Ireland shipping' },
+                { src: '/ireland/jth-professional-35-horsebox-ferry-delivery-rear-ireland.webp', alt: 'JTH Professional 35 horsebox on ferry deck — direct delivery service from Norfolk to Ireland' },
+                { src: '/ireland/jth-35t-horsebox-ferry-crossing-side-ireland.webp', alt: 'JTH 3.5t horsebox on ferry crossing to Ireland — side view showing compact dimensions for easy travel' },
+                { src: '/ireland/jth-35t-horsebox-ferry-crossing-front-ireland.webp', alt: 'JTH horsebox front view on ferry — direct delivery from UK factory to Irish customers' },
+                { src: '/ireland/jth-horseboxes-fleet-ferry-delivery-ireland.webp', alt: 'Multiple JTH horseboxes on ferry deck — fleet delivery to Ireland showing range of models available' },
+                { src: '/ireland/jth-horseboxes-fleet-green-blue-night-ireland.webp', alt: 'Two JTH horseboxes in green and blue livery — customer deliveries arriving in Ireland at night' },
+                { src: '/ireland/jth-professional-35-horsebox-low-angle-rear-ireland.webp', alt: 'JTH Professional 35 horsebox dramatic low angle rear view — premium 3.5t horsebox available in Ireland' },
+              ]}
+            />
           </div>
         </section>
 

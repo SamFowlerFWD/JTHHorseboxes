@@ -104,7 +104,7 @@ export default async function ModelsPage() {
                     <span className="text-2xl font-bold text-slate-900">
                       {model.basePricePence ? `£${(model.basePricePence/100).toLocaleString()}` : 'Contact for pricing'}
                     </span>
-                    <p className="text-xs text-slate-500">{model.basePricePence ? 'exc. VAT' : ''}</p>
+                    <p className="text-xs text-slate-500">{model.basePricePence ? 'body build only · exc. VAT' : ''}</p>
                   </div>
                 </div>
                 
@@ -113,14 +113,12 @@ export default async function ModelsPage() {
                 <p className="text-slate-600 mb-6">
                   {model.slug === 'professional-35' && 'The ultimate in luxury and performance for the professional rider.'}
                   {model.slug === 'principle-35' && 'Perfect balance of quality and value for the discerning owner.'}
-                  {model.slug === 'progeny-35' && 'Our flagship 3.5 tonne model with premium specification throughout.'}
+                  {model.slug === 'progeny-35' && 'Crew cab 3.5t horsebox with up to 7 seats — top of the range specification.'}
                   {model.slug === 'jth-principle-45' && 'Essential 4.5t horsebox with proven JTH quality at an affordable price.'}
                   {model.slug === 'jth-professional-45' && 'Premium 4.5t horsebox with luxury features included as standard.'}
                   {model.slug === 'jth-progeny-45' && 'Crew cab 4.5t horsebox designed for teams and families.'}
                   {model.slug.includes('aeos') && model.slug.includes('45') && 'Part of our renowned Aeos 4.5t range with superior build quality.'}
                   {model.slug === 'aeos-discovery-72' && 'The ultimate 7.2t horsebox with apartment-quality living.'}
-                  {model.slug === 'zenos-72' && 'Professional 7.2t horsebox built to your exact specifications.'}
-                  {model.slug === 'zenos-xl-72' && 'Extended luxury 7.2t horsebox - the ultimate in mobile accommodation.'}
                   {model.slug === 'helios-75' && 'Our flagship 7.5t model for professional teams and international competitors.'}
                 </p>
 
@@ -161,11 +159,11 @@ export default async function ModelsPage() {
                     <>
                       <div className="flex items-center text-sm text-slate-600">
                         <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0" />
-                        Stallion partition included
+                        Crew cab — up to 7 seats
                       </div>
                       <div className="flex items-center text-sm text-slate-600">
                         <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0" />
-                        Enhanced safety features
+                        3 front + 4 rear crew cab seats
                       </div>
                       <div className="flex items-center text-sm text-slate-600">
                         <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0" />

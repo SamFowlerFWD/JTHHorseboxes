@@ -12,6 +12,7 @@ const contactSchema = z.object({
   model: z.string().optional(),
   message: z.string().min(1, 'Message is required').max(5000),
   marketingConsent: z.boolean().optional(),
+  region: z.enum(['GB', 'IE']).optional(),
   // Configurator submission fields
   source: z.string().optional(),
   configuration: z.any().optional(),
@@ -42,8 +43,9 @@ export async function POST(request: NextRequest) {
 
     const modelLine = data.model ? `Model of Interest: ${data.model}\n` : ''
 
-    // Determine recipients — always sales@jthltd.co.uk + selected agent (if different)
-    const ADMIN_EMAIL = 'sales@jthltd.co.uk'
+    // Determine recipients based on region
+    const isIreland = data.region === 'IE'
+    const ADMIN_EMAIL = isIreland ? 'paul@jthltd.ie' : 'sales@jthltd.co.uk'
     const recipients: string[] = [ADMIN_EMAIL]
 
     if (data.agentName) {
@@ -62,7 +64,7 @@ export async function POST(request: NextRequest) {
 
     // Send notification to JTH sales team (+ agent)
     await resend.emails.send({
-      from: 'JTH Website <noreply@jthltd.co.uk>',
+      from: 'JTH Website <noreply@jthltd.ie>',
       to: recipients,
       subject,
       text: [
@@ -77,25 +79,6 @@ export async function POST(request: NextRequest) {
         '',
         `Marketing Consent: ${data.marketingConsent ? 'Yes' : 'No'}`,
         configDetails,
-      ].join('\n'),
-    })
-
-    // Send confirmation to customer
-    await resend.emails.send({
-      from: 'J Taylor Horseboxes <noreply@jthltd.co.uk>',
-      to: data.email,
-      subject: 'Thank you for contacting J Taylor Horseboxes',
-      text: [
-        `Dear ${data.name},`,
-        '',
-        'Thank you for your enquiry. We have received your message and our team will be in touch within 24 hours.',
-        '',
-        'If you need immediate assistance, please call us on 01603 552109.',
-        '',
-        'Kind regards,',
-        'The JTH Team',
-        'J Taylor Horseboxes',
-        'www.jthltd.co.uk',
       ].join('\n'),
     })
 

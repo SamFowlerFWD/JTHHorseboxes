@@ -67,7 +67,7 @@ export default function Professional35Page() {
     },
     {
       question: 'How many horses can the Professional 35 carry?',
-      answer: 'The Professional 35 can safely transport two horses up to 16.2hh. The horse area is 3.6m long with a gross weight capacity of 3,500kg and a payload of 1,300kg.'
+      answer: 'The Professional 35 can safely transport two horses up to 16.2hh. The horse area is 3.6m long with a gross weight capacity of 3,500kg and a payload of 1,000kg.'
     },
     {
       question: 'What makes the Professional 35 different from the Principle 35?',
@@ -281,12 +281,8 @@ export default function Professional35Page() {
                   <span className="text-white font-semibold">3,500kg</span>
                 </div>
                 <div className="flex justify-between py-3 border-b border-slate-800">
-                  <span className="text-slate-400">Unladen Weight</span>
-                  <span className="text-white font-semibold">2,200kg</span>
-                </div>
-                <div className="flex justify-between py-3 border-b border-slate-800">
                   <span className="text-slate-400">Payload</span>
-                  <span className="text-white font-semibold">1,300kg</span>
+                  <span className="text-white font-semibold">1,000kg</span>
                 </div>
                 <div className="flex justify-between py-3 border-b border-slate-800">
                   <span className="text-slate-400">Horse Capacity</span>
@@ -361,22 +357,22 @@ export default function Professional35Page() {
               {
                 title: 'Horse Area',
                 features: [
-                  'Padded breast and bum bars',
-                  'Rubber matting throughout',
-                  'Adjustable partitions',
-                  'Feed mangers',
-                  'Hay nets included',
-                  'Ventilation system'
+                  'Head, partition and top door padding',
+                  'EVA wall matting up to 5 feet',
+                  'Full aluminium bulkhead at horse\'s head',
+                  'Electric fan with temperature and rain sensor',
+                  'Adjustable tie rings',
+                  'Loading light as standard'
                 ]
               },
               {
-                title: 'Storage',
+                title: 'Storage & Safety',
                 features: [
-                  'Large tack locker',
-                  'Saddle racks',
-                  'Bridle hooks',
+                  'Two bench storage seats in groom\'s area',
+                  'Escape doors',
+                  'Reversing camera as standard',
                   'External storage compartments',
-                  'Water tank (150L)',
+                  'Water tank',
                   'Tool storage area'
                 ]
               },
@@ -697,7 +693,7 @@ export default function Professional35Page() {
                   <p className="text-slate-600">
                     Built on the reliable Iveco Daily chassis, the Professional 35 offers excellent handling and performance. 
                     The 3.5 tonne gross weight allows it to be driven on a standard car license (pre-1997), making it accessible 
-                    to more riders. With a payload of 1,300kg, you have ample capacity for two horses plus all your equipment.
+                    to more riders. With a payload of 1,000kg, you have ample capacity for two horses plus all your equipment.
                   </p>
                 </div>
                 <div>
@@ -711,7 +707,7 @@ export default function Professional35Page() {
                 <div>
                   <h4 className="font-semibold text-slate-900 mb-3">Horse Area</h4>
                   <p className="text-slate-600">
-                    The 3.6m horse area comfortably accommodates two horses up to 16.2hh. Premium rubber matting, padded partitions, 
+                    The 3.6m horse area comfortably accommodates two horses up to 16.2hh. EVA wall matting, reinforced partitions, 
                     and excellent ventilation ensure your horses travel in comfort. The layout has been optimized based on feedback 
                     from professional riders to minimize stress and maximize safety.
                   </p>

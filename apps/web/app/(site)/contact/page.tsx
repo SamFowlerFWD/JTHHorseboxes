@@ -7,9 +7,18 @@ export const metadata: Metadata = {
   description: 'Contact JTH for premium horseboxes. Visit our Norfolk showroom, call 01603 552109, or email sales@jthltd.co.uk. Open Mon-Sat for viewings and test drives.',
   keywords: 'contact JTH, J Taylor Horseboxes contact, horsebox showroom Norfolk, Beeston horsebox, JTH phone number, horsebox viewing, test drive horsebox',
   openGraph: {
-    title: 'Contact J Taylor Horseboxes | Norfolk Showroom',
+    title: 'Contact J Taylor Horseboxes',
     description: 'Get in touch with JTH. Visit our showroom, arrange a viewing, or discuss your requirements with our expert team.',
     images: ['/contact/showroom.jpg'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact J Taylor Horseboxes',
+    description: 'Get in touch with JTH. Visit our showroom, arrange a viewing, or discuss your requirements with our expert team.',
+    images: ['/contact/showroom.jpg'],
+  },
+  alternates: {
+    canonical: 'https://jthltd.co.uk/contact',
   },
 }
 

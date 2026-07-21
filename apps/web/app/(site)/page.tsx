@@ -89,7 +89,7 @@ export default function HomePage() {
       subtitle: '3.5 Tonne Luxury',
       description: 'The ultimate in luxury and performance for the professional rider.',
       price: '£22,000',
-      priceNote: 'exc. VAT',
+      priceNote: 'body build only · exc. VAT',
       images: ['/models/professional-35/02.webp', '/models/professional-35/03.webp', '/models/professional-35/01.webp'],
       badge: {
         text: 'Most Popular',
@@ -113,7 +113,7 @@ export default function HomePage() {
       subtitle: '3.5 Tonne Essential',
       description: 'Perfect balance of quality and value for the discerning owner.',
       price: '£18,500',
-      priceNote: 'exc. VAT',
+      priceNote: 'body build only · exc. VAT',
       images: ['/models/principle-35/02.webp', '/models/principle-35/03.webp', '/models/principle-35/01.webp'],
       badge: {
         text: 'Best Value',
@@ -134,10 +134,10 @@ export default function HomePage() {
     {
       id: 'progeny-35',
       title: 'Progeny 35',
-      subtitle: '3.5 Tonne Premium',
-      description: 'Our flagship 3.5 tonne model with premium specification.',
+      subtitle: '3.5 Tonne Crew Cab',
+      description: 'Crew cab 3.5t horsebox with up to 7 seats — top of the range specification.',
       price: '£25,500',
-      priceNote: 'exc. VAT',
+      priceNote: 'body build only · exc. VAT',
       images: ['/models/progeny-35/02.webp', '/models/progeny-35/03.webp', '/models/progeny-35/01.webp'],
       badge: {
         text: 'Premium',
@@ -146,9 +146,9 @@ export default function HomePage() {
       rating: 5.0,
       reviews: 18,
       features: [
-        { label: 'Payload', value: '1,150kg' },
+        { label: 'Seating', value: 'Up to 7 seats' },
+        { label: 'Crew Cab', value: '3 front + 4 rear' },
         { label: 'Horse Capacity', value: '2 horses' },
-        { label: 'Living', value: 'Day living as standard' },
         { label: 'Warranty', value: '2 years structural' }
       ],
       availability: 'Limited' as const,
@@ -323,7 +323,7 @@ export default function HomePage() {
             Made in Great Britain
           </div>
           <h2 className="text-3xl md:text-5xl font-light text-slate-900 mb-8">
-            Welcome to <span className="text-blue-700">JTH Horseboxes</span>
+            Welcome to <span className="text-blue-700">J Taylor Horseboxes</span>
           </h2>
           <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-blue-700 to-transparent mx-auto mb-8"></div>
           <p className="text-xl text-slate-700 max-w-4xl mx-auto leading-relaxed font-light mb-6">
@@ -331,7 +331,7 @@ export default function HomePage() {
             but lead through innovation, creative designs and materials technology.
           </p>
           <p className="text-xl text-amber-600 font-semibold">
-            "Stunning is fitted as standard on every JTH horsebox"
+            "Stunning comes as standard on every JTH horsebox"
           </p>
         </div>
       </section>

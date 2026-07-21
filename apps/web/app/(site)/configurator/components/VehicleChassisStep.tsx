@@ -46,7 +46,7 @@ export default function VehicleChassisStep() {
     {
       id: 'PREMIUM',
       name: 'Premium Range',
-      description: 'Zenos & Helios premium models - contact for custom quotes',
+      description: 'Aeos Discovery 72 & Helios premium models - contact for custom quotes',
       icon: Crown,
       availability: 'contact-only',
       badge: 'Contact for Pricing',
@@ -67,7 +67,7 @@ export default function VehicleChassisStep() {
     if (range === 'PREMIUM') {
       // Map premium range to actual model ranges
       const premiumMap: { [key: string]: string } = {
-        '7.2T': 'ZENOS',
+        '7.2T': 'AEOS',
         '7.5T': 'HELIOS'
       }
       return MODELS.filter(model => model.range === premiumMap[tonnage] && model.tonnage === tonnage)

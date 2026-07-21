@@ -253,8 +253,9 @@ html {
 }
 
 .card-dark {
-  @apply relative bg-slate-900 text-white overflow-hidden transition-all duration-500;
+  @apply relative bg-slate-800 text-white overflow-hidden transition-all duration-500;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(148, 163, 184, 0.1);
 }
 
 .card-dark:hover {
