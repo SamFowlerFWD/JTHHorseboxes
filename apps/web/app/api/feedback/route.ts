@@ -1,11 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { identifyCaller } from '@/lib/feedback/auth'
-import { getAllFeedback, createFeedback } from '@/lib/feedback/kv'
-import type { CreateFeedbackInput } from '@/lib/feedback/types'
+import {
+  getAllFeedback,
+  createFeedback,
+  updateManyFeedback,
+  deleteManyFeedback,
+} from '@/lib/feedback/kv'
+import type { CreateFeedbackInput, FeedbackStatus } from '@/lib/feedback/types'
 
 export const runtime = 'edge'
 
 const MAX_COMMENT_LENGTH = 2000
+/** Guards against a malformed client sending an unbounded id list. */
+const MAX_BULK_IDS = 500
+const VALID_STATUSES: FeedbackStatus[] = ['open', 'in-progress', 'done']
 
 /** GET — list notes. `?path=` scopes to one page, for rendering pins. */
 export async function GET(request: NextRequest) {
@@ -59,6 +67,73 @@ export async function POST(request: NextRequest) {
     console.error('Error creating feedback note:', error)
     return NextResponse.json(
       { error: error.message ?? 'Failed to save note' },
+      { status: 500 }
+    )
+  }
+}
+
+/** Read and validate an id list from a bulk request body. */
+function parseIds(value: unknown): string[] | NextResponse {
+  if (!Array.isArray(value) || value.length === 0) {
+    return NextResponse.json({ error: 'ids must be a non-empty array' }, { status: 400 })
+  }
+  if (value.length > MAX_BULK_IDS) {
+    return NextResponse.json(
+      { error: `Cannot process more than ${MAX_BULK_IDS} notes at once` },
+      { status: 400 }
+    )
+  }
+  return value.filter((id): id is string => typeof id === 'string')
+}
+
+/** PATCH — change the status of many notes at once. Admin only. */
+export async function PATCH(request: NextRequest) {
+  if (identifyCaller(request) !== 'admin') {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
+  try {
+    const body = (await request.json()) as { ids?: unknown; status?: FeedbackStatus }
+
+    const ids = parseIds(body.ids)
+    if (ids instanceof NextResponse) return ids
+
+    if (!body.status || !VALID_STATUSES.includes(body.status)) {
+      return NextResponse.json(
+        { error: `status must be one of: ${VALID_STATUSES.join(', ')}` },
+        { status: 400 }
+      )
+    }
+
+    const updated = await updateManyFeedback(ids, { status: body.status })
+    return NextResponse.json({ updated, count: updated.length })
+  } catch (error: any) {
+    console.error('Error bulk-updating feedback:', error)
+    return NextResponse.json(
+      { error: error.message ?? 'Failed to update notes' },
+      { status: 500 }
+    )
+  }
+}
+
+/** DELETE — remove many notes at once. Admin only. */
+export async function DELETE(request: NextRequest) {
+  if (identifyCaller(request) !== 'admin') {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
+  try {
+    const body = (await request.json()) as { ids?: unknown }
+
+    const ids = parseIds(body.ids)
+    if (ids instanceof NextResponse) return ids
+
+    const deleted = await deleteManyFeedback(ids)
+    return NextResponse.json({ deleted, count: deleted.length })
+  } catch (error: any) {
+    console.error('Error bulk-deleting feedback:', error)
+    return NextResponse.json(
+      { error: error.message ?? 'Failed to delete notes' },
       { status: 500 }
     )
   }

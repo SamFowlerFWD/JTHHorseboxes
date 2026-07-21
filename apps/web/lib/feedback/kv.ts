@@ -135,6 +135,46 @@ export async function updateFeedback(
   return updated
 }
 
+/**
+ * Apply the same change to many notes at once.
+ *
+ * Sequential rather than concurrent: these are separate KV keys so there is no
+ * contention, but a review round can close out dozens of notes in one click and
+ * firing them all simultaneously risks tripping KV rate limits for no gain.
+ * Returns the ids that were actually updated — missing ones are skipped.
+ */
+export async function updateManyFeedback(
+  ids: string[],
+  data: UpdateFeedbackInput
+): Promise<string[]> {
+  const updated: string[] = []
+  for (const id of ids) {
+    const result = await updateFeedback(id, data)
+    if (result) updated.push(id)
+  }
+  return updated
+}
+
+export async function deleteManyFeedback(ids: string[]): Promise<string[]> {
+  // Filter against the index rather than reading each key: it tells us what
+  // actually exists for the price of one read, and stops the caller being told
+  // it deleted ids that were never there.
+  const index = await getIndex()
+  const present = new Set(index)
+  const deleted = ids.filter((id) => present.has(id))
+
+  for (const id of deleted) {
+    await kvDelete(itemKey(id))
+  }
+
+  if (deleted.length) {
+    const removed = new Set(deleted)
+    await setIndex(index.filter((i) => !removed.has(i)))
+  }
+
+  return deleted
+}
+
 export async function deleteFeedbackById(id: string): Promise<boolean> {
   const existing = await getFeedbackById(id)
   if (!existing) return false
