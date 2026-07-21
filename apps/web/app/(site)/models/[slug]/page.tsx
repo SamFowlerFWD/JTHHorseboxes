@@ -11,6 +11,11 @@ import type { Metadata } from 'next'
 
 // Import Schema component at the top
 import Schema, { generateProductSchema, generateBreadcrumbSchema, generateFAQSchema } from '@/components/Schema'
+import { weightLabel } from '@/lib/models'
+
+/** Stand-in used where a model has no confirmed price; shown as 'Contact for
+ *  pricing' and never published to structured data. */
+const PRICE_ON_APPLICATION = 12345
 
 // Model-specific content and SEO data
 const modelContent: Record<string, {
@@ -830,14 +835,14 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
       'professional-35': 22000,
       'progeny-35': 25500,
       'aeos-qv-45': 28950,
-      'aeos-edge-45': 12345,
-      'aeos-freedom-45': 12345,
-      'aeos-discovery-45': 12345,
+      'aeos-edge-45': PRICE_ON_APPLICATION,
+      'aeos-freedom-45': PRICE_ON_APPLICATION,
+      'aeos-discovery-45': PRICE_ON_APPLICATION,
       'aeos-freedom-st-45': 38500,
       'aeos-edge-st-45': 33500,
       'aeos-qv-st-45': 30950,
       'aeos-discovery-72': 74600,
-      'helios-75': 12345,
+      'helios-75': PRICE_ON_APPLICATION,
       'jth-principle-45': 28950,
       'jth-professional-45': 31500,
       'jth-progeny-45': 36500,
@@ -849,18 +854,17 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
   const modelName = model?.name || content.title.split(' - ')[0]
 
   // Determine model category
-  const is35t = params.slug.includes('35')
   const is45t = params.slug.includes('45')
   const is72t = params.slug.includes('72')
   const isStallion = params.slug.includes('-st-')
   
-  const modelCategory = is35t ? '3.5 Tonne' : is45t ? '4.5 Tonne' : '7.2 Tonne'
+  const modelCategory = weightLabel(params.slug) || '3.5 Tonne'
 
   // Generate FAQ data for this model (now that basePrice is available)
   const modelFAQs = [
     {
       question: `How much does the ${content.title.split(' - ')[0]} cost?`,
-      answer: basePrice === 12345 
+      answer: basePrice === PRICE_ON_APPLICATION 
         ? `The ${content.title.split(' - ')[0]} is built to order with pricing based on your exact specifications. Please contact us for a detailed quotation. We offer competitive finance packages and accept part exchange.`
         : `All prices shown are for the body build only, excluding VAT. The base vehicle (van/chassis) is sourced separately to your requirements. Final pricing depends on your chosen options and customisations. Contact us to discuss your complete build.`
     },
@@ -893,7 +897,7 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
     name: modelName,
     description: content.description,
     image: `https://jthltd.co.uk${content.heroImage}`,
-    price: basePrice,
+    price: basePrice === PRICE_ON_APPLICATION ? null : basePrice,
     sku: params.slug.toUpperCase(),
     category: `${modelCategory} Horsebox`
   })
@@ -939,7 +943,7 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="text-2xl font-bold text-white">
-                {basePrice === 12345 ? 'Contact for pricing' : `£${basePrice.toLocaleString()}`}
+                {basePrice === PRICE_ON_APPLICATION ? 'Contact for pricing' : `£${basePrice.toLocaleString()}`}
               </div>
               <div className="text-sm text-slate-400 uppercase tracking-wider">Body Build · exc. VAT</div>
             </div>
@@ -1197,7 +1201,7 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
                 <p className="text-slate-600 leading-relaxed">
                   We offer competitive HP and lease purchase options from 1-7 years with deposits from 10%. 
                   Part exchange is welcome and can form part or all of your deposit. 
-                  {basePrice === 12345 
+                  {basePrice === PRICE_ON_APPLICATION 
                     ? `Please contact us for detailed finance quotations on the ${modelName}.`
                     : `Monthly payments for the ${modelName} typically start from £${Math.round(basePrice * 0.02)} per month.`
                   }

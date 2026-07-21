@@ -6,6 +6,7 @@ import { ArrowRight, Check, Phone, Mail, MapPin, Users, Star } from 'lucide-reac
 import TrustIndicators from '@/components/TrustIndicators'
 import type { Metadata } from 'next'
 import Schema, { generateProductSchema, generateBreadcrumbSchema } from '@/components/Schema'
+import { weightBadge } from '@/lib/models'
 
 export const metadata: Metadata = {
   title: 'Horsebox Models - 3.5t, 4.5t, 7.2t & 7.5t Range | JTH Horseboxes Norfolk',
@@ -82,7 +83,7 @@ export default async function ModelsPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="absolute top-4 right-4 z-10">
                   <span className="inline-flex items-center bg-blue-700 px-3 py-1 text-sm font-semibold text-white">
-                    {model.slug.includes('35') ? '3.5T' : '4.5T'}
+                    {weightBadge(model.slug)}
                   </span>
                 </div>
                 {model.slug === 'principle-35' && (

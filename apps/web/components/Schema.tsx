@@ -107,12 +107,16 @@ export function generateProductSchema(product: {
   name: string
   description: string
   image: string
-  price: number
+  /** Omit, or pass null, for models sold on application — never publish a
+   *  placeholder price, Google treats it as the real one. */
+  price?: number | null
   sku: string
   category?: string
   brand?: string
   priceCurrency?: string
 }) {
+  const hasPrice = typeof product.price === 'number' && product.price > 0
+
   return {
     "@context": "https://schema.org",
     "@type": ["Product", "Vehicle"],
@@ -132,18 +136,22 @@ export function generateProductSchema(product: {
     "category": product.category || "Horsebox",
     "vehicleConfiguration": "Horsebox",
     "vehicleSpecialUsage": "Horse Transportation",
-    "offers": {
-      "@type": "Offer",
-      "price": product.price,
-      "priceCurrency": product.priceCurrency || "GBP",
-      "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
-      "availability": "https://schema.org/InStock",
-      "seller": {
-        "@type": "Organization",
-        "name": "J Taylor Horseboxes"
-      },
-      "warranty": "2 years structural warranty"
-    }
+    // Offers are omitted entirely where there is no confirmed price, rather
+    // than published with a stand-in figure.
+    ...(hasPrice && {
+      "offers": {
+        "@type": "Offer",
+        "price": product.price,
+        "priceCurrency": product.priceCurrency || "GBP",
+        "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "J Taylor Horseboxes"
+        },
+        "warranty": "2 years structural warranty"
+      }
+    })
     // No aggregateRating — see organizationSchema above.
   }
 }
