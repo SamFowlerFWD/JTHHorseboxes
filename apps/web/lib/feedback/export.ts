@@ -21,14 +21,26 @@ function csvCell(value: string): string {
   return needsQuoting ? `"${escaped}"` : escaped
 }
 
+/** The screen the reviewer was on — so "this looks cramped" can be reproduced. */
+function screenLabel(note: FeedbackNote): string {
+  const w = note.viewportWidth
+  if (!w) return ''
+  const device = w >= 1024 ? 'Desktop' : w >= 640 ? 'Tablet' : 'Mobile'
+  return `${device} (${w}px)`
+}
+
 const CSV_COLUMNS = [
   'Page',
   'Status',
   'Type',
   'What they want changed',
   'Element',
+  'Screen',
   'Left by',
   'Date',
+  // Last, because it is a precise locator for whoever makes the edit rather
+  // than something a human triaging the sheet needs to read.
+  'Exact element (CSS selector)',
 ] as const
 
 export function toCSV(notes: FeedbackNote[]): string {
@@ -39,8 +51,10 @@ export function toCSV(notes: FeedbackNote[]): string {
       categoryLabel(note),
       note.comment,
       note.elementText,
+      screenLabel(note),
       note.author,
       new Date(note.createdAt).toLocaleString('en-GB'),
+      note.selector,
     ]
       .map((cell) => csvCell(cell ?? ''))
       .join(',')
@@ -74,7 +88,15 @@ export function toMarkdownChecklist(notes: FeedbackNote[]): string {
       if (note.elementText) {
         lines.push(`  - Element: “${note.elementText}”`)
       }
-      lines.push(`  - ${note.author}, ${new Date(note.createdAt).toLocaleDateString('en-GB')}`)
+      if (note.selector) {
+        lines.push(`  - Locator: \`${note.selector}\``)
+      }
+      const screen = screenLabel(note)
+      lines.push(
+        `  - ${note.author}, ${new Date(note.createdAt).toLocaleDateString('en-GB')}${
+          screen ? ` · ${screen}` : ''
+        }`
+      )
     }
     lines.push('')
   }
