@@ -19,28 +19,20 @@ const navigation = {
     title: 'Models',
     sections: [
       {
-        title: 'JTH Range (3.5T & 4.5T)',
+        title: 'Bespoke Built – Customisable Range',
         isCategory: true,
         items: []
       },
       {
-        title: '3.5T Models',
+        title: '3.5T – 4.5T Models',
         items: [
-          { name: 'Principle 35', href: '/models/principle-35' },
-          { name: 'Professional 35', href: '/models/professional-35' },
-          { name: 'Progeny 35', href: '/models/progeny-35' },
+          { name: 'Principle', href: '/models/principle-35' },
+          { name: 'Professional', href: '/models/professional-35' },
+          { name: 'Progeny', href: '/models/progeny-35' },
         ]
       },
       {
-        title: '4.5T Models',
-        items: [
-          { name: 'Principle 45', href: '/models/jth-principle-45' },
-          { name: 'Professional 45', href: '/models/jth-professional-45' },
-          { name: 'Progeny 45', href: '/models/jth-progeny-45' },
-        ]
-      },
-      {
-        title: 'AEOS Range (4.5T Pre-Built)',
+        title: 'AEOS Range (4.5T & 7.2T)',
         isCategory: true,
         items: []
       },
@@ -53,14 +45,19 @@ const navigation = {
         ]
       },
       {
-        title: 'Premium Range (7.2T & 7.5T)',
+        title: '7.2T Models',
+        items: [
+          { name: 'Aeos Discovery 72', href: '/models/aeos-discovery-72' },
+        ]
+      },
+      {
+        title: 'Helios Range (7.5T)',
         isCategory: true,
         items: []
       },
       {
-        title: '7.2T & 7.5T Models',
+        title: '7.5T Models',
         items: [
-          { name: 'Aeos Discovery 72', href: '/models/aeos-discovery-72' },
           { name: 'Helios 75', href: '/models/helios-75', note: 'Contact for Pricing' },
         ]
       }

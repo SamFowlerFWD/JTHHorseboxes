@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     default: 'JTH Horseboxes - Premium 3.5t, 4.5t & 7.2t British Horseboxes | Norfolk UK',
     template: '%s | JTH Horseboxes'
   },
-  description: 'Leading British horsebox manufacturer in Norfolk. Premium 3.5 tonne, 4.5 tonne & 7.2 tonne horseboxes from £18,500. Professional 35, Principle 35, Progeny 35 & Aeos Discovery 72 models. Incorporating KPH heritage. Factory showroom visits welcome.',
+  description: 'Leading British horsebox manufacturer in Norfolk. Premium 3.5 tonne, 4.5 tonne & 7.2 tonne horseboxes from £19,500 + VAT. Professional 35, Principle 35, Progeny 35 & Aeos Discovery 72 models. Incorporating KPH heritage. Workshop visits welcome.',
   keywords: '3.5t horsebox, 3.5 tonne horsebox, 4.5t horsebox, 4.5 tonne horsebox, 7.2t horsebox, 7.2 tonne horsebox, British horsebox manufacturer, luxury horsebox UK, horsebox for sale Norfolk, custom horsebox builder UK, JTH horseboxes, J Taylor Horseboxes, KPH horseboxes, horse lorry UK, equine transport, horsebox Norfolk, horsebox East Anglia',
   authors: [{ name: 'J Taylor Horseboxes' }],
   creator: 'J Taylor Horseboxes',
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     url: 'https://jthltd.co.uk',
     siteName: 'JTH Horseboxes',
     title: 'JTH Horseboxes - Premium British Horseboxes | 3.5t, 4.5t & 7.2t Models',
-    description: 'Leading British horsebox manufacturer. Premium 3.5t, 4.5t & 7.2t models from £18,500. Visit our Norfolk showroom.',
+    description: 'Leading British horsebox manufacturer. Premium 3.5t, 4.5t & 7.2t models from £19,500 + VAT. Visit our Norfolk workshop.',
     images: [
       {
         url: 'https://jthltd.co.uk/og-image.jpg',
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'JTH Horseboxes - Premium British Horseboxes',
-    description: 'Leading British horsebox manufacturer. 3.5t, 4.5t & 7.2t models from £18,500.',
+    description: 'Leading British horsebox manufacturer. 3.5t, 4.5t & 7.2t models from £19,500 + VAT.',
     images: ['https://jthltd.co.uk/og-image.jpg'],
     creator: '@jthhorseboxes',
   },

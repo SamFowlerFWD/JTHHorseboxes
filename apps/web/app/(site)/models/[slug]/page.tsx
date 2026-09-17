@@ -23,6 +23,10 @@ const modelContent: Record<string, {
   description: string
   longDescription: string[]
   features: string[]
+  /** Intro checklist; falls back to the first four features */
+  highlights?: string[]
+  /** Warranty length; 24 months unless a model says otherwise */
+  warrantyMonths?: number
   specifications: {
     dimensions: Record<string, string>
     weights: Record<string, string>
@@ -66,7 +70,7 @@ const modelContent: Record<string, {
       },
       weights: {
         'Gross Weight': '3,500kg',
-        'Payload': 'Approx. 1.0 tonne',
+        'Payload': 'Minimum 1 tonne',
         'Horse Capacity': '1 horse or 2 ponies',
         'Licence': 'Category B (car licence)',
         'Warranty': '2 year build warranty',
@@ -85,22 +89,38 @@ const modelContent: Record<string, {
   },
   'principle-35': {
     title: 'Principle 35 - Essential Quality 3.5t Horsebox',
-    description: 'The JTH Principle 35 offers the perfect balance of quality and value for discerning horsebox owners. All the safety, less of the thrills. British built 3.5 tonne horsebox from £18,500.',
+    description: 'The JTH Principle 35 offers the perfect balance of quality and value for discerning horsebox owners. All the safety, less of the thrills. British built 3.5 tonne horsebox from £19,500 + VAT.',
     longDescription: [
       'This entry level horsebox has a reduced specification to keep payload up and the cost down. A crossover of the KPH Aeos QV 35 and the JTH 3.5 Tonne Horsebox range.',
       'The bespoke design allows us to tailor the horse area length and breast bar height specifically for you. In the groom\'s area you\'ll find an extra wide rear groom\'s door, long seat and internal saddle racks and bridle cups.',
-      'Customers can add items from a comprehensive list of colours and extras. Two year warranty included. For the more advanced specification, see the JTH Professional 35.'
+      'Customers can add items from a comprehensive list of colours and extras. 12 month warranty included. For the more advanced specification, see the JTH Professional 35.'
     ],
     features: [
-      '4-foot EVA wall matting',
-      'Reinforced bulkhead',
-      'Partition without padding',
-      'Two aluminium escape doors',
-      'Four tie rings',
-      'Roof vent as standard',
-      'Interior mood lighting and normal lighting',
-      'Wall storage for tack, including bridle hooks',
+      'Reinforced steel bulkhead, welded to chassis',
+      'GRP body walls',
+      'Fibreglass Luton and 4-piece rear panel',
+      '30mm insulated roof sheet',
+      'Aluminium plank floor',
+      'Stallion partition with twin doors into groom\'s area',
+      '7mm one-piece rubber floor mat',
+      'Horse area camera',
+      '20mm EVA wall matting in horse area',
+      'Minimum 3 points of ventilation, including a roof vent',
+      'Three windows with built-in window bars',
+      '4 internal tie rings',
+      'Full size rear emergency exit',
+      'Loading light and calming blue travel lighting',
+      'Ultra-lightweight gapless ramp, reinforced with steel',
+      'Wheel arch protectors',
+      '2 saddle racks and 2 bridle hooks',
     ],
+    highlights: [
+      'Reinforced steel bulkhead, welded to chassis',
+      'Secondary aluminium bulkhead with twin escape doors',
+      '20mm EVA wall matting in horse area',
+      'Aluminium plank floor',
+    ],
+    warrantyMonths: 12,
     specifications: {
       dimensions: {
         'Overall Length': '6.32m',
@@ -110,17 +130,17 @@ const modelContent: Record<string, {
       },
       weights: {
         'Gross Weight': '3,500kg',
-        'Payload': 'Approx. 1.0 tonne',
+        'Payload': '1.1 tonnes on average',
         'Horse Capacity': '1 horse or 2 ponies',
         'Licence': 'Category B (car licence)',
-        'Warranty': '2 year build warranty',
+        'Warranty': '1 year build warranty',
       },
       safety: [
         'Triple reinforced bulkhead',
-        'Full height gapless, stepless & lightweight ramp',
-        'Composite floor',
-        'Two aluminium escape doors',
-        'Stallion partition available',
+        'Gapless, stepless & lightweight ramp with barn doors',
+        'Aluminium floor',
+        'Secondary aluminium bulkhead with full size twin escape doors',
+        'Stallion stall built as standard',
       ]
     },
     gallery: ['01.webp', '02.webp', '03.webp', '04.webp'],
@@ -129,15 +149,15 @@ const modelContent: Record<string, {
   },
   'progeny-35': {
     title: 'Progeny 35 - Crew Cab 3.5t Horsebox with Up to 7 Seats',
-    description: 'The JTH Progeny 35 is a crew cab 3.5 tonne horsebox seating up to 7 passengers — 3 in the front, 4 in the rear crew cab. Top of the range specification. British-built in Norfolk from £25,500.',
+    description: 'The JTH Progeny 35 is a crew cab 3.5 tonne horsebox seating up to 7 passengers — 2-3 in the front and up to 4 in the rear crew cab. Top of the range specification. British-built in Norfolk from £25,500.',
     longDescription: [
-      'The Progeny 35 is our top of the range 3.5 tonne crew cab horsebox, designed for teams, families, and professionals who need to transport both horses and passengers in comfort. With seating for up to 7 — 3 in the front and 4 in the rear crew cab — everyone travels together.',
+      'The Progeny 35 is our top of the range 3.5 tonne crew cab horsebox, designed for teams, families, and professionals who need to transport both horses and passengers in comfort. With seating for up to 7 — 2-3 in the front and up to 4 in the rear crew cab — everyone travels together.',
       'Building on the Professional 35 platform, the Progeny adds a full crew cab with premium materials throughout, advanced technology features, and bespoke customization options that set it apart from any other horsebox in its class.',
       'For owners who demand the absolute best, the Progeny 35 delivers an unmatched combination of crew cab practicality, luxury finish, and British engineering excellence.'
     ],
     features: [
       'Crew cab — up to 7 seats',
-      '3 front seats, 4 rear crew cab seats',
+      '2-3 front seats, up to 4 rear crew cab seats',
       'Premium specification throughout',
       'Premium leather upholstery',
       'Day living as standard',
@@ -157,7 +177,7 @@ const modelContent: Record<string, {
         'Gross Weight': '3,500kg',
         'Payload': '1,200kg',
         'Horse Capacity': '2 Horses',
-        'Seating': 'Up to 7 (3 front + 4 rear crew cab)'
+        'Seating': 'Up to 7 (2-3 front + up to 4 rear crew cab)'
       },
       safety: [
         'Advanced CCTV system',
@@ -831,7 +851,7 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
   // Use default prices if not in pricing config
   if (!basePrice) {
     const defaultPrices: Record<string, number> = {
-      'principle-35': 18500,
+      'principle-35': 19500,
       'professional-35': 22000,
       'progeny-35': 25500,
       'aeos-qv-45': 28950,
@@ -860,6 +880,11 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
   
   const modelCategory = weightLabel(params.slug) || '3.5 Tonne'
 
+  const warrantyMonths = content.warrantyMonths ?? 24
+  const warrantyShort = warrantyMonths === 24 ? '2 Year' : `${warrantyMonths} Month`
+  const warrantyPhrase = warrantyMonths === 24 ? '2-year' : `${warrantyMonths}-month`
+  const payload = content.specifications.weights['Payload']
+
   // Generate FAQ data for this model (now that basePrice is available)
   const modelFAQs = [
     {
@@ -878,7 +903,7 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
     },
     {
       question: `What warranty comes with this model?`,
-      answer: `Every ${content.title.split(' - ')[0]} comes with our comprehensive 2-year structural warranty covering all manufacturing defects and structural elements.`
+      answer: `Every ${content.title.split(' - ')[0]} comes with our comprehensive ${warrantyPhrase} structural warranty covering all manufacturing defects and structural elements.`
     },
     {
       question: `Can I customize this horsebox?`,
@@ -956,7 +981,7 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
               <div className="text-sm text-slate-400 uppercase tracking-wider">Capacity</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-white">2 Year</div>
+              <div className="text-2xl font-bold text-white">{warrantyShort}</div>
               <div className="text-sm text-slate-400 uppercase tracking-wider">Warranty</div>
             </div>
           </div>
@@ -982,7 +1007,7 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
                 </p>
               ))}
               <div className="space-y-4 mt-8">
-                {content.features.slice(0, 4).map((feature, index) => (
+                {(content.highlights ?? content.features.slice(0, 4)).map((feature, index) => (
                   <div key={index} className="flex items-center">
                     <Check className="w-6 h-6 text-blue-600 mr-3 flex-shrink-0" />
                     <span className="text-slate-700">{feature}</span>
@@ -1166,19 +1191,20 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
                   How many horses can the {modelName} carry?
                 </h3>
                 <p className="text-slate-600 leading-relaxed">
-                  The {modelName} can safely transport {content.specifications.weights['Horse Capacity']}. 
-                  The horse area is {content.specifications.dimensions['Horse Area'] || content.specifications.dimensions['Horse Area Length'] || content.specifications.dimensions['Stallion Area'] || 'spacious'} 
-                  with a gross weight capacity of {content.specifications.weights['Gross Weight']}.
+                  The {modelName} can safely transport {content.specifications.weights['Horse Capacity']}.{' '}
+                  The horse area is {content.specifications.dimensions['Horse Area'] || content.specifications.dimensions['Horse Area Length'] || content.specifications.dimensions['Stallion Area'] || 'spacious'},
+                  with a gross weight of {content.specifications.weights['Gross Weight']}
+                  {payload && ` and a payload of ${payload.charAt(0).toLowerCase()}${payload.slice(1)}`}.
                 </p>
               </div>
               
               <div className="bg-slate-50 p-6">
                 <h3 className="text-lg font-semibold text-slate-900 mb-3">
-                  What\'s included as standard in the {modelName}?
+                  What&apos;s included as standard in the {modelName}?
                 </h3>
                 <p className="text-slate-600 leading-relaxed">
-                  Standard features include: {content.features.slice(0, 5).join(', ')}. 
-                  All models come with our 2-year structural warranty and comprehensive handover training.
+                  Standard features include: {content.features.slice(0, 5).join(', ')}.{' '}
+                  The {modelName} comes with our {warrantyPhrase} warranty and comprehensive handover training.
                 </p>
               </div>
             </div>
@@ -1189,8 +1215,9 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
                   Can I view the {modelName} before purchasing?
                 </h3>
                 <p className="text-slate-600 leading-relaxed">
-                  Absolutely! Visit our Norfolk showroom to see the {modelName} and other models in our range. 
-                  We\'re open Monday-Friday 9am-5pm and Saturday 10am-4pm. Call 01603 552109 to book your viewing.
+                  You&apos;re welcome to visit our Norfolk workshop. We can&apos;t guarantee to have a {modelName} in
+                  when you visit, but there will always be horseboxes to view. We&apos;re open Monday to Friday, 9am-5pm,
+                  and weekends by appointment only. Call 01603 552109 to arrange your visit.
                 </p>
               </div>
               
@@ -1199,12 +1226,7 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
                   What finance options are available?
                 </h3>
                 <p className="text-slate-600 leading-relaxed">
-                  We offer competitive HP and lease purchase options from 1-7 years with deposits from 10%. 
-                  Part exchange is welcome and can form part or all of your deposit. 
-                  {basePrice === PRICE_ON_APPLICATION 
-                    ? `Please contact us for detailed finance quotations on the ${modelName}.`
-                    : `Monthly payments for the ${modelName} typically start from £${Math.round(basePrice * 0.02)} per month.`
-                  }
+                  We work with excellent finance providers and can provide referrals on request.
                 </p>
               </div>
               
@@ -1230,22 +1252,24 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
               <div>
                 <h4 className="font-semibold text-slate-900 mb-3">British Manufacturing Excellence</h4>
                 <p className="text-slate-600">
-                  Every {modelName} is built at our Norfolk facility by skilled craftsmen with decades of experience. 
+                  Every {modelName} is built in our Norfolk workshop by skilled craftsmen with decades of experience. 
                   We use only premium materials and components, ensuring your horsebox will provide years of reliable service.
                 </p>
               </div>
               <div>
                 <h4 className="font-semibold text-slate-900 mb-3">Comprehensive Support</h4>
                 <p className="text-slate-600">
-                  From initial consultation through to aftercare, we\'re with you every step of the way. 
-                  Our 2-year warranty is twice the industry standard, and our service team is always available to help.
+                  From initial consultation through to aftercare, we&apos;re with you every step of the way.{' '}
+                  {warrantyMonths >= 24
+                    ? 'Our 2-year warranty is twice the industry standard, and our service team is always available to help.'
+                    : `The ${modelName} comes with a ${warrantyPhrase} warranty, and our service team is always available to help.`}
                 </p>
               </div>
               <div>
                 <h4 className="font-semibold text-slate-900 mb-3">Proven Track Record</h4>
                 <p className="text-slate-600">
                   Incorporating the heritage of KPH Horseboxes and built in our Norfolk workshop,
-                  JTH is a name you can trust for quality, reliability, and value.
+                  JTH is a name you can trust for quality, reliability, and durability.
                 </p>
               </div>
             </div>
@@ -1271,20 +1295,16 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
               <Phone className="mr-2 w-5 h-5" />
               Call 01603 552109
             </a>
-            <Link href="/contact" className="btn-premium-outline border-white text-white">
-              <Mail className="mr-2 w-5 h-5" />
-              Request Brochure
-            </Link>
           </div>
 
           <div className="mt-16 pt-16 border-t border-blue-500">
             <div className="grid md:grid-cols-3 gap-8 text-left">
               <div>
-                <h3 className="text-white font-semibold mb-4">Visit Our Showroom</h3>
+                <h3 className="text-white font-semibold mb-4">Visit Our Workshop</h3>
                 <p className="text-blue-100">
                   <MapPin className="inline w-4 h-4 mr-2" />
                   J Taylor Horseboxes<br />
-                  Beeston, Norfolk<br />
+                  Norfolk<br />
                   United Kingdom
                 </p>
               </div>
@@ -1302,8 +1322,7 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
                 <p className="text-blue-100">
                   <Clock className="inline w-4 h-4 mr-2" />
                   Monday - Friday: 9am - 5pm<br />
-                  Saturday: 10am - 4pm<br />
-                  Sunday: By appointment
+                  Saturday & Sunday: By appointment only
                 </p>
               </div>
             </div>

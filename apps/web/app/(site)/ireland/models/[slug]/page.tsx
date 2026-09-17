@@ -24,6 +24,10 @@ const modelContent: Record<string, {
   description: string
   longDescription: string[]
   features: string[]
+  /** Intro checklist; falls back to the first four features */
+  highlights?: string[]
+  /** Warranty length; 24 months unless a model says otherwise */
+  warrantyMonths?: number
   specifications: {
     dimensions: Record<string, string>
     weights: Record<string, string>
@@ -113,19 +117,35 @@ const modelContent: Record<string, {
     description: 'The JTH Principle 35 offers the perfect balance of quality and value for discerning horsebox owners. British built 3.5 tonne horsebox with essential features, delivered direct to Ireland.',
     longDescription: [
       'The Principle 35 represents exceptional value in the 3.5 tonne horsebox market. Built with the same British craftsmanship and attention to detail as our premium models, the Principle 35 delivers essential features without compromise.',
-      'Perfect for owners seeking quality construction and reliable performance, this model includes everything you need for safe and comfortable horse transportation. Every Principle 35 is built in our Norfolk facility with decades of expertise.',
+      'Perfect for owners seeking quality construction and reliable performance, this model includes everything you need for safe and comfortable horse transportation. Every Principle 35 is built in our Norfolk workshop with decades of expertise.',
       'The Principle 35 proves that quality doesn\'t have to mean expensive. With thoughtful design and efficient production, we deliver a horsebox that meets the needs of most equestrian enthusiasts.'
     ],
     features: [
-      '4-foot EVA wall matting',
-      'Reinforced bulkhead',
-      'Partition without padding',
-      'Two aluminium escape doors',
-      'Four tie rings',
-      'Roof vent as standard',
-      'Interior mood lighting and normal lighting',
-      'Wall storage for tack, including bridle hooks',
+      'Reinforced steel bulkhead, welded to chassis',
+      'GRP body walls',
+      'Fibreglass Luton and 4-piece rear panel',
+      '30mm insulated roof sheet',
+      'Aluminium plank floor',
+      'Stallion partition with twin doors into groom\'s area',
+      '7mm one-piece rubber floor mat',
+      'Horse area camera',
+      '20mm EVA wall matting in horse area',
+      'Minimum 3 points of ventilation, including a roof vent',
+      'Three windows with built-in window bars',
+      '4 internal tie rings',
+      'Full size rear emergency exit',
+      'Loading light and calming blue travel lighting',
+      'Ultra-lightweight gapless ramp, reinforced with steel',
+      'Wheel arch protectors',
+      '2 saddle racks and 2 bridle hooks',
     ],
+    highlights: [
+      'Reinforced steel bulkhead, welded to chassis',
+      'Secondary aluminium bulkhead with twin escape doors',
+      '20mm EVA wall matting in horse area',
+      'Aluminium plank floor',
+    ],
+    warrantyMonths: 12,
     specifications: {
       dimensions: {
         'Overall Length': '6.32m',
@@ -135,17 +155,17 @@ const modelContent: Record<string, {
       },
       weights: {
         'Gross Weight': '3,500kg',
-        'Payload': 'Approx. 1.0 tonne',
+        'Payload': '1.1 tonnes on average',
         'Horse Capacity': '1 horse or 2 ponies',
         'Licence': 'Category B (car licence)',
-        'Warranty': '2 year build warranty',
+        'Warranty': '1 year build warranty',
       },
       safety: [
         'Triple reinforced bulkhead',
-        'Full height gapless, stepless & lightweight ramp',
-        'Composite floor',
-        'Two aluminium escape doors',
-        'Stallion partition available',
+        'Gapless, stepless & lightweight ramp with barn doors',
+        'Aluminium floor',
+        'Secondary aluminium bulkhead with full size twin escape doors',
+        'Stallion stall built as standard',
       ]
     },
     gallery: [
@@ -164,7 +184,7 @@ const modelContent: Record<string, {
     ],
     seoKeywords: '3.5t horsebox Ireland, Principle 35 Ireland, value horsebox Ireland, affordable horsebox Ireland, British horsebox delivered Ireland, 3.5 tonne horsebox for sale Ireland',
     heroImage: '/ireland/jth-principle-35-horsebox-green-rear-quarter-ireland.webp',
-    gbpBasePrice: 18500,
+    gbpBasePrice: 19500,
   },
 }
 
@@ -228,6 +248,9 @@ export default async function IrelandModelDetailPage({ params }: { params: { slu
   const eurNumeric = toEur(basePrice)
   const modelName = content.title.split(' - ')[0]
   const modelCategory = '3.5 Tonne'
+  const warrantyMonths = content.warrantyMonths ?? 24
+  const warrantyShort = warrantyMonths === 24 ? '2 Year' : `${warrantyMonths} Month`
+  const warrantyPhrase = warrantyMonths === 24 ? '2-year' : `${warrantyMonths}-month`
 
   // Generate FAQ data
   const modelFAQs = [
@@ -241,7 +264,7 @@ export default async function IrelandModelDetailPage({ params }: { params: { slu
     },
     {
       question: `What warranty comes with the ${modelName}?`,
-      answer: `Every ${modelName} comes with our comprehensive 2-year structural warranty covering all manufacturing defects and structural elements. We support customers across the UK and Ireland.`
+      answer: `Every ${modelName} comes with our comprehensive ${warrantyPhrase} structural warranty covering all manufacturing defects and structural elements. We support customers across the UK and Ireland.`
     },
     {
       question: `Do you deliver the ${modelName} to Ireland?`,
@@ -318,7 +341,7 @@ export default async function IrelandModelDetailPage({ params }: { params: { slu
               <div className="text-sm text-slate-400 uppercase tracking-wider">Capacity</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-white">2 Year</div>
+              <div className="text-2xl font-bold text-white">{warrantyShort}</div>
               <div className="text-sm text-slate-400 uppercase tracking-wider">Warranty</div>
             </div>
           </div>
@@ -344,7 +367,7 @@ export default async function IrelandModelDetailPage({ params }: { params: { slu
                 </p>
               ))}
               <div className="space-y-4 mt-8">
-                {content.features.slice(0, 4).map((feature, index) => (
+                {(content.highlights ?? content.features.slice(0, 4)).map((feature, index) => (
                   <div key={index} className="flex items-center">
                     <Check className="w-6 h-6 text-blue-600 mr-3 flex-shrink-0" />
                     <span className="text-slate-700">{feature}</span>
@@ -538,8 +561,8 @@ export default async function IrelandModelDetailPage({ params }: { params: { slu
                   What&apos;s included as standard in the {modelName}?
                 </h3>
                 <p className="text-slate-600 leading-relaxed">
-                  Standard features include: {content.features.slice(0, 5).join(', ')}.
-                  All models come with our 2-year structural warranty and comprehensive handover training.
+                  Standard features include: {content.features.slice(0, 5).join(', ')}.{' '}
+                  The {modelName} comes with our {warrantyPhrase} warranty and comprehensive handover training.
                 </p>
               </div>
             </div>
@@ -629,10 +652,6 @@ export default async function IrelandModelDetailPage({ params }: { params: { slu
               <Phone className="mr-2 w-5 h-5" />
               Call 01603 552109
             </a>
-            <Link href="/contact" className="btn-premium-outline border-white text-white">
-              <Mail className="mr-2 w-5 h-5" />
-              Request Brochure
-            </Link>
           </div>
 
           <div className="mt-16 pt-16 border-t border-blue-500">

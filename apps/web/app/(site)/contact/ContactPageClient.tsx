@@ -4,6 +4,11 @@ import { useState, useEffect } from 'react'
 import Hero from '@/components/Hero'
 import Link from 'next/link'
 import { getRegionFromCookie } from '@/lib/configurator/region'
+
+const SOCIAL_LINKS = {
+  facebook: 'https://www.facebook.com/JTaylorHorseboxesLtd/',
+  instagram: 'https://www.instagram.com/jth_horseboxes/',
+}
 import {
   ArrowRight,
   Phone,
@@ -17,7 +22,7 @@ import {
   CheckCircle,
   Facebook,
   Instagram,
-  Car
+  Users
 } from 'lucide-react'
 
 const models = [
@@ -51,16 +56,16 @@ const reasonsGB = [
   {
     icon: Calendar,
     title: 'Book a Viewing',
-    description: 'Schedule a visit to our Norfolk showroom',
+    description: 'Schedule a visit to our Norfolk workshop',
     action: 'Book Now',
     link: '#contact-form'
   },
   {
-    icon: Car,
-    title: 'Test Drive',
-    description: 'Experience our horseboxes firsthand',
-    action: 'Arrange Test',
-    link: '#contact-form'
+    icon: Instagram,
+    title: 'Connect on Socials',
+    description: 'Follow our latest builds on Instagram and Facebook',
+    action: 'Follow Us',
+    link: '#socials'
   },
   {
     icon: MessageSquare,
@@ -177,7 +182,7 @@ export default function ContactPageClient() {
           <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-12 font-light leading-relaxed animate-slideUp animation-delay-200">
             {isIreland
               ? 'Contact our team about horsebox deliveries to Ireland'
-              : 'Visit our Norfolk showroom or contact our expert team'}
+              : 'Visit our Norfolk workshop or contact our expert team'}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6 animate-slideUp animation-delay-400">
             <a href={isIreland ? 'tel:+353872557015' : 'tel:01603552109'} className="btn-premium">
@@ -227,7 +232,7 @@ export default function ContactPageClient() {
                 {isIreland ? (
                   <>Contact Our<span className="text-gradient-blue block mt-2">Ireland Team</span></>
                 ) : (
-                  <>Visit Our<span className="text-gradient-blue block mt-2">Norfolk Showroom</span></>
+                  <>Visit Our<span className="text-gradient-blue block mt-2">Norfolk Workshop</span></>
                 )}
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-blue-700 to-amber-500 mb-8"></div>
@@ -250,13 +255,12 @@ export default function ContactPageClient() {
                   <div className="flex items-start">
                     <MapPin className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
                     <div>
-                      <h3 className="text-lg font-semibold text-slate-900 mb-2">Showroom Address</h3>
+                      <h3 className="text-lg font-semibold text-slate-900 mb-2">Workshop Address</h3>
                       <p className="text-slate-600">
                         J Taylor Horseboxes<br />
                         Beeston<br />
                         Norfolk<br />
-                        United Kingdom<br />
-                        NR12
+                        United Kingdom
                       </p>
                       <a
                         href="https://maps.google.com/?q=J+Taylor+Horseboxes+Beeston+Norfolk"
@@ -278,9 +282,9 @@ export default function ContactPageClient() {
                     <a href={isIreland ? 'tel:+353872557015' : 'tel:01603552109'} className="text-slate-600 hover:text-blue-700">
                       {isIreland ? '+353 87 255 7015' : '01603 552109'}
                     </a>
-                    <p className="text-sm text-slate-500 mt-1">
-                      {isIreland ? 'Ireland representative - Paul Morton' : 'Direct line - no call centres'}
-                    </p>
+                    {isIreland && (
+                      <p className="text-sm text-slate-500 mt-1">Ireland representative - Paul Morton</p>
+                    )}
                   </div>
                 </div>
 
@@ -291,9 +295,6 @@ export default function ContactPageClient() {
                     <a href={isIreland ? 'mailto:Paul@JTHltd.ie' : 'mailto:sales@jthltd.co.uk'} className="text-slate-600 hover:text-blue-700">
                       {isIreland ? 'Paul@JTHltd.ie' : 'sales@jthltd.co.uk'}
                     </a>
-                    <p className="text-sm text-slate-500 mt-1">
-                      We respond within 24 hours
-                    </p>
                   </div>
                 </div>
 
@@ -305,8 +306,7 @@ export default function ContactPageClient() {
                     </h3>
                     <div className="text-slate-600 space-y-1">
                       <p><span className="font-semibold">Monday - Friday:</span> 9:00 AM - 5:00 PM</p>
-                      <p><span className="font-semibold">Saturday:</span> 10:00 AM - 4:00 PM</p>
-                      <p><span className="font-semibold">Sunday:</span> By appointment only</p>
+                      <p><span className="font-semibold">Saturday & Sunday:</span> By appointment only</p>
                     </div>
                   </div>
                 </div>
@@ -326,24 +326,27 @@ export default function ContactPageClient() {
               </div>
 
               {/* Social Media */}
-              <div className="border-t border-slate-200 pt-8">
-                <h3 className="text-lg font-semibold text-slate-900 mb-4">Follow Us</h3>
-                <div className="flex gap-4">
-                  <a 
-                    href="https://facebook.com/JTHHorseboxes" 
-                    target="_blank" 
+              <div id="socials" className="border-t border-slate-200 pt-8 scroll-mt-32">
+                <h3 className="text-lg font-semibold text-slate-900 mb-2">Connect on Socials</h3>
+                <p className="text-sm text-slate-600 mb-4">See our latest builds and news.</p>
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    href={SOCIAL_LINKS.facebook}
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 bg-slate-100 hover:bg-blue-700 rounded-full flex items-center justify-center group transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-blue-700 hover:text-white text-slate-700 rounded-full transition-colors"
                   >
-                    <Facebook className="w-5 h-5 text-slate-600 group-hover:text-white" />
+                    <Facebook className="w-5 h-5" aria-hidden="true" />
+                    Facebook
                   </a>
-                  <a 
-                    href="https://instagram.com/jthhorseboxes" 
-                    target="_blank" 
+                  <a
+                    href={SOCIAL_LINKS.instagram}
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 bg-slate-100 hover:bg-pink-600 rounded-full flex items-center justify-center group transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-pink-600 hover:text-white text-slate-700 rounded-full transition-colors"
                   >
-                    <Instagram className="w-5 h-5 text-slate-600 group-hover:text-white" />
+                    <Instagram className="w-5 h-5" aria-hidden="true" />
+                    Instagram
                   </a>
                 </div>
               </div>
@@ -358,7 +361,7 @@ export default function ContactPageClient() {
                   <CheckCircle className="w-12 h-12 text-blue-700 mx-auto mb-4" />
                   <h4 className="text-lg font-semibold text-blue-950 mb-2">Thank You!</h4>
                   <p className="text-blue-800">
-                    We've received your message and will respond within 24 hours.
+                    We've received your message and will get back to you as soon as we can.
                   </p>
                 </div>
               ) : (
@@ -496,47 +499,19 @@ export default function ContactPageClient() {
         </div>
       </section>
 
-      {/* Map Section Placeholder - GB only */}
-      {!isIreland && (
-        <section className="py-20 bg-slate-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-white p-8 md:p-12 shadow-lg">
-              <h2 className="text-3xl font-light text-slate-900 mb-6 text-center">
-                Find Us in Norfolk
-              </h2>
-              <div className="bg-slate-200 h-96 flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="w-12 h-12 text-slate-400 mx-auto mb-4" />
-                  <p className="text-slate-600">Interactive map will be displayed here</p>
-                  <a
-                    href="https://maps.google.com/?q=J+Taylor+Horseboxes+Beeston+Norfolk"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-premium mt-6 inline-flex"
-                  >
-                    Open in Google Maps
-                    <Navigation className="ml-2 w-5 h-5" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* Additional Information */}
       <section className="py-20 md:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`grid gap-8 ${isIreland ? 'md:grid-cols-2' : 'md:grid-cols-3'}`}>
+          <div className="grid gap-8 md:grid-cols-2">
             {!isIreland && (
               <div className="text-center">
                 <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Car className="w-8 h-8 text-white" />
+                  <Users className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-4">Showroom Visits</h3>
+                <h3 className="text-xl font-semibold text-slate-900 mb-4">Workshop Visits</h3>
                 <p className="text-slate-600">
-                  See our full range of models in person. No appointment necessary during opening hours,
-                  but we recommend calling ahead to ensure availability of specific models.
+                  Come and see our horseboxes being built in our Norfolk workshop. We can&apos;t guarantee a
+                  particular model will be in, but there are always boxes to view, so please call ahead.
                 </p>
               </div>
             )}
@@ -552,7 +527,7 @@ export default function ContactPageClient() {
               </p>
             </div>
 
-            {isIreland ? (
+            {isIreland && (
               <div className="text-center">
                 <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Navigation className="w-8 h-8 text-white" />
@@ -561,17 +536,6 @@ export default function ContactPageClient() {
                 <p className="text-slate-600">
                   We deliver directly to Ireland with full handover training included.
                   All pricing available in EUR. No hidden costs or surprises.
-                </p>
-              </div>
-            ) : (
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <CheckCircle className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-4">Test Drives</h3>
-                <p className="text-slate-600">
-                  Experience the quality and handling of our horseboxes with a test drive.
-                  Available by appointment - bring your driving licence and we&apos;ll arrange everything.
                 </p>
               </div>
             )}

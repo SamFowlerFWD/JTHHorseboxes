@@ -51,7 +51,7 @@ const heightStyles = {
 export default function HeroAdvanced({
   title = "Premium British Horseboxes",
   subtitle = "3.5t, 4.5t, 7.2t & 7.5t Models",
-  description = "Leading UK horsebox manufacturer in Norfolk. Handcrafted luxury horseboxes from £18,500.",
+  description = "Leading UK horsebox manufacturer in Norfolk. Handcrafted luxury horseboxes from £19,500 + VAT.",
   primaryCTA = { text: "Explore Models", href: "/models" },
   secondaryCTA = { text: "Get a Quote", href: "/contact" },
   media = [{ type: 'image', src: '/hero.webp' }],

@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 // SEO constants
 export const SITE_NAME = 'JTH Horseboxes'
 export const SITE_URL = 'https://jthltd.co.uk'
-export const SITE_DESCRIPTION = 'Leading British horsebox manufacturer in Norfolk. Premium 3.5t, 4.5t & 7.2t horseboxes from £18,500.'
+export const SITE_DESCRIPTION = 'Leading British horsebox manufacturer in Norfolk. Premium 3.5t, 4.5t & 7.2t horseboxes from £19,500 + VAT.'
 
 // Common keywords for different page types
 export const KEYWORDS = {
@@ -53,7 +53,6 @@ export const KEYWORDS = {
     'horsebox Norfolk',
     'horsebox East Anglia',
     'horsebox manufacturer Norwich',
-    'horsebox showroom Norfolk',
     'horsebox dealer UK',
     'horsebox sales England'
   ],

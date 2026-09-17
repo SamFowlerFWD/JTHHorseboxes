@@ -5,10 +5,19 @@ import DissolveGallery from '@/components/DissolveGallery'
 import ProductShowcase from '@/components/ProductShowcase'
 import { motion } from 'framer-motion'
 import Schema, { organizationSchema, localBusinessSchema } from '@/components/Schema'
-import { Phone, MapPin, ArrowRight, ChevronRight } from 'lucide-react'
+import { Phone, MapPin, ArrowRight, ChevronRight, Check } from 'lucide-react'
 import TrustIndicators from '@/components/TrustIndicators'
 import Link from 'next/link'
 import Image from 'next/image'
+
+const safetyFeatures = [
+  'Triple reinforced primary bulkhead',
+  'Secondary aluminium bulkhead',
+  'Stallion stall as standard',
+  'Aluminium side wall channel',
+  'Aluminium or carbon fibre composite floor',
+  'Aluminium frame ramp: no gap, no step',
+]
 
 // SEO metadata is preserved from original homepage
 export default function HomePage() {
@@ -87,7 +96,7 @@ export default function HomePage() {
       id: 'professional-35',
       title: 'Professional 35',
       subtitle: '3.5 Tonne Luxury',
-      description: 'The ultimate in luxury and performance for the professional rider.',
+      description: 'The ultimate in luxury and performance for the professional.',
       price: '£22,000',
       priceNote: 'body build only · exc. VAT',
       images: ['/models/professional-35/02.webp', '/models/professional-35/03.webp', '/models/professional-35/01.webp'],
@@ -96,7 +105,7 @@ export default function HomePage() {
         variant: 'default' as const
       },
       features: [
-        { label: 'Payload', value: '1,200kg' },
+        { label: 'Payload', value: 'Minimum 1 tonne' },
         { label: 'Horse Capacity', value: '2 horses' },
         { label: 'Living', value: 'Premium specification' },
         { label: 'Warranty', value: '2 years structural' }
@@ -110,22 +119,22 @@ export default function HomePage() {
       title: 'Principle 35',
       subtitle: '3.5 Tonne Essential',
       description: 'Perfect balance of quality and value for the discerning owner.',
-      price: '£18,500',
+      price: '£19,500',
       priceNote: 'body build only · exc. VAT',
-      images: ['/models/principle-35/02.webp', '/models/principle-35/03.webp', '/models/principle-35/01.webp'],
+      images: ['/models/principle-35/cover.webp', '/models/principle-35/02.webp', '/models/principle-35/03.webp', '/models/principle-35/01.webp'],
       badge: {
         text: 'Best Value',
         variant: 'secondary' as const
       },
       features: [
-        { label: 'Payload', value: '1,250kg' },
+        { label: 'Payload', value: '1.1 tonnes on average' },
         { label: 'Horse Capacity', value: '2 horses' },
         { label: 'Living', value: 'Essential features' },
-        { label: 'Warranty', value: '2 years structural' }
+        { label: 'Warranty', value: '12 months' }
       ],
       availability: 'Pre-Order' as const,
       deliveryTime: '10-12 weeks',
-      warranty: '2 Year Structural Warranty'
+      warranty: '12 Month Build Warranty'
     },
     {
       id: 'progeny-35',
@@ -141,7 +150,7 @@ export default function HomePage() {
       },
       features: [
         { label: 'Seating', value: 'Up to 7 seats' },
-        { label: 'Crew Cab', value: '3 front + 4 rear' },
+        { label: 'Crew Cab', value: '2-3 front + up to 4 rear' },
         { label: 'Horse Capacity', value: '2 horses' },
         { label: 'Warranty', value: '2 years structural' }
       ],
@@ -158,8 +167,8 @@ export default function HomePage() {
       {/* Advanced Hero Section with British Racing Green */}
       <HeroAdvanced
         title="Premium British Horseboxes"
-        subtitle="Incorporating the Legacy of KPH"
-        description="Leading UK horsebox manufacturer in Norfolk. 3.5t, 4.5t, 7.2t & 7.5t models from £18,500."
+        subtitle="Built by James Taylor. Incorporating the legacy of Kevin Parker."
+        description="Leading UK horsebox manufacturer in Norfolk. 3.5t, 4.5t, 7.2t & 7.5t models from £19,500 + VAT."
         primaryCTA={{
           text: "Explore Collection",
           href: "/models"
@@ -203,10 +212,26 @@ export default function HomePage() {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="bento-item-large glass-light p-8 rounded-2xl"
+              className="bento-item-large rounded-2xl text-white relative overflow-hidden shadow-lg"
             >
-              <h3 className="text-2xl font-semibold text-blue-700 mb-4">Premium Materials</h3>
-              <p className="text-slate-700">Advanced GRP construction with aerospace-grade materials for superior durability</p>
+              <Image
+                src="/home/safety-first.webp"
+                alt="Lit horse area inside a JTH horsebox, with aluminium partition and padded breast bar"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-slate-900/30" />
+              <div className="relative z-10 p-8">
+                <h3 className="text-2xl font-semibold mb-4">Safety First</h3>
+                <ul className="space-y-2 text-white/90">
+                  {safetyFeatures.map((feature) => (
+                    <li key={feature} className="flex items-start gap-2">
+                      <Check className="w-5 h-5 mt-0.5 flex-shrink-0 text-amber-400" aria-hidden="true" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </motion.div>
             
             <motion.div
@@ -214,10 +239,19 @@ export default function HomePage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="glass-blue p-8 rounded-2xl text-white"
+              className="rounded-2xl text-white relative overflow-hidden min-h-[200px]"
             >
-              <h3 className="text-xl font-semibold mb-2">Safety First</h3>
-              <p className="text-sm text-white/90">Advanced safety systems</p>
+              <Image
+                src="/home/premium-materials.webp"
+                alt="Aluminium-framed partition doors with JTH-branded tie ring plates"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/60 to-slate-900/20" />
+              <div className="relative z-10 p-8 h-full flex flex-col justify-end">
+                <h3 className="text-xl font-semibold mb-2">Premium Materials</h3>
+                <p className="text-sm text-white/90">Advanced GRP construction with aerospace-grade materials for superior durability, backed by a build warranty of up to 24 months</p>
+              </div>
             </motion.div>
             
             <motion.div
@@ -225,10 +259,19 @@ export default function HomePage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="neu-flat p-8 rounded-2xl"
+              className="rounded-2xl text-white relative overflow-hidden min-h-[200px]"
             >
-              <h3 className="text-xl font-semibold text-slate-900 mb-2">Customisable</h3>
-              <p className="text-sm text-slate-700">Bespoke to your needs</p>
+              <Image
+                src="/home/customisable.webp"
+                alt="Bespoke groom's area with wood-effect cabinets and a quilted pink and brown bench seat"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent" />
+              <div className="relative z-10 p-8 h-full flex flex-col justify-end">
+                <h3 className="text-xl font-semibold mb-2">Customisable</h3>
+                <p className="text-sm text-white/90">Bespoke to your needs</p>
+              </div>
             </motion.div>
             
             <motion.div
@@ -267,7 +310,7 @@ export default function HomePage() {
               Crafted in <span className="text-amber-500">Norfolk</span>
             </h2>
             <p className="text-fluid-lg text-slate-700 max-w-3xl mx-auto">
-              Every JTH horsebox is built by hand at our Beeston workshop. See the quality and attention to detail that goes into each build.
+              Every JTH horsebox is built by hand at our Norfolk workshop. See the quality and attention to detail that goes into each build.
             </p>
           </motion.div>
 
@@ -298,7 +341,7 @@ export default function HomePage() {
               Our Premium <span className="text-blue-700">3.5 Tonne Range</span>
             </h2>
             <p className="text-fluid-lg text-slate-700 max-w-3xl mx-auto">
-              Discover our range with advanced hover effects and micro-interactions
+              Discover the Professional, Principle and Progeny
             </p>
           </motion.div>
 
@@ -340,17 +383,18 @@ export default function HomePage() {
             <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-8"></div>
             <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">
               As one of the UK's leading horsebox manufacturers, JTH (J Taylor Horseboxes) specializes in building premium 
-              3.5 tonne, 4.5 tonne, 7.2 tonne, and 7.5 tonne horseboxes at our state-of-the-art facility in Norfolk.
+              3.5 tonne, 4.5 tonne, 7.2 tonne, and 7.5 tonne horseboxes. We&apos;re a family-run business of equestrians,
+              building every horsebox in our Norfolk workshop.
             </p>
           </div>
 
           {/* British Manufacturing Excellence */}
           <div className="grid md:grid-cols-3 gap-8 text-white">
             <div className="glass-dark p-8 rounded-2xl">
-              <h4 className="font-semibold mb-3 text-amber-400">Norfolk Manufacturing Facility</h4>
+              <h4 className="font-semibold mb-3 text-amber-400">Family Run, Built in Norfolk</h4>
               <p className="text-slate-300 leading-relaxed">
-                Based in Beeston, Norfolk, our purpose-built facility combines traditional British craftsmanship with modern 
-                manufacturing technology.
+                We&apos;re equestrians ourselves. Every horsebox is built by hand in our Norfolk workshop, combining
+                traditional British craftsmanship with modern materials.
               </p>
             </div>
             <div className="glass-dark p-8 rounded-2xl">
@@ -373,21 +417,21 @@ export default function HomePage() {
       <section className="bg-gradient-to-br from-blue-50 to-white py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h3 className="text-2xl md:text-3xl font-semibold text-slate-900 mb-8 text-center">
-            Visit Our Norfolk Showroom
+            Visit Our Norfolk Workshop
           </h3>
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <h4 className="font-semibold text-slate-900 mb-4 flex items-center">
                 <MapPin className="w-5 h-5 text-blue-700 mr-2" />
-                Norfolk Showroom & Manufacturing
+                We Build Our Own Horseboxes
               </h4>
               <p className="text-slate-700 mb-4 leading-relaxed">
-                Visit our Norfolk showroom to view our range of 3.5t, 4.5t, and 7.2t horseboxes. Located in Beeston, 
-                just outside Norwich, we're easily accessible from the A47 and A11.
+                Every JTH horsebox is built by our own team, here in Norfolk. Come and visit the workshop and see
+                the quality of our builds for yourself, in real time, as each horsebox takes shape.
               </p>
               <address className="text-slate-800 not-italic">
                 J Taylor Horseboxes<br />
-                Beeston, Norfolk<br />
+                Norfolk<br />
                 United Kingdom<br />
                 <a href="tel:01603552109" className="text-blue-700 hover:text-blue-800 font-semibold">
                   <Phone className="inline w-4 h-4 mr-1" />01603 552109
@@ -413,7 +457,7 @@ export default function HomePage() {
           </h2>
           <div className="w-24 h-px bg-amber-400 mx-auto mb-10"></div>
           <p className="text-lg text-white/90 mb-12 max-w-3xl mx-auto font-light leading-relaxed">
-            Configure your perfect JTH horsebox online or visit our Norfolk showroom. 
+            Get in touch for a quote or visit our Norfolk workshop. 
             Choose from our range of 3.5 tonne, 4.5 tonne, 7.2 tonne, and 7.5 tonne models.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6">

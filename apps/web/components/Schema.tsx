@@ -43,8 +43,8 @@ export const organizationSchema = {
     "availableLanguage": "English"
   },
   "sameAs": [
-    "https://www.facebook.com/JTHHorseboxes",
-    "https://www.instagram.com/jthhorseboxes"
+    "https://www.facebook.com/JTaylorHorseboxesLtd/",
+    "https://www.instagram.com/jth_horseboxes/"
   ]
   // No aggregateRating until there are real, verifiable reviews to aggregate —
   // invented review markup breaches Google's structured data policy.
@@ -53,20 +53,13 @@ export const organizationSchema = {
 export const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "name": "J Taylor Horseboxes Showroom",
+  "name": "J Taylor Horseboxes",
   "image": "https://jthltd.co.uk/showroom.jpg",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Beeston",
-    "addressLocality": "Norfolk",
+    "addressLocality": "Beeston",
     "addressRegion": "Norfolk",
-    "postalCode": "NR12",
     "addressCountry": "GB"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 52.7598,
-    "longitude": 1.2152
   },
   "url": "https://jthltd.co.uk",
   "telephone": "+441603552109",
@@ -80,13 +73,7 @@ export const localBusinessSchema = {
     },
     {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Saturday",
-      "opens": "10:00",
-      "closes": "16:00"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Sunday",
+      "dayOfWeek": ["Saturday", "Sunday"],
       "opens": "00:00",
       "closes": "00:00",
       "description": "By appointment only"

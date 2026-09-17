@@ -12,7 +12,7 @@ test.describe('Model Pages', () => {
     { 
       slug: 'principle-35', 
       name: 'Principle 35', 
-      price: '£18,500',
+      price: '£19,500',
       description: 'perfect balance of quality and value'
     },
     { 
@@ -96,11 +96,11 @@ test.describe('Model Pages', () => {
     await page.goto('/');
     
     // Verify hero section shows correct starting price
-    await expect(page.locator('text=from £18,500').first()).toBeVisible();
+    await expect(page.locator('text=from £19,500').first()).toBeVisible();
     
     // Verify model cards show correct prices
     await expect(page.locator('text=Professional 35').first().locator('..').locator('text=£22,000')).toBeVisible();
-    await expect(page.locator('text=Principle 35').first().locator('..').locator('text=£18,500')).toBeVisible();
+    await expect(page.locator('text=Principle 35').first().locator('..').locator('text=£19,500')).toBeVisible();
     await expect(page.locator('text=Progeny 35').first().locator('..').locator('text=£25,500')).toBeVisible();
     
     // Verify Pioneer Package is mentioned

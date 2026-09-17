@@ -61,7 +61,7 @@ export default function ShowcasePage() {
       title: 'Principle 35',
       subtitle: '3.5 Tonne Essential',
       description: 'Perfect balance of quality and value for the discerning owner.',
-      price: '£18,500',
+      price: '£19,500',
       priceNote: 'body build only · exc. VAT',
       images: ['/models/principle-35/01.webp'],
       badge: {

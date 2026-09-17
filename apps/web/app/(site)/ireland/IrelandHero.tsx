@@ -3,7 +3,7 @@
 import HeroAdvanced from '@/components/HeroAdvanced'
 import { formatPrice } from '@/lib/configurator/calculations'
 
-const eurStartingPrice = formatPrice(18500, 'IE')
+const eurStartingPrice = formatPrice(19500, 'IE')
 
 export default function IrelandHero() {
   return (

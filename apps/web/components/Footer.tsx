@@ -69,11 +69,11 @@ export default function Footer() {
                 : 'Premium British horseboxes for discerning owners. Incorporating the legacy of KPH, built for the future with innovation and materials technology.'}
             </p>
             <div className="flex items-center gap-4">
-              <a href="https://www.facebook.com/JTHHorseboxes" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 hover:bg-blue-600 transition-colors flex items-center justify-center">
+              <a href="https://www.facebook.com/JTaylorHorseboxesLtd/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 hover:bg-blue-600 transition-colors flex items-center justify-center">
                 <Facebook className="w-5 h-5" />
                 <span className="sr-only">Facebook</span>
               </a>
-              <a href="https://www.instagram.com/jtaylorhorseboxes/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 hover:bg-blue-600 transition-colors flex items-center justify-center">
+              <a href="https://www.instagram.com/jth_horseboxes/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 hover:bg-blue-600 transition-colors flex items-center justify-center">
                 <Instagram className="w-5 h-5" />
                 <span className="sr-only">Instagram</span>
               </a>
@@ -130,7 +130,7 @@ export default function Footer() {
             </h3>
             <ul className="space-y-4">
               <li>
-                <div className="text-blue-400 font-medium mb-2">JTH Range</div>
+                <div className="text-blue-400 font-medium mb-2">Customisable Range</div>
                 <ul className="ml-3 space-y-2">
                   <li>
                     <Link href={isIreland ? '/ireland/models/professional-35' : '/models/professional-35'} className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
@@ -165,11 +165,6 @@ export default function Footer() {
                           <span className="text-xs bg-amber-700 text-amber-100 px-1 py-0.5 rounded ml-1">Pre-Built</span>
                         </Link>
                       </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div className="text-blue-400 font-medium mb-2">Premium Range</div>
-                    <ul className="ml-3 space-y-2">
                       <li>
                         <Link href="/models/aeos-discovery-72" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
                           <ChevronRight className="w-3 h-3" />

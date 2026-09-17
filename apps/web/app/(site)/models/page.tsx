@@ -10,11 +10,11 @@ import { weightBadge } from '@/lib/models'
 
 export const metadata: Metadata = {
   title: 'Horsebox Models - 3.5t, 4.5t, 7.2t & 7.5t Range | JTH Horseboxes Norfolk',
-  description: 'Explore our complete range of 3.5 tonne, 4.5 tonne, 7.2 tonne and 7.5 tonne horseboxes. JTH Professional 35, JTH Principle 35, Aeos QV ST 35, Aeos Edge, Freedom, Discovery models & Helios 75. Starting from £18,500. View specifications, compare models and configure your perfect horsebox.',
+  description: 'Explore our complete range of 3.5 tonne, 4.5 tonne, 7.2 tonne and 7.5 tonne horseboxes. JTH Professional 35, JTH Principle 35, Aeos QV ST 35, Aeos Edge, Freedom, Discovery models & Helios 75. Starting from £19,500 + VAT. View specifications, compare models and configure your perfect horsebox.',
   keywords: '3.5t horsebox models, 4.5t horsebox range, 7.2t horsebox, 7.5t horsebox, JTH Professional 35, JTH Principle 35, Aeos QV ST 35, Aeos Edge 45, Aeos Freedom 45, Aeos Discovery 45, Aeos Discovery 72, Helios 75, horsebox comparison, horsebox specifications, British horsebox models',
   openGraph: {
     title: 'JTH Horsebox Models - Complete 3.5t, 4.5t & 7.2t Range',
-    description: 'View our complete range of British-built horseboxes. 3.5t, 4.5t & 7.2t models from £18,500. Compare specifications and configure online.',
+    description: 'View our complete range of British-built horseboxes. 3.5t, 4.5t & 7.2t models from £19,500 + VAT. Compare specifications and configure online.',
     images: ['/models/professional-35/01.webp'],
     type: 'website',
   },
@@ -61,7 +61,7 @@ export default async function ModelsPage() {
           </div>
           <h1 className="text-5xl md:text-6xl font-light text-white mb-6">3.5t, 4.5t, 7.2t & 7.5t Horsebox Models</h1>
           <p className="text-xl text-slate-200 max-w-3xl mx-auto">
-            Compare our complete range of British-built horseboxes. From the affordable JTH Principle 35 at £18,500 
+            Compare our complete range of British-built horseboxes. From the affordable JTH Principle 35 at £19,500 + VAT 
             to the luxury Helios 75, find your perfect horsebox for any budget and requirement.
           </p>
         </div>
@@ -225,7 +225,7 @@ export default async function ModelsPage() {
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start">
                   <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0 mt-0.5" />
-                  <span><strong>JTH Principle 35:</strong> £18,500 - Best value, quality construction</span>
+                  <span><strong>JTH Principle 35:</strong> £19,500 - Best value, quality construction</span>
                 </li>
                 <li className="flex items-start">
                   <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0 mt-0.5" />
@@ -311,7 +311,7 @@ export default async function ModelsPage() {
                   <td className="p-4 text-center">3.5t</td>
                   <td className="p-4 text-center">2</td>
                   <td className="p-4 text-center">Basic</td>
-                  <td className="p-4 text-center font-semibold">£18,500</td>
+                  <td className="p-4 text-center font-semibold">£19,500</td>
                   <td className="p-4 text-center">First-time buyers, budget conscious</td>
                 </tr>
                 <tr className="bg-slate-50">
@@ -412,7 +412,7 @@ export default async function ModelsPage() {
                 <ul className="space-y-3 text-slate-700">
                   <li className="flex items-start">
                     <span className="font-semibold mr-2">•</span>
-                    <span><strong>Purchase Price:</strong> From £18,500 to £74,600+ depending on model</span>
+                    <span><strong>Purchase Price:</strong> From £19,500 to £74,600+ depending on model</span>
                   </li>
                   <li className="flex items-start">
                     <span className="font-semibold mr-2">•</span>
@@ -420,7 +420,7 @@ export default async function ModelsPage() {
                   </li>
                   <li className="flex items-start">
                     <span className="font-semibold mr-2">•</span>
-                    <span><strong>Finance Options:</strong> HP and lease purchase available from 1-7 years</span>
+                    <span><strong>Finance Options:</strong> We work with excellent finance providers and can provide referrals on request</span>
                   </li>
                   <li className="flex items-start">
                     <span className="font-semibold mr-2">•</span>
@@ -494,7 +494,7 @@ export default async function ModelsPage() {
               Ready to Find Your Perfect Horsebox?
             </h2>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
-              Find your ideal 3.5t, 4.5t or 7.2t horsebox. Contact us for a quote or visit our Norfolk showroom to see our models in person.
+              Find your ideal 3.5t, 4.5t or 7.2t horsebox. Contact us for a quote or visit our Norfolk workshop to see our horseboxes being built.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Link href="/contact" className="inline-flex items-center px-8 py-4 bg-white text-blue-700 font-semibold hover:bg-slate-50 transition-all">
@@ -511,8 +511,8 @@ export default async function ModelsPage() {
           <div className="grid md:grid-cols-4 gap-8 pt-12 border-t border-blue-500">
             <div className="text-center">
               <MapPin className="w-8 h-8 text-white mx-auto mb-3" />
-              <h3 className="text-white font-semibold mb-2">Norfolk Showroom</h3>
-              <p className="text-blue-100 text-sm">Beeston, Norfolk<br />United Kingdom</p>
+              <h3 className="text-white font-semibold mb-2">Norfolk Workshop</h3>
+              <p className="text-blue-100 text-sm">Norfolk<br />United Kingdom</p>
             </div>
             <div className="text-center">
               <Phone className="w-8 h-8 text-white mx-auto mb-3" />

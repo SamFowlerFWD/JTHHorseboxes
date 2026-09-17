@@ -12,7 +12,7 @@ import IrelandGallery from '@/components/IrelandGallery'
 const ieConfig = getRegionConfig('IE')
 const toEur = (gbp: number) => Math.round(gbp * ieConfig.markup * ieConfig.exchangeRate)
 
-const eurPrinciple = formatPrice(18500, 'IE')
+const eurPrinciple = formatPrice(19500, 'IE')
 const eurProfessional = formatPrice(22000, 'IE')
 
 export const metadata: Metadata = {
@@ -44,14 +44,14 @@ const models = [
     name: 'Principle 35',
     subtitle: 'Best Value Entry Point',
     price: eurPrinciple,
-    gbpBase: 18500,
+    gbpBase: 19500,
     description: 'The perfect balance of quality and value. Ideal for first-time horsebox buyers looking for British build quality without compromise.',
     image: '/ireland/jth-principle-35-horsebox-green-rear-quarter-ireland.webp',
     features: [
-      'Reinforced bulkhead',
+      'Reinforced steel bulkhead',
       'EVA wall matting & roof vent',
-      'Two aluminium escape doors',
-      'Wall storage for tack with bridle hooks',
+      'Secondary aluminium bulkhead with twin escape doors',
+      'Saddle racks & bridle hooks',
     ],
     badge: 'Best Value',
     badgeColor: 'bg-emerald-600',

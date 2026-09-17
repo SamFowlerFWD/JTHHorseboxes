@@ -75,7 +75,7 @@ export default function Professional35Page() {
     },
     {
       question: 'Can I finance the Professional 35?',
-      answer: 'Yes, we offer competitive HP and lease purchase options from 1-7 years with deposits from 10%. Monthly payments typically start from around £450 per month. Part exchange is also welcome.'
+      answer: 'We work with excellent finance providers and can provide referrals on request.'
     },
     {
       question: 'What warranty comes with the Professional 35?',
@@ -464,7 +464,7 @@ export default function Professional35Page() {
                 <tr className="border-b border-slate-100">
                   <td className="py-4 px-6 text-slate-700">Starting Price</td>
                   <td className="text-center py-4 px-6 font-semibold text-blue-600">£22,950</td>
-                  <td className="text-center py-4 px-6 text-slate-600">£18,500</td>
+                  <td className="text-center py-4 px-6 text-slate-600">£19,500</td>
                   <td className="text-center py-4 px-6 text-slate-600">£25,500</td>
                 </tr>
                 <tr className="border-b border-slate-100 bg-slate-50">
@@ -515,20 +515,16 @@ export default function Professional35Page() {
               <Phone className="mr-2 w-5 h-5" />
               Call 01603 552109
             </a>
-            <Link href="/contact" className="btn-premium-outline border-white text-white">
-              <Mail className="mr-2 w-5 h-5" />
-              Request Brochure
-            </Link>
           </div>
 
           <div className="mt-16 pt-16 border-t border-blue-500">
             <div className="grid md:grid-cols-3 gap-8 text-left">
               <div>
-                <h3 className="text-white font-semibold mb-4">Visit Our Showroom</h3>
+                <h3 className="text-white font-semibold mb-4">Visit Our Workshop</h3>
                 <p className="text-blue-100">
                   <MapPin className="inline w-4 h-4 mr-2" />
                   J Taylor Horseboxes<br />
-                  Beeston, Norfolk<br />
+                  Norfolk<br />
                   United Kingdom
                 </p>
               </div>
@@ -546,8 +542,7 @@ export default function Professional35Page() {
                 <p className="text-blue-100">
                   <Clock className="inline w-4 h-4 mr-2" />
                   Monday - Friday: 9am - 5pm<br />
-                  Saturday: 10am - 4pm<br />
-                  Sunday: By appointment
+                  Saturday & Sunday: By appointment only
                 </p>
               </div>
             </div>
@@ -663,17 +658,17 @@ export default function Professional35Page() {
 
             <div className="bg-gradient-to-br from-blue-50 to-white p-8 md:p-12 rounded-lg">
               <h3 className="text-2xl font-semibold text-slate-900 mb-6 text-center">
-                Visit Our Norfolk Showroom to See the Professional 35
+                Visit Our Norfolk Workshop
               </h3>
               <p className="text-slate-600 text-center mb-8 max-w-3xl mx-auto">
-                We encourage all potential buyers to visit our showroom in Beeston, Norfolk to see the Professional 35 in person. 
-                Our experienced team can demonstrate all features, discuss customization options, and arrange test drives.
+                You&apos;re welcome to visit our Norfolk workshop and see the quality of our builds in person. We can&apos;t
+                guarantee to have a Professional 35 in, but there will always be horseboxes to view.
               </p>
               <div className="grid md:grid-cols-3 gap-8 text-center">
                 <div>
                   <MapPin className="w-8 h-8 text-blue-600 mx-auto mb-3" />
                   <h4 className="font-semibold text-slate-900 mb-2">Location</h4>
-                  <p className="text-slate-600">Beeston, Norfolk<br />Easy access from A47 & A11</p>
+                  <p className="text-slate-600">Norfolk<br />Call ahead to arrange your visit</p>
                 </div>
                 <div>
                   <Phone className="w-8 h-8 text-blue-600 mx-auto mb-3" />
@@ -683,7 +678,7 @@ export default function Professional35Page() {
                 <div>
                   <Clock className="w-8 h-8 text-blue-600 mx-auto mb-3" />
                   <h4 className="font-semibold text-slate-900 mb-2">Opening Hours</h4>
-                  <p className="text-slate-600">Mon-Fri: 9am-5pm<br />Sat: 10am-4pm</p>
+                  <p className="text-slate-600">Mon-Fri: 9am-5pm<br />Weekends by appointment</p>
                 </div>
               </div>
             </div>

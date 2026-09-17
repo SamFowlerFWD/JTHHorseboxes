@@ -138,7 +138,7 @@ export const MODELS: Model[] = [
     slug: 'principle-35',
     name: 'Principle 35',
     description: '3.5 Tonne Essential Model with quality construction',
-    base_price: 18500,
+    base_price: 19500,
     vat_rate: 20,
     weight_class: '3.5t',
     range: 'JTH',

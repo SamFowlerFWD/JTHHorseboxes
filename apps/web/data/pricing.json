@@ -11,7 +11,7 @@
   ],
   "models": [
     { "id": "professional-35", "slug": "professional-35", "name": "Professional 35", "basePricePence": 2200000, "active": true, "category": "3.5t" },
-    { "id": "principle-35", "slug": "principle-35", "name": "Principle 35", "basePricePence": 1850000, "active": true, "category": "3.5t" },
+    { "id": "principle-35", "slug": "principle-35", "name": "Principle 35", "basePricePence": 1950000, "active": true, "category": "3.5t" },
     { "id": "progeny-35", "slug": "progeny-35", "name": "Progeny 35", "basePricePence": 2550000, "active": true, "category": "3.5t", "notes": "Top of the Range" },
 
     { "id": "aeos-qv-45", "slug": "aeos-qv-45", "name": "Aeos QV 45", "basePricePence": 2895000, "active": true, "category": "4.5t" },

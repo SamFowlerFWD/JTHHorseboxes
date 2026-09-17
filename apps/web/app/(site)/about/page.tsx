@@ -137,7 +137,7 @@ export default function AboutPage() {
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
               <Link href="/contact" className="btn-premium-outline border-white text-white hover:text-slate-900">
-                Visit Our Showroom
+                Visit Our Workshop
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
             </div>

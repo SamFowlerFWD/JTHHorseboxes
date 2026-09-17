@@ -12,7 +12,7 @@ export default function TrustIndicators({ variant = 'default' }: { variant?: Var
           <div className="text-center">
             <Shield className="w-8 h-8 text-blue-700 mx-auto mb-3" />
             <div className="text-2xl font-bold text-slate-900">British Built</div>
-            <div className="text-sm text-slate-700">Beeston, Norfolk</div>
+            <div className="text-sm text-slate-700">Norfolk</div>
           </div>
           <div className="text-center">
             <Award className="w-8 h-8 text-blue-700 mx-auto mb-3" />

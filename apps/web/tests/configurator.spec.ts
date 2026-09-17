@@ -35,7 +35,7 @@ test.describe('JTH Configurator', () => {
     await expect(page.getByText('£22,000')).toBeVisible()
     
     await expect(page.getByText('Principle 35')).toBeVisible()
-    await expect(page.getByText('£18,500')).toBeVisible()
+    await expect(page.getByText('£19,500')).toBeVisible()
     
     await expect(page.getByText('Progeny 35')).toBeVisible()
     await expect(page.getByText('£25,500')).toBeVisible()
