@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+import { getLocalBlogPosts } from '@/lib/blog/posts'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://jthltd.co.uk'
@@ -102,6 +103,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.85,
   }))
 
+  // Blog articles migrated from the legacy site, each at its original slug
+  const blogPages = getLocalBlogPosts().map(post => ({
+    url: `${baseUrl}/blog/${post.slug.current}`,
+    lastModified: post.updatedAt ? new Date(post.updatedAt) : now,
+    changeFrequency: 'yearly' as const,
+    priority: 0.6,
+  }))
+
   // Legal pages
   const legalPages = [
     {
@@ -128,6 +137,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...corePages,
     ...irelandPages,
     ...modelPages,
+    ...blogPages,
     ...legalPages,
   ]
 }

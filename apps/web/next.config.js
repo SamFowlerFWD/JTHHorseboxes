@@ -1,4 +1,7 @@
 const { setupDevPlatform } = require('@cloudflare/next-on-pages/next-dev')
+const blogPosts = require('./lib/blog/posts.json')
+
+const localBlogSlugs = blogPosts.map((post) => post.slug.current)
 
 /**
  * Legacy WordPress (jthltd.co.uk) -> Next.js redirect map.
@@ -64,35 +67,25 @@ const legacyRedirects = {
 }
 
 /**
- * Legacy blog posts (19).
+ * Legacy blog posts (19), now migrated into lib/blog/posts.json and served at
+ * /blog/<slug> — the slugs are unchanged, so each legacy URL keeps its topic
+ * instead of collapsing onto the blog index.
  *
- * PLACEHOLDER: the new /blog has no migrated posts, so every post collapses to
- * the blog index. This preserves link equity into the domain but loses all
- * topical relevance — these URLs rank for specific long-tail queries and the
- * many-to-one mapping is liable to be treated as a soft 404 by search engines.
- * REVISIT once posts are migrated: point each legacy slug at its real
- * /blog/<slug>.
+ * Derived from the posts themselves so the two can never drift apart.
  */
-const legacyBlogPosts = [
-  '/horsebox-durability',
-  '/horsebox-load-height',
-  '/horsebox-dog-gates',
-  '/horse-transport-stress',
-  '/horse-heat-and-ventilation',
-  '/horsebox-ramp-grip',
-  '/horsebox-strength',
-  '/horses-hearing',
-  '/horses-and-vibration',
-  '/problematic-horses',
-  '/horsebox-safety-checks',
-  '/before-you-buy-a-horsebox',
-  '/horsebox-air-brakes',
-  '/the-first-horsebox-a-tale-of-guile-invention-and-ingenuity',
-  '/horses-vision',
-  '/horsebox-passenger-seatbelts',
-  '/horsebox-payloads',
-  '/horsebox-ventilation',
-  '/horsebox-aluminium',
+const legacyBlogPosts = localBlogSlugs.map((slug) => ({
+  source: `/${slug}`,
+  destination: `/blog/${slug}`,
+}))
+
+/**
+ * WordPress category archives. There is no per-category view in the new blog,
+ * so these land on the index, which lists every post.
+ */
+const legacyCategories = [
+  '/category/horse-safety',
+  '/category/horsebox-advice',
+  '/category/knowledge-trivia',
 ]
 
 /** @type {import('next').NextConfig} */
@@ -116,7 +109,12 @@ const nextConfig = {
         destination,
         statusCode: 301,
       })),
-      ...legacyBlogPosts.map((source) => ({
+      ...legacyBlogPosts.map(({ source, destination }) => ({
+        source,
+        destination,
+        statusCode: 301,
+      })),
+      ...legacyCategories.map((source) => ({
         source,
         destination: '/blog',
         statusCode: 301,

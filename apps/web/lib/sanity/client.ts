@@ -1,4 +1,9 @@
 import { createClient, type SanityClient } from '@sanity/client'
+import {
+  getLocalBlogPost,
+  getLocalBlogPosts,
+  getLocalRelatedPosts,
+} from '@/lib/blog/posts'
 
 function getSanityClient(): SanityClient | null {
   const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
@@ -37,7 +42,7 @@ export interface SanityBlogPost {
 
 export async function getBlogPosts(): Promise<SanityBlogPost[]> {
   const client = getSanityClient()
-  if (!client) return []
+  if (!client) return getLocalBlogPosts()
 
   try {
     return await client.fetch(
@@ -55,13 +60,13 @@ export async function getBlogPosts(): Promise<SanityBlogPost[]> {
     )
   } catch (error) {
     console.error('Failed to fetch blog posts from Sanity:', error)
-    return []
+    return getLocalBlogPosts()
   }
 }
 
 export async function getBlogPost(slug: string): Promise<SanityBlogPost | null> {
   const client = getSanityClient()
-  if (!client) return null
+  if (!client) return getLocalBlogPost(slug)
 
   try {
     return await client.fetch(
@@ -86,13 +91,13 @@ export async function getBlogPost(slug: string): Promise<SanityBlogPost | null> 
     )
   } catch (error) {
     console.error('Failed to fetch blog post from Sanity:', error)
-    return null
+    return getLocalBlogPost(slug)
   }
 }
 
 export async function getRelatedPosts(category: string, excludeId: string): Promise<SanityBlogPost[]> {
   const client = getSanityClient()
-  if (!client) return []
+  if (!client) return getLocalRelatedPosts(category, excludeId)
 
   try {
     return await client.fetch(
@@ -109,6 +114,6 @@ export async function getRelatedPosts(category: string, excludeId: string): Prom
     )
   } catch (error) {
     console.error('Failed to fetch related posts from Sanity:', error)
-    return []
+    return getLocalRelatedPosts(category, excludeId)
   }
 }

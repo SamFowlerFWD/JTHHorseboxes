@@ -39,7 +39,7 @@ export default async function BlogPage() {
 
       {/* Hero Section */}
       <Hero
-        primarySrc="/hero/blog-hero.jpg"
+        primarySrc="/images/blog/kph-helios-75-horsebox-2023-full-ramp.webp"
         height="md"
         overlay="gradient"
       >
