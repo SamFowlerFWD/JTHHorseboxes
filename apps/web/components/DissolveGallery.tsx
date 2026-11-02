@@ -67,6 +67,8 @@ export default function DissolveGallery({
   const [showInfo, setShowInfo] = useState(false)
   const [isLiked, setIsLiked] = useState<boolean[]>(new Array(images.length).fill(false))
   const [showHotspots, setShowHotspots] = useState(true)
+  /** Which hotspot a touch user has opened; desktop shows them all at once. */
+  const [openHotspot, setOpenHotspot] = useState<number | null>(null)
   const [isPaused, setIsPaused] = useState(false)
   const [imageLoaded, setImageLoaded] = useState<boolean[]>(new Array(images.length).fill(false))
   const galleryRef = useRef<HTMLDivElement>(null)
@@ -102,9 +104,10 @@ export default function DissolveGallery({
     })
   }, [currentIndex, images, imageLoaded])
 
-  // Auto-play functionality
+  // Auto-play functionality. Reading an open hotspot holds the slide: having
+  // the image change out from under a tapped detail is worse than a pause.
   useEffect(() => {
-    if (autoPlay && !isPaused && !isFullscreen) {
+    if (autoPlay && !isPaused && !isFullscreen && openHotspot === null) {
       intervalRef.current = setInterval(() => {
         handleNext()
       }, autoPlayInterval)
@@ -115,7 +118,7 @@ export default function DissolveGallery({
         clearInterval(intervalRef.current)
       }
     }
-  }, [currentIndex, autoPlay, autoPlayInterval, isPaused, isFullscreen])
+  }, [currentIndex, autoPlay, autoPlayInterval, isPaused, isFullscreen, openHotspot])
 
   // Keyboard navigation
   useEffect(() => {
@@ -138,6 +141,11 @@ export default function DissolveGallery({
       emblaApi.scrollTo(currentIndex)
     }
   }, [currentIndex, emblaApi])
+
+  // A hotspot opened by tapping belongs to the image it was opened on.
+  useEffect(() => {
+    setOpenHotspot(null)
+  }, [currentIndex])
 
   const handleNext = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % images.length)
@@ -273,25 +281,47 @@ export default function DissolveGallery({
               {/* Hotspots */}
               {enableHotspots && showHotspots && currentImage.hotspots && (
                 <div className="absolute inset-0">
-                  {currentImage.hotspots.map((hotspot, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: index * 0.1 }}
-                      className="absolute group/hotspot"
-                      style={{ left: `${hotspot.x}%`, top: `${hotspot.y}%` }}
-                    >
-                      <div className="relative">
-                        <div className="absolute inset-0 animate-ping bg-amber-400 rounded-full opacity-75" />
-                        <div className="relative w-4 h-4 bg-amber-500 rounded-full cursor-pointer" />
-                      </div>
-                      <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 opacity-0 group-hover/hotspot:opacity-100 transition-opacity glass-dark text-white p-2 rounded-lg text-sm whitespace-nowrap">
-                        <div className="font-semibold">{hotspot.label}</div>
-                        <div className="text-xs text-gray-300">{hotspot.description}</div>
-                      </div>
-                    </motion.div>
-                  ))}
+                  {currentImage.hotspots.map((hotspot, index) => {
+                    // Keep the card inside the frame: sit it on whichever side
+                    // of the dot has room.
+                    const onRightHalf = hotspot.x > 55
+                    const isOpen = openHotspot === index
+
+                    return (
+                      <motion.div
+                        key={index}
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: index * 0.1 }}
+                        className="absolute"
+                        style={{ left: `${hotspot.x}%`, top: `${hotspot.y}%` }}
+                      >
+                        <button
+                          type="button"
+                          onClick={() => setOpenHotspot(isOpen ? null : index)}
+                          className="relative block w-4 h-4 md:cursor-default"
+                          aria-expanded={isOpen}
+                          aria-label={`${hotspot.label}: ${hotspot.description}`}
+                        >
+                          <span className="absolute inset-0 animate-ping bg-amber-400 rounded-full opacity-75" />
+                          <span className="relative block w-4 h-4 bg-amber-500 rounded-full ring-2 ring-white/70" />
+                        </button>
+
+                        {/* Desktop reads the detail without hunting for it; on a
+                            phone there is no room, so the dot toggles it. */}
+                        <div
+                          className={`pointer-events-none absolute top-1/2 -translate-y-1/2 z-10 w-48 glass-dark text-white p-3 rounded-lg shadow-lg transition-opacity duration-200 md:opacity-100 ${
+                            isOpen ? 'opacity-100' : 'opacity-0'
+                          } ${onRightHalf ? 'right-full mr-3' : 'left-full ml-3'}`}
+                        >
+                          <div className="text-sm font-semibold leading-snug">{hotspot.label}</div>
+                          <div className="text-xs text-gray-300 leading-snug mt-0.5">
+                            {hotspot.description}
+                          </div>
+                        </div>
+                      </motion.div>
+                    )
+                  })}
                 </div>
               )}
             </motion.div>

@@ -22,18 +22,13 @@ const safetyFeatures = [
 // SEO metadata is preserved from original homepage
 export default function HomePage() {
 
-  // Gallery images - mixture from optimised JTH images
+  // Gallery images - mixture from optimised JTH images.
+  //
+  // Any image can carry `hotspots: [{ x, y, label, description }]`. x/y are
+  // percentages of the gallery frame (not the photo), so set them against a
+  // landscape image or the letterboxing will push them off the subject.
+  // Desktop shows every label beside its dot; a phone reveals one on tap.
   const galleryImages = [
-    {
-      src: '/gallery/professional-01.webp',
-      alt: 'JTH Professional 4.5T - Exterior View',
-      title: 'Professional 45',
-      description: 'Premium British horsebox with luxury finish',
-      hotspots: [
-        { x: 30, y: 40, label: 'GRP Construction', description: 'Durable and lightweight' },
-        { x: 70, y: 60, label: 'Safety Features', description: 'Advanced safety systems' }
-      ]
-    },
     {
       src: '/gallery/principle-01.webp',
       alt: 'JTH Principle - Exterior View',
