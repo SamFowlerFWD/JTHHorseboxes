@@ -58,6 +58,42 @@ leave the apex as a Hostinger redirect. Rejected — the apex is the primary.
 
 ---
 
+## Status — 2026-11-06
+
+**Stage 1 complete.** `jthltd.co.uk` is now served by Cloudflare DNS. The site
+still comes from Hostinger and mail is untouched, exactly as intended — this
+stage moved authority only.
+
+- Zone created on the Free plan in the same account as `jthltd.ie`
+  (`7b60dc867df57475de974e49866d013b`), zone id
+  `faf1a49f6b4d78c72ea440ace44bf489`.
+- Nameservers `kyrie.ns.cloudflare.com` / `leia.ns.cloudflare.com`, changed at
+  the Hostinger registrar. Zone went **active 2026-11-06 19:20 UTC**.
+- DNSSEC was checked first: no DS, no DNSKEY, nothing to disable. Had it been
+  signed, switching nameservers would have broken resolution outright.
+- All 12 records verified against the new nameservers. MX, SPF, DMARC, the
+  three DKIM CNAMEs and autodiscover/autoconfig all resolve to the original
+  Hostinger targets. `jthltd.co.uk` 200s, `www` and `kphltd.co.uk` still 301 to
+  the apex.
+- The DKIM chain resolves end to end: `hostingermail-a` returns a real 408-char
+  key. `-b` and `-c` return `v=DKIM1;p=` with an empty key — unused rotation
+  slots. Those CNAMEs point at Hostinger-controlled hosts, so their contents are
+  Hostinger's and are unchanged by this migration.
+
+**The trap this stage walked into:** Cloudflare's import defaulted 8 of the 12
+records to Proxied, including all three DKIM CNAMEs and autodiscover. Left that
+way, DKIM lookups would have returned Cloudflare IPs — mail would still send but
+fail signature validation and drift into spam, with nothing erroring. All 12 are
+DNS only.
+
+**Mail confirmed working on a real `@jthltd.co.uk` mailbox after the switch**
+(2026-11-06). Stage 1 is closed.
+
+Stage 3 is not gated on mail. It changes only the apex and `www` A records; it
+does not touch MX, SPF, DKIM, DMARC or autodiscover. So the decision to launch
+is about whether the new UK site is ready to replace the WordPress one for the
+public — not about leaving the mail to settle.
+
 ## 3. Stage 1 — move DNS with **zero visible change**
 
 Do not combine the DNS migration with the site launch. Stage 1 moves authority
