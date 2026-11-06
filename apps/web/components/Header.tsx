@@ -37,11 +37,11 @@ const navigation = {
         items: []
       },
       {
-        title: '4.5T Pre-Built Models',
+        title: '4.5T Models',
         items: [
-          { name: 'Edge 45', href: '/models/aeos-edge-45', badge: 'Pre-Built' },
-          { name: 'Freedom 45', href: '/models/aeos-freedom-45', badge: 'Pre-Built' },
-          { name: 'Discovery 45', href: '/models/aeos-discovery-45', badge: 'Pre-Built' },
+          { name: 'Edge 45', href: '/models/aeos-edge-45' },
+          { name: 'Freedom 45', href: '/models/aeos-freedom-45' },
+          { name: 'Discovery 45', href: '/models/aeos-discovery-45' },
         ]
       },
       {

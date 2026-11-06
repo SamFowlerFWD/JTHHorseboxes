@@ -155,14 +155,12 @@ export default function Footer() {
                         <Link href="/models/aeos-edge-45" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
                           <ChevronRight className="w-3 h-3" />
                           Edge 45
-                          <span className="text-xs bg-amber-700 text-amber-100 px-1 py-0.5 rounded ml-1">Pre-Built</span>
                         </Link>
                       </li>
                       <li>
                         <Link href="/models/aeos-discovery-45" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
                           <ChevronRight className="w-3 h-3" />
                           Discovery 45
-                          <span className="text-xs bg-amber-700 text-amber-100 px-1 py-0.5 rounded ml-1">Pre-Built</span>
                         </Link>
                       </li>
                       <li>
