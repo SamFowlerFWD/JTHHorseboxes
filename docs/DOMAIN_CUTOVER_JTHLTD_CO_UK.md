@@ -58,41 +58,52 @@ leave the apex as a Hostinger redirect. Rejected — the apex is the primary.
 
 ---
 
-## Status — 2026-11-06
+## Status — 2026-11-06 — LIVE
 
-**Stage 1 complete.** `jthltd.co.uk` is now served by Cloudflare DNS. The site
-still comes from Hostinger and mail is untouched, exactly as intended — this
-stage moved authority only.
+**Stages 1 and 3 are both complete. The new site is live on jthltd.co.uk.**
 
-- Zone created on the Free plan in the same account as `jthltd.ie`
-  (`7b60dc867df57475de974e49866d013b`), zone id
-  `faf1a49f6b4d78c72ea440ace44bf489`.
-- Nameservers `kyrie.ns.cloudflare.com` / `leia.ns.cloudflare.com`, changed at
-  the Hostinger registrar. Zone went **active 2026-11-06 19:20 UTC**.
-- DNSSEC was checked first: no DS, no DNSKEY, nothing to disable. Had it been
-  signed, switching nameservers would have broken resolution outright.
-- All 12 records verified against the new nameservers. MX, SPF, DMARC, the
-  three DKIM CNAMEs and autodiscover/autoconfig all resolve to the original
-  Hostinger targets. `jthltd.co.uk` 200s, `www` and `kphltd.co.uk` still 301 to
-  the apex.
-- The DKIM chain resolves end to end: `hostingermail-a` returns a real 408-char
-  key. `-b` and `-c` return `v=DKIM1;p=` with an empty key — unused rotation
-  slots. Those CNAMEs point at Hostinger-controlled hosts, so their contents are
-  Hostinger's and are unchanged by this migration.
+Zone `faf1a49f6b4d78c72ea440ace44bf489`, Free plan, same account as
+`jthltd.ie` (`7b60dc867df57475de974e49866d013b`). Nameservers
+`kyrie.ns.cloudflare.com` / `leia.ns.cloudflare.com`, active 19:20 UTC.
 
-**The trap this stage walked into:** Cloudflare's import defaulted 8 of the 12
-records to Proxied, including all three DKIM CNAMEs and autodiscover. Left that
-way, DKIM lookups would have returned Cloudflare IPs — mail would still send but
-fail signature validation and drift into spam, with nothing erroring. All 12 are
-DNS only.
+Custom domains on `jth-web`: `jthltd.co.uk` and `www.jthltd.co.uk`, both
+Active with SSL, alongside the two `.ie` domains. Apex and `www` are now
+proxied CNAMEs to `jth-web.pages.dev`; Cloudflare flattens the apex.
 
-**Mail confirmed working on a real `@jthltd.co.uk` mailbox after the switch**
-(2026-11-06). Stage 1 is closed.
+Verified live:
 
-Stage 3 is not gated on mail. It changes only the apex and `www` A records; it
-does not touch MX, SPF, DKIM, DMARC or autodiscover. So the decision to launch
-is about whether the new UK site is ready to replace the WordPress one for the
-public — not about leaving the mail to settle.
+- apex serves the Next.js site (correct title, `_next/static`, no WordPress),
+  and asks for no password — the gate now covers `*.pages.dev` only
+- `www` 301s to the apex, preserving path and query string
+- legacy URLs resolve 200, the `/author/...` archive included
+- `kphltd.co.uk` still 301s to the apex
+- `jthltd.ie` unaffected
+- **every mail record unchanged**: MX, SPF, DMARC, three DKIM CNAMEs,
+  autodiscover, autoconfig. `ftp` still points at the Hostinger box.
+
+Mail was confirmed working on a real `@jthltd.co.uk` mailbox after the
+nameserver move, before stage 3 ran.
+
+### Two things that could have gone wrong and did not
+
+1. Cloudflare's zone import defaulted 8 of the 12 records to **Proxied**,
+   including all three DKIM CNAMEs and autodiscover. Left that way, DKIM
+   lookups would have returned Cloudflare IPs — mail would still send but fail
+   signature validation and drift into spam, with nothing erroring anywhere.
+2. DNSSEC was checked before the nameserver switch. No DS, no DNSKEY. Had the
+   domain been signed, changing nameservers would have broken resolution
+   outright.
+
+### Still open
+
+- `/models/principle-35` and `/models/jth-principle-35` both return 200, so
+  each 3.5T model has two live URLs. The canonical tag points at one, but worth
+  collapsing now the site is indexable.
+- `/admin` is reachable without the preview password (it is excluded from the
+  gate). It has its own auth, but worth closing.
+- **Do not let the Hostinger hosting plan lapse.** `kphltd.co.uk` points at
+  `89.117.229.191` for its 301 and its DNS is at `livedns.co.uk`, outside our
+  control. Killing the hosting kills that redirect.
 
 ## 3. Stage 1 — move DNS with **zero visible change**
 
