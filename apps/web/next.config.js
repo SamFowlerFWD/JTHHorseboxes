@@ -81,11 +81,15 @@ const legacyBlogPosts = localBlogSlugs.map((slug) => ({
 /**
  * WordPress category archives. There is no per-category view in the new blog,
  * so these land on the index, which lists every post.
+ *
+ * The author archive is folded in here for the same reason: the legacy site had
+ * a single author, so the archive was just the post list under another URL.
  */
 const legacyCategories = [
   '/category/horse-safety',
   '/category/horsebox-advice',
   '/category/knowledge-trivia',
+  '/author/infosam-fowler-com',
 ]
 
 /** @type {import('next').NextConfig} */
