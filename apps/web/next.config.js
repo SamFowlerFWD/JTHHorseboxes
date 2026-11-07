@@ -64,6 +64,11 @@ const legacyRedirects = {
   '/horse-safety-first': '/blog',
   // Buying-guide intent -> the range it was guiding towards.
   '/picking-the-right-horsebox': '/models',
+
+  // --- Retired pages of the new site ---
+  // /showcase was a design demo, never in the nav, carrying stale payloads
+  // and warranties that contradicted the model pages. Retired 2026-11-07.
+  '/showcase': '/models',
 }
 
 /**

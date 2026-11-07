@@ -345,7 +345,7 @@ const modelContent: Record<string, {
     description: 'The spectacular Aeos Discovery 45 combines the features of a motorhome with a horsebox. New design, new materials and a new level of luxury. 7.37m overall length with approx. 1.4 tonne payload.',
     longDescription: [
       'The spectacular Aeos Discovery 45 horsebox is here! New design, new materials and a new level of luxury, combining the features of a motorhome with a horsebox.',
-      'Designed as a high end quality 4.5 tonne horsebox with features only normally found on larger 7.5 tonne horseboxes. The largest horsebox in the Aeos range at 7.37 metres (24\' 2") overall length.',
+      'Designed as a high end quality 4.5 tonne horsebox with features only normally found on larger 7.5 tonne horseboxes. The longest 4.5 tonne horsebox in the Aeos range, at 7.37 metres (24\' 2") overall length.',
       'Extra length and load allowance handled with adjustable air suspension. Fuel consumption is highly economical with significant reduction in road noise. Equipped with anti-lock brakes, alloy wheels, deep tread tyres filled with Puncture Safe and a very low centre of gravity.'
     ],
     features: [
@@ -508,7 +508,7 @@ const modelContent: Record<string, {
     longDescription: [
       'The flagship Aeos Discovery 72 horsebox — combining the best features of a motorhome and a horsebox with a 3 tonne payload.',
       'Designed as a high end quality 7.2 tonne horsebox with features only normally found on larger 7.5 tonne Helios horseboxes. Benefits from luxury living including designer wood finish units, leather upholstery, sink/hob, fridge, TV, large top lockers, under seat storage, spacious double bed and separate shower/toilet.',
-      'Two large external tack lockers with two air vents each and insulated doors. The largest horsebox in the Aeos range at 7.37 metres (24\' 2").'
+      'Two large external tack lockers with two air vents each and insulated doors. The largest horsebox in the Aeos range: 7.37 metres (24\' 2") long and 2.5 metres wide.'
     ],
     features: [
       'Steel construction horse ramp with slip rails',
@@ -896,10 +896,10 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
     {
       question: `What license do I need to drive this horsebox?`,
       answer: params.slug.includes('35') 
-        ? 'The 3.5 tonne models can be driven on a standard car license if you passed your test before 1997. Otherwise, you\'ll need B+E or C1 license.'
+        ? 'The 3.5 tonne models can be driven on a standard car licence (category B), whenever you passed your test.'
         : params.slug.includes('45')
-        ? 'The 4.5 tonne models require a C1 license. We can recommend training providers if needed.'
-        : 'The 7.2 tonne models require a C1 or full HGV license depending on configuration.'
+        ? 'The 4.5 tonne models need a C1 licence, which covers vehicles from 3,500kg to 7,500kg. If you passed your car test before 1 January 1997, your licence will usually include C1 already. If not, we can recommend training providers.'
+        : 'The 7.2 and 7.5 tonne models need a C1 licence, which covers vehicles up to 7,500kg. If you passed your car test before 1 January 1997, your licence will usually include C1 already.'
     },
     {
       question: `What warranty comes with this model?`,
@@ -1201,7 +1201,7 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
                   What&apos;s included as standard in the {modelName}?
                 </h3>
                 <p className="text-slate-600 leading-relaxed">
-                  Standard features include: {content.features.slice(0, 5).join(', ')}.{' '}
+                  Standard features include: {content.features.filter((f) => !/^optional\b/i.test(f)).slice(0, 5).join(', ')}.{' '}
                   The {modelName} comes with our {warrantyPhrase} warranty and comprehensive handover training.
                 </p>
               </div>
@@ -1258,9 +1258,7 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
                 <h4 className="font-semibold text-slate-900 mb-3">Comprehensive Support</h4>
                 <p className="text-slate-600">
                   From initial consultation through to aftercare, we&apos;re with you every step of the way.{' '}
-                  {warrantyMonths >= 24
-                    ? 'Our 2-year warranty is twice the industry standard, and our service team is always available to help.'
-                    : `The ${modelName} comes with a ${warrantyPhrase} warranty, and our service team is always available to help.`}
+                  {`The ${modelName} comes with a ${warrantyPhrase} warranty, and our service team is always available to help.`}
                 </p>
               </div>
               <div>

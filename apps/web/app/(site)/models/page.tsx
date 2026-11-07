@@ -10,8 +10,8 @@ import { weightBadge, modelCardImage } from '@/lib/models'
 
 export const metadata: Metadata = {
   title: 'Horsebox Models - 3.5t, 4.5t, 7.2t & 7.5t Range | JTH Horseboxes Norfolk',
-  description: 'Explore our complete range of 3.5 tonne, 4.5 tonne, 7.2 tonne and 7.5 tonne horseboxes. JTH Professional 35, JTH Principle 35, Aeos QV ST 35, Aeos Edge, Freedom, Discovery models & Helios 75. Starting from £19,500 + VAT. View specifications, compare models and configure your perfect horsebox.',
-  keywords: '3.5t horsebox models, 4.5t horsebox range, 7.2t horsebox, 7.5t horsebox, JTH Professional 35, JTH Principle 35, Aeos QV ST 35, Aeos Edge 45, Aeos Freedom 45, Aeos Discovery 45, Aeos Discovery 72, Helios 75, horsebox comparison, horsebox specifications, British horsebox models',
+  description: 'Explore our complete range of 3.5 tonne, 4.5 tonne, 7.2 tonne and 7.5 tonne horseboxes. JTH Professional 35, JTH Principle 35, Aeos Edge, Freedom, Discovery models & Helios 75. Starting from £19,500 + VAT. View specifications, compare models and configure your perfect horsebox.',
+  keywords: '3.5t horsebox models, 4.5t horsebox range, 7.2t horsebox, 7.5t horsebox, JTH Professional 35, JTH Principle 35, Aeos Edge 45, Aeos Freedom 45, Aeos Discovery 45, Aeos Discovery 72, Helios 75, horsebox comparison, horsebox specifications, British horsebox models',
   openGraph: {
     title: 'JTH Horsebox Models - Complete 3.5t, 4.5t & 7.2t Range',
     description: 'View our complete range of British-built horseboxes. 3.5t, 4.5t & 7.2t models from £19,500 + VAT. Compare specifications and configure online.',
@@ -233,8 +233,8 @@ export default async function ModelsPage() {
             <div className="bg-white p-6 border-2 border-blue-100">
               <h4 className="text-xl font-semibold text-blue-700 mb-4">3.5 Tonne Horseboxes</h4>
               <p className="text-slate-600 mb-4">
-                Our most popular category, 3.5t horseboxes are perfect for owners who want to use their standard driving license 
-                (if passed before 1997). These models comfortably transport two horses up to 16.2hh while offering essential 
+                Our most popular category, 3.5t horseboxes can be driven on a standard car licence, whenever you passed
+                your test. These models comfortably transport two horses up to 16.2hh while offering essential 
                 living amenities.
               </p>
               <ul className="space-y-2 text-sm">
@@ -246,10 +246,6 @@ export default async function ModelsPage() {
                   <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0 mt-0.5" />
                   <span><strong>JTH Professional 35:</strong> £22,950 - Premium features, professional specification</span>
                 </li>
-                <li className="flex items-start">
-                  <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0 mt-0.5" />
-                  <span><strong>Aeos QV ST 35:</strong> £24,500 - Stallion partition, enhanced versatility</span>
-                </li>
               </ul>
             </div>
             
@@ -257,13 +253,10 @@ export default async function ModelsPage() {
               <h4 className="text-xl font-semibold text-blue-700 mb-4">4.5 Tonne Horseboxes</h4>
               <p className="text-slate-600 mb-4">
                 Stepping up to 4.5t provides significantly more payload, allowing for enhanced living quarters, additional 
-                equipment storage, and the ability to carry larger horses or three ponies. Requires C1 license.
+                equipment storage, and the ability to carry larger horses or three ponies. Requires a C1 licence, which drivers who
+                passed their car test before 1997 usually hold already.
               </p>
               <ul className="space-y-2 text-sm">
-                <li className="flex items-start">
-                  <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0 mt-0.5" />
-                  <span><strong>Aeos QV 45:</strong> £28,950 - Quality 4.5t model with essential features</span>
-                </li>
                 <li className="flex items-start">
                   <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0 mt-0.5" />
                   <span><strong>Aeos Edge 45:</strong> £31,500 - Professional competition specification</span>
@@ -336,22 +329,6 @@ export default async function ModelsPage() {
                   <td className="p-4 text-center">Comfort</td>
                   <td className="p-4 text-center font-semibold">£22,950</td>
                   <td className="p-4 text-center">Regular competitors, professionals</td>
-                </tr>
-                <tr>
-                  <td className="p-4 font-medium text-blue-700">Aeos QV ST 35</td>
-                  <td className="p-4 text-center">3.5t</td>
-                  <td className="p-4 text-center">2</td>
-                  <td className="p-4 text-center">Luxury</td>
-                  <td className="p-4 text-center font-semibold">£24,500</td>
-                  <td className="p-4 text-center">Stallion transport, versatile use</td>
-                </tr>
-                <tr className="bg-slate-50">
-                  <td className="p-4 font-medium text-blue-700">Aeos QV 45</td>
-                  <td className="p-4 text-center">4.5t</td>
-                  <td className="p-4 text-center">2-3</td>
-                  <td className="p-4 text-center">Standard</td>
-                  <td className="p-4 text-center font-semibold">£28,950</td>
-                  <td className="p-4 text-center">Regular competitors</td>
                 </tr>
                 <tr>
                   <td className="p-4 font-medium text-blue-700">Aeos Edge 45</td>

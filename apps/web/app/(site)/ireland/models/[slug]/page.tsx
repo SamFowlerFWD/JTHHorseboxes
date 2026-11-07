@@ -260,7 +260,7 @@ export default async function IrelandModelDetailPage({ params }: { params: { slu
     },
     {
       question: `What license do I need to drive this horsebox?`,
-      answer: 'The 3.5 tonne models can be driven on a standard car license if you passed your test before 1997. Otherwise, you\'ll need B+E or C1 license.'
+      answer: 'The 3.5 tonne models can be driven on a full category B (car) licence. Heavier horseboxes need at least a C1 licence.'
     },
     {
       question: `What warranty comes with the ${modelName}?`,

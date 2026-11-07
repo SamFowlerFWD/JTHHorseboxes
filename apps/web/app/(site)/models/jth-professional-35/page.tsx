@@ -63,7 +63,7 @@ export default function Professional35Page() {
   const faqs = [
     {
       question: 'What license do I need to drive the Professional 35?',
-      answer: 'The Professional 35 is a 3.5 tonne horsebox that can be driven on a standard car license if you passed your test before 1 January 1997. If you passed after this date, you\'ll need to take an additional test to add category B+E or C1 to your license.'
+      answer: 'The Professional 35 is a 3.5 tonne horsebox, so it can be driven on a standard car licence (category B), whenever you passed your test.'
     },
     {
       question: 'How many horses can the Professional 35 carry?',
@@ -79,7 +79,7 @@ export default function Professional35Page() {
     },
     {
       question: 'What warranty comes with the Professional 35?',
-      answer: 'Every Professional 35 comes with our comprehensive 2-year structural warranty, which is twice the industry standard. This covers all structural elements, GRP bodywork, and manufacturing defects.'
+      answer: 'Every Professional 35 comes with our comprehensive 2-year structural warranty. This covers all structural elements, GRP bodywork, and manufacturing defects.'
     },
     {
       question: 'How long does it take to build a Professional 35?',
@@ -619,7 +619,7 @@ export default function Professional35Page() {
                   <h4 className="font-semibold text-slate-900 mb-3">Chassis & Performance</h4>
                   <p className="text-slate-600">
                     Built on the reliable Iveco Daily chassis, the Professional 35 offers excellent handling and performance. 
-                    The 3.5 tonne gross weight allows it to be driven on a standard car license (pre-1997), making it accessible 
+                    The 3.5 tonne gross weight means it can be driven on a standard car licence, making it accessible 
                     to more riders. With a payload of 1,000kg, you have ample capacity for two horses plus all your equipment.
                   </p>
                 </div>

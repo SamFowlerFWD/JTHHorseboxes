@@ -495,7 +495,7 @@ export default function ContactPageClient() {
 
                   <p className="text-xs text-slate-500 text-center">
                     By submitting this form, you agree to our privacy policy. 
-                    We will never share your information with third parties.
+                    We don&apos;t sell your details or share them for anyone else&apos;s marketing.
                   </p>
                 </form>
               )}
