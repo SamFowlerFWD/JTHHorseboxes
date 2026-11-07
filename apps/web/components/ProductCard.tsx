@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, Check } from 'lucide-react'
+import { Check } from 'lucide-react'
 
 type ProductCardProps = {
   title: string
@@ -29,9 +29,9 @@ export default function ProductCard({
         relative h-full bg-white overflow-hidden transition-all duration-500 
         ${highlighted 
           ? 'shadow-2xl ring-2 ring-blue-400 scale-105' 
-          : 'shadow-lg hover:shadow-2xl'
+          : 'border border-line shadow-sm hover:shadow-md'
         }
-        group-hover:-translate-y-2
+        
       `}>
         {badge && (
           <div className="absolute top-4 right-4 z-10 px-3 py-1 bg-blue-600 text-white text-sm font-semibold">
@@ -45,16 +45,16 @@ export default function ProductCard({
             alt={title}
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-            className="object-cover transition-transform duration-700 group-hover:scale-110"
+            className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(13,31,45,0.35),transparent_45%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           
           <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
             <p className="text-sm">Click to explore</p>
           </div>
         </div>
         
-        <div className="p-8 bg-gradient-to-b from-white to-slate-50">
+        <div className="p-8 bg-paper">
           <div className="flex justify-between items-start mb-4">
             <div>
               <h3 className="text-xl font-semibold text-slate-900 mb-1">{title}</h3>
@@ -66,7 +66,7 @@ export default function ProductCard({
             </div>
           </div>
           
-          <div className="w-full h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent mb-4"></div>
+          <div className="w-full h-px bg-line mb-4"></div>
           
           <p className="text-slate-600 mb-6 line-clamp-2">{description}</p>
           
@@ -82,7 +82,6 @@ export default function ProductCard({
           <div className="flex items-center justify-between">
             <span className="inline-flex items-center text-blue-600 font-semibold group-hover:text-blue-700 transition-colors">
               View Details
-              <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
             </span>
             
             {highlighted && (

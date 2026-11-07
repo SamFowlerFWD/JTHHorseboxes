@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence, useInView, Variants } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, ChevronDown, Play, Volume2, VolumeX } from 'lucide-react'
+import { ChevronDown, Play, Volume2, VolumeX } from 'lucide-react'
 
 interface HeroAdvancedProps {
   title?: string
@@ -38,7 +38,7 @@ const overlayStyles = {
   gradient: 'bg-gradient-to-b from-black/70 via-black/40 to-black/70',
   dark: 'bg-black/60',
   light: 'bg-white/30',
-  mesh: 'bg-gradient-to-br from-blue-900/80 via-transparent to-amber-900/40',
+  mesh: 'bg-[linear-gradient(to_top,rgba(13,31,45,0.85)_0%,rgba(13,31,45,0.5)_45%,rgba(13,31,45,0.3)_100%)]',
   none: ''
 }
 
@@ -213,13 +213,6 @@ export default function HeroAdvanced({
         style={{ opacity }}
       />
 
-      {/* Gradient Mesh Overlay (Premium Effect) */}
-      {overlay === 'mesh' && (
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-amber-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse animation-delay-400" />
-        </div>
-      )}
 
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col justify-center px-4 sm:px-6 lg:px-8">
@@ -263,14 +256,10 @@ export default function HeroAdvanced({
                       initial="rest"
                       whileHover="hover"
                       whileTap="tap"
-                      className="group relative inline-flex items-center px-8 py-4 overflow-hidden font-semibold text-white"
+                      className="group relative inline-flex items-center px-9 py-4 overflow-hidden font-medium tracking-wide text-white"
                     >
-                      <span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-blue-800"></span>
-                      <span className="absolute inset-0 bg-gradient-to-r from-amber-500 to-amber-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
-                      <span className="relative flex items-center gap-2">
-                        {primaryCTA.text}
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                      </span>
+                      <span className="absolute inset-0 bg-blue-800 ring-1 ring-inset ring-brass/40 transition-colors duration-300 group-hover:bg-blue-700"></span>
+                      <span className="relative">{primaryCTA.text}</span>
                     </motion.button>
                   </Link>
                 )}
@@ -282,10 +271,9 @@ export default function HeroAdvanced({
                       initial="rest"
                       whileHover="hover"
                       whileTap="tap"
-                      className="group inline-flex items-center px-8 py-4 glass-light text-white font-semibold hover:bg-white/20 transition-all duration-300"
+                      className="group inline-flex items-center px-9 py-4 text-white font-medium tracking-wide ring-1 ring-inset ring-white/45 transition-colors duration-300 hover:bg-white/10"
                     >
                       {secondaryCTA.text}
-                      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </motion.button>
                   </Link>
                 )}
@@ -336,7 +324,7 @@ export default function HeroAdvanced({
           transition={{ delay: 2 }}
           className="flex flex-col items-center text-white/70"
         >
-          <span className="text-xs uppercase tracking-wider mb-2">Scroll</span>
+          <span className="text-xs tracking-wide mb-2">Scroll</span>
           <ChevronDown className="w-6 h-6 animate-bounce" />
         </motion.div>
       </motion.div>

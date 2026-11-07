@@ -4,7 +4,6 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import ClickableImage from '@/components/ClickableImage'
 import {
-  ArrowRight,
   Award,
   Shield,
   Users,
@@ -119,27 +118,33 @@ export default function AboutPage() {
       <main className="bg-white">
         {/* Hero Section */}
         <Hero
-          primarySrc="/models/jth-professional-45/01.webp"
-          fallbackSrc="/models/professional-35/01.webp"
+          primarySrc="/models/jth-professional-45/04.webp"
+          fallbackSrc="/models/principle-35/01.webp"
           height="lg"
           overlay="gradient"
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-5xl md:text-7xl font-light text-white mb-6 animate-slideUp">
-              About JTH
-            </h1>
-            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-12 font-light leading-relaxed animate-slideUp animation-delay-200">
-              Safety, Quality, Durability - The foundation of every horsebox we build
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-6 animate-slideUp animation-delay-400">
-              <Link href="/models" className="btn-premium">
-                View Our Models
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Link>
-              <Link href="/contact" className="btn-premium-outline border-white text-white hover:text-slate-900">
-                Visit Our Workshop
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Link>
+          <div className="w-full self-end pb-16 md:pb-24">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="max-w-2xl">
+                <h1 className="font-display text-5xl md:text-7xl text-white leading-[1.04] animate-slideUp">
+                  About JTH
+                </h1>
+                <p className="mt-6 text-lg md:text-xl text-white/90 leading-relaxed animate-slideUp animation-delay-200">
+                  Safety, quality and durability &mdash; the foundation of every horsebox we build.
+                </p>
+                <div className="mt-10 flex flex-col gap-[4px] animate-slideUp animation-delay-200">
+                  <span className="block h-[2px] w-32 bg-brass-light" />
+                  <span className="block h-px w-20 bg-brass-light/60" />
+                </div>
+                <div className="mt-10 flex flex-wrap items-center gap-4 animate-slideUp animation-delay-400">
+                  <Link href="/models" className="btn-on-dark">
+                    View Our Models
+                  </Link>
+                  <Link href="/contact" className="btn-on-dark-outline">
+                    Visit Our Workshop
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </Hero>
@@ -150,8 +155,8 @@ export default function AboutPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-3xl font-bold text-white">{stat.value}</div>
-                  <div className="text-sm text-slate-400 uppercase tracking-wider">{stat.label}</div>
+                  <div className="font-display text-3xl text-white">{stat.value}</div>
+                  <div className="text-sm text-slate-400 tracking-wide">{stat.label}</div>
                   <div className="text-xs text-slate-500 mt-1">{stat.description}</div>
                 </div>
               ))}
@@ -160,18 +165,19 @@ export default function AboutPage() {
         </section>
 
         {/* Introduction Section */}
-        <section className="py-20 md:py-32 bg-gradient-to-b from-white to-slate-50">
+        <section className="py-20 md:py-32 bg-paper">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div className="fade-in-up">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-100 text-blue-800 text-sm font-semibold mb-6">
+                <p className="mb-5 flex items-center gap-3 text-sm text-slate-500">
+                  <span className="block h-px w-8 bg-brass" />
                   Beeston, Norfolk
-                </div>
-                <h2 className="text-4xl md:text-5xl font-light text-slate-900 mb-8">
+                </p>
+                <h2 className="font-display text-4xl md:text-5xl text-ink leading-[1.1] mb-8">
                   British Manufacturing
-                  <span className="text-gradient-blue block mt-2">Built on Trust</span>
+                  <span className="block mt-2">Built on Trust</span>
                 </h2>
-                <div className="w-24 h-1 bg-gradient-to-r from-blue-700 to-amber-500 mb-8"></div>
+                <div className="w-28 h-[2px] bg-brass mb-8"></div>
                 <p className="text-lg text-slate-600 mb-6 leading-relaxed">
                   One of the most important aspects of JTH is that we don't follow other manufacturers,
                   but lead through innovation, creative designs and materials technology.
@@ -181,32 +187,33 @@ export default function AboutPage() {
                   In early 2025, we acquired the KPH Horseboxes designs and brand from Kevin Parker,
                   continuing his legacy of quality and innovation in the industry.
                 </p>
-                <p className="text-xl text-amber-600 font-semibold mb-8 italic">
-                  "Stunning comes as standard on every JTH horsebox"
-                </p>
+                <blockquote className="my-10 border-l-2 border-brass pl-6">
+                  <p className="font-display text-2xl text-ink leading-snug">
+                    Stunning comes as standard on every JTH horsebox.
+                  </p>
+                </blockquote>
                 <div className="flex flex-wrap gap-4">
                   <div className="flex items-center">
-                    <CheckCircle className="w-6 h-6 text-blue-700 mr-3" />
+                    <CheckCircle className="w-5 h-5 text-brass mr-3" strokeWidth={1.5} />
                     <span className="text-slate-700">Family-run business</span>
                   </div>
                   <div className="flex items-center">
-                    <CheckCircle className="w-6 h-6 text-blue-700 mr-3" />
+                    <CheckCircle className="w-5 h-5 text-brass mr-3" strokeWidth={1.5} />
                     <span className="text-slate-700">KPH Heritage</span>
                   </div>
                   <div className="flex items-center">
-                    <CheckCircle className="w-6 h-6 text-blue-700 mr-3" />
+                    <CheckCircle className="w-5 h-5 text-brass mr-3" strokeWidth={1.5} />
                     <span className="text-slate-700">Customer recommended</span>
                   </div>
                 </div>
               </div>
               <div className="relative group">
-                <div className="absolute -inset-4 bg-gradient-to-r from-blue-700 to-amber-500 opacity-20 blur-2xl group-hover:opacity-30 transition-opacity duration-500"></div>
                 <ClickableImage
                   src="/about-workshop.webp"
                   alt="JTH horsebox craftsmanship"
                   width={600}
                   height={400}
-                  className="shadow-2xl w-full h-auto"
+                  className="w-full h-auto shadow-md"
                 />
               </div>
             </div>
@@ -217,7 +224,7 @@ export default function AboutPage() {
         <section className="py-20 md:py-32 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-light text-slate-900 mb-6">
+              <h2 className="font-display text-4xl md:text-5xl text-ink leading-[1.1] mb-6">
                 The KPH Legacy
               </h2>
               <p className="text-xl text-slate-600 max-w-3xl mx-auto">
@@ -260,7 +267,7 @@ export default function AboutPage() {
         <section className="py-20 md:py-32 bg-slate-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-light text-white mb-6">
+              <h2 className="font-display text-4xl md:text-5xl text-white leading-[1.1] mb-6">
                 Our Values
               </h2>
               <p className="text-xl text-slate-300 max-w-3xl mx-auto">
@@ -271,8 +278,8 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {values.map((value, index) => (
                 <div key={index} className="card-dark p-8 text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <value.icon className="w-8 h-8 text-white" />
+                  <div className="flex justify-center mb-5">
+                    <value.icon className="w-7 h-7 text-brass" strokeWidth={1.25} />
                   </div>
                   <h3 className="text-xl font-semibold text-white mb-4">{value.title}</h3>
                   <p className="text-slate-400">{value.description}</p>
@@ -283,10 +290,10 @@ export default function AboutPage() {
         </section>
 
         {/* Team Section */}
-        <section className="py-20 md:py-32 bg-gradient-to-b from-white to-slate-50">
+        <section className="py-20 md:py-32 bg-paper">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-light text-slate-900 mb-6">
+              <h2 className="font-display text-4xl md:text-5xl text-ink leading-[1.1] mb-6">
                 Meet the Team
               </h2>
               <p className="text-xl text-slate-600 max-w-3xl mx-auto">
@@ -297,8 +304,8 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
               {team.map((member, index) => (
                 <div key={index} className="bg-white p-8 shadow-lg border border-slate-200 hover:shadow-xl transition-shadow">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mb-6">
-                    <member.icon className="w-8 h-8 text-white" />
+                  <div className="flex mb-5">
+                    <member.icon className="w-7 h-7 text-brass" strokeWidth={1.25} />
                   </div>
                   <h3 className="text-xl font-semibold text-slate-900 mb-1">{member.name}</h3>
                   <p className="text-blue-700 font-medium mb-4">{member.role}</p>
@@ -325,41 +332,41 @@ export default function AboutPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div>
-                <h2 className="text-4xl md:text-5xl font-light text-slate-900 mb-8">
+                <h2 className="font-display text-4xl md:text-5xl text-ink leading-[1.1] mb-8">
                   Why Choose
-                  <span className="text-gradient-blue block mt-2">J Taylor Horseboxes?</span>
+                  <span className="block mt-2">J Taylor Horseboxes?</span>
                 </h2>
                 <div className="space-y-6">
                   <div className="flex items-start">
-                    <CheckCircle className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-brass mt-1 mr-4 flex-shrink-0" strokeWidth={1.5} />
                     <div>
                       <h3 className="text-lg font-semibold text-slate-900 mb-2">Innovation Leaders</h3>
                       <p className="text-slate-600">We don't follow other manufacturers – we lead through innovation, creative designs and materials technology.</p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-brass mt-1 mr-4 flex-shrink-0" strokeWidth={1.5} />
                     <div>
                       <h3 className="text-lg font-semibold text-slate-900 mb-2">KPH Heritage</h3>
                       <p className="text-slate-600">Incorporating the proven designs and expertise of Kevin Parker Horseboxes, refined over many years.</p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-brass mt-1 mr-4 flex-shrink-0" strokeWidth={1.5} />
                     <div>
                       <h3 className="text-lg font-semibold text-slate-900 mb-2">Equestrian Expertise</h3>
                       <p className="text-slate-600">Our team includes active competitors and horse professionals who understand your needs.</p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-brass mt-1 mr-4 flex-shrink-0" strokeWidth={1.5} />
                     <div>
                       <h3 className="text-lg font-semibold text-slate-900 mb-2">Customer Recommended</h3>
                       <p className="text-slate-600">The majority of our new business comes from customer recommendations – the best endorsement possible.</p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-brass mt-1 mr-4 flex-shrink-0" strokeWidth={1.5} />
                     <div>
                       <h3 className="text-lg font-semibold text-slate-900 mb-2">British Built</h3>
                       <p className="text-slate-600">Every horsebox is built at our facility in Beeston, Norfolk by skilled British craftsmen.</p>
@@ -368,13 +375,12 @@ export default function AboutPage() {
                 </div>
               </div>
               <div className="relative group">
-                <div className="absolute -inset-4 bg-gradient-to-r from-blue-700 to-amber-500 opacity-20 blur-2xl group-hover:opacity-30 transition-opacity duration-500"></div>
                 <ClickableImage
                   src="/models/jth-progeny-45/01.webp"
                   alt="JTH Progeny horsebox"
                   width={600}
                   height={500}
-                  className="shadow-2xl w-full h-auto"
+                  className="w-full h-auto shadow-md"
                 />
               </div>
             </div>
@@ -382,9 +388,9 @@ export default function AboutPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 md:py-32 bg-gradient-to-r from-blue-700 to-blue-800">
+        <section className="py-20 md:py-32 bg-blue-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-4xl md:text-5xl font-light text-white mb-8">
+            <h2 className="font-display text-4xl md:text-5xl text-white leading-[1.1] mb-8">
               Visit Our Norfolk Workshop
             </h2>
             <p className="text-xl text-blue-100 mb-12 max-w-3xl mx-auto">
@@ -392,13 +398,11 @@ export default function AboutPage() {
               We'd love to show you around and discuss your horsebox requirements.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-6">
-              <Link href="/models" className="btn-premium bg-white text-blue-700 hover:bg-slate-50">
+              <Link href="/models" className="btn-on-dark">
                 View Our Models
-                <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
-              <Link href="/contact" className="btn-premium-outline border-white text-white">
+              <Link href="/contact" className="btn-on-dark-outline">
                 Get in Touch
-                <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, Check, Phone, MapPin, Truck } from 'lucide-react'
+import { Check, Phone, MapPin, Truck } from 'lucide-react'
 import type { Metadata } from 'next'
 import Schema, { generateProductSchema, generateBreadcrumbSchema } from '@/components/Schema'
 import { formatPrice } from '@/lib/configurator/calculations'
@@ -101,14 +101,14 @@ export default function IrelandPage() {
         <IrelandHero />
 
         {/* 3.5t Model Cards */}
-        <section id="models" className="py-20 bg-gradient-to-b from-white to-slate-50">
+        <section id="models" className="py-20 bg-paper">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-800 text-sm font-medium mb-6">
                 All driven on a standard car licence
               </div>
-              <h2 className="text-3xl md:text-5xl font-light text-slate-900 mb-6">
-                Our 3.5 Tonne <span className="text-blue-700">Range for Ireland</span>
+              <h2 className="font-display text-3xl md:text-5xl text-ink mb-6 leading-[1.1]">
+                Our 3.5 Tonne Range for Ireland
               </h2>
               <p className="text-xl text-slate-600 max-w-3xl mx-auto">
                 Two premium models available for delivery to Ireland. Built in Great Britain, delivered direct to your door.
@@ -119,7 +119,7 @@ export default function IrelandPage() {
               {models.map((model) => (
                 <div
                   key={model.slug}
-                  className="group bg-white overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                  className="group bg-white overflow-hidden border border-line shadow-sm hover:shadow-md transition-all duration-500"
                 >
                   <div className="relative h-64">
                     <Image
@@ -127,9 +127,9 @@ export default function IrelandPage() {
                       alt={`JTH ${model.name} horsebox for Ireland`}
                       fill
                       sizes="(min-width: 1024px) 33vw, 100vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(13,31,45,0.35),transparent_45%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="absolute top-4 right-4 z-10">
                       <span className="inline-flex items-center bg-blue-700 px-3 py-1 text-sm font-semibold text-white">
                         3.5T
@@ -142,7 +142,7 @@ export default function IrelandPage() {
                     </div>
                   </div>
 
-                  <div className="p-6 bg-gradient-to-b from-white to-slate-50">
+                  <div className="p-6 bg-paper">
                     <div className="flex justify-between items-start mb-4">
                       <div>
                         <h3 className="text-2xl font-semibold text-slate-900">{model.name}</h3>
@@ -154,14 +154,14 @@ export default function IrelandPage() {
                       </div>
                     </div>
 
-                    <div className="w-full h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent mb-4" />
+                    <div className="w-full h-px bg-line mb-4" />
 
                     <p className="text-slate-600 mb-6 text-sm">{model.description}</p>
 
                     <div className="space-y-3 mb-6">
                       {model.features.map((feature) => (
                         <div key={feature} className="flex items-center text-sm text-slate-600">
-                          <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0" />
+                          <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0" />
                           {feature}
                         </div>
                       ))}
@@ -173,11 +173,10 @@ export default function IrelandPage() {
                         className="group/btn flex-1 inline-flex items-center justify-center bg-blue-700 px-4 py-3 text-white font-semibold hover:bg-blue-800 transition-all duration-300"
                       >
                         View Details
-                        <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
                       </Link>
                       <Link
                         href="/contact"
-                        className="flex-1 inline-flex items-center justify-center border-2 border-blue-700 px-4 py-3 text-blue-700 font-semibold hover:bg-blue-50 transition-colors"
+                        className="flex-1 inline-flex items-center justify-center ring-1 ring-inset ring-blue-800/35 px-4 py-3 text-blue-700 font-semibold hover:bg-blue-50 transition-colors"
                       >
                         Get a Quote
                       </Link>
@@ -193,8 +192,8 @@ export default function IrelandPage() {
         <section id="gallery" className="py-20 bg-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-light text-slate-900 mb-6">
-                JTH <span className="text-blue-700">in Ireland</span>
+              <h2 className="font-display text-3xl md:text-5xl text-ink mb-6 leading-[1.1]">
+                JTH in Ireland
               </h2>
               <p className="text-xl text-slate-600 max-w-3xl mx-auto">
                 Real horseboxes delivered to Irish customers. From ferry crossing to first ride — see the quality for yourself.
@@ -229,11 +228,11 @@ export default function IrelandPage() {
         </section>
 
         {/* Your Representative in Ireland */}
-        <section className="py-20 bg-gradient-to-b from-slate-50 to-white">
+        <section className="py-20 bg-paper">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 md:p-12 text-center">
-              <h2 className="text-3xl md:text-4xl font-light text-white mb-6">
-                Your Representative in <span className="text-amber-400">Ireland</span>
+            <div className="bg-ink rounded-2xl p-8 md:p-12 text-center">
+              <h2 className="font-display text-3xl md:text-4xl text-white mb-6 leading-[1.1]">
+                Your Representative in Ireland
               </h2>
               <p className="text-lg text-slate-300 max-w-2xl mx-auto mb-4">
                 Paul Morton is your dedicated JTH representative in Ireland, based in Dublin.
@@ -252,10 +251,9 @@ export default function IrelandPage() {
                 </a>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold hover:bg-white hover:text-slate-900 transition-all rounded-lg"
+                  className="inline-flex items-center px-8 py-4 ring-1 ring-inset ring-white/45 text-white font-semibold hover:bg-white hover:text-slate-900 transition-all rounded-lg"
                 >
                   Contact Us
-                  <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
               </div>
             </div>
@@ -263,9 +261,9 @@ export default function IrelandPage() {
         </section>
 
         {/* Final CTA */}
-        <section className="bg-gradient-to-r from-blue-700 to-blue-800 py-16 relative overflow-hidden">
+        <section className="bg-blue-900 py-16 relative overflow-hidden">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <h2 className="text-3xl md:text-4xl font-light text-white mb-6">
+            <h2 className="font-display text-3xl md:text-4xl text-white mb-6 leading-[1.1]">
               Ready to Find Your Horsebox?
             </h2>
             <p className="text-lg text-blue-100 max-w-3xl mx-auto mb-10">
@@ -275,14 +273,13 @@ export default function IrelandPage() {
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center px-10 py-4 bg-white text-blue-700 font-semibold hover:bg-slate-50 transition-all rounded-lg"
+                className="btn-on-dark"
               >
                 Get a Quote
-                <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
               <a
                 href="tel:+353872557015"
-                className="inline-flex items-center px-10 py-4 border-2 border-white text-white font-semibold hover:bg-white hover:text-blue-700 transition-all rounded-lg"
+                className="btn-on-dark-outline"
               >
                 <Phone className="mr-2 w-5 h-5" />
                 Call +353 87 255 7015

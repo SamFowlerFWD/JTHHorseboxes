@@ -6,7 +6,7 @@ import Hero from '@/components/Hero'
 import LightboxGallery from '@/components/Lightbox'
 
 export const runtime = 'edge'
-import { ArrowRight, Check, Shield, Award, Star, Truck, ChevronRight, Phone, Mail, MapPin, Users, Clock } from 'lucide-react'
+import { Check, Shield, Award, Star, Truck, ChevronRight, Phone, Mail, MapPin, Users, Clock } from 'lucide-react'
 import type { Metadata } from 'next'
 
 // Import Schema component at the top
@@ -938,26 +938,34 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
         height="xl"
         overlay="gradient"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-semibold tracking-wider uppercase mb-8 animate-fadeIn">
-            <Star className="w-4 h-4" />
-            <span>{modelCategory} Model {isStallion && '- Stallion Specification'}</span>
-          </div>
-          <h1 className="text-5xl md:text-7xl font-light text-white mb-6 animate-slideUp">
-            {modelName}
-          </h1>
-          <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-12 font-light leading-relaxed animate-slideUp animation-delay-200">
-            {content.description}
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-6 animate-slideUp animation-delay-400">
-            <Link href="/contact" className="btn-premium">
-              Get a Quote
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
-            <Link href="#specifications" className="btn-premium-outline border-white text-white hover:text-slate-900">
-              View Specifications
-              <ChevronRight className="ml-2 w-5 h-5" />
-            </Link>
+        <div className="w-full self-end pb-16 md:pb-24">
+          <div className="max-w-2xl">
+            <h1 className="font-display text-5xl md:text-7xl text-white leading-[1.04] animate-slideUp">
+              {modelName}
+            </h1>
+            <p className="mt-6 text-lg md:text-xl text-white/90 leading-relaxed animate-slideUp animation-delay-200">
+              {content.description}
+            </p>
+            {/* A coachline: the fine painted stripe down the flank of a
+                coachbuilt body, doubled as it is on the vehicles themselves. */}
+            <div className="mt-10 flex flex-col gap-[4px] animate-slideUp animation-delay-200">
+              <span className="block h-[2px] w-32 bg-brass-light" />
+              <span className="block h-px w-20 bg-brass-light/60" />
+            </div>
+            <div className="mt-10 flex flex-wrap items-center gap-4 animate-slideUp animation-delay-400">
+              <Link
+                href="/contact"
+                className="btn-on-dark"
+              >
+                Get a Quote
+              </Link>
+              <Link
+                href="#specifications"
+                className="btn-on-dark-outline"
+              >
+                View Specifications
+              </Link>
+            </div>
           </div>
         </div>
       </Hero>
@@ -970,37 +978,36 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
               <div className="text-2xl font-bold text-white">
                 {basePrice === PRICE_ON_APPLICATION ? 'Contact for pricing' : `£${basePrice.toLocaleString()}`}
               </div>
-              <div className="text-sm text-slate-400 uppercase tracking-wider">Body Build · exc. VAT</div>
+              <div className="text-sm text-slate-400 tracking-wide">Body Build · exc. VAT</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-white">{content.specifications.weights['Gross Weight']}</div>
-              <div className="text-sm text-slate-400 uppercase tracking-wider">Gross Weight</div>
+              <div className="text-sm text-slate-400 tracking-wide">Gross Weight</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-white">{content.specifications.weights['Horse Capacity']}</div>
-              <div className="text-sm text-slate-400 uppercase tracking-wider">Capacity</div>
+              <div className="text-sm text-slate-400 tracking-wide">Capacity</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-white">{warrantyShort}</div>
-              <div className="text-sm text-slate-400 uppercase tracking-wider">Warranty</div>
+              <div className="text-sm text-slate-400 tracking-wide">Warranty</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Introduction Section */}
-      <section className="py-20 md:py-32 bg-gradient-to-b from-white to-slate-50">
+      <section className="py-20 md:py-32 bg-paper">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="fade-in-up">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-100 text-blue-700 text-sm font-semibold mb-6">
-                British Excellence
-              </div>
-              <h2 className="text-4xl md:text-5xl font-light text-slate-900 mb-8">
-                {is72t ? 'Ultimate Capacity & Luxury' : is45t ? 'Enhanced Space & Capability' : 'Perfect Balance & Performance'}
-                <span className="text-gradient-blue block mt-2">Built Without Compromise</span>
+              <h2 className="font-display text-4xl md:text-5xl text-slate-900 leading-tight mb-8">
+                {is72t ? 'Ultimate capacity and luxury, built without compromise' : is45t ? 'Enhanced space and capability, built without compromise' : 'Perfect balance and performance, built without compromise'}
               </h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-400 mb-8"></div>
+              <div className="mb-10 flex flex-col gap-[3px]">
+                <span className="block h-px w-28 bg-brass" />
+                <span className="block h-px w-16 bg-brass/50" />
+              </div>
               {content.longDescription.map((paragraph, index) => (
                 <p key={index} className="text-lg text-slate-600 mb-6 leading-relaxed">
                   {paragraph}
@@ -1016,7 +1023,6 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
               </div>
             </div>
             <div className="relative group">
-              <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-blue-400 opacity-20 blur-2xl group-hover:opacity-30 transition-opacity duration-500"></div>
               <div className="relative image-premium">
                 <Image
                   src={content.gallery[1] ? `/models/${params.slug}/${content.gallery[1]}` : content.heroImage}
@@ -1033,66 +1039,58 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
       </section>
 
       {/* Specifications Section */}
-      <section id="specifications" className="py-20 md:py-32 bg-slate-900">
+      {/* The build plate: the riveted panel a coachbuilder fixes inside the
+          body, carrying the numbers that actually govern what the vehicle
+          can do. One object with a brass edge, not three floating cards —
+          and three arbitrary glyphs removed, since "Dimensions" needs no
+          lorry icon to explain it. */}
+      <section id="specifications" className="py-20 md:py-32 bg-ink">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="inline-flex items-center px-4 py-1.5 text-xs font-semibold tracking-wider uppercase bg-blue-600 text-white mb-6">
-              Full Specifications
-            </span>
-            <h2 className="text-4xl md:text-5xl font-light text-white mb-6">
+          <div className="max-w-2xl">
+            <h2 className="font-display text-4xl md:text-5xl text-white leading-[1.1]">
               {modelName} Technical Details
             </h2>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+            <p className="mt-6 text-lg text-white/70 leading-relaxed">
               Every {modelName} is built to the highest standards with premium components throughout.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Dimensions Card */}
-            <div className="card-dark p-8">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mb-6">
-                <Truck className="w-6 h-6 text-white" />
+          <div className="mt-14 border border-brass/35">
+            <div className="grid md:grid-cols-3">
+              <div className="p-8 border-b border-brass/20 md:border-b-0 md:border-r">
+                <h3 className="text-sm font-medium tracking-wide text-brass-light">Dimensions</h3>
+                <dl className="mt-6">
+                  {Object.entries(content.specifications.dimensions).map(([key, value]) => (
+                    <div key={key} className="flex items-baseline justify-between gap-6 border-t border-white/10 py-3 first:border-t-0 first:pt-0">
+                      <dt className="text-white/60">{key}</dt>
+                      <dd className="text-right tabular-nums text-white">{value}</dd>
+                    </div>
+                  ))}
+                </dl>
               </div>
-              <h3 className="text-2xl font-light text-white mb-6">Dimensions</h3>
-              <div className="space-y-4">
-                {Object.entries(content.specifications.dimensions).map(([key, value]) => (
-                  <div key={key} className="flex justify-between py-3 border-b border-slate-800">
-                    <span className="text-slate-400">{key}</span>
-                    <span className="text-white font-semibold">{value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
 
-            {/* Weights & Capacity Card */}
-            <div className="card-dark p-8">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mb-6">
-                <Shield className="w-6 h-6 text-white" />
+              <div className="p-8 border-b border-brass/20 md:border-b-0 md:border-r">
+                <h3 className="text-sm font-medium tracking-wide text-brass-light">Weights &amp; Capacity</h3>
+                <dl className="mt-6">
+                  {Object.entries(content.specifications.weights).map(([key, value]) => (
+                    <div key={key} className="flex items-baseline justify-between gap-6 border-t border-white/10 py-3 first:border-t-0 first:pt-0">
+                      <dt className="text-white/60">{key}</dt>
+                      <dd className="text-right tabular-nums text-white">{value}</dd>
+                    </div>
+                  ))}
+                </dl>
               </div>
-              <h3 className="text-2xl font-light text-white mb-6">Weights & Capacity</h3>
-              <div className="space-y-4">
-                {Object.entries(content.specifications.weights).map(([key, value]) => (
-                  <div key={key} className="flex justify-between py-3 border-b border-slate-800">
-                    <span className="text-slate-400">{key}</span>
-                    <span className="text-white font-semibold">{value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
 
-            {/* Safety Features Card */}
-            <div className="card-dark p-8">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mb-6">
-                <Award className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-2xl font-light text-white mb-6">Safety Features</h3>
-              <div className="space-y-4">
-                {content.specifications.safety.map((feature, index) => (
-                  <div key={index} className="flex items-center py-3 border-b border-slate-800">
-                    <Check className="w-5 h-5 text-blue-400 mr-3" />
-                    <span className="text-white">{feature}</span>
-                  </div>
-                ))}
+              <div className="p-8">
+                <h3 className="text-sm font-medium tracking-wide text-brass-light">Safety Features</h3>
+                <ul className="mt-6">
+                  {content.specifications.safety.map((feature, index) => (
+                    <li key={index} className="flex items-start gap-3 border-t border-white/10 py-3 first:border-t-0 first:pt-0">
+                      <Check className="mt-1 w-4 h-4 shrink-0 text-brass-light" strokeWidth={1.5} />
+                      <span className="text-white">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
@@ -1100,10 +1098,10 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
       </section>
 
       {/* Features Grid */}
-      <section className="py-20 md:py-32 bg-gradient-to-b from-white to-slate-50">
+      <section className="py-20 md:py-32 bg-paper">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-light text-slate-900 mb-6">
+            <h2 className="font-display text-4xl md:text-5xl text-ink mb-6 leading-[1.1]">
               Key Features & Options
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
@@ -1126,7 +1124,7 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
       <section className="py-20 md:py-32 bg-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-light text-slate-900 mb-6">
+            <h2 className="font-display text-4xl md:text-5xl text-ink mb-6 leading-[1.1]">
               Gallery
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
@@ -1145,14 +1143,14 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
 
       {/* Testimonial Section */}
       {content.testimonial && (
-        <section className="py-20 md:py-32 bg-gradient-to-br from-slate-900 to-slate-800">
+        <section className="py-20 md:py-32 bg-ink">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="flex justify-center mb-8">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-6 h-6 text-yellow-400 fill-current" />
               ))}
             </div>
-            <blockquote className="text-2xl md:text-3xl font-light text-white mb-8 italic">
+            <blockquote className="font-display text-2xl md:text-3xl text-white mb-8 italic leading-[1.1]">
               "{content.testimonial.quote}"
             </blockquote>
             <div>
@@ -1167,8 +1165,8 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
       <section className="py-20 md:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-light text-slate-900 mb-6">
-              Everything You Need to Know About the <span className="text-blue-600">{modelName}</span>
+            <h2 className="font-display text-3xl md:text-4xl text-ink mb-6 leading-[1.1]">
+              Everything You Need to Know About the {modelName}
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Common questions about specifications, pricing, and customization options
@@ -1244,7 +1242,7 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
           </div>
 
           {/* Additional buying guide content */}
-          <div className="bg-gradient-to-br from-blue-50 to-white p-8 md:p-12">
+          <div className="bg-paper p-8 md:p-12">
             <h3 className="text-2xl font-semibold text-slate-900 mb-6 text-center">
               Why Choose JTH for Your {modelCategory} Horsebox?
             </h3>
@@ -1278,20 +1276,19 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 md:py-32 bg-gradient-to-r from-blue-600 to-blue-700">
+      <section className="py-20 md:py-32 bg-blue-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-light text-white mb-8">
+          <h2 className="font-display text-4xl md:text-5xl text-white mb-8 leading-[1.1]">
             Ready to Experience the {modelName}?
           </h2>
           <p className="text-xl text-blue-100 mb-12 max-w-3xl mx-auto">
             Contact our team for a personalised quote and consultation
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6">
-            <Link href="/contact" className="btn-premium bg-white text-blue-600 hover:bg-slate-50">
+            <Link href="/contact" className="btn-on-dark">
               Get a Quote
-              <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
-            <a href="tel:01603552109" className="btn-premium-outline border-white text-white">
+            <a href="tel:01603552109" className="btn-on-dark-outline">
               <Phone className="mr-2 w-5 h-5" />
               Call 01603 552109
             </a>

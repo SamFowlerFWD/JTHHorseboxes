@@ -2,11 +2,11 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Hero from '@/components/Hero'
 import { loadPricingConfig } from '@/lib/pricing'
-import { ArrowRight, Check, Phone, Mail, MapPin, Users, Star } from 'lucide-react'
+import { Check, Phone, Mail, MapPin, Users } from 'lucide-react'
 import TrustIndicators from '@/components/TrustIndicators'
 import type { Metadata } from 'next'
 import Schema, { generateProductSchema, generateBreadcrumbSchema } from '@/components/Schema'
-import { weightBadge } from '@/lib/models'
+import { weightBadge, modelCardImage } from '@/lib/models'
 
 export const metadata: Metadata = {
   title: 'Horsebox Models - 3.5t, 4.5t, 7.2t & 7.5t Range | JTH Horseboxes Norfolk',
@@ -54,16 +54,21 @@ export default async function ModelsPage() {
         height="md"
         overlay="gradient"
       >
-        <div className="w-full text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/30 text-white text-sm font-medium mb-6">
-            <Star className="w-4 h-4" />
-            <span>Premium British Horseboxes</span>
+        <div className="w-full self-end pb-16 md:pb-24">
+          <div className="max-w-3xl">
+            <h1 className="font-display text-4xl md:text-6xl text-white leading-[1.06]">
+              3.5t, 4.5t, 7.2t &amp; 7.5t Horsebox Models
+            </h1>
+            <p className="mt-6 text-lg md:text-xl text-white/90 leading-relaxed">
+              Compare our complete range of British-built horseboxes. From the JTH Principle 35
+              at £19,500 + VAT to the Helios 75.
+            </p>
+            {/* Coachline: the painted stripe down the flank of a coachbuilt body. */}
+            <div className="mt-10 flex flex-col gap-[4px]">
+              <span className="block h-[2px] w-32 bg-brass-light" />
+              <span className="block h-px w-20 bg-brass-light/60" />
+            </div>
           </div>
-          <h1 className="text-5xl md:text-6xl font-light text-white mb-6">3.5t, 4.5t, 7.2t & 7.5t Horsebox Models</h1>
-          <p className="text-xl text-slate-200 max-w-3xl mx-auto">
-            Compare our complete range of British-built horseboxes. From the affordable JTH Principle 35 at £19,500 + VAT 
-            to the luxury Helios 75, find your perfect horsebox for any budget and requirement.
-          </p>
         </div>
       </Hero>
 
@@ -71,16 +76,22 @@ export default async function ModelsPage() {
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="grid gap-8 md:grid-cols-3">
           {active.map((model) => (
-            <div key={model.id} className="group bg-white overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-              <div className="relative h-64">
-                <Image 
-                  src={`/models/${model.slug}/01.webp`} 
-                  alt={model.name} 
-                  fill 
-                  sizes="(min-width: 1024px) 33vw, 100vw" 
-                  className="object-cover transition-transform duration-700 group-hover:scale-110" 
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div key={model.id} className="group bg-white overflow-hidden border border-line shadow-sm hover:shadow-md transition-all duration-500">
+              <div className="relative h-64 bg-paper">
+                {modelCardImage(model.slug) ? (
+                  <Image
+                    src={modelCardImage(model.slug) as string}
+                    alt={model.name}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, 100vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                  />
+                ) : (
+                  <div className="flex h-full items-center justify-center border-b border-line">
+                    <span className="text-sm text-slate-500">Photography in preparation</span>
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(13,31,45,0.35),transparent_45%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="absolute top-4 right-4 z-10">
                   <span className="inline-flex items-center bg-blue-700 px-3 py-1 text-sm font-semibold text-white">
                     {weightBadge(model.slug)}
@@ -88,28 +99,33 @@ export default async function ModelsPage() {
                 </div>
                 {model.slug === 'principle-35' && (
                   <div className="absolute top-4 left-4 z-10">
-                    <span className="inline-flex items-center bg-white/90 backdrop-blur-sm px-3 py-1 text-sm font-semibold text-blue-700">
-                      MOST POPULAR
+                    <span className="inline-flex items-center bg-ink px-3 py-1 text-sm font-medium text-white">
+                      Most popular
                     </span>
                   </div>
                 )}
               </div>
               
-              <div className="p-6 bg-gradient-to-b from-white to-slate-50">
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <h2 className="text-2xl font-semibold text-slate-900">{model.name}</h2>
-                    <p className="text-sm text-blue-700 font-medium">Starting from</p>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-2xl font-bold text-slate-900">
-                      {model.basePricePence ? `£${(model.basePricePence/100).toLocaleString()}` : 'Contact for pricing'}
+              <div className="p-6 bg-paper">
+                <div className="flex items-baseline justify-between gap-4 mb-4">
+                  <h2 className="font-display text-2xl text-ink leading-tight">{model.name}</h2>
+                  {/* Without a price the slot held "Contact for pricing" at
+                      heading size, which collided with the model name. A
+                      bespoke build has a price on application; say so quietly. */}
+                  {model.basePricePence ? (
+                    <span className="shrink-0 text-right text-2xl font-normal tabular-nums text-ink">
+                      <span className="mr-1 text-sm text-slate-500">From</span>
+                      £{(model.basePricePence/100).toLocaleString()}
                     </span>
-                    <p className="text-xs text-slate-500">{model.basePricePence ? 'body build only · exc. VAT' : ''}</p>
-                  </div>
+                  ) : (
+                    <span className="shrink-0 text-right text-sm text-slate-500">Price on application</span>
+                  )}
                 </div>
+                {model.basePricePence ? (
+                  <p className="-mt-3 mb-4 text-right text-xs text-slate-500">body build only · exc. VAT</p>
+                ) : null}
                 
-                <div className="w-full h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent mb-4"></div>
+                <div className="w-full h-px bg-line mb-4"></div>
                 
                 <p className="text-slate-600 mb-6">
                   {model.slug === 'professional-35' && 'The ultimate in luxury and performance for the professional rider.'}
@@ -127,15 +143,15 @@ export default async function ModelsPage() {
                   {model.slug === 'professional-35' && (
                     <>
                       <div className="flex items-center text-sm text-slate-600">
-                        <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0" />
+                        <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0" />
                         Premium finish and materials
                       </div>
                       <div className="flex items-center text-sm text-slate-600">
-                        <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0" />
+                        <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0" />
                         Advanced features included
                       </div>
                       <div className="flex items-center text-sm text-slate-600">
-                        <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0" />
+                        <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0" />
                         Professional specification
                       </div>
                     </>
@@ -143,15 +159,15 @@ export default async function ModelsPage() {
                   {model.slug === 'principle-35' && (
                     <>
                       <div className="flex items-center text-sm text-slate-600">
-                        <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0" />
+                        <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0" />
                         Quality construction
                       </div>
                       <div className="flex items-center text-sm text-slate-600">
-                        <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0" />
+                        <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0" />
                         Essential features included
                       </div>
                       <div className="flex items-center text-sm text-slate-600">
-                        <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0" />
+                        <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0" />
                         Great value proposition
                       </div>
                     </>
@@ -159,15 +175,15 @@ export default async function ModelsPage() {
                   {model.slug === 'progeny-35' && (
                     <>
                       <div className="flex items-center text-sm text-slate-600">
-                        <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0" />
+                        <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0" />
                         Crew cab — up to 7 seats
                       </div>
                       <div className="flex items-center text-sm text-slate-600">
-                        <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0" />
+                        <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0" />
                         3 front + 4 rear crew cab seats
                       </div>
                       <div className="flex items-center text-sm text-slate-600">
-                        <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0" />
+                        <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0" />
                         Premium materials throughout
                       </div>
                     </>
@@ -180,11 +196,10 @@ export default async function ModelsPage() {
                     className="group/btn flex-1 inline-flex items-center justify-center bg-blue-700 px-4 py-3 text-white font-semibold hover:bg-blue-800 transition-all duration-300"
                   >
                     View Details
-                    <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
                   </Link>
                   <Link
                     href="/contact"
-                    className="flex-1 inline-flex items-center justify-center border-2 border-blue-700 px-4 py-3 text-blue-700 font-semibold hover:bg-blue-50 transition-colors"
+                    className="flex-1 inline-flex items-center justify-center ring-1 ring-inset ring-blue-800/35 px-4 py-3 text-blue-700 font-semibold hover:bg-blue-50 transition-colors"
                   >
                     Get a Quote
                   </Link>
@@ -201,8 +216,8 @@ export default async function ModelsPage() {
       {/* Comprehensive Model Comparison Section */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-light text-slate-900 mb-6">
-            Complete Guide to Choosing Your <span className="text-blue-700">3.5t, 4.5t or 7.2t Horsebox</span>
+          <h2 className="font-display text-3xl md:text-4xl text-ink mb-6 leading-[1.1]">
+            Complete Guide to Choosing Your 3.5t, 4.5t or 7.2t Horsebox
           </h2>
           <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
             As specialists in horsebox manufacturing, we understand that choosing the right model is crucial.
@@ -224,15 +239,15 @@ export default async function ModelsPage() {
               </p>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start">
-                  <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0 mt-0.5" />
                   <span><strong>JTH Principle 35:</strong> £19,500 - Best value, quality construction</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0 mt-0.5" />
                   <span><strong>JTH Professional 35:</strong> £22,950 - Premium features, professional specification</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0 mt-0.5" />
                   <span><strong>Aeos QV ST 35:</strong> £24,500 - Stallion partition, enhanced versatility</span>
                 </li>
               </ul>
@@ -246,19 +261,19 @@ export default async function ModelsPage() {
               </p>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start">
-                  <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0 mt-0.5" />
                   <span><strong>Aeos QV 45:</strong> £28,950 - Quality 4.5t model with essential features</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0 mt-0.5" />
                   <span><strong>Aeos Edge 45:</strong> £31,500 - Professional competition specification</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0 mt-0.5" />
                   <span><strong>Aeos Freedom 45:</strong> £36,500 - Weekender model with family-friendly design</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0 mt-0.5" />
                   <span><strong>Aeos Discovery 45:</strong> £46,100 - Luxury apartment-style living</span>
                 </li>
               </ul>
@@ -272,19 +287,19 @@ export default async function ModelsPage() {
               </p>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start">
-                  <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0 mt-0.5" />
                   <span><strong>Aeos Discovery 72:</strong> £74,600 - Ultimate 7.2t luxury</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0 mt-0.5" />
                   <span><strong>Helios 75:</strong> £82,500 - Flagship 7.5t model</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0 mt-0.5" />
                   <span>Apartment-quality living quarters</span>
                 </li>
                 <li className="flex items-start">
-                  <Check className="w-4 h-4 text-blue-700 mr-2 flex-shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0 mt-0.5" />
                   <span>Fully customizable to your specification</span>
                 </li>
               </ul>
@@ -434,51 +449,37 @@ export default async function ModelsPage() {
       </section>
 
       {/* Additional Info Section */}
-      <section className="bg-gradient-to-br from-slate-50 to-white py-16 md:py-24">
+      <section className="bg-paper py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-light text-slate-900 mb-6">
-              Why Choose <span className="text-blue-700">JTH Horseboxes?</span>
+          <div className="max-w-2xl">
+            <h2 className="font-display text-3xl md:text-5xl text-ink leading-[1.1]">
+              Why Choose JTH Horseboxes?
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <p className="mt-6 text-lg text-slate-600 leading-relaxed">
               Every JTH horsebox is built with precision, innovation, and the highest quality materials.
             </p>
           </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-2">British Innovation</h3>
-              <p className="text-slate-600">
+
+          {/* Three claims of equal weight. A rule over each says that
+              without three decorative glyphs saying it instead. */}
+          <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-12">
+            <div className="border-t border-ink/15 pt-6">
+              <h3 className="text-lg font-medium text-ink">British Innovation</h3>
+              <p className="mt-3 text-slate-600 leading-relaxed">
                 Leading the industry with creative designs and advanced materials technology.
               </p>
             </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-2">Premium Quality</h3>
-              <p className="text-slate-600">
+
+            <div className="border-t border-ink/15 pt-6">
+              <h3 className="text-lg font-medium text-ink">Premium Quality</h3>
+              <p className="mt-3 text-slate-600 leading-relaxed">
                 Stunning finish and premium materials fitted as standard on every horsebox.
               </p>
             </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-2">Made in Britain</h3>
-              <p className="text-slate-600">
+
+            <div className="border-t border-ink/15 pt-6">
+              <h3 className="text-lg font-medium text-ink">Made in Britain</h3>
+              <p className="mt-3 text-slate-600 leading-relaxed">
                 Built in Great Britain with decades of expertise and craftsmanship.
               </p>
             </div>
@@ -487,21 +488,20 @@ export default async function ModelsPage() {
       </section>
 
       {/* CTA Section with Contact Info */}
-      <section className="bg-gradient-to-r from-blue-700 to-blue-800 py-16 md:py-24">
+      <section className="bg-blue-900 py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-light text-white mb-6">
+            <h2 className="font-display text-3xl md:text-4xl text-white mb-6 leading-[1.1]">
               Ready to Find Your Perfect Horsebox?
             </h2>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
               Find your ideal 3.5t, 4.5t or 7.2t horsebox. Contact us for a quote or visit our Norfolk workshop to see our horseboxes being built.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link href="/contact" className="inline-flex items-center px-8 py-4 bg-white text-blue-700 font-semibold hover:bg-slate-50 transition-all">
+              <Link href="/contact" className="btn-on-dark">
                 Get a Quote
-                <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
-              <a href="tel:01603552109" className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold hover:bg-white hover:text-blue-700 transition-all">
+              <a href="tel:01603552109" className="btn-on-dark-outline">
                 <Phone className="mr-2 w-5 h-5" />
                 Call 01603 552109
               </a>

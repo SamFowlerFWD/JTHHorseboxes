@@ -38,7 +38,7 @@
   
   /* Shadcn/ui required CSS variables for light mode */
   --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
+  --foreground: 220 12% 10%;
   
   --card: 0 0% 100%;
   --card-foreground: 222.2 84% 4.9%;
@@ -46,7 +46,7 @@
   --popover: 0 0% 100%;
   --popover-foreground: 222.2 84% 4.9%;
   
-  --primary: 221.2 83.2% 53.3%;
+  --primary: 209 54% 23%;
   --primary-foreground: 210 40% 98%;
   
   --secondary: 210 40% 96.1%;
@@ -63,9 +63,9 @@
   
   --border: 214.3 31.8% 91.4%;
   --input: 214.3 31.8% 91.4%;
-  --ring: 221.2 83.2% 53.3%;
+  --ring: 209 54% 23%;
   
-  --radius: 0.5rem;
+  --radius: 2px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -117,16 +117,24 @@ body {
   font-feature-settings: "kern" 1, "liga" 1;
 }
 
-/* Premium typography */
+/* Typography.
+   These two rules sat after @tailwind utilities and hardcoded Playfair
+   Display, so they beat Tailwind's own font-display utility: every heading
+   set in the display face was still rendering in Playfair, the stock
+   "premium serif", whatever the font variable said.
+
+   Headings now default to the UI face. The display face is opt-in via
+   font-display, so the big moments carry it and a card title does not. */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Playfair Display', 'Georgia', serif;
-  font-weight: 300;
-  letter-spacing: -0.02em;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  letter-spacing: -0.01em;
   line-height: 1.2;
 }
 
 .font-display {
-  font-family: 'Playfair Display', 'Georgia', serif;
+  font-family: var(--font-display), 'Georgia', serif;
+  font-weight: 400;
+  letter-spacing: -0.015em;
 }
 
 .font-sans {
@@ -172,103 +180,65 @@ html {
   border-radius: 0.25rem;
 }
 
-/* Premium button styles */
-.btn-premium {
-  @apply relative inline-flex items-center justify-center px-8 py-4 font-medium text-white bg-gradient-to-r from-blue-600 to-blue-700 overflow-hidden transition-all duration-300 hover:shadow-2xl;
-  letter-spacing: 0.025em;
-}
+/* Buttons.
+   Wrapped in @layer components so a utility written on the element
+   (bg-white on a dark band, say) still wins — before this, .btn-premium
+   sat after @tailwind utilities and silently overrode them. */
+@layer components {
+  .btn-premium {
+    @apply relative inline-flex items-center justify-center px-9 py-4 font-medium text-white bg-blue-800 ring-1 ring-inset ring-brass/40 transition-colors duration-300 hover:bg-blue-700;
+    letter-spacing: 0.02em;
+  }
 
-.btn-premium::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
-}
+  .btn-premium-outline {
+    @apply relative inline-flex items-center justify-center px-9 py-4 font-medium bg-transparent text-blue-800 ring-1 ring-inset ring-blue-800/35 transition-colors duration-300 hover:bg-blue-800 hover:text-white;
+    letter-spacing: 0.02em;
+  }
 
-.btn-premium:hover::before {
-  left: 100%;
-}
+  /* Buttons that sit on a dark band or over photography. The ink-ringed
+     outline style is invisible there, so these ring in white. */
+  .btn-on-dark {
+    @apply relative inline-flex w-full sm:w-auto items-center justify-center px-9 py-4 font-medium bg-white text-blue-900 transition-colors duration-300 hover:bg-brass hover:text-white;
+    letter-spacing: 0.02em;
+  }
 
-.btn-premium-outline {
-  @apply relative inline-flex items-center justify-center px-8 py-4 font-medium bg-transparent border-2 border-blue-600 text-blue-600 overflow-hidden transition-all duration-300;
-  letter-spacing: 0.025em;
-}
+  .btn-on-dark-outline {
+    @apply relative inline-flex w-full sm:w-auto items-center justify-center px-9 py-4 font-medium text-white ring-1 ring-inset ring-white/45 transition-colors duration-300 hover:bg-white/10;
+    letter-spacing: 0.02em;
+  }
 
-.btn-premium-outline::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: var(--jth-blue-600);
-  transition: left 0.3s;
-  z-index: -1;
-}
+  .btn-dark {
+    @apply relative inline-flex items-center justify-center px-9 py-4 font-medium text-white bg-ink transition-colors duration-300 hover:bg-blue-800;
+    letter-spacing: 0.02em;
+  }
 
-.btn-premium-outline:hover {
-  color: white;
-  border-color: var(--jth-blue-700);
-}
+  /* Cards sit still. A hand-built vehicle does not bounce when you
+     point at it: the shadow deepens a little and that is all. */
+  .card-premium {
+    @apply relative bg-white overflow-hidden border border-line transition-shadow duration-300;
+    box-shadow: 0 1px 2px rgba(13, 31, 45, 0.05);
+  }
 
-.btn-premium-outline:hover::before {
-  left: 0;
-}
+  .card-premium:hover {
+    box-shadow: 0 6px 20px rgba(13, 31, 45, 0.1);
+  }
 
-.btn-dark {
-  @apply relative inline-flex items-center justify-center px-8 py-4 font-medium text-white bg-slate-900 overflow-hidden transition-all duration-300 hover:bg-slate-800;
-  letter-spacing: 0.025em;
-}
+  .card-dark {
+    @apply relative bg-blue-900 text-white overflow-hidden transition-shadow duration-300;
+    border: 1px solid rgba(156, 124, 56, 0.25);
+  }
 
-/* Premium card effects */
-.card-premium {
-  @apply relative bg-white overflow-hidden transition-all duration-500;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
+  .card-dark:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  }
 
-.card-premium::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, var(--jth-blue-600), var(--jth-blue-400), var(--jth-blue-600));
-  opacity: 0;
-  transition: opacity 0.3s;
-  z-index: -1;
-}
-
-.card-premium:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-}
-
-.card-premium:hover::before {
-  opacity: 0.1;
-}
-
-.card-dark {
-  @apply relative bg-slate-800 text-white overflow-hidden transition-all duration-500;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(148, 163, 184, 0.1);
-}
-
-.card-dark:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-}
-
-/* Premium text effects */
-.text-gradient-blue {
-  background: linear-gradient(135deg, var(--jth-blue-500) 0%, var(--jth-blue-700) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  /* Kept as a class name so the markup need not change everywhere, but
+     gradient-filled type is a generated-page tell. Now solid ink. */
+  .text-gradient-blue {
+    color: #142C44;
+    -webkit-text-fill-color: currentColor;
+    background: none;
+  }
 }
 
 .text-gradient-gold {

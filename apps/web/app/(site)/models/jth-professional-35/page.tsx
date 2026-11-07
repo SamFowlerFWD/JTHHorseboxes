@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import Hero from '@/components/Hero'
-import { ArrowRight, Check, Shield, Award, Star, Truck, Users, Clock, ChevronRight, Phone, Mail, MapPin } from 'lucide-react'
+import { Check, Shield, Award, Truck, Users, Clock, Phone, Mail, MapPin } from 'lucide-react'
 import type { Metadata } from 'next'
 import Schema, { organizationSchema, generateProductSchema, generateBreadcrumbSchema, generateFAQSchema } from '@/components/Schema'
 
@@ -98,27 +98,27 @@ export default function Professional35Page() {
         height="xl"
         overlay="gradient"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-semibold tracking-wider uppercase mb-8 animate-fadeIn">
-            <Star className="w-4 h-4" />
-            <span>Premium 3.5 Tonne Model</span>
-          </div>
-          <h1 className="text-5xl md:text-7xl font-light text-white mb-6 animate-slideUp">
+        <div className="w-full self-end pb-16 md:pb-24">
+          <div className="max-w-2xl">
+            <h1 className="font-display text-5xl md:text-7xl text-white leading-[1.04] animate-slideUp">
             Professional 35
           </h1>
-          <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-12 font-light leading-relaxed animate-slideUp animation-delay-200">
+          <p className="mt-6 text-lg md:text-xl text-white/90 leading-relaxed animate-slideUp animation-delay-200">
             The ultimate luxury 3.5 tonne horsebox for professional riders, serious competitors, and discerning owners. 
             Where British innovation meets uncompromising quality. Built in Norfolk, delivered nationwide.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-6 animate-slideUp animation-delay-400">
-            <Link href="/contact" className="btn-premium">
+          <div className="mt-10 flex flex-col gap-[4px] animate-slideUp animation-delay-200">
+                <span className="block h-[2px] w-32 bg-brass-light" />
+                <span className="block h-px w-20 bg-brass-light/60" />
+              </div>
+              <div className="mt-10 flex flex-wrap items-center gap-4 animate-slideUp animation-delay-400">
+            <Link href="/contact" className="btn-on-dark">
               Get a Quote
-              <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
-            <Link href="#specifications" className="btn-premium-outline border-white text-white hover:text-slate-900">
+            <Link href="#specifications" className="btn-on-dark-outline">
               View Specifications
-              <ChevronRight className="ml-2 w-5 h-5" />
             </Link>
+            </div>
           </div>
         </div>
       </Hero>
@@ -129,37 +129,37 @@ export default function Professional35Page() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="text-2xl font-bold text-white">£22,950</div>
-              <div className="text-sm text-slate-400 uppercase tracking-wider">Starting Price</div>
+              <div className="text-sm text-slate-400 tracking-wide">Starting Price</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-white">3,500kg</div>
-              <div className="text-sm text-slate-400 uppercase tracking-wider">Gross Weight</div>
+              <div className="text-sm text-slate-400 tracking-wide">Gross Weight</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-white">2 Horse</div>
-              <div className="text-sm text-slate-400 uppercase tracking-wider">Capacity</div>
+              <div className="text-sm text-slate-400 tracking-wide">Capacity</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-white">2 Year</div>
-              <div className="text-sm text-slate-400 uppercase tracking-wider">Warranty</div>
+              <div className="text-sm text-slate-400 tracking-wide">Warranty</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Premium Introduction Section */}
-      <section className="py-20 md:py-32 bg-gradient-to-b from-white to-slate-50">
+      <section className="py-20 md:py-32 bg-paper">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="fade-in-up">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-100 text-blue-700 text-sm font-semibold mb-6">
                 British Excellence
               </div>
-              <h2 className="text-4xl md:text-5xl font-light text-slate-900 mb-8">
+              <h2 className="font-display text-4xl md:text-5xl text-ink mb-8 leading-[1.1]">
                 Why Professional Riders Choose the 
-                <span className="text-gradient-blue block mt-2">Professional 35 3.5t Horsebox</span>
+                <span className="block mt-2">Professional 35 3.5t Horsebox</span>
               </h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-400 mb-8"></div>
+              <div className="w-24 h-1 bg-blue-800 mb-8"></div>
               <p className="text-lg text-slate-600 mb-8 leading-relaxed">
                 The JTH Professional 35 represents the pinnacle of 3.5 tonne horsebox design in the UK market. 
                 Every detail has been meticulously crafted to provide the ultimate in safety, 
@@ -191,7 +191,6 @@ export default function Professional35Page() {
               </div>
             </div>
             <div className="relative group">
-              <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-blue-400 opacity-20 blur-2xl group-hover:opacity-30 transition-opacity duration-500"></div>
               <div className="relative image-premium">
                 <Image 
                   src="/models/professional-35/02.webp" 
@@ -213,7 +212,7 @@ export default function Professional35Page() {
             <div className="badge-gold mx-auto mb-6">
               Full Specifications
             </div>
-            <h2 className="text-4xl md:text-5xl font-light text-white mb-6">
+            <h2 className="font-display text-4xl md:text-5xl text-white mb-6 leading-[1.1]">
               Professional 35 Technical Details
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
@@ -225,8 +224,8 @@ export default function Professional35Page() {
           <div className="grid md:grid-cols-3 gap-8">
             {/* Dimensions Card */}
             <div className="card-dark p-8">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mb-6">
-                <Truck className="w-6 h-6 text-white" />
+              <div className="flex mb-5">
+                <Truck className="w-7 h-7 text-brass" strokeWidth={1.25} />
               </div>
               <h3 className="text-2xl font-light text-white mb-6">Dimensions</h3>
               <div className="space-y-4">
@@ -255,8 +254,8 @@ export default function Professional35Page() {
 
             {/* Weights & Capacity Card */}
             <div className="card-dark p-8">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mb-6">
-                <Shield className="w-6 h-6 text-white" />
+              <div className="flex mb-5">
+                <Shield className="w-7 h-7 text-brass" strokeWidth={1.25} />
               </div>
               <h3 className="text-2xl font-light text-white mb-6">Weights & Capacity</h3>
               <div className="space-y-4">
@@ -281,8 +280,8 @@ export default function Professional35Page() {
 
             {/* Safety Features Card */}
             <div className="card-dark p-8">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mb-6">
-                <Award className="w-6 h-6 text-white" />
+              <div className="flex mb-5">
+                <Award className="w-7 h-7 text-brass" strokeWidth={1.25} />
               </div>
               <h3 className="text-2xl font-light text-white mb-6">Safety Features</h3>
               <div className="space-y-4">
@@ -313,10 +312,10 @@ export default function Professional35Page() {
       </section>
 
       {/* Premium Features Grid */}
-      <section className="py-20 md:py-32 bg-gradient-to-b from-white to-slate-50">
+      <section className="py-20 md:py-32 bg-paper">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-light text-slate-900 mb-6">
+            <h2 className="font-display text-4xl md:text-5xl text-ink mb-6 leading-[1.1]">
               Premium Features & Options
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
@@ -414,7 +413,7 @@ export default function Professional35Page() {
       <section className="py-20 md:py-32 bg-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-light text-slate-900 mb-6">
+            <h2 className="font-display text-4xl md:text-5xl text-ink mb-6 leading-[1.1]">
               Gallery
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
@@ -442,7 +441,7 @@ export default function Professional35Page() {
       <section className="py-20 md:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-light text-slate-900 mb-6">
+            <h2 className="font-display text-4xl md:text-5xl text-ink mb-6 leading-[1.1]">
               Why Choose the Professional 35?
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
@@ -498,20 +497,19 @@ export default function Professional35Page() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 md:py-32 bg-gradient-to-r from-blue-600 to-blue-700">
+      <section className="py-20 md:py-32 bg-blue-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-light text-white mb-8">
+          <h2 className="font-display text-4xl md:text-5xl text-white mb-8 leading-[1.1]">
             Ready to Experience the Professional 35?
           </h2>
           <p className="text-xl text-blue-100 mb-12 max-w-3xl mx-auto">
             Contact our team for a personalised quote and consultation
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6">
-            <Link href="/contact" className="btn-premium bg-white text-blue-600 hover:bg-slate-50">
+            <Link href="/contact" className="btn-on-dark">
               Get a Quote
-              <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
-            <a href="tel:01603552109" className="btn-premium-outline border-white text-white">
+            <a href="tel:01603552109" className="btn-on-dark-outline">
               <Phone className="mr-2 w-5 h-5" />
               Call 01603 552109
             </a>
@@ -552,10 +550,10 @@ export default function Professional35Page() {
       </main>
 
       {/* Comprehensive SEO Content Section */}
-      <section className="py-20 md:py-32 bg-gradient-to-b from-white to-slate-50">
+      <section className="py-20 md:py-32 bg-paper">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="prose prose-lg max-w-none">
-            <h2 className="text-3xl md:text-4xl font-light text-slate-900 mb-8">
+            <h2 className="font-display text-3xl md:text-4xl text-ink mb-8 leading-[1.1]">
               Complete Guide to the JTH Professional 35 3.5 Tonne Horsebox
             </h2>
             
@@ -656,7 +654,7 @@ export default function Professional35Page() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-blue-50 to-white p-8 md:p-12 rounded-lg">
+            <div className="bg-paper p-8 md:p-12 rounded-lg">
               <h3 className="text-2xl font-semibold text-slate-900 mb-6 text-center">
                 Visit Our Norfolk Workshop
               </h3>

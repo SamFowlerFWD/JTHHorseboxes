@@ -3,7 +3,7 @@ import { getBlogPosts } from '@/lib/sanity/client'
 import Link from 'next/link'
 import Image from 'next/image'
 import Hero from '@/components/Hero'
-import { Calendar, ArrowRight, Tag } from 'lucide-react'
+import { Calendar, Tag } from 'lucide-react'
 import Schema, { generateBreadcrumbSchema } from '@/components/Schema'
 
 export const metadata: Metadata = {
@@ -43,13 +43,19 @@ export default async function BlogPage() {
         height="md"
         overlay="gradient"
       >
-        <div className="text-center w-full">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-            Horsebox Advice & Tips
-          </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
-            Expert guidance from decades of horsebox manufacturing experience
-          </p>
+        <div className="w-full self-end pb-14 md:pb-20">
+          <div className="max-w-2xl">
+            <h1 className="font-display text-4xl md:text-6xl text-white leading-[1.06]">
+              Horsebox Advice &amp; Tips
+            </h1>
+            <p className="mt-6 text-lg md:text-xl text-white/90 leading-relaxed">
+              Expert guidance from decades of horsebox manufacturing experience.
+            </p>
+            <div className="mt-10 flex flex-col gap-[4px]">
+              <span className="block h-[2px] w-32 bg-brass-light" />
+              <span className="block h-px w-20 bg-brass-light/60" />
+            </div>
+          </div>
         </div>
       </Hero>
 
@@ -57,7 +63,7 @@ export default async function BlogPage() {
         {/* No posts state */}
         {posts.length === 0 && (
           <div className="text-center py-16">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">Content Coming Soon</h2>
+            <h2 className="font-display text-2xl text-ink mb-4">Content Coming Soon</h2>
             <p className="text-lg text-slate-600 mb-2">
               We're preparing expert horsebox advice and tips for you.
             </p>
@@ -71,11 +77,11 @@ export default async function BlogPage() {
         {featuredPost && (
           <div className="mb-16">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-slate-900">Featured Article</h2>
+              <h2 className="font-display text-2xl text-ink">Featured Article</h2>
             </div>
             <Link
               href={`/blog/${featuredPost.slug.current}`}
-              className="group block bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+              className="group block bg-white border border-line shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300"
             >
               <div className="md:flex">
                 {featuredPost.featuredImage?.asset?.url && (
@@ -90,11 +96,11 @@ export default async function BlogPage() {
                 )}
                 <div className={`${featuredPost.featuredImage?.asset?.url ? 'md:w-1/2' : 'w-full'} p-8`}>
                   {featuredPost.category && (
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 mb-4">
+                    <span className="inline-flex items-center border border-line bg-paper px-2.5 py-1 text-sm text-slate-600 mb-4">
                       {featuredPost.category}
                     </span>
                   )}
-                  <h3 className="text-3xl font-bold text-slate-900 mb-4 group-hover:text-blue-600 transition-colors">
+                  <h3 className="font-display text-3xl text-ink mb-4 group-hover:text-blue-700 transition-colors leading-[1.1]">
                     {featuredPost.title}
                   </h3>
                   {featuredPost.excerpt && (
@@ -116,7 +122,6 @@ export default async function BlogPage() {
                   </div>
                   <div className="mt-6 flex items-center text-blue-600 font-medium group-hover:text-blue-700">
                     Read Article
-                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
               </div>
@@ -130,7 +135,7 @@ export default async function BlogPage() {
             <div className="flex flex-wrap gap-3">
               <Link
                 href="/blog"
-                className="px-4 py-2 rounded-full bg-blue-600 text-white font-medium hover:bg-blue-700 transition-colors"
+                className="bg-blue-900 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-800"
               >
                 All Posts
               </Link>
@@ -138,7 +143,7 @@ export default async function BlogPage() {
                 <Link
                   key={category}
                   href={`/blog?category=${encodeURIComponent(category)}`}
-                  className="px-4 py-2 rounded-full bg-slate-100 text-slate-700 font-medium hover:bg-slate-200 transition-colors"
+                  className="border border-line px-4 py-2 font-medium text-slate-700 transition-colors hover:border-ink/30 hover:text-ink"
                 >
                   {category}
                 </Link>
@@ -154,7 +159,7 @@ export default async function BlogPage() {
               <Link
                 key={post._id}
                 href={`/blog/${post.slug.current}`}
-                className="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                className="group bg-white border border-line shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300"
               >
                 {post.featuredImage?.asset?.url && (
                   <div className="relative h-48 overflow-hidden">
@@ -162,17 +167,17 @@ export default async function BlogPage() {
                       src={post.featuredImage.asset.url}
                       alt={post.featuredImage.alt || post.title}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="object-cover group-hover:scale-[1.03] transition-transform duration-300"
                     />
                   </div>
                 )}
                 <div className="p-6">
                   {post.category && (
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mb-3">
+                    <span className="inline-flex items-center border border-line bg-paper px-2.5 py-1 text-xs text-slate-600 mb-3">
                       {post.category}
                     </span>
                   )}
-                  <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
+                  <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors line-clamp-2">
                     {post.title}
                   </h3>
                   {post.excerpt && (
@@ -212,22 +217,21 @@ export default async function BlogPage() {
         )}
 
         {/* CTA Section */}
-        <div className="mt-20 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-12 text-center text-white">
-          <h2 className="text-3xl font-bold mb-4">Need Expert Advice?</h2>
+        <div className="mt-20 bg-blue-900 p-12 text-center text-white">
+          <h2 className="font-display text-3xl mb-4 leading-[1.1]">Need Expert Advice?</h2>
           <p className="text-xl mb-8 text-blue-100">
             Our team is here to help you choose the perfect horsebox
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors"
+              className="btn-on-dark"
             >
               Contact Us
-              <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-400 transition-colors"
+              className="btn-on-dark-outline"
             >
               Get a Quote
             </Link>

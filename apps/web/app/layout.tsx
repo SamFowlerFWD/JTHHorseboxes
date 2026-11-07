@@ -2,7 +2,7 @@ import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import ReviewMode from '@/components/review/ReviewMode'
-import { Inter, Playfair_Display } from 'next/font/google'
+import { Archivo, Libre_Caslon_Display } from 'next/font/google'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -68,21 +68,27 @@ export const metadata: Metadata = {
   },
 }
 
-const inter = Inter({ 
+// Archivo: a grotesque with enough width and weight range to carry spec tables
+// without reaching for a second family. Inter is the default everything-face.
+const archivo = Archivo({
   subsets: ['latin'],
   variable: '--font-sans',
+  display: 'swap',
 })
 
-const playfair = Playfair_Display({ 
+// Caslon is the English trade face of the coachbuilding era, and the obvious
+// counter to Playfair Display, which is the stock "premium serif".
+const caslon = Libre_Caslon_Display({
   subsets: ['latin'],
   variable: '--font-display',
-  weight: ['400', '500', '600', '700', '800', '900'],
+  weight: ['400'],
+  display: 'swap',
 })
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className={`${inter.className} min-h-screen bg-white text-slate-800 antialiased flex flex-col`}>
+    <html lang="en" className={`${archivo.variable} ${caslon.variable}`}>
+      <body className={`${archivo.className} min-h-screen bg-white text-slate-800 antialiased flex flex-col`}>
         <Header />
         <div className="flex-1">
           {children}

@@ -5,7 +5,6 @@ import type { Metadata } from 'next'
 import ClickableImage from '@/components/ClickableImage'
 import LightboxGallery from '@/components/Lightbox'
 import {
-  ArrowRight,
   Shield,
   CheckCircle,
   Droplets,
@@ -120,7 +119,7 @@ export default function CoatXPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
             <div className="lg:col-span-3">
-              <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+              <h1 className="font-display text-3xl md:text-4xl text-ink mb-6 leading-[1.1]">
                 What is Coat-X Polyurea Protective Coating?
               </h1>
               <div className="space-y-4 text-slate-600 leading-relaxed">
@@ -170,7 +169,7 @@ export default function CoatXPage() {
       <section className="py-16 md:py-24 bg-slate-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+            <h2 className="font-display text-3xl md:text-4xl text-ink mb-4 leading-[1.1]">
               Advantages of Coat-X
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
@@ -203,7 +202,7 @@ export default function CoatXPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Application Process */}
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6">
+              <h2 className="font-display text-2xl md:text-3xl text-ink mb-6 leading-[1.1]">
                 Coat-X Application Process
               </h2>
               <ol className="space-y-3">
@@ -220,7 +219,7 @@ export default function CoatXPage() {
 
             {/* Environment */}
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6">
+              <h2 className="font-display text-2xl md:text-3xl text-ink mb-6 leading-[1.1]">
                 Environmentally Responsible
               </h2>
               <div className="space-y-4 text-slate-600 leading-relaxed">
@@ -269,7 +268,7 @@ export default function CoatXPage() {
       <section className="py-16 md:py-24 bg-slate-900 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="font-display text-3xl md:text-4xl mb-6 leading-[1.1]">
               Why We Pioneered Coat-X
             </h2>
             <div className="space-y-4 text-slate-300 leading-relaxed text-lg">
@@ -295,7 +294,7 @@ export default function CoatXPage() {
       {/* Gallery */}
       <section className="py-16 md:py-24 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-8 text-center">
+          <h2 className="font-display text-3xl md:text-4xl text-ink mb-8 text-center leading-[1.1]">
             Coat-X Gallery
           </h2>
           <LightboxGallery images={galleryImages} className="grid-cols-2 md:grid-cols-3 lg:grid-cols-4" />
@@ -305,7 +304,7 @@ export default function CoatXPage() {
       {/* CTA */}
       <section className="py-16 md:py-20 bg-blue-600">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="font-display text-3xl md:text-4xl text-white mb-4 leading-[1.1]">
             Upgrade Your Horsebox with Coat-X
           </h2>
           <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
@@ -315,17 +314,15 @@ export default function CoatXPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/models"
-              className="inline-flex items-center justify-center px-8 py-3 bg-white text-blue-600 font-semibold hover:bg-blue-50 transition-colors"
+              className="btn-on-dark"
             >
               View All Models
-              <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-white font-semibold hover:bg-white hover:text-blue-600 transition-colors"
+              className="inline-flex items-center justify-center px-8 py-3 ring-1 ring-inset ring-white/45 text-white font-semibold hover:bg-white hover:text-blue-600 transition-colors"
             >
               Get a Quote
-              <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
           </div>
         </div>

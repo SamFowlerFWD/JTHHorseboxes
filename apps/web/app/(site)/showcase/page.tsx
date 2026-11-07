@@ -127,7 +127,7 @@ export default function ShowcasePage() {
       />
 
       {/* Bento Grid Section */}
-      <section className="py-20 bg-gradient-to-b from-white to-slate-50">
+      <section className="py-20 bg-paper">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -222,7 +222,7 @@ export default function ShowcasePage() {
       </section>
 
       {/* Product Showcase */}
-      <section className="py-20 bg-gradient-to-b from-slate-50 to-white">
+      <section className="py-20 bg-paper">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -283,7 +283,7 @@ export default function ShowcasePage() {
                 transition={{ delay: 0.7 + index * 0.2 }}
                 className="glass-light p-8 rounded-2xl"
               >
-                <div className="text-5xl font-bold text-amber-400 mb-2">
+                <div className="font-display text-5xl text-amber-400 mb-2 leading-[1.1]">
                   {stat.number}
                 </div>
                 <div className="text-lg text-white/90">{stat.label}</div>

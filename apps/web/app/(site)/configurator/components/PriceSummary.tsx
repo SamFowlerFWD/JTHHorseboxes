@@ -49,7 +49,7 @@ export default function PriceSummary({ showActions = true, detailed = false }: P
   return (
     <div className="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-700 to-blue-800 p-6 text-white">
+      <div className="bg-blue-900 p-6 text-white">
         <div className="flex items-center justify-between mb-2">
           <h3 className="text-lg font-semibold">Your Configuration</h3>
           <Truck className="w-6 h-6 opacity-80" />

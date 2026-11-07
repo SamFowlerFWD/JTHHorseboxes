@@ -121,7 +121,7 @@ export default function ConfiguratorPreview() {
   return (
     <div className="space-y-4">
       {/* Main Preview */}
-      <Card className="relative aspect-[3/2] bg-gradient-to-br from-slate-50 to-slate-100 overflow-hidden group">
+      <Card className="relative aspect-[3/2] bg-paper overflow-hidden group">
         {/* Loading State */}
         {!imageLoaded && !imageError && (
           <div className="absolute inset-0 flex items-center justify-center">

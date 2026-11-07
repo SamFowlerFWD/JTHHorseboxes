@@ -29,11 +29,11 @@ export default function DepositStep() {
         <h2 className="text-xl font-semibold text-slate-900 mb-6">Set Your Deposit</h2>
         
         {/* Current Deposit Display */}
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg mb-6">
+        <div className="bg-paper p-6 rounded-lg mb-6">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-slate-600 mb-1">Current Deposit Amount</p>
-              <p className="text-3xl font-bold text-blue-700">{fp(deposit)}</p>
+              <p className="font-display text-3xl text-blue-700 leading-[1.1]">{fp(deposit)}</p>
               {selectedModel && (
                 <p className="text-sm text-slate-500 mt-1">
                   {calculatePercentage()}% of base price

@@ -61,7 +61,7 @@ export default function IrelandGallery({ images }: IrelandGalleryProps) {
               alt={img.alt}
               fill
               sizes={img.span?.includes('col-span-2') ? '(min-width: 768px) 50vw, 100vw' : '(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw'}
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">

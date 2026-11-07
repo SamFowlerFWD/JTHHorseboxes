@@ -9,6 +9,44 @@ module.exports = {
   theme: {
   	extend: {
   		colors: {
+  			/* Coachwork navy. Overrides Tailwind's stock blue so every existing
+  			   bg-blue-600 renders as paint, not as a SaaS button. */
+  			blue: {
+  				'50': '#F2F5F8',
+  				'100': '#E2E9F0',
+  				'200': '#C4D0DC',
+  				'300': '#9BAEC2',
+  				'400': '#5E7D9C',
+  				'500': '#2E5377',
+  				'600': '#1B3B5A',
+  				'700': '#142C44',
+  				'800': '#0F2234',
+  				'900': '#0A1824',
+  				'950': '#060F17'
+  			},
+  			/* Neutral grey with the blue cast taken out. Same lightness ramp as
+  			   Tailwind slate, so every existing contrast relationship holds. */
+  			slate: {
+  				'50': '#F7F7F8',
+  				'100': '#EFEFF0',
+  				'200': '#E3E3E5',
+  				'300': '#C9C9CC',
+  				'400': '#9B9CA0',
+  				'500': '#74757A',
+  				'600': '#585A5F',
+  				'700': '#414349',
+  				'800': '#2A2C31',
+  				'900': '#16181C',
+  				'950': '#0C0D10'
+  			},
+  			ink: '#0D1F2D',
+  			brass: {
+  				DEFAULT: '#9C7C38',
+  				light: '#C2A264',
+  				dark: '#6E561F'
+  			},
+  			paper: '#F4F3F0',
+  			line: '#DAD8D3',
   			primary: {
   				'50': '#eff6ff',
   				'100': '#dbeafe',
@@ -84,12 +122,12 @@ module.exports = {
   		},
   		fontFamily: {
   			sans: [
-  				'Inter',
+  				'var(--font-sans)',
   				'system-ui',
   				'sans-serif'
   			],
   			display: [
-  				'Playfair Display',
+  				'var(--font-display)',
   				'Georgia',
   				'serif'
   			]
@@ -180,14 +218,23 @@ module.exports = {
   			'128': '32rem'
   		},
   		borderRadius: {
-  			'4xl': '2rem',
-  			'5xl': '2.5rem'
+  			none: '0',
+  			sm: '1px',
+  			DEFAULT: '2px',
+  			md: '2px',
+  			lg: '3px',
+  			xl: '4px',
+  			'2xl': '6px',
+  			'3xl': '8px',
+  			'4xl': '10px',
+  			'5xl': '12px',
+  			full: '9999px'
   		},
   		boxShadow: {
-  			soft: '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
-  			medium: '0 4px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-  			large: '0 10px 40px -10px rgba(0, 0, 0, 0.15), 0 2px 10px -2px rgba(0, 0, 0, 0.05)',
-  			'xl-soft': '0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.02)'
+  			soft: '0 1px 2px rgba(13, 31, 45, 0.04)',
+  			medium: '0 1px 3px rgba(13, 31, 45, 0.06), 0 8px 24px -16px rgba(13, 31, 45, 0.18)',
+  			large: '0 2px 6px rgba(13, 31, 45, 0.06), 0 24px 48px -28px rgba(13, 31, 45, 0.28)',
+  			'xl-soft': '0 2px 8px rgba(13, 31, 45, 0.05), 0 32px 64px -32px rgba(13, 31, 45, 0.22)'
   		},
   		animation: {
   			'fade-in': 'fadeIn 0.6s ease-in-out',

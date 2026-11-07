@@ -135,14 +135,14 @@ export default function Header() {
                     alt="J Taylor Horseboxes Ireland"
                     width={180}
                     height={50}
-                    className="h-12 w-auto transition-transform group-hover:scale-105 border-0"
+                    className="h-12 w-auto transition-transform group-hover:scale-[1.03] border-0"
                     style={{ clipPath: 'inset(0 1px 0 0)' }}
                     priority
                   />
                 </div>
               ) : (
                 <div className="overflow-hidden h-12">
-                  <Logo width={180} height={50} className="h-12 w-auto transition-transform group-hover:scale-105 border-0" priority />
+                  <Logo width={180} height={50} className="h-12 w-auto transition-transform group-hover:scale-[1.03] border-0" priority />
                 </div>
               )}
               <span className="sr-only">JTH Horseboxes</span>
@@ -180,7 +180,7 @@ export default function Header() {
                                 </h2>
                               ) : (
                                 <>
-                                  <h3 className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-3">
+                                  <h3 className="text-xs font-semibold text-blue-600 tracking-wide mb-3">
                                     {section.title}
                                   </h3>
                                   <ul className="grid grid-cols-2 gap-3 mb-4">
@@ -288,7 +288,7 @@ export default function Header() {
                         </div>
                       ) : (
                         <>
-                          <div className="text-xs font-semibold text-blue-600 uppercase tracking-wider mt-3 mb-2">
+                          <div className="text-xs font-semibold text-blue-600 tracking-wide mt-3 mb-2">
                             {section.title}
                           </div>
                           {section.items.map((item) => (

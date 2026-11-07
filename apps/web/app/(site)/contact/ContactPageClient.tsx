@@ -10,7 +10,6 @@ const SOCIAL_LINKS = {
   instagram: 'https://www.instagram.com/jth_horseboxes/',
 }
 import {
-  ArrowRight,
   Phone,
   Mail,
   MapPin,
@@ -170,29 +169,36 @@ export default function ContactPageClient() {
     <main className="bg-white">
       {/* Hero Section */}
       <Hero 
-        primarySrc="/contact/showroom.jpg"
-        fallbackSrc="/hero-contact.jpg"
+        primarySrc="/models/professional-35/04.webp"
+        fallbackSrc="/hero.webp"
         height="md"
         overlay="gradient"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-7xl font-light text-white mb-6 animate-slideUp">
-            Get in Touch
-          </h1>
-          <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-12 font-light leading-relaxed animate-slideUp animation-delay-200">
-            {isIreland
-              ? 'Contact our team about horsebox deliveries to Ireland'
-              : 'Visit our Norfolk workshop or contact our expert team'}
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-6 animate-slideUp animation-delay-400">
-            <a href={isIreland ? 'tel:+353872557015' : 'tel:01603552109'} className="btn-premium">
-              <Phone className="mr-2 w-5 h-5" />
-              {isIreland ? 'Call +353 87 255 7015' : 'Call 01603 552109'}
-            </a>
-            <a href="#contact-form" className="btn-premium-outline border-white text-white hover:text-slate-900">
-              Send Message
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </a>
+        <div className="w-full self-end pb-14 md:pb-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-2xl">
+              <h1 className="font-display text-5xl md:text-7xl text-white leading-[1.04] animate-slideUp">
+                Get in Touch
+              </h1>
+              <p className="mt-6 text-lg md:text-xl text-white/90 leading-relaxed animate-slideUp animation-delay-200">
+                {isIreland
+                  ? 'Contact our team about horsebox deliveries to Ireland.'
+                  : 'Visit our Norfolk workshop or contact our team.'}
+              </p>
+              <div className="mt-10 flex flex-col gap-[4px] animate-slideUp animation-delay-200">
+                <span className="block h-[2px] w-32 bg-brass-light" />
+                <span className="block h-px w-20 bg-brass-light/60" />
+              </div>
+              <div className="mt-10 flex flex-wrap items-center gap-4 animate-slideUp animation-delay-400">
+                <a href={isIreland ? 'tel:+353872557015' : 'tel:01603552109'} className="btn-on-dark">
+                  <Phone className="mr-2 w-5 h-5" strokeWidth={1.5} />
+                  {isIreland ? 'Call +353 87 255 7015' : 'Call 01603 552109'}
+                </a>
+                <a href="#contact-form" className="btn-on-dark-outline">
+                  Send Message
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </Hero>
@@ -205,16 +211,15 @@ export default function ContactPageClient() {
               <a
                 key={index}
                 href={reason.link}
-                className="bg-white p-6 border border-slate-200 hover:border-blue-400 hover:shadow-lg transition-all group"
+                className="bg-white p-6 border border-line hover:border-ink/30 transition-colors group"
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <reason.icon className="w-6 h-6 text-white" />
+                <div className="flex mb-5">
+                  <reason.icon className="w-7 h-7 text-brass" strokeWidth={1.25} />
                 </div>
                 <h3 className="text-lg font-semibold text-slate-900 mb-2">{reason.title}</h3>
                 <p className="text-sm text-slate-600 mb-4">{reason.description}</p>
                 <span className="text-blue-700 font-semibold flex items-center">
                   {reason.action}
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </span>
               </a>
             ))}
@@ -228,19 +233,19 @@ export default function ContactPageClient() {
           <div className="grid md:grid-cols-2 gap-16">
             {/* Contact Information */}
             <div>
-              <h2 className="text-4xl md:text-5xl font-light text-slate-900 mb-8">
+              <h2 className="font-display text-4xl md:text-5xl text-ink leading-[1.1] mb-8">
                 {isIreland ? (
-                  <>Contact Our<span className="text-gradient-blue block mt-2">Ireland Team</span></>
+                  <>Contact Our<span className="block mt-2">Ireland Team</span></>
                 ) : (
-                  <>Visit Our<span className="text-gradient-blue block mt-2">Norfolk Workshop</span></>
+                  <>Visit Our<span className="block mt-2">Norfolk Workshop</span></>
                 )}
               </h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-blue-700 to-amber-500 mb-8"></div>
+              <div className="w-28 h-[2px] bg-brass mb-8"></div>
 
               <div className="space-y-6 mb-8">
                 {isIreland ? (
                   <div className="flex items-start">
-                    <MapPin className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
+                    <MapPin className="w-5 h-5 text-brass mt-1 mr-4 flex-shrink-0" strokeWidth={1.5} />
                     <div>
                       <h3 className="text-lg font-semibold text-slate-900 mb-2">Ireland Representative</h3>
                       <p className="text-slate-600">
@@ -253,7 +258,7 @@ export default function ContactPageClient() {
                   </div>
                 ) : (
                   <div className="flex items-start">
-                    <MapPin className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
+                    <MapPin className="w-5 h-5 text-brass mt-1 mr-4 flex-shrink-0" strokeWidth={1.5} />
                     <div>
                       <h3 className="text-lg font-semibold text-slate-900 mb-2">Workshop Address</h3>
                       <p className="text-slate-600">
@@ -276,7 +281,7 @@ export default function ContactPageClient() {
                 )}
 
                 <div className="flex items-start">
-                  <Phone className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
+                  <Phone className="w-5 h-5 text-brass mt-1 mr-4 flex-shrink-0" strokeWidth={1.5} />
                   <div>
                     <h3 className="text-lg font-semibold text-slate-900 mb-2">Phone</h3>
                     <a href={isIreland ? 'tel:+353872557015' : 'tel:01603552109'} className="text-slate-600 hover:text-blue-700">
@@ -289,7 +294,7 @@ export default function ContactPageClient() {
                 </div>
 
                 <div className="flex items-start">
-                  <Mail className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
+                  <Mail className="w-5 h-5 text-brass mt-1 mr-4 flex-shrink-0" strokeWidth={1.5} />
                   <div>
                     <h3 className="text-lg font-semibold text-slate-900 mb-2">Email</h3>
                     <a href={isIreland ? 'mailto:Paul@JTHltd.ie' : 'mailto:sales@jthltd.co.uk'} className="text-slate-600 hover:text-blue-700">
@@ -299,7 +304,7 @@ export default function ContactPageClient() {
                 </div>
 
                 <div className="flex items-start">
-                  <Clock className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
+                  <Clock className="w-5 h-5 text-brass mt-1 mr-4 flex-shrink-0" strokeWidth={1.5} />
                   <div>
                     <h3 className="text-lg font-semibold text-slate-900 mb-2">
                       {isIreland ? 'Contact Hours' : 'Opening Hours'}
@@ -313,7 +318,7 @@ export default function ContactPageClient() {
 
                 {isIreland && (
                   <div className="flex items-start">
-                    <Navigation className="w-6 h-6 text-blue-700 mt-1 mr-4 flex-shrink-0" />
+                    <Navigation className="w-5 h-5 text-brass mt-1 mr-4 flex-shrink-0" strokeWidth={1.5} />
                     <div>
                       <h3 className="text-lg font-semibold text-slate-900 mb-2">Delivery to Ireland</h3>
                       <p className="text-slate-600">
@@ -334,7 +339,7 @@ export default function ContactPageClient() {
                     href={SOCIAL_LINKS.facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-blue-700 hover:text-white text-slate-700 rounded-full transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-blue-700 hover:text-white text-slate-700 transition-colors"
                   >
                     <Facebook className="w-5 h-5" aria-hidden="true" />
                     Facebook
@@ -343,7 +348,7 @@ export default function ContactPageClient() {
                     href={SOCIAL_LINKS.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-pink-600 hover:text-white text-slate-700 rounded-full transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-pink-600 hover:text-white text-slate-700 transition-colors"
                   >
                     <Instagram className="w-5 h-5" aria-hidden="true" />
                     Instagram
@@ -358,7 +363,7 @@ export default function ContactPageClient() {
               
               {submitStatus === 'success' ? (
                 <div className="bg-blue-50 border border-blue-200 p-6 text-center">
-                  <CheckCircle className="w-12 h-12 text-blue-700 mx-auto mb-4" />
+                  <CheckCircle className="w-10 h-10 text-brass mx-auto mb-4" strokeWidth={1.25} />
                   <h4 className="text-lg font-semibold text-blue-950 mb-2">Thank You!</h4>
                   <p className="text-blue-800">
                     We've received your message and will get back to you as soon as we can.
@@ -505,8 +510,8 @@ export default function ContactPageClient() {
           <div className="grid gap-8 md:grid-cols-2">
             {!isIreland && (
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Users className="w-8 h-8 text-white" />
+                <div className="flex justify-center mb-5">
+                  <Users className="w-7 h-7 text-brass" strokeWidth={1.25} />
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-4">Workshop Visits</h3>
                 <p className="text-slate-600">
@@ -517,8 +522,8 @@ export default function ContactPageClient() {
             )}
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
-                <MessageSquare className="w-8 h-8 text-white" />
+              <div className="flex justify-center mb-5">
+                <MessageSquare className="w-7 h-7 text-brass" strokeWidth={1.25} />
               </div>
               <h3 className="text-xl font-semibold text-slate-900 mb-4">Expert Advice</h3>
               <p className="text-slate-600">
@@ -529,8 +534,8 @@ export default function ContactPageClient() {
 
             {isIreland && (
               <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Navigation className="w-8 h-8 text-white" />
+                <div className="flex justify-center mb-5">
+                  <Navigation className="w-7 h-7 text-brass" strokeWidth={1.25} />
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-4">Direct Delivery</h3>
                 <p className="text-slate-600">
@@ -544,20 +549,19 @@ export default function ContactPageClient() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 md:py-32 bg-gradient-to-r from-blue-700 to-blue-800">
+      <section className="py-20 md:py-32 bg-blue-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-light text-white mb-8">
+          <h2 className="font-display text-4xl md:text-5xl text-white leading-[1.1] mb-8">
             Ready to Start Your Journey?
           </h2>
           <p className="text-xl text-blue-100 mb-12 max-w-3xl mx-auto">
             Whether you're ready to order or just exploring options, we're here to help
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6">
-            <Link href={isIreland ? '/ireland' : '/models'} className="btn-premium bg-white text-blue-700 hover:bg-slate-50">
+            <Link href={isIreland ? '/ireland' : '/models'} className="btn-on-dark">
               Browse Our Models
-              <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
-            <a href={isIreland ? 'tel:+353872557015' : 'tel:01603552109'} className="btn-premium-outline border-white text-white">
+            <a href={isIreland ? 'tel:+353872557015' : 'tel:01603552109'} className="btn-on-dark-outline">
               <Phone className="mr-2 w-5 h-5" />
               {isIreland ? 'Call +353 87 255 7015' : 'Call 01603 552109'}
             </a>

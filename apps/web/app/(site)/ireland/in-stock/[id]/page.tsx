@@ -2,7 +2,7 @@ export const runtime = 'edge'
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowLeft, ArrowRight, Check, Phone, Truck } from 'lucide-react'
+import { ArrowLeft, Check, Phone, Truck } from 'lucide-react'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getStockById } from '@/lib/stock/kv'
@@ -81,7 +81,7 @@ export default async function IrelandStockDetailPage({ params }: Props) {
       </div>
 
       {/* Main Content */}
-      <section className="py-12 bg-gradient-to-b from-white to-slate-50">
+      <section className="py-12 bg-paper">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2">
             {/* Image Gallery */}
@@ -136,7 +136,7 @@ export default async function IrelandStockDetailPage({ params }: Props) {
             {/* Details */}
             <div>
               <div className="mb-6">
-                <h1 className="text-3xl md:text-4xl font-light text-slate-900 mb-2">
+                <h1 className="font-display text-3xl md:text-4xl text-ink mb-2 leading-[1.1]">
                   {listing.model}
                 </h1>
                 <p className="text-lg text-slate-500">
@@ -145,10 +145,10 @@ export default async function IrelandStockDetailPage({ params }: Props) {
                 </p>
               </div>
 
-              <div className="w-full h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent mb-6" />
+              <div className="w-full h-px bg-line mb-6" />
 
               <div className="mb-8">
-                <span className="text-4xl font-bold text-slate-900">
+                <span className="font-display text-4xl text-ink leading-[1.1]">
                   {formatEur(listing.price)}
                 </span>
                 <p className="text-sm text-slate-500 mt-1">complete vehicle · exc. VAT</p>
@@ -207,11 +207,10 @@ export default async function IrelandStockDetailPage({ params }: Props) {
                   className="flex-1 inline-flex items-center justify-center bg-blue-700 px-6 py-4 text-white font-semibold hover:bg-blue-800 transition-all duration-300"
                 >
                   Enquire About This Horsebox
-                  <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
                 <a
                   href="tel:+353872557015"
-                  className="flex-1 inline-flex items-center justify-center border-2 border-blue-700 px-6 py-4 text-blue-700 font-semibold hover:bg-blue-50 transition-colors"
+                  className="flex-1 inline-flex items-center justify-center ring-1 ring-inset ring-blue-800/35 px-6 py-4 text-blue-700 font-semibold hover:bg-blue-50 transition-colors"
                 >
                   <Phone className="mr-2 w-5 h-5" />
                   Call +353 87 255 7015
@@ -223,9 +222,9 @@ export default async function IrelandStockDetailPage({ params }: Props) {
       </section>
 
       {/* Bottom CTA */}
-      <section className="bg-gradient-to-r from-blue-700 to-blue-800 py-16 relative overflow-hidden">
+      <section className="bg-blue-900 py-16 relative overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-light text-white mb-6">
+          <h2 className="font-display text-3xl md:text-4xl text-white mb-6 leading-[1.1]">
             Interested in This Horsebox?
           </h2>
           <p className="text-lg text-blue-100 max-w-3xl mx-auto mb-10">
@@ -235,14 +234,13 @@ export default async function IrelandStockDetailPage({ params }: Props) {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center px-10 py-4 bg-white text-blue-700 font-semibold hover:bg-slate-50 transition-all"
+              className="btn-on-dark"
             >
               Get in Touch
-              <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
             <Link
               href="/ireland/in-stock"
-              className="inline-flex items-center px-10 py-4 border-2 border-white text-white font-semibold hover:bg-white hover:text-blue-700 transition-all"
+              className="btn-on-dark-outline"
             >
               View All Stock
             </Link>

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, Phone, Truck, Tag } from 'lucide-react'
+import { Phone, Truck, Tag } from 'lucide-react'
 import type { Metadata } from 'next'
 import { getAllStock } from '@/lib/stock/kv'
 import type { StockListing } from '@/lib/stock/types'
@@ -56,7 +56,7 @@ function StockCard({ listing }: { listing: StockListing }) {
   return (
     <Link
       href={`/ireland/in-stock/${listing.id}`}
-      className="group bg-white overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+      className="group bg-white overflow-hidden border border-line shadow-sm hover:shadow-md transition-all duration-500"
     >
       <div className="relative h-64">
         {hasImage ? (
@@ -65,7 +65,7 @@ function StockCard({ listing }: { listing: StockListing }) {
             alt={`${listing.model} horsebox - ${listing.color}`}
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-            className="object-cover transition-transform duration-700 group-hover:scale-110"
+            className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
             unoptimized
           />
         ) : (
@@ -73,7 +73,7 @@ function StockCard({ listing }: { listing: StockListing }) {
             <Truck className="w-16 h-16 text-slate-400" />
           </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(13,31,45,0.35),transparent_45%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         <div className="absolute top-4 left-4 z-10">
           <span
             className={`inline-flex items-center px-3 py-1 text-sm font-semibold ${statusColors[listing.status] || statusColors.available}`}
@@ -83,7 +83,7 @@ function StockCard({ listing }: { listing: StockListing }) {
         </div>
       </div>
 
-      <div className="p-6 bg-gradient-to-b from-white to-slate-50">
+      <div className="p-6 bg-paper">
         <div className="flex justify-between items-start mb-4">
           <div>
             <h3 className="text-xl font-semibold text-slate-900">{listing.model}</h3>
@@ -97,13 +97,12 @@ function StockCard({ listing }: { listing: StockListing }) {
           </div>
         </div>
 
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent mb-4" />
+        <div className="w-full h-px bg-line mb-4" />
 
         <div className="flex items-center justify-between text-sm text-slate-600">
           <span>{listing.mileage.toLocaleString('en-IE')} km</span>
           <span className="inline-flex items-center text-blue-700 font-medium group-hover:translate-x-1 transition-transform">
             View Details
-            <ArrowRight className="ml-1 w-4 h-4" />
           </span>
         </div>
       </div>
@@ -174,15 +173,15 @@ export default async function IrelandInStockPage() {
       />
 
       {/* Stock Grid */}
-      <section id="stock" className="py-20 bg-gradient-to-b from-white to-slate-50">
+      <section id="stock" className="py-20 bg-paper">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-800 text-sm font-medium mb-6">
               <Tag className="w-4 h-4" />
               Prices in EUR &middot; Delivery to Ireland included
             </div>
-            <h2 className="text-3xl md:text-5xl font-light text-slate-900 mb-6">
-              Current <span className="text-blue-700">Stock</span>
+            <h2 className="font-display text-3xl md:text-5xl text-ink mb-6 leading-[1.1]">
+              Current Stock
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               All horseboxes listed below are available for immediate purchase and delivery to
@@ -211,7 +210,6 @@ export default async function IrelandInStockPage() {
                 className="inline-flex items-center px-8 py-4 bg-blue-700 text-white font-semibold hover:bg-blue-800 transition-all duration-300"
               >
                 Discuss Build-to-Order
-                <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
             </div>
           )}
@@ -219,9 +217,9 @@ export default async function IrelandInStockPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-blue-700 to-blue-800 py-16 relative overflow-hidden">
+      <section className="bg-blue-900 py-16 relative overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-light text-white mb-6">
+          <h2 className="font-display text-3xl md:text-4xl text-white mb-6 leading-[1.1]">
             Looking for Something Specific?
           </h2>
           <p className="text-lg text-blue-100 max-w-3xl mx-auto mb-10">
@@ -232,14 +230,13 @@ export default async function IrelandInStockPage() {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center px-10 py-4 bg-white text-blue-700 font-semibold hover:bg-slate-50 transition-all"
+              className="btn-on-dark"
             >
               Get a Custom Quote
-              <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
             <a
               href="tel:+353872557015"
-              className="inline-flex items-center px-10 py-4 border-2 border-white text-white font-semibold hover:bg-white hover:text-blue-700 transition-all"
+              className="btn-on-dark-outline"
             >
               <Phone className="mr-2 w-5 h-5" />
               Call +353 87 255 7015

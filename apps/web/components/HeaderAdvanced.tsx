@@ -18,7 +18,6 @@ import {
   Settings,
   ChevronDown,
   Sparkles,
-  ArrowRight,
   Globe,
   Calendar
 } from 'lucide-react'
@@ -234,7 +233,7 @@ export default function HeaderAdvanced() {
       <motion.div 
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className="bg-gradient-to-r from-blue-700 to-blue-800 text-white text-sm py-2 px-4 text-center relative overflow-hidden"
+        className="bg-blue-900 text-white text-sm py-2 px-4 text-center relative overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-amber-500/20 to-transparent animate-pulse" />
         <div className="relative z-10 flex items-center justify-center gap-2">
@@ -285,8 +284,7 @@ export default function HeaderAdvanced() {
                     whileTap={{ scale: 0.95 }}
                     className="relative"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-amber-500 rounded-full blur-lg opacity-20 group-hover:opacity-40 transition-opacity" />
-                    <div className="relative w-12 h-12 bg-gradient-to-br from-blue-700 to-blue-800 rounded-full flex items-center justify-center shadow-lg">
+                    <div className="relative w-12 h-12 bg-blue-900 rounded-full flex items-center justify-center shadow-lg">
                       <span className="text-white font-bold text-xl">JTH</span>
                     </div>
                   </motion.div>
@@ -414,9 +412,8 @@ export default function HeaderAdvanced() {
                 </motion.button>
 
                 <Link href="/contact/quote">
-                  <Button className="bg-gradient-to-r from-blue-700 to-blue-800 hover:from-blue-800 hover:to-blue-900 text-white font-medium px-6 shadow-lg hover:shadow-xl transition-all">
+                  <Button className="bg-blue-900 hover:from-blue-800 hover:to-blue-900 text-white font-medium px-6 shadow-lg hover:shadow-xl transition-all">
                     Get Quote
-                    <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
                 </Link>
               </div>
@@ -454,7 +451,7 @@ export default function HeaderAdvanced() {
               <SheetContent side="right" className="w-full sm:w-[400px] p-0">
                 <div className="h-full overflow-y-auto">
                   {/* Mobile Menu Header */}
-                  <div className="p-6 bg-gradient-to-br from-blue-700 to-blue-800 text-white">
+                  <div className="p-6 bg-blue-900 text-white">
                     <div className="flex items-center gap-3">
                       <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
                         <span className="font-bold text-xl">JTH</span>
@@ -558,9 +555,8 @@ export default function HeaderAdvanced() {
                     {/* Mobile CTA */}
                     <div className="mt-8 space-y-3">
                       <Link href="/contact/quote" onClick={() => setIsMobileMenuOpen(false)}>
-                        <Button className="w-full bg-gradient-to-r from-blue-700 to-blue-800 hover:from-blue-800 hover:to-blue-900 text-white font-medium shadow-lg">
+                        <Button className="w-full bg-blue-900 hover:from-blue-800 hover:to-blue-900 text-white font-medium shadow-lg">
                           Get Quote
-                          <ArrowRight className="ml-2 w-4 h-4" />
                         </Button>
                       </Link>
                       <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>

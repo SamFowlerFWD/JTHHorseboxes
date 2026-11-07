@@ -2,7 +2,7 @@
 
 import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
-import { CheckCircle, Download, Mail, Phone, ArrowRight } from 'lucide-react'
+import { CheckCircle, Download, Mail, Phone } from 'lucide-react'
 import Link from 'next/link'
 
 function SuccessContent() {
@@ -21,7 +21,7 @@ function SuccessContent() {
   }, [searchParams, router])
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+    <main className="min-h-screen bg-paper">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Success Icon */}
         <div className="flex justify-center mb-8">
@@ -32,7 +32,7 @@ function SuccessContent() {
 
         {/* Success Message */}
         <div className="text-center mb-12">
-          <h1 className="text-3xl font-bold text-slate-900 mb-4">
+          <h1 className="font-display text-3xl text-ink mb-4 leading-[1.1]">
             Configuration Submitted Successfully!
           </h1>
           <p className="text-lg text-slate-600">
@@ -134,7 +134,6 @@ function SuccessContent() {
             className="px-6 py-3 bg-blue-700 text-white rounded-lg font-medium hover:bg-blue-800 transition-colors text-center flex items-center justify-center gap-2"
           >
             Browse Our Models
-            <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
       </div>
@@ -145,7 +144,7 @@ function SuccessContent() {
 export default function ConfiguratorSuccessPage() {
   return (
     <Suspense fallback={
-      <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex items-center justify-center">
+      <main className="min-h-screen bg-paper flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-blue-700 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-slate-600">Loading...</p>

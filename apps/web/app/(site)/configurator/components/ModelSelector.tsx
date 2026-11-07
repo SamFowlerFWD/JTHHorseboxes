@@ -86,7 +86,7 @@ export default function ModelSelector({
           <div
             key={model.id}
             onClick={() => onSelectModel(model.id)}
-            className={`relative bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl hover:scale-105 ${
+            className={`relative bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-md hover:scale-105 ${
               isSelected ? 'ring-4 ring-blue-700 ring-offset-2' : ''
             }`}
           >
@@ -98,7 +98,7 @@ export default function ModelSelector({
             )}
 
             {/* Model Image */}
-            <div className="relative h-48 bg-gradient-to-br from-slate-100 to-slate-200">
+            <div className="relative h-48 bg-paper">
               <div className="absolute inset-0 flex items-center justify-center">
                 <Truck className="w-24 h-24 text-slate-400" />
               </div>

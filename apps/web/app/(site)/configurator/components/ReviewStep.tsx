@@ -174,7 +174,7 @@ export default function ReviewStep({ onSubmit, isSubmitting }: ReviewStepProps) 
       </div>
 
       {/* Payment Schedule */}
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl shadow-sm border border-blue-200 p-6">
+      <div className="bg-paper rounded-xl shadow-sm border border-blue-200 p-6">
         <h2 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
           <Calendar className="w-5 h-5 text-blue-700" />
           Payment Schedule

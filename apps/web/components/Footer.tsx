@@ -89,34 +89,29 @@ export default function Footer() {
             <h3 className="font-semibold text-white mb-6">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <Link href={isIreland ? '/ireland' : '/models'} className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-4 h-4" />
+                <Link href={isIreland ? '/ireland' : '/models'} className="text-slate-400 hover:text-blue-400 transition-colors">
                   {isIreland ? 'Ireland Models' : 'All Models'}
                 </Link>
               </li>
               {isIreland && (
                 <li>
-                  <Link href="/ireland/in-stock" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
-                    <ChevronRight className="w-4 h-4" />
+                  <Link href="/ireland/in-stock" className="text-slate-400 hover:text-blue-400 transition-colors">
                     In Stock
                   </Link>
                 </li>
               )}
               <li>
-                <Link href="/contact" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-4 h-4" />
+                <Link href="/contact" className="text-slate-400 hover:text-blue-400 transition-colors">
                   Get a Quote
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-4 h-4" />
+                <Link href="/about" className="text-slate-400 hover:text-blue-400 transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
-                  <ChevronRight className="w-4 h-4" />
+                <Link href="/contact" className="text-slate-400 hover:text-blue-400 transition-colors">
                   Contact
                 </Link>
               </li>
@@ -133,14 +128,12 @@ export default function Footer() {
                 <div className="text-blue-400 font-medium mb-2">Customisable Range</div>
                 <ul className="ml-3 space-y-2">
                   <li>
-                    <Link href={isIreland ? '/ireland/models/professional-35' : '/models/professional-35'} className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
-                      <ChevronRight className="w-3 h-3" />
+                    <Link href={isIreland ? '/ireland/models/professional-35' : '/models/professional-35'} className="text-slate-400 hover:text-blue-400 transition-colors">
                       Professional 35
                     </Link>
                   </li>
                   <li>
-                    <Link href={isIreland ? '/ireland/models/principle-35' : '/models/principle-35'} className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
-                      <ChevronRight className="w-3 h-3" />
+                    <Link href={isIreland ? '/ireland/models/principle-35' : '/models/principle-35'} className="text-slate-400 hover:text-blue-400 transition-colors">
                       Principle 35
                     </Link>
                   </li>
@@ -152,20 +145,17 @@ export default function Footer() {
                     <div className="text-blue-400 font-medium mb-2">AEOS Range</div>
                     <ul className="ml-3 space-y-2">
                       <li>
-                        <Link href="/models/aeos-edge-45" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
-                          <ChevronRight className="w-3 h-3" />
+                        <Link href="/models/aeos-edge-45" className="text-slate-400 hover:text-blue-400 transition-colors">
                           Edge 45
                         </Link>
                       </li>
                       <li>
-                        <Link href="/models/aeos-discovery-45" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
-                          <ChevronRight className="w-3 h-3" />
+                        <Link href="/models/aeos-discovery-45" className="text-slate-400 hover:text-blue-400 transition-colors">
                           Discovery 45
                         </Link>
                       </li>
                       <li>
-                        <Link href="/models/aeos-discovery-72" className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1">
-                          <ChevronRight className="w-3 h-3" />
+                        <Link href="/models/aeos-discovery-72" className="text-slate-400 hover:text-blue-400 transition-colors">
                           Aeos Discovery 72
                         </Link>
                       </li>

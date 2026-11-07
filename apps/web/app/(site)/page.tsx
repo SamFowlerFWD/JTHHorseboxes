@@ -5,7 +5,7 @@ import DissolveGallery from '@/components/DissolveGallery'
 import ProductShowcase from '@/components/ProductShowcase'
 import { motion } from 'framer-motion'
 import Schema, { organizationSchema, localBusinessSchema } from '@/components/Schema'
-import { Phone, MapPin, ArrowRight, ChevronRight, Check } from 'lucide-react'
+import { Phone, MapPin, Check } from 'lucide-react'
 import TrustIndicators from '@/components/TrustIndicators'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -186,7 +186,7 @@ export default function HomePage() {
       <TrustIndicators />
 
       {/* Bento Grid Section with British Racing Green */}
-      <section className="py-20 bg-gradient-to-b from-white to-slate-50">
+      <section className="py-20 bg-paper">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -195,7 +195,7 @@ export default function HomePage() {
             className="text-center mb-12"
           >
             <h2 className="text-fluid-4xl font-light text-slate-900 mb-4">
-              British Horsebox <span className="text-blue-700">Excellence</span>
+              British Horsebox Excellence
             </h2>
             <p className="text-fluid-lg text-slate-700 max-w-3xl mx-auto">
               Experience the perfect blend of British craftsmanship and modern innovation
@@ -302,7 +302,7 @@ export default function HomePage() {
             className="text-center mb-12"
           >
             <h2 className="text-fluid-4xl font-light text-slate-900 mb-4">
-              Crafted in <span className="text-amber-500">Norfolk</span>
+              Crafted in Norfolk
             </h2>
             <p className="text-fluid-lg text-slate-700 max-w-3xl mx-auto">
               Every JTH horsebox is built by hand at our Norfolk workshop. See the quality and attention to detail that goes into each build.
@@ -324,7 +324,7 @@ export default function HomePage() {
       </section>
 
       {/* Product Showcase */}
-      <section className="py-20 bg-gradient-to-b from-slate-50 to-white">
+      <section className="py-20 bg-paper">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -333,7 +333,7 @@ export default function HomePage() {
             className="text-center mb-12"
           >
             <h2 className="text-fluid-4xl font-light text-slate-900 mb-4">
-              Our Premium <span className="text-blue-700">3.5 Tonne Range</span>
+              Our Premium 3.5 Tonne Range
             </h2>
             <p className="text-fluid-lg text-slate-700 max-w-3xl mx-auto">
               Discover the Professional, Principle and Progeny
@@ -354,10 +354,10 @@ export default function HomePage() {
           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-100 text-blue-800 text-sm font-medium mb-6">
             Made in Great Britain
           </div>
-          <h2 className="text-3xl md:text-5xl font-light text-slate-900 mb-8">
-            Welcome to <span className="text-blue-700">J Taylor Horseboxes</span>
+          <h2 className="font-display text-3xl md:text-5xl text-ink mb-8 leading-[1.1]">
+            Welcome to J Taylor Horseboxes
           </h2>
-          <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-blue-700 to-transparent mx-auto mb-8"></div>
+          <div className="w-24 h-0.5 bg-line mx-auto mb-8"></div>
           <p className="text-xl text-slate-700 max-w-4xl mx-auto leading-relaxed font-light mb-6">
             One of the most important aspects of JTH is that we don't follow other manufacturers, 
             but lead through innovation, creative designs and materials technology.
@@ -369,13 +369,13 @@ export default function HomePage() {
       </section>
 
       {/* SEO Content Section - Comprehensive Horsebox Information */}
-      <section className="bg-gradient-to-br from-slate-900 to-slate-800 py-20 md:py-32">
+      <section className="bg-ink py-20 md:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-light text-white mb-8">
-              Why Choose JTH <span className="text-amber-400">3.5t Horseboxes</span>
+            <h2 className="font-display text-3xl md:text-5xl text-white mb-8 leading-[1.1]">
+              Why Choose JTH 3.5t Horseboxes
             </h2>
-            <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-8"></div>
+            <div className="w-24 h-0.5 bg-brass/50 mx-auto mb-8"></div>
             <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">
               As one of the UK's leading horsebox manufacturers, JTH (J Taylor Horseboxes) specializes in building premium 
               3.5 tonne, 4.5 tonne, 7.2 tonne, and 7.5 tonne horseboxes. We&apos;re a family-run business of equestrians,
@@ -409,9 +409,9 @@ export default function HomePage() {
       </section>
 
       {/* Location & Contact */}
-      <section className="bg-gradient-to-br from-blue-50 to-white py-20">
+      <section className="bg-paper py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h3 className="text-2xl md:text-3xl font-semibold text-slate-900 mb-8 text-center">
+          <h3 className="font-display text-2xl md:text-3xl text-ink mb-8 text-center leading-[1.1]">
             Visit Our Norfolk Workshop
           </h3>
           <div className="grid md:grid-cols-2 gap-8">
@@ -447,22 +447,20 @@ export default function HomePage() {
       {/* CTA Section with new colors */}
       <section className="gradient-premium py-20 md:py-32 relative overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-light text-white mb-8 tracking-wide">
+          <h2 className="font-display text-3xl md:text-4xl text-white mb-8 tracking-wide leading-[1.1]">
             Ready to Buy Your Premium Horsebox?
           </h2>
-          <div className="w-24 h-px bg-amber-400 mx-auto mb-10"></div>
+          <div className="w-24 h-px bg-brass-light mx-auto mb-10"></div>
           <p className="text-lg text-white/90 mb-12 max-w-3xl mx-auto font-light leading-relaxed">
             Get in touch for a quote or visit our Norfolk workshop. 
             Choose from our range of 3.5 tonne, 4.5 tonne, 7.2 tonne, and 7.5 tonne models.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6">
-            <Link href="/models" className="inline-flex items-center px-10 py-4 bg-white text-blue-700 font-medium hover:bg-amber-50 transition-all duration-300 transform hover:scale-105 rounded-lg">
+            <Link href="/models" className="btn-on-dark">
               Browse All Models
-              <ChevronRight className="ml-2 w-5 h-5" />
             </Link>
-            <Link href="/contact" className="inline-flex items-center px-10 py-4 border-2 border-white text-white font-medium hover:bg-white hover:text-blue-700 transition-all duration-300 rounded-lg">
+            <Link href="/contact" className="btn-on-dark-outline">
               Get a Quote
-              <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
           </div>
         </div>

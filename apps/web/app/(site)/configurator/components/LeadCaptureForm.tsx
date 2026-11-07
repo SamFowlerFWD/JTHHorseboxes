@@ -101,7 +101,7 @@ export default function LeadCaptureForm({ onSubmit, isSubmitting }: LeadCaptureF
   return (
     <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-700 to-blue-800 p-6 text-white">
+      <div className="bg-blue-900 p-6 text-white">
         <h3 className="text-xl font-semibold mb-2">Request Your Quote</h3>
         <p className="text-blue-100">
           Enter your details below and we'll send you a formal quote for your configured horsebox

@@ -5,7 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useInView, useSpring, useTransform } from 'framer-motion'
 import {
-  ArrowRight,
   Check,
   Sparkles,
   Star,
@@ -159,7 +158,7 @@ export default function ProductShowcase({
           rotateY: rotateY,
           transformStyle: 'preserve-3d'
         }}
-        className="group relative bg-white overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 rounded-lg"
+        className="group relative bg-white overflow-hidden border border-line shadow-sm hover:shadow-md transition-all duration-500 rounded-lg"
       >
         {/* Badge */}
         {product.badge && (
@@ -199,7 +198,7 @@ export default function ProductShowcase({
         </div>
 
         {/* Image Container */}
-        <div className="relative h-72 overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100">
+        <div className="relative h-72 overflow-hidden bg-paper">
           <motion.div
             className="absolute inset-0"
             animate={{ scale: isHovered ? 1.1 : 1 }}
@@ -373,9 +372,8 @@ export default function ProductShowcase({
           {/* Actions */}
           <div className="flex gap-2">
             <Link href={`/models/${product.id}`} className="flex-1">
-              <Button className="w-full bg-gradient-to-r from-blue-700 to-blue-800 hover:from-blue-800 hover:to-blue-900 text-white font-medium">
+              <Button className="w-full bg-blue-900 hover:from-blue-800 hover:to-blue-900 text-white font-medium">
                 View Details
-                <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
             <Link href="/contact">
@@ -433,10 +431,10 @@ export default function ProductShowcase({
                 <Badge className="mb-4 bg-amber-500 text-white">
                   Featured Model
                 </Badge>
-                <h2 className="text-3xl font-light mb-2">{featuredProduct.title}</h2>
+                <h2 className="font-display text-3xl mb-2 leading-[1.1]">{featuredProduct.title}</h2>
                 <p className="text-lg mb-4 text-white/90">{featuredProduct.description}</p>
                 <div className="flex items-baseline gap-3">
-                  <span className="text-3xl font-semibold">{featuredProduct.price}</span>
+                  <span className="font-display text-3xl leading-[1.1]">{featuredProduct.price}</span>
                   {featuredProduct.priceNote && (
                     <span className="text-sm text-white/70">{featuredProduct.priceNote}</span>
                   )}
@@ -446,7 +444,6 @@ export default function ProductShowcase({
                   <Link href={`/models/${featuredProduct.id}`}>
                     <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100">
                       Explore Model
-                      <ArrowRight className="ml-2 w-5 h-5" />
                     </Button>
                   </Link>
                   <Link href="/contact">
