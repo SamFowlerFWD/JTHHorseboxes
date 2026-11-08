@@ -598,7 +598,12 @@ const modelContent: Record<string, {
         '230 volt, 12 volt, gas and weight certificates',
       ]
     },
-    gallery: ['01.webp', '02.webp', '03.webp', '04.webp', '05.webp', '06.webp', '07.webp', '08.webp'],
+    // Only the three frames that carry "Discovery 72" on the body. 01, 02, 03,
+    // 06 and 07 are interiors that cannot be tied to this vehicle, and hero.jpg
+    // is a 4.5t (JTH, 8 Nov 2026). The interiors should come back once JTH
+    // confirms which box they are of — this page sells on the living quarters,
+    // so it is thinner without them.
+    gallery: ['04.webp', '05.webp', '08.webp'],
     seoKeywords: '7.2t horsebox, 7.2 tonne horsebox, Aeos Discovery 72, luxury horsebox, 3 tonne payload horsebox, professional horsebox, motorhome horsebox',
     // hero.jpg in this folder is a 4.5t, not a 72 (confirmed by JTH,
     // 8 Nov 2026). 08.webp is badged "Discovery 72" on the body.
@@ -1028,7 +1033,10 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
               <div className="relative image-premium">
                 <Image
                   src={content.gallery[1] ? `/models/${params.slug}/${content.gallery[1]}` : content.heroImage}
-                  alt={`${modelName} interior view`}
+                  // Was "interior view", which this template cannot promise:
+                  // gallery[1] is whatever the model's second frame happens to
+                  // be, and for the Discovery 72 it is now an exterior.
+                  alt={modelName}
                   width={600}
                   height={400}
                   className="shadow-2xl"
