@@ -600,7 +600,9 @@ const modelContent: Record<string, {
     },
     gallery: ['01.webp', '02.webp', '03.webp', '04.webp', '05.webp', '06.webp', '07.webp', '08.webp'],
     seoKeywords: '7.2t horsebox, 7.2 tonne horsebox, Aeos Discovery 72, luxury horsebox, 3 tonne payload horsebox, professional horsebox, motorhome horsebox',
-    heroImage: '/models/aeos-discovery-72/hero.jpg'
+    // hero.jpg in this folder is a 4.5t, not a 72 (confirmed by JTH,
+    // 8 Nov 2026). 08.webp is badged "Discovery 72" on the body.
+    heroImage: '/models/aeos-discovery-72/08.webp'
   },
   'jth-principle-45': {
     title: 'JTH Principle 45 - 4.5t Horsebox | Four-Piece Back End | Norfolk',

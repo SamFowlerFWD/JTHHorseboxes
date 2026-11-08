@@ -252,15 +252,15 @@ export default async function ModelsPage() {
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start">
                   <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0 mt-0.5" />
-                  <span><strong>Aeos Edge 45:</strong> £31,500 - Professional competition specification</span>
+                  <span><strong>Aeos Edge 45:</strong> Price on application - Professional competition specification</span>
                 </li>
                 <li className="flex items-start">
                   <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0 mt-0.5" />
-                  <span><strong>Aeos Freedom 45:</strong> £36,500 - Weekender model with family-friendly design</span>
+                  <span><strong>Aeos Freedom 45:</strong> Price on application - Weekender model with family-friendly design</span>
                 </li>
                 <li className="flex items-start">
                   <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0 mt-0.5" />
-                  <span><strong>Aeos Discovery 45:</strong> £46,100 - Luxury apartment-style living</span>
+                  <span><strong>Aeos Discovery 45:</strong> Price on application - Luxury apartment-style living</span>
                 </li>
               </ul>
             </div>
@@ -278,7 +278,7 @@ export default async function ModelsPage() {
                 </li>
                 <li className="flex items-start">
                   <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0 mt-0.5" />
-                  <span><strong>Helios 75:</strong> £82,500 - Flagship 7.5t model</span>
+                  <span><strong>Helios 75:</strong> Price on application - Flagship 7.5t model</span>
                 </li>
                 <li className="flex items-start">
                   <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0 mt-0.5" />
@@ -328,7 +328,7 @@ export default async function ModelsPage() {
                   <td className="p-4 text-center">4.5t</td>
                   <td className="p-4 text-center">2-3</td>
                   <td className="p-4 text-center">Extended</td>
-                  <td className="p-4 text-center font-semibold">£31,500</td>
+                  <td className="p-4 text-center font-semibold">On application</td>
                   <td className="p-4 text-center">Serious competitors, multi-day events</td>
                 </tr>
                 <tr className="bg-slate-50">
@@ -336,7 +336,7 @@ export default async function ModelsPage() {
                   <td className="p-4 text-center">4.5t</td>
                   <td className="p-4 text-center">2-3</td>
                   <td className="p-4 text-center">Weekender</td>
-                  <td className="p-4 text-center font-semibold">£36,500</td>
+                  <td className="p-4 text-center font-semibold">On application</td>
                   <td className="p-4 text-center">Families, weekend trips</td>
                 </tr>
                 <tr>
@@ -344,7 +344,7 @@ export default async function ModelsPage() {
                   <td className="p-4 text-center">4.5t</td>
                   <td className="p-4 text-center">2</td>
                   <td className="p-4 text-center">Luxury</td>
-                  <td className="p-4 text-center font-semibold">£46,100</td>
+                  <td className="p-4 text-center font-semibold">On application</td>
                   <td className="p-4 text-center">Luxury living, extended stays</td>
                 </tr>
                 <tr>
@@ -360,7 +360,7 @@ export default async function ModelsPage() {
                   <td className="p-4 text-center">7.5t</td>
                   <td className="p-4 text-center">3-4</td>
                   <td className="p-4 text-center">Flagship</td>
-                  <td className="p-4 text-center font-semibold">£82,500</td>
+                  <td className="p-4 text-center font-semibold">On application</td>
                   <td className="p-4 text-center">Professional teams, Olympic level</td>
                 </tr>
               </tbody>

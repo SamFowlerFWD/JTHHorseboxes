@@ -112,8 +112,10 @@ export default function HomePage() {
       slug: 'aeos-discovery-72',
       name: 'Aeos Discovery 72',
       line: '7.2 tonnes, with apartment-quality living quarters.',
-      image: '/models/aeos-discovery-72/hero.jpg',
-      alt: 'Aeos Discovery 72 horsebox in green, on a country lane at dusk',
+      // Not hero.jpg: that is a 4.5t, confirmed by JTH on 8 Nov 2026. This
+      // one is badged "Discovery 72" on the body, so it is self-evidencing.
+      image: '/models/aeos-discovery-72/08.webp',
+      alt: 'Aeos Discovery 72 horsebox in pale green, rear three-quarter view',
     },
   ]
 
