@@ -28,7 +28,7 @@ export const KEYWORDS = {
       '3.5 tonne horsebox',
       '3.5t horsebox for sale',
       'lightweight horsebox',
-      'car license horsebox',
+      'car licence horsebox',
       'two horse horsebox',
       'small horsebox UK'
     ],
@@ -36,7 +36,7 @@ export const KEYWORDS = {
       '4.5 tonne horsebox',
       '4.5t horsebox for sale',
       'medium horsebox',
-      'C1 license horsebox',
+      'C1 licence horsebox',
       'three horse horsebox',
       'family horsebox'
     ],

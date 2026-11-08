@@ -26,7 +26,7 @@ export const organizationSchema = {
   "alternateName": ["JTH Horseboxes", "JTH", "J Taylor Horseboxes Ltd"],
   "url": "https://jthltd.co.uk",
   "logo": "https://jthltd.co.uk/logo.png",
-  "description": "Leading British horsebox manufacturer specializing in premium 3.5t, 4.5t & 7.2t horseboxes. Based in Beeston, Norfolk. Incorporating KPH heritage.",
+  "description": "Leading British horsebox manufacturer specialising in premium 3.5t, 4.5t & 7.2t horseboxes. Based in Beeston, Norfolk. Incorporating KPH heritage.",
   "foundingDate": "2024",
   "address": {
     "@type": "PostalAddress",
@@ -359,7 +359,7 @@ export const websiteSchema = {
   "@id": "https://jthltd.co.uk/#website",
   "url": "https://jthltd.co.uk",
   "name": "JTH Horseboxes",
-  "description": "Leading British horsebox manufacturer specializing in 3.5t, 4.5t & 7.2t luxury horseboxes",
+  "description": "Leading British horsebox manufacturer specialising in 3.5t, 4.5t & 7.2t luxury horseboxes",
   "publisher": {
     "@id": "https://jthltd.co.uk/#organization"
   },

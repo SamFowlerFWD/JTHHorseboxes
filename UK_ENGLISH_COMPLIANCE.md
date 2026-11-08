@@ -1,14 +1,24 @@
 # UK English Compliance Report
 
-**Date:** 2025-11-05
-**Status:** ✅ Verified UK English Throughout
-**Commit:** 81b83c8
+**Date:** 2026-11-08 (originally 2025-11-05)
+**Status:** Re-checked and re-fixed on 2026-11-08.
 
 ---
 
 ## Summary
 
-All user-facing content on the JTH Horseboxes website now uses **British English** spelling and terminology consistently.
+All user-facing content uses **British English** spelling and terminology.
+
+**This had regressed.** The 2025-11-05 pass recorded "Verified UK English
+Throughout" and marked Customize, License and Realize as "not used in content".
+By November 2026 the site carried 26 instances of *customization/customize*,
+3 of *specializing/specializes*, 16 of *license* as a noun, and single instances
+of *paint colors*, *optimized*, *minimize*, *maximizing* and *traveling* — on
+the homepage, the models pages, both model templates, the Ireland pages, the
+configurator and the Schema.org descriptions. All are now fixed.
+
+The lesson: a tick in this document is not a check. Re-run the command in
+"How to re-check" below before trusting it.
 
 ---
 
@@ -43,15 +53,16 @@ All user-facing content on the JTH Horseboxes website now uses **British English
 | US English | UK English | Status | Notes |
 |------------|------------|--------|-------|
 | **Customizable** | **Customisable** | ✅ Fixed | User-facing text |
-| Customize | Customise | ✅ N/A | Not used in content |
+| Specialize | Specialise | ✅ Fixed 2026-11-08 | Homepage copy + Schema descriptions |
+| Customize | Customise | ✅ Fixed 2026-11-08 | Was in 26 places, incl. configurator |
 | Organization | Organisation | ⚠️ Technical | Schema names (SEO standard) |
 | Color | Colour | ✅ Correct | CSS classes use 'color' (technical) |
 | Center | Centre | ✅ Correct | CSS classes use 'center' (technical) |
-| Aluminum | Aluminium | ✅ N/A | Not used |
-| Realize | Realise | ✅ N/A | Not used |
-| License | Licence | ✅ N/A | Not used |
-| Favor | Favour | ✅ N/A | Not used |
-| Honor | Honour | ✅ N/A | Not used |
+| Aluminum | Aluminium | ✅ N/A | Not used (confirmed 2026-11-08) |
+| Realize | Realise | ✅ N/A | Not used (confirmed 2026-11-08) |
+| License | Licence | ✅ Fixed 2026-11-08 | Noun only; "licensed" stays as is |
+| Favor | Favour | ✅ N/A | Not used (confirmed 2026-11-08) |
+| Honor | Honour | ✅ N/A | Not used (confirmed 2026-11-08) |
 
 ---
 
@@ -441,3 +452,35 @@ The JTH Horseboxes website now uses **100% British English** in all user-facing 
 **Last Updated:** 2025-11-05
 **Status:** ✅ UK English Verified
 **Next Review:** Before next content update
+
+---
+
+## Protected terms — never "correct" these
+
+These are code, not copy. Changing them breaks the build or the SEO:
+
+| Term | Why |
+|---|---|
+| `unoptimized` | Next.js `<Image>` prop (16 uses) |
+| `Authorization` / `Unauthorized` | HTTP header and the standard 401 reason phrase (17 uses) |
+| `organizationSchema`, `"@type": "Organization"`, `organizer` | Schema.org vocabulary |
+| `Maximize2` | lucide-react icon name |
+| `sanitize`, `resize`, `categorized`, `partialize` | Code identifiers |
+| `text-center`, `items-center`, `justify-center`, `transition-colors` | Tailwind utilities |
+| `color:`, `textAlign: 'center'`, `statusColors` | CSS properties and code |
+
+Note that Schema.org *property names and types* stay American, but the free-text
+`description` *values* inside them are copy, and should be British.
+
+---
+
+## How to re-check
+
+From `apps/web`, this lists any US spelling left in copy. No output means clean:
+
+```bash
+grep -rnoiE "[a-z]+iz(e|es|ed|ing|ation|ations)|\blicense[sd]?\b|paint colors|\btraveling\b" app components lib --include="*.tsx" --include="*.ts" | grep -viE "unoptimized|organization|organizer|resize|size|prize|authoriz|unauthoriz|sanitiz|partializ|categoriz|organize|organized|behavior|Maximize"
+```
+
+`color` and `center` are deliberately excluded — in this codebase they are
+almost always CSS or Tailwind. Check those by eye if copy changes.

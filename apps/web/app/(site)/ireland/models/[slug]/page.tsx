@@ -48,8 +48,8 @@ const modelContent: Record<string, {
     title: 'Professional 35 - Premium 3.5t Horsebox for Serious Competitors',
     description: 'The JTH Professional 35 is the ultimate 3.5 tonne horsebox for professional riders and serious competitors. Premium features, luxury finish, advanced safety systems. British-built in Norfolk.',
     longDescription: [
-      'The Professional 35 represents the pinnacle of 3.5 tonne horsebox design and engineering. Built for professional riders, serious competitors, and discerning owners who demand the very best, this model combines luxury, performance, and practicality in a package that can be driven on a standard car license.',
-      'Every Professional 35 is handcrafted at our Norfolk facility using the finest materials and components. The premium GRP construction ensures exceptional durability while keeping weight to a minimum, maximizing your available payload for horses and equipment.',
+      'The Professional 35 represents the pinnacle of 3.5 tonne horsebox design and engineering. Built for professional riders, serious competitors, and discerning owners who demand the very best, this model combines luxury, performance, and practicality in a package that can be driven on a standard car licence.',
+      'Every Professional 35 is handcrafted at our Norfolk facility using the finest materials and components. The premium GRP construction ensures exceptional durability while keeping weight to a minimum, maximising your available payload for horses and equipment.',
       'The living area in the Professional 35 sets new standards for the 3.5 tonne category. Premium upholstery, solid surface worktops, and thoughtful storage solutions create a comfortable environment for competition days. The horse area features our advanced safety systems including reinforced partitions, premium anti-slip flooring, and comprehensive CCTV monitoring.',
       'Professional riders choose the Professional 35 because it delivers everything needed for successful competition without compromise. From the hydraulic ramp option to the solar power system, every feature has been carefully selected to enhance your equestrian lifestyle. This is more than just transport – it\'s your mobile base for achieving excellence.'
     ],
@@ -114,9 +114,9 @@ const modelContent: Record<string, {
   },
   'principle-35': {
     title: 'Principle 35 - Essential Quality 3.5t Horsebox',
-    description: 'The JTH Principle 35 offers the perfect balance of quality and value for discerning horsebox owners. British built 3.5 tonne horsebox with essential features, delivered direct to Ireland.',
+    description: 'The JTH Principle 35 is specified for everyday work: a short list of fittings, and the payload to show for it. British built 3.5 tonne horsebox, delivered direct to Ireland.',
     longDescription: [
-      'The Principle 35 represents exceptional value in the 3.5 tonne horsebox market. Built with the same British craftsmanship and attention to detail as our premium models, the Principle 35 delivers essential features without compromise.',
+      'The Principle 35 carries a shorter specification, which keeps the payload high and the price down. It is built by hand in our Norfolk workshop and delivered direct to Ireland.',
       'Perfect for owners seeking quality construction and reliable performance, this model includes everything you need for safe and comfortable horse transportation. Every Principle 35 is built in our Norfolk workshop with decades of expertise.',
       'The Principle 35 proves that quality doesn\'t have to mean expensive. With thoughtful design and efficient production, we deliver a horsebox that meets the needs of most equestrian enthusiasts.'
     ],
@@ -256,10 +256,10 @@ export default async function IrelandModelDetailPage({ params }: { params: { slu
   const modelFAQs = [
     {
       question: `How much does the ${modelName} cost in Ireland?`,
-      answer: `The ${modelName} starts from ${eurPrice} excluding VAT when delivered to Ireland. Final pricing depends on your chosen options and customizations. Finance can be arranged through a third party if required.`
+      answer: `The ${modelName} starts from ${eurPrice} excluding VAT when delivered to Ireland. Final pricing depends on your chosen options and customisations. Finance can be arranged through a third party if required.`
     },
     {
-      question: `What license do I need to drive this horsebox?`,
+      question: `What licence do I need to drive this horsebox?`,
       answer: 'The 3.5 tonne models can be driven on a full category B (car) licence. Heavier horseboxes need at least a C1 licence.'
     },
     {
@@ -465,7 +465,7 @@ export default async function IrelandModelDetailPage({ params }: { params: { slu
               Key Features & Options
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Every {modelName} comes with essential features as standard, with extensive customization options available.
+              Every {modelName} comes with its standard specification, and a list of options you can add to it.
             </p>
           </div>
 
@@ -593,7 +593,7 @@ export default async function IrelandModelDetailPage({ params }: { params: { slu
                 </h3>
                 <p className="text-slate-600 leading-relaxed">
                   Build time for the {modelName} is typically 8-12 weeks from order confirmation, depending on
-                  specification and customization requirements. We deliver directly to your door anywhere in Ireland
+                  specification and customisation requirements. We deliver directly to your door anywhere in Ireland
                   with full handover training included.
                 </p>
               </div>

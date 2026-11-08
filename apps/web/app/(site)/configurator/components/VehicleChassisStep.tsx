@@ -28,7 +28,7 @@ export default function VehicleChassisStep() {
     {
       id: 'JTH',
       name: 'JTH Range',
-      description: 'Fully configurable horseboxes with complete customization options',
+      description: 'Fully configurable horseboxes with complete customisation options',
       icon: Star,
       availability: 'configurable',
       badge: 'Fully Configurable',
@@ -37,7 +37,7 @@ export default function VehicleChassisStep() {
     {
       id: 'AEOS',
       name: 'AEOS Range',
-      description: 'Pre-built packages with limited customization for faster delivery',
+      description: 'Pre-built packages with limited customisation for faster delivery',
       icon: Package,
       availability: 'pre-built',
       badge: 'Pre-Built Package',
@@ -190,10 +190,10 @@ export default function VehicleChassisStep() {
                 <div className="text-center">
                   <div className="text-lg font-bold text-slate-900">{tonnage}</div>
                   <div className="text-sm text-slate-600 mt-1">
-                    {tonnage === '3.5T' && 'B License'}
-                    {tonnage === '4.5T' && 'C1 License'}
-                    {tonnage === '7.2T' && 'C License'}
-                    {tonnage === '7.5T' && 'C License'}
+                    {tonnage === '3.5T' && 'B Licence'}
+                    {tonnage === '4.5T' && 'C1 Licence'}
+                    {tonnage === '7.2T' && 'C Licence'}
+                    {tonnage === '7.5T' && 'C Licence'}
                   </div>
                 </div>
               </button>
@@ -283,7 +283,7 @@ export default function VehicleChassisStep() {
             <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
               <h4 className="text-sm font-semibold text-blue-800 mb-2">Pre-Built Package Information:</h4>
               <div className="text-sm text-blue-700 space-y-1">
-                <p>• Pre-configured specification with limited customization options</p>
+                <p>• Pre-configured specification with limited customisation options</p>
                 <p>• Faster delivery times compared to fully custom builds</p>
                 <p>• Contact us for current availability and pricing</p>
               </div>
@@ -405,7 +405,7 @@ export default function VehicleChassisStep() {
                 : 'text-purple-700'
             }`}>
               {selectedModel.availability === 'pre-built' 
-                ? 'This is a pre-built package model. Our sales team will contact you to discuss availability, pricing, and the limited customization options available.'
+                ? 'This is a pre-built package model. Our sales team will contact you to discuss availability, pricing, and the limited customisation options available.'
                 : 'This premium model requires a custom consultation. Our specialists will work with you to create a detailed specification and provide comprehensive pricing.'
               }
             </p>

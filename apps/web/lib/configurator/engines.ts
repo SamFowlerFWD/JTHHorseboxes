@@ -191,7 +191,7 @@ export function generateLivingAreaWarnings(
       type: 'living_area',
       severity: 'warning',
       message: `Maximum chassis extension (6ft) required for this configuration`,
-      suggested_action: 'This is the maximum extension available. Consider optimizing your layout.',
+      suggested_action: 'This is the maximum extension available. Consider optimising your layout.',
     })
   } else if (livingAreaCalc.extension_feet_required > 0) {
     warnings.push({

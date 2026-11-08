@@ -98,7 +98,7 @@ export default function OptionsStep() {
       {/* Non-configurable Model Warning */}
       {selectedModel && selectedModel.availability !== 'configurable' && (
         <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-8 mb-6">
-          <h2 className="text-xl font-semibold text-slate-900 mb-4">Customization Information</h2>
+          <h2 className="text-xl font-semibold text-slate-900 mb-4">Customisation Information</h2>
           <div className={`p-4 rounded-lg border ${
             selectedModel.availability === 'pre-built' 
               ? 'bg-blue-50 border-blue-200' 
@@ -110,8 +110,8 @@ export default function OptionsStep() {
                 : 'text-purple-700'
             }`}>
               {selectedModel.availability === 'pre-built' 
-                ? 'This is a pre-built package model with limited customization options. Our sales team will discuss available modifications with you.'
-                : 'This premium model is fully bespoke. All specifications and options will be customized during your consultation with our specialists.'
+                ? 'This is a pre-built package model with limited customisation options. Our sales team will discuss available modifications with you.'
+                : 'This premium model is fully bespoke. All specifications and options will be customised during your consultation with our specialists.'
               }
             </p>
             <p className={`text-sm font-medium ${
@@ -191,7 +191,7 @@ export default function OptionsStep() {
       {selectedModel && selectedModel.availability === 'configurable' && (
         <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
           <h2 className="text-xl font-semibold text-slate-900 mb-6">
-            {selectedModel.pioneer_package_eligible ? 'Additional Options & Customization' : 'Options & Customization'}
+            {selectedModel.pioneer_package_eligible ? 'Additional Options & Customisation' : 'Options & Customisation'}
           </h2>
           
           <div className="space-y-4">

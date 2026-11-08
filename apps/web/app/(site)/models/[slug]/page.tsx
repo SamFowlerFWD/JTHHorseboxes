@@ -45,8 +45,8 @@ const modelContent: Record<string, {
     title: 'Professional 35 - Premium 3.5t Horsebox for Serious Competitors',
     description: 'The JTH Professional 35 is the ultimate 3.5 tonne horsebox for professional riders and serious competitors. Premium features, luxury finish, advanced safety systems. British-built in Norfolk from £22,000.',
     longDescription: [
-      'The Professional 35 represents the pinnacle of 3.5 tonne horsebox design and engineering. Built for professional riders, serious competitors, and discerning owners who demand the very best, this model combines luxury, performance, and practicality in a package that can be driven on a standard car license.',
-      'Every Professional 35 is handcrafted at our Norfolk facility using the finest materials and components. The premium GRP construction ensures exceptional durability while keeping weight to a minimum, maximizing your available payload for horses and equipment.',
+      'The Professional 35 represents the pinnacle of 3.5 tonne horsebox design and engineering. Built for professional riders, serious competitors, and discerning owners who demand the very best, this model combines luxury, performance, and practicality in a package that can be driven on a standard car licence.',
+      'Every Professional 35 is handcrafted at our Norfolk facility using the finest materials and components. The premium GRP construction ensures exceptional durability while keeping weight to a minimum, maximising your available payload for horses and equipment.',
       'The living area in the Professional 35 sets new standards for the 3.5 tonne category. Premium upholstery, solid surface worktops, and thoughtful storage solutions create a comfortable environment for competition days. The horse area features our advanced safety systems including reinforced partitions, premium anti-slip flooring, and comprehensive CCTV monitoring.',
       'Professional riders choose the Professional 35 because it delivers everything needed for successful competition without compromise. From the hydraulic ramp option to the solar power system, every feature has been carefully selected to enhance your equestrian lifestyle. This is more than just transport – it\'s your mobile base for achieving excellence.'
     ],
@@ -89,9 +89,9 @@ const modelContent: Record<string, {
   },
   'principle-35': {
     title: 'Principle 35 - Essential Quality 3.5t Horsebox',
-    description: 'The JTH Principle 35 offers the perfect balance of quality and value for discerning horsebox owners. All the safety, less of the thrills. British built 3.5 tonne horsebox from £19,500 + VAT.',
+    description: 'The JTH Principle 35 is specified for everyday work: a short list of fittings, and the payload to show for it. British built 3.5 tonne horsebox from £19,500 + VAT.',
     longDescription: [
-      'This entry level horsebox has a reduced specification to keep payload up and the cost down. A crossover of the KPH Aeos QV 35 and the JTH 3.5 Tonne Horsebox range.',
+      'The Principle 35 carries a shorter specification, which keeps the payload high and the price down. It draws on both the KPH Aeos QV 35 and the JTH 3.5 tonne range.',
       'The bespoke design allows us to tailor the horse area length and breast bar height specifically for you. In the groom\'s area you\'ll find an extra wide rear groom\'s door, long seat and internal saddle racks and bridle cups.',
       'Customers can add items from a comprehensive list of colours and extras. 12 month warranty included. For the more advanced specification, see the JTH Professional 35.'
     ],
@@ -152,7 +152,7 @@ const modelContent: Record<string, {
     description: 'The JTH Progeny 35 is a crew cab 3.5 tonne horsebox seating up to 7 passengers — 2-3 in the front and up to 4 in the rear crew cab. Top of the range specification. British-built in Norfolk from £25,500.',
     longDescription: [
       'The Progeny 35 is our top of the range 3.5 tonne crew cab horsebox, designed for teams, families, and professionals who need to transport both horses and passengers in comfort. With seating for up to 7 — 2-3 in the front and up to 4 in the rear crew cab — everyone travels together.',
-      'Building on the Professional 35 platform, the Progeny adds a full crew cab with premium materials throughout, advanced technology features, and bespoke customization options that set it apart from any other horsebox in its class.',
+      'Building on the Professional 35 platform, the Progeny adds a full crew cab with premium materials throughout, advanced technology features, and bespoke customisation options that set it apart from any other horsebox in its class.',
       'For owners who demand the absolute best, the Progeny 35 delivers an unmatched combination of crew cab practicality, luxury finish, and British engineering excellence.'
     ],
     features: [
@@ -603,12 +603,12 @@ const modelContent: Record<string, {
     heroImage: '/models/aeos-discovery-72/hero.jpg'
   },
   'jth-principle-45': {
-    title: 'JTH Principle 45 - Essential 4.5t Horsebox | Basic Back End | Norfolk',
-    description: 'JTH Principle 45 - Essential 4.5 tonne horsebox with 4-piece back end. Quality British construction at an affordable price from £28,950. Built in Norfolk. Car license with C1. Configure online.',
+    title: 'JTH Principle 45 - 4.5t Horsebox | Four-Piece Back End | Norfolk',
+    description: 'JTH Principle 45 - 4.5 tonne horsebox with a four-piece back end, built in Norfolk from £28,950. Driven on a car licence with C1.',
     longDescription: [
-      'The Principle 45 brings our renowned build quality to the 4.5 tonne category. Featuring our practical 4-piece back end design, this model offers increased payload over 3.5t models while maintaining affordability.',
-      'Perfect for riders needing extra capacity without the premium price tag. The 4-piece back end provides easy access and maintenance.',
-      'Built with the same British craftsmanship as our premium models, the Principle 45 delivers essential features without compromise on quality or safety.'
+      'The Principle 45 takes the Principle into the 4.5 tonne category, with our four-piece back end and the increased payload that comes with the heavier chassis.',
+      'It suits riders who need the extra capacity for a longer day or a bigger pair of horses. The four-piece back end keeps access and maintenance straightforward.',
+      'Like every Principle, it is specified to do the work rather than to fill an options list.'
     ],
     features: [
       '4.5 tonne gross weight',
@@ -616,7 +616,7 @@ const modelContent: Record<string, {
       'Increased payload vs 3.5t',
       'Quality GRP construction',
       'British-built in Norfolk',
-      'C1 license required',
+      'C1 licence required',
       '2-year structural warranty',
       'Finance options available'
     ],
@@ -894,7 +894,7 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
         : `All prices shown are for the body build only, excluding VAT. The base vehicle (van/chassis) is sourced separately to your requirements. Final pricing depends on your chosen options and customisations. Contact us to discuss your complete build.`
     },
     {
-      question: `What license do I need to drive this horsebox?`,
+      question: `What licence do I need to drive this horsebox?`,
       answer: params.slug.includes('35') 
         ? 'The 3.5 tonne models can be driven on a standard car licence (category B), whenever you passed your test.'
         : params.slug.includes('45')
@@ -906,8 +906,8 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
       answer: `Every ${content.title.split(' - ')[0]} comes with our comprehensive ${warrantyPhrase} structural warranty covering all manufacturing defects and structural elements.`
     },
     {
-      question: `Can I customize this horsebox?`,
-      answer: `Yes, the ${content.title.split(' - ')[0]} can be fully customized to your requirements including paint colors, interior layout, and equipment specifications.`
+      question: `Can I customise this horsebox?`,
+      answer: `Yes, the ${content.title.split(' - ')[0]} can be fully customised to your requirements including paint colours, interior layout, and equipment specifications.`
     }
   ]
 
@@ -1105,7 +1105,7 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
               Key Features & Options
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Every {modelName} comes with essential features as standard, with extensive customization options available.
+              Every {modelName} comes with its standard specification, and a list of options you can add to it.
             </p>
           </div>
 
@@ -1169,7 +1169,7 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
               Everything You Need to Know About the {modelName}
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Common questions about specifications, pricing, and customization options
+              Common questions about specifications, pricing, and customisation options
             </p>
           </div>
 
@@ -1234,7 +1234,7 @@ export default async function ModelDetailPage({ params }: { params: { slug: stri
                 </h3>
                 <p className="text-slate-600 leading-relaxed">
                   Build time for the {modelName} is typically 8-12 weeks from order confirmation, depending on 
-                  specification and customization requirements. We deliver throughout the UK and Ireland with 
+                  specification and customisation requirements. We deliver throughout the UK and Ireland with 
                   full handover training included.
                 </p>
               </div>

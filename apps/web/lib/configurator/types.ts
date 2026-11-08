@@ -122,7 +122,7 @@ export const MODELS: Model[] = [
     id: 'professional-35',
     slug: 'professional-35',
     name: 'Professional 35',
-    description: '3.5 Tonne Premium Model with full customization options',
+    description: '3.5 Tonne Premium Model with full customisation options',
     base_price: 22000,
     vat_rate: 20,
     weight_class: '3.5t',
@@ -191,7 +191,7 @@ export const MODELS: Model[] = [
     id: 'aeos-45',
     slug: 'aeos-45',
     name: 'AEOS 45',
-    description: '4.5 Tonne Pre-Built Package with limited customization',
+    description: '4.5 Tonne Pre-Built Package with limited customisation',
     base_price: null, // Contact for pricing
     vat_rate: 20,
     weight_class: '4.5t',
@@ -203,7 +203,7 @@ export const MODELS: Model[] = [
     badge: 'Pre-Built Package',
     features: [
       'Pre-configured build',
-      'Limited customization options',
+      'Limited customisation options',
       'Faster delivery times',
       'Fixed specification package'
     ]

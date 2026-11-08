@@ -193,12 +193,12 @@ export default function ConfiguratorPage() {
           ? `Set your deposit amount (default ${formatPrice(5000, region)})`
           : 'Deposit information (for reference only)'
       case 4:
-        if (!selectedModel) return 'Choose additional options and customizations'
-        if (selectedModel.availability === 'pre-built') return 'Limited customization options available'
+        if (!selectedModel) return 'Choose additional options and customisations'
+        if (selectedModel.availability === 'pre-built') return 'Limited customisation options available'
         if (selectedModel.availability === 'contact-only') return 'Options determined during consultation'
         return selectedModel.pioneer_package_eligible 
           ? 'Add Pioneer Package and additional options'
-          : 'Choose additional options and customizations'
+          : 'Choose additional options and customisations'
       case 5:
         return selectedModel?.availability === 'configurable'
           ? 'Review your configuration and payment schedule'

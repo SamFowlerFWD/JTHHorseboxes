@@ -117,7 +117,7 @@ const navigation: NavigationItem[] = [
       {
         label: 'Discovery 45',
         href: '/models/aeos-discovery-45',
-        description: 'Entry-level pre-built option',
+        description: 'Apartment-style living for longer stays',
         icon: <ShoppingBag className="w-4 h-4" />,
         badge: 'Pre-Built'
       },

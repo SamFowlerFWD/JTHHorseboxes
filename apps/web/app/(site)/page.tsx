@@ -33,7 +33,7 @@ export default function HomePage() {
       src: '/gallery/principle-01.webp',
       alt: 'JTH Principle - Exterior View',
       title: 'Principle',
-      description: 'Perfect balance of quality and value'
+      description: 'The box that goes out every weekend of the season'
     },
     {
       src: '/gallery/progeny-01.webp',
@@ -51,7 +51,7 @@ export default function HomePage() {
       src: '/gallery/discovery45-01.webp',
       alt: 'Aeos Discovery 45 - Exterior',
       title: 'Aeos Discovery 45',
-      description: 'Versatile and practical horsebox'
+      description: 'Apartment-style living for longer stays away'
     },
     {
       src: '/gallery/discovery72-01.webp',
@@ -69,7 +69,7 @@ export default function HomePage() {
       src: '/gallery/principle-02.webp',
       alt: 'JTH Principle - Detail View',
       title: 'Principle',
-      description: 'Essential features with exceptional value'
+      description: 'A short list of fittings, and the payload to show for it'
     },
     {
       src: '/gallery/progeny-02.webp',
@@ -85,20 +85,48 @@ export default function HomePage() {
     }
   ]
 
+  // Aeos — the flagship range. Only the three models with a full set of
+  // photography appear here; Edge 45, Edge ST 45 and Helios 75 carry a hero
+  // shot only (see docs/JTH_master_spec_sheet_2026-11-07.xlsx, Model status).
+  //
+  // No prices: /models already shows "Price on application" for this range,
+  // and the guide prices on that page disagree with the cards. Keeping the
+  // flagship off price is both the safer reading of the data and the usual
+  // convention at this end of the market.
+  const aeosModels = [
+    {
+      slug: 'aeos-freedom-45',
+      name: 'Aeos Freedom 45',
+      line: 'The weekender, with a family-friendly layout.',
+      image: '/models/aeos-freedom-45/07.webp',
+      alt: 'Aeos Freedom 45 horsebox in silver, side view',
+    },
+    {
+      slug: 'aeos-discovery-45',
+      name: 'Aeos Discovery 45',
+      line: 'Apartment-style living, for longer stays away.',
+      image: '/models/aeos-discovery-45/05.webp',
+      alt: 'Aeos Discovery 45 horsebox in blue, front three-quarter view',
+    },
+    {
+      slug: 'aeos-discovery-72',
+      name: 'Aeos Discovery 72',
+      line: '7.2 tonnes, with apartment-quality living quarters.',
+      image: '/models/aeos-discovery-72/hero.jpg',
+      alt: 'Aeos Discovery 72 horsebox in green, on a country lane at dusk',
+    },
+  ]
+
   // Sample products - using external shots
   const products = [
     {
       id: 'professional-35',
       title: 'Professional 35',
-      subtitle: '3.5 Tonne Luxury',
-      description: 'The ultimate in luxury and performance for the professional.',
+      subtitle: '3.5 Tonne · For the competition season',
+      description: 'The full specification, for the rider who is out most weekends.',
       price: '£22,000',
       priceNote: 'body build only · exc. VAT',
       images: ['/models/professional-35/02.webp', '/models/professional-35/03.webp', '/models/professional-35/01.webp'],
-      badge: {
-        text: 'Most Popular',
-        variant: 'default' as const
-      },
       features: [
         { label: 'Payload', value: 'Minimum 1 tonne' },
         { label: 'Horse Capacity', value: '2 horses' },
@@ -112,19 +140,15 @@ export default function HomePage() {
     {
       id: 'principle-35',
       title: 'Principle 35',
-      subtitle: '3.5 Tonne Essential',
-      description: 'Perfect balance of quality and value for the discerning owner.',
+      subtitle: '3.5 Tonne · For everyday work',
+      description: 'A short list of fittings, and the payload to show for it.',
       price: '£19,500',
       priceNote: 'body build only · exc. VAT',
       images: ['/models/principle-35/cover.webp', '/models/principle-35/02.webp', '/models/principle-35/03.webp', '/models/principle-35/01.webp'],
-      badge: {
-        text: 'Best Value',
-        variant: 'secondary' as const
-      },
       features: [
         { label: 'Payload', value: '1.1 tonnes on average' },
         { label: 'Horse Capacity', value: '2 horses' },
-        { label: 'Living', value: 'Essential features' },
+        { label: 'Living', value: "Fitted groom's area" },
         { label: 'Warranty', value: '12 months' }
       ],
       availability: 'Pre-Order' as const,
@@ -134,15 +158,11 @@ export default function HomePage() {
     {
       id: 'progeny-35',
       title: 'Progeny 35',
-      subtitle: '3.5 Tonne Crew Cab',
+      subtitle: '3.5 Tonne Crew Cab · For teams and families',
       description: 'Crew cab 3.5t horsebox with up to 7 seats — top of the range specification.',
       price: '£25,500',
       priceNote: 'body build only · exc. VAT',
       images: ['/models/progeny-35/02.webp', '/models/progeny-35/03.webp', '/models/progeny-35/01.webp'],
-      badge: {
-        text: 'Premium',
-        variant: 'default' as const
-      },
       features: [
         { label: 'Seating', value: 'Up to 7 seats' },
         { label: 'Crew Cab', value: '2-3 front + up to 4 rear' },
@@ -323,6 +343,66 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Aeos — the flagship range, set above the 3.5t range that follows */}
+      <section className="bg-ink py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-14"
+          >
+            <p className="text-sm uppercase tracking-[0.2em] text-brass">
+              The flagship range
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl text-white mt-3 leading-[1.1]">
+              Aeos
+            </h2>
+            <div className="w-24 h-px bg-brass/50 mx-auto my-7"></div>
+            <p className="text-lg text-slate-300 max-w-2xl mx-auto font-light leading-relaxed">
+              Kevin Parker&apos;s designs, acquired by JTH in 2025. Horseboxes at 4.5 and
+              7.2 tonnes, for riders who are away for nights at a time.
+            </p>
+          </motion.div>
+
+          <div className="grid gap-8 md:grid-cols-3">
+            {aeosModels.map((model, index) => (
+              <motion.div
+                key={model.slug}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Link href={`/models/${model.slug}`} className="group block">
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+                    <Image
+                      src={model.image}
+                      alt={model.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
+                  </div>
+                  <h3 className="font-display text-2xl text-white mt-5 group-hover:text-brass transition-colors">
+                    {model.name}
+                  </h3>
+                  <p className="mt-2 text-slate-300 leading-relaxed">{model.line}</p>
+                  <p className="mt-3 text-sm text-slate-400">Price on application</p>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-14 text-center">
+            <Link href="/models" className="btn-on-dark-outline">
+              Explore the Aeos range
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Product Showcase */}
       <section className="py-20 bg-paper">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -332,11 +412,15 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-fluid-4xl font-light text-slate-900 mb-4">
-              Our Premium 3.5 Tonne Range
+            <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
+              The 3.5 tonne range
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl text-ink mt-3 leading-[1.1]">
+              Professional, Principle and Progeny
             </h2>
-            <p className="text-fluid-lg text-slate-700 max-w-3xl mx-auto">
-              Discover the Professional, Principle and Progeny
+            <div className="w-24 h-px bg-line mx-auto my-7"></div>
+            <p className="text-fluid-lg text-slate-700 max-w-2xl mx-auto font-light">
+              Driven on a standard car licence, whenever you passed your test.
             </p>
           </motion.div>
 
@@ -377,7 +461,7 @@ export default function HomePage() {
             </h2>
             <div className="w-24 h-0.5 bg-brass/50 mx-auto mb-8"></div>
             <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light">
-              As one of the UK's leading horsebox manufacturers, JTH (J Taylor Horseboxes) specializes in building premium 
+              As one of the UK's leading horsebox manufacturers, JTH (J Taylor Horseboxes) specialises in building premium 
               3.5 tonne, 4.5 tonne, 7.2 tonne, and 7.5 tonne horseboxes. We&apos;re a family-run business of equestrians,
               building every horsebox in our Norfolk workshop.
             </p>

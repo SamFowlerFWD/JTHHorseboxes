@@ -62,7 +62,7 @@ export default function PioneerPackageDialog({ onClose, onConfirm }: PioneerPack
               </div>
               <h3 className="font-semibold text-slate-900 mb-2">3ft Full Extension</h3>
               <p className="text-sm text-slate-600 mb-4">
-                Extends the horse area by 3 feet with full-height walls, maximizing space and privacy.
+                Extends the horse area by 3 feet with full-height walls, maximising space and privacy.
               </p>
               <ul className="text-sm text-slate-500 space-y-1">
                 <li>• Maximum space</li>

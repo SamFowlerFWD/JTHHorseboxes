@@ -42,10 +42,10 @@ const models = [
   {
     slug: 'principle-35',
     name: 'Principle 35',
-    subtitle: 'Best Value Entry Point',
+    subtitle: 'For everyday work',
     price: eurPrinciple,
     gbpBase: 19500,
-    description: 'The perfect balance of quality and value. Ideal for first-time horsebox buyers looking for British build quality without compromise.',
+    description: 'Specified for everyday work: a short list of fittings, and the payload to show for it. Built by hand in Norfolk.',
     image: '/ireland/jth-principle-35-horsebox-green-rear-quarter-ireland.webp',
     features: [
       'Reinforced steel bulkhead',
@@ -53,16 +53,14 @@ const models = [
       'Secondary aluminium bulkhead with twin escape doors',
       'Saddle racks & bridle hooks',
     ],
-    badge: 'Best Value',
-    badgeColor: 'bg-emerald-600',
   },
   {
     slug: 'professional-35',
     name: 'Professional 35',
-    subtitle: 'Most Popular Choice',
+    subtitle: 'For the competition season',
     price: eurProfessional,
     gbpBase: 22000,
-    description: 'Our most popular model with premium features included as standard. The choice of serious competitors across the UK and Ireland.',
+    description: 'The full specification, included as standard. Built for riders who are out competing regularly.',
     image: '/ireland/jth-professional-35-horsebox-navy-gold-front-ireland.webp',
     features: [
       'Head, partition & door padding',
@@ -70,8 +68,6 @@ const models = [
       'Reversing camera as standard',
       'EVA wall matting up to 5 feet',
     ],
-    badge: 'Most Popular',
-    badgeColor: 'bg-blue-700',
   },
 ]
 
@@ -133,11 +129,6 @@ export default function IrelandPage() {
                     <div className="absolute top-4 right-4 z-10">
                       <span className="inline-flex items-center bg-blue-700 px-3 py-1 text-sm font-semibold text-white">
                         3.5T
-                      </span>
-                    </div>
-                    <div className="absolute top-4 left-4 z-10">
-                      <span className={`inline-flex items-center ${model.badgeColor} px-3 py-1 text-sm font-semibold text-white`}>
-                        {model.badge}
                       </span>
                     </div>
                   </div>

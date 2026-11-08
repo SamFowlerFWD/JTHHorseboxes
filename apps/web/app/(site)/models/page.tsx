@@ -97,13 +97,6 @@ export default async function ModelsPage() {
                     {weightBadge(model.slug)}
                   </span>
                 </div>
-                {model.slug === 'principle-35' && (
-                  <div className="absolute top-4 left-4 z-10">
-                    <span className="inline-flex items-center bg-ink px-3 py-1 text-sm font-medium text-white">
-                      Most popular
-                    </span>
-                  </div>
-                )}
               </div>
               
               <div className="p-6 bg-paper">
@@ -129,9 +122,9 @@ export default async function ModelsPage() {
                 
                 <p className="text-slate-600 mb-6">
                   {model.slug === 'professional-35' && 'The ultimate in luxury and performance for the professional rider.'}
-                  {model.slug === 'principle-35' && 'Perfect balance of quality and value for the discerning owner.'}
+                  {model.slug === 'principle-35' && 'A short list of fittings, and the payload to show for it.'}
                   {model.slug === 'progeny-35' && 'Crew cab 3.5t horsebox with up to 7 seats — top of the range specification.'}
-                  {model.slug === 'jth-principle-45' && 'Essential 4.5t horsebox with proven JTH quality at an affordable price.'}
+                  {model.slug === 'jth-principle-45' && 'The 4.5t box for everyday work, with a four-piece back end.'}
                   {model.slug === 'jth-professional-45' && 'Premium 4.5t horsebox with luxury features included as standard.'}
                   {model.slug === 'jth-progeny-45' && 'Crew cab 4.5t horsebox designed for teams and families.'}
                   {model.slug.includes('aeos') && model.slug.includes('45') && 'Part of our renowned Aeos 4.5t range with superior build quality.'}
@@ -160,15 +153,15 @@ export default async function ModelsPage() {
                     <>
                       <div className="flex items-center text-sm text-slate-600">
                         <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0" />
-                        Quality construction
+                        Specified to keep payload high
                       </div>
                       <div className="flex items-center text-sm text-slate-600">
                         <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0" />
-                        Essential features included
+                        Fitted groom&apos;s area
                       </div>
                       <div className="flex items-center text-sm text-slate-600">
                         <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0" />
-                        Great value proposition
+                        Built to order in Norfolk
                       </div>
                     </>
                   )}
@@ -240,7 +233,7 @@ export default async function ModelsPage() {
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start">
                   <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0 mt-0.5" />
-                  <span><strong>JTH Principle 35:</strong> £19,500 - Best value, quality construction</span>
+                  <span><strong>JTH Principle 35:</strong> £19,500 - specified for everyday work, with payload kept high</span>
                 </li>
                 <li className="flex items-start">
                   <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0 mt-0.5" />
@@ -293,7 +286,7 @@ export default async function ModelsPage() {
                 </li>
                 <li className="flex items-start">
                   <Check className="w-4 h-4 text-brass mr-2 flex-shrink-0 mt-0.5" />
-                  <span>Fully customizable to your specification</span>
+                  <span>Fully customisable to your specification</span>
                 </li>
               </ul>
             </div>
@@ -318,9 +311,9 @@ export default async function ModelsPage() {
                   <td className="p-4 font-medium text-blue-700">JTH Principle 35</td>
                   <td className="p-4 text-center">3.5t</td>
                   <td className="p-4 text-center">2</td>
-                  <td className="p-4 text-center">Basic</td>
+                  <td className="p-4 text-center">Fitted</td>
                   <td className="p-4 text-center font-semibold">£19,500</td>
-                  <td className="p-4 text-center">First-time buyers, budget conscious</td>
+                  <td className="p-4 text-center">Everyday owners, regular outings</td>
                 </tr>
                 <tr className="bg-slate-50">
                   <td className="p-4 font-medium text-blue-700">JTH Professional 35</td>
@@ -383,7 +376,7 @@ export default async function ModelsPage() {
                 <ul className="space-y-3 text-slate-700">
                   <li className="flex items-start">
                     <span className="font-semibold mr-2">1.</span>
-                    <span><strong>License Type:</strong> Do you have a standard car license (3.5t) or C1/HGV (4.5t/7.2t)?</span>
+                    <span><strong>Licence Type:</strong> Do you have a standard car licence (3.5t) or C1/HGV (4.5t/7.2t)?</span>
                   </li>
                   <li className="flex items-start">
                     <span className="font-semibold mr-2">2.</span>

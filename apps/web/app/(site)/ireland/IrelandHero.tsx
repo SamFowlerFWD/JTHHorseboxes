@@ -10,7 +10,7 @@ export default function IrelandHero() {
     <HeroAdvanced
       title="Premium British Horseboxes, Delivered to Ireland"
       subtitle={`3.5 Tonne Range From ${eurStartingPrice}`}
-      description="Handcrafted in Norfolk, delivered direct to your door in Ireland. Drive on a standard car licence. Two models to suit every budget."
+      description="Handcrafted in Norfolk, delivered direct to your door in Ireland. Drive on a standard car licence. Two models, built by hand in Norfolk."
       primaryCTA={{
         text: "View 3.5t Range",
         href: "#models",

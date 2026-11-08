@@ -37,7 +37,7 @@ const breadcrumbs = [
 
 const serviceSchema = generateServiceSchema({
   name: 'Premium Horsebox Manufacturing',
-  description: 'British-built luxury horseboxes from 3.5t to 7.5t with full customization options',
+  description: 'British-built luxury horseboxes from 3.5t to 7.5t with full customisation options',
   serviceType: 'Vehicle Manufacturing',
   areaServed: ['GB', 'IE']
 })

@@ -7,8 +7,8 @@ import Schema, { organizationSchema, generateProductSchema, generateBreadcrumbSc
 
 export const metadata: Metadata = {
   title: 'Professional 35 - Premium 3.5t Horsebox for Professional Riders | JTH Norfolk',
-  description: 'JTH Professional 35 - The ultimate luxury 3.5 tonne horsebox for professional riders and serious competitors. Premium materials, advanced safety, British-built in Norfolk from £22,950. Car license drivable. 2-year warranty. Configure online or visit our showroom.',
-  keywords: 'Professional 35 horsebox, 3.5t professional horsebox, 3.5 tonne luxury horsebox, professional competition horsebox, JTH Professional 35, British-built horsebox Norfolk, premium 3.5t horsebox UK, car license horsebox, two horse horsebox professional, luxury horsebox £22950, Professional 35 vs Principle 35, Professional 35 specifications, Professional 35 review, Professional 35 finance, best 3.5t horsebox UK 2025',
+  description: 'JTH Professional 35 - The ultimate luxury 3.5 tonne horsebox for professional riders and serious competitors. Premium materials, advanced safety, British-built in Norfolk from £22,950. Car licence drivable. 2-year warranty. Configure online or visit our showroom.',
+  keywords: 'Professional 35 horsebox, 3.5t professional horsebox, 3.5 tonne luxury horsebox, professional competition horsebox, JTH Professional 35, British-built horsebox Norfolk, premium 3.5t horsebox UK, car licence horsebox, two horse horsebox professional, luxury horsebox £22950, Professional 35 vs Principle 35, Professional 35 specifications, Professional 35 review, Professional 35 finance, best 3.5t horsebox UK 2025',
   openGraph: {
     title: 'JTH Professional 35 - Premium 3.5t Competition Horsebox',
     description: 'The ultimate luxury 3.5 tonne horsebox for professional riders. Premium materials, advanced safety, from £22,950.',
@@ -62,7 +62,7 @@ export default function Professional35Page() {
 
   const faqs = [
     {
-      question: 'What license do I need to drive the Professional 35?',
+      question: 'What licence do I need to drive the Professional 35?',
       answer: 'The Professional 35 is a 3.5 tonne horsebox, so it can be driven on a standard car licence (category B), whenever you passed your test.'
     },
     {
@@ -83,7 +83,7 @@ export default function Professional35Page() {
     },
     {
       question: 'How long does it take to build a Professional 35?',
-      answer: 'Build time for the Professional 35 is typically 8-12 weeks from order confirmation, depending on your chosen specification and customization requirements. We deliver throughout the UK and Ireland.'
+      answer: 'Build time for the Professional 35 is typically 8-12 weeks from order confirmation, depending on your chosen specification and customisation requirements. We deliver throughout the UK and Ireland.'
     }
   ]
 
@@ -182,7 +182,7 @@ export default function Professional35Page() {
                 </div>
                 <div className="flex items-center">
                   <Check className="w-6 h-6 text-blue-600 mr-3 flex-shrink-0" />
-                  <span className="text-slate-700">Fully customizable to your requirements</span>
+                  <span className="text-slate-700">Fully customisable to your requirements</span>
                 </div>
                 <div className="flex items-center">
                   <Check className="w-6 h-6 text-blue-600 mr-3 flex-shrink-0" />
@@ -320,7 +320,7 @@ export default function Professional35Page() {
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Every Professional 35 comes fully equipped with premium features. 
-              Customize further with our extensive options list.
+              Customise further with our extensive options list.
             </p>
           </div>
 
@@ -571,7 +571,7 @@ export default function Professional35Page() {
                   of premium features included as standard, the superior build quality, and our industry-leading 2-year warranty.
                 </p>
                 <p className="text-slate-600 leading-relaxed">
-                  Whether you're competing at local shows or traveling to international events, the Professional 35 provides 
+                  Whether you're competing at local shows or travelling to international events, the Professional 35 provides 
                   the perfect mobile base. The luxury living area ensures you arrive refreshed and ready to perform, while 
                   the carefully designed horse area keeps your equine partners comfortable and stress-free.
                 </p>
@@ -601,7 +601,7 @@ export default function Professional35Page() {
                     </li>
                     <li className="flex items-start">
                       <Check className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0 mt-0.5" />
-                      <span><strong>Customization:</strong> Fully bespoke vs limited options</span>
+                      <span><strong>Customisation:</strong> Fully bespoke vs limited options</span>
                     </li>
                     <li className="flex items-start">
                       <Check className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0 mt-0.5" />
@@ -635,8 +635,8 @@ export default function Professional35Page() {
                   <h4 className="font-semibold text-slate-900 mb-3">Horse Area</h4>
                   <p className="text-slate-600">
                     The 3.6m horse area comfortably accommodates two horses up to 16.2hh. EVA wall matting, reinforced partitions, 
-                    and excellent ventilation ensure your horses travel in comfort. The layout has been optimized based on feedback 
-                    from professional riders to minimize stress and maximize safety.
+                    and excellent ventilation ensure your horses travel in comfort. The layout has been optimised based on feedback 
+                    from professional riders to minimise stress and maximise safety.
                   </p>
                 </div>
               </div>
